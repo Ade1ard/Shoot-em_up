@@ -11,7 +11,7 @@
                     "type": "Value",
                     "id": "351f2ccd-1f9f-44bf-9bec-d62ac5c5f408",
                     "expectedControlType": "Vector2",
-                    "processors": "ScaleVector2(x=0.01,y=0.01)",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -94,7 +94,7 @@
                     "id": "978bfe49-cc26-4a3d-ab7b-7d7a29327403",
                     "path": "<Touchscreen>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
                     "groups": ";Touch",
                     "action": "Move",
                     "isComposite": false,
@@ -198,6 +198,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "48b61fd1-916a-447e-9421-a86cf2fc8cbe",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
