@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9d0d2eff16973c04da9e5adf83c05f9a
+guid: 2065b32d0d9b0f44ba5124eea2fc6ec6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4849737553960379326
-    second: IMG_20260109_135057_635_0
+      213: -6376118495575502765
+    second: littleTurnLeft_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_20260109_135057_635_0
+      name: littleTurnLeft_0
       rect:
         serializedVersion: 2
-        x: 138
-        y: 360
-        width: 746
-        height: 440
+        x: 50
+        y: 365
+        width: 927
+        height: 463
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb32ead3c9abd4340800000000000000
-      internalID: 4849737553960379326
+      spriteID: 3509c69a20a7387a0800000000000000
+      internalID: -6376118495575502765
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_20260109_135057_635_0: 4849737553960379326
+      littleTurnLeft_0: -6376118495575502765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
