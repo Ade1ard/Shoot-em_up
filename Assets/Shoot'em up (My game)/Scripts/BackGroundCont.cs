@@ -21,6 +21,8 @@ public class BackGroundCont : MonoBehaviour
         _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         _cloudHeight = _backGroundClouds[0].size.y;
         _backGroundHeight = _backGrounds[0].size.y;
+        Debug.Log(_cloudHeight);
+        SetStartPosition();
     }
 
     void Update()
@@ -51,5 +53,22 @@ public class BackGroundCont : MonoBehaviour
 
         foreach (var cloud in _backGroundClouds)
             cloud.transform.position += Vector3.down * _cloudsSpeed * Time.deltaTime;
+    }
+
+    private void SetStartPosition()
+    {
+        int index = 1;
+        foreach (var cloud in _backGroundClouds)
+        {
+            index++;
+            cloud.transform.position += new Vector3(0, (Mathf.Floor(index / _spriteCountHorizontal) - 1) * _cloudHeight, 0);
+        }
+
+        index = 1;
+        foreach (var background in _backGrounds)
+        {
+            index++;
+            background.transform.position += new Vector3(0, (Mathf.Floor(index / _spriteCountHorizontal) - 1) * _backGroundHeight, 0);
+        }
     }
 }

@@ -203,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 159242496}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -945,7 +945,7 @@ Transform:
   m_GameObject: {fileID: 1381582334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1035,7 +1035,7 @@ Transform:
   m_GameObject: {fileID: 1559038660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1183,7 +1183,7 @@ Transform:
   m_GameObject: {fileID: 1578145475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1220,16 +1220,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BackGroundCont
   _backGrounds:
   - {fileID: 1112284119}
-  - {fileID: 1137194697}
   - {fileID: 1817825696}
   - {fileID: 542251095}
+  - {fileID: 1137194697}
   _backGroundClouds:
   - {fileID: 1578145476}
-  - {fileID: 1381582336}
   - {fileID: 159242497}
+  - {fileID: 1381582336}
   - {fileID: 1559038662}
   _backGroundSpeed: 1
-  _cloudsSpeed: 3
+  _cloudsSpeed: 2
+  _spriteCountHorizontal: 2
 --- !u!4 &1604819933
 Transform:
   m_ObjectHideFlags: 0
@@ -1244,12 +1245,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1112284120}
-  - {fileID: 1137194696}
   - {fileID: 1817825697}
   - {fileID: 542251094}
+  - {fileID: 1137194696}
   - {fileID: 1578145477}
-  - {fileID: 1381582335}
   - {fileID: 159242498}
+  - {fileID: 1381582335}
   - {fileID: 1559038661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
