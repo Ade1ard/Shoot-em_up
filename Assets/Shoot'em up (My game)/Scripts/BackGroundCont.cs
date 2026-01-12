@@ -19,9 +19,9 @@ public class BackGroundCont : MonoBehaviour
     void Start()
     {
         _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
-        _cloudHeight = _backGroundClouds[0].size.y;
-        _backGroundHeight = _backGrounds[0].size.y;
-        Debug.Log(_cloudHeight);
+        _cloudHeight = _backGroundClouds[0].bounds.size.y;
+        _backGroundHeight = _backGrounds[0].bounds.size.y;
+
         SetStartPosition();
     }
 
