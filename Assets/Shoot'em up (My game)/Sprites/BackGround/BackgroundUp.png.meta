@@ -3,8 +3,8 @@ guid: 5d2da74113c5e4b409a40b907f120bba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4239197309309421669
-    second: IMG_20260113_120828_846(2)_0
+      213: -6035701654135944228
+    second: BackgroundUp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_20260113_120828_846(2)_0
+      name: BackgroundUp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1688
-        height: 1270
+        width: 2048
+        height: 1531
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5680e2a1e77a4da30800000000000000
-      internalID: 4239197309309421669
+      spriteID: cdb4df6f251ec3ca0800000000000000
+      internalID: -6035701654135944228
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 178d5a98e058e564ca3a75a994f2b7f9
+    spriteID: 9c23e1abd71eb7f43a9f594eb1c12745
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_20260113_120828_846(2)_0: 4239197309309421669
+      BackgroundUp_0: -6035701654135944228
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

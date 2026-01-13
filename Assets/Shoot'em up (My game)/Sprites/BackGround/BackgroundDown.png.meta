@@ -3,8 +3,8 @@ guid: c5672d532e5c92b418f1a7c8709afc9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 134309730169217493
-    second: IMG_20260113_120828_846(1)_0
+      213: 7154950301215113919
+    second: BackgroundDown_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_20260113_120828_846(1)_0
+      name: BackgroundDown_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1688
-        height: 1270
+        width: 2048
+        height: 1531
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d16d9cecf92dd100800000000000000
-      internalID: 134309730169217493
+      spriteID: fb24081f36d7b4360800000000000000
+      internalID: 7154950301215113919
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 425f3e6a3a0c5104295991f452ab9348
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_20260113_120828_846(1)_0: 134309730169217493
+      BackgroundDown_0: 7154950301215113919
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
