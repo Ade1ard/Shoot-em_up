@@ -12,6 +12,7 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _shootDelay;
     [SerializeField] private ParticleSystem _shootVFXPrefab;
+    [SerializeField] Animator _shootFlashAnimator;
 
     private float _lastShootTime;
 
@@ -22,7 +23,12 @@ public class ProjectileCaster : MonoBehaviour
             _lastShootTime = Time.time;
 
             Instantiate(_projectilePrefab, _shootPoint.position, Quaternion.identity).Initialize(_PRJspeed);
-            Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
+
+            if (_shootVFXPrefab != null)
+                Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
+
+            if (_shootFlashAnimator != null)
+                _shootFlashAnimator.SetTrigger("Shoot");
         }
     }
 }
