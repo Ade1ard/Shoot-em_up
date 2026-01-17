@@ -6,18 +6,19 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private float _speed = 1000;
+    [SerializeField] private float _damage = 10;
 
     private Rigidbody2D _rigidbody;
 
-    void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-    public void Initialize(float speed)
+    public void Initialize(float speed = default, float damage = default, Vector2 initialForce = default)
     {
         if (speed != 0)
             _speed = speed;
+        if (damage != 0)
+            _damage = damage;
+
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.AddForce(initialForce);
     }
 
     private void FixedUpdate()
@@ -28,6 +29,6 @@ public class ProjectileCont : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ScreenBounds"))
-            Destroy(gameObject);
+            Destroy(gameObject, 1);
     }
 }

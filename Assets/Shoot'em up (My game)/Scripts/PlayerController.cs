@@ -45,9 +45,6 @@ public class PlayerController : MonoBehaviour
         float accelerationRate = _moveInput.magnitude > 0.1f ? _acceleration : _deceleration;
 
         _rigidbody.AddForce(velocityDifference * accelerationRate * Time.fixedDeltaTime);
-
-        //if (_rigidbody.linearVelocity.magnitude > _moveSpeed)
-        //    _rigidbody.linearVelocity = _rigidbody.linearVelocity.normalized * _moveSpeed;
     }
 
     private void InitializeInput()

@@ -7,6 +7,7 @@ public class ProjectileCaster : MonoBehaviour
 
     [Header("ProjectileSettings")]
     [SerializeField] private float _PRJspeed;
+    [SerializeField] private float _PRJdamage;
 
     [Header("OwnSettings")]
     [SerializeField] private Transform _shootPoint;
@@ -16,13 +17,21 @@ public class ProjectileCaster : MonoBehaviour
 
     private float _lastShootTime;
 
+    private Rigidbody2D _playerRigidBoby;
+
+    private void Start()
+    {
+        _playerRigidBoby = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
         if (Time.time - _lastShootTime > _shootDelay)
         {
             _lastShootTime = Time.time;
 
-            Instantiate(_projectilePrefab, _shootPoint.position, Quaternion.identity).Initialize(_PRJspeed);
+            Vector3 InitPos = new Vector3(_shootPoint.position.x, _shootPoint.position.y, 0);
+            Instantiate(_projectilePrefab, InitPos, Quaternion.identity).Initialize(_PRJspeed, _PRJdamage, _playerRigidBoby.linearVelocity);
 
             if (_shootVFXPrefab != null)
                 Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
