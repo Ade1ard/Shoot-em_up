@@ -406,8 +406,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7460465, g: 0.5529412, b: 0.7647059, a: 1}
-      maxColor: {r: 0.6107755, g: 0.45768067, b: 0.8018868, a: 1}
+      minColor: {r: 0.74756896, g: 0.49261302, b: 0.7735849, a: 1}
+      maxColor: {r: 0.5676582, g: 0.38501248, b: 0.7924528, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6452,7 +6452,7 @@ MonoBehaviour:
   _PRJspeed: 0
   _PRJdamage: 0
   _shootPoint: {fileID: 2070185476}
-  _shootDelay: 0.5
+  _shootDelay: 0.3
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
 --- !u!1 &1817825695

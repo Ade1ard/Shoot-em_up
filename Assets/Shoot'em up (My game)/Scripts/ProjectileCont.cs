@@ -10,7 +10,7 @@ public class ProjectileCont : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
 
-    public void Initialize(float speed = default, float damage = default, Vector2 initialForce = default)
+    public void Initialize(float speed = default, float damage = default)
     {
         if (speed != 0)
             _speed = speed;
@@ -18,12 +18,7 @@ public class ProjectileCont : MonoBehaviour
             _damage = damage;
 
         _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.AddForce(initialForce);
-    }
-
-    private void FixedUpdate()
-    {
-        _rigidbody.AddForce(Vector2.up * _speed * Time.fixedDeltaTime);
+        _rigidbody.linearVelocity = (Vector2.up * _speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
