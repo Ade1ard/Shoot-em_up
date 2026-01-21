@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 0f4287d928eabc34eb3a4b2eec654cc1
+guid: 2b831608c6a13e44786552c0d2cadbc3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1846748915018881549
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_0
+      213: 9112820503697069438
+    second: EnemyBook_x4_outline_0
   - first:
-      213: -3093655102705959343
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_1
+      213: -6168522881427851436
+    second: EnemyBook_x4_outline_1
   - first:
-      213: -7915773411508963913
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_2
+      213: 7551135852707369176
+    second: EnemyBook_x4_outline_2
   - first:
-      213: -9030863370762090594
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_3
+      213: 2513341950595567213
+    second: EnemyBook_x4_outline_3
   - first:
-      213: -1939816807807070726
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_4
+      213: -3943097358589069069
+    second: EnemyBook_x4_outline_4
   - first:
-      213: -3090541027539960643
-    second: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_5
+      213: 518323185931749137
+    second: EnemyBook_x4_outline_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_0
+      name: EnemyBook_x4_outline_0
       rect:
         serializedVersion: 2
         x: 530
         y: 601
         width: 432
-        height: 405
+        height: 401
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f526f275a70f56e0800000000000000
-      internalID: -1846748915018881549
+      spriteID: e7592c067fd377e70800000000000000
+      internalID: 9112820503697069438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_2
+      name: EnemyBook_x4_outline_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 565
-        width: 458
-        height: 405
+        x: 41
+        y: 566
+        width: 452
+        height: 403
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b5b6849506852290800000000000000
-      internalID: -7915773411508963913
+      spriteID: 8d0d657ec060bc860800000000000000
+      internalID: 7551135852707369176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_4
+      name: EnemyBook_x4_outline_4
       rect:
         serializedVersion: 2
         x: 39
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: afdc35114e26415e0800000000000000
-      internalID: -1939816807807070726
+      spriteID: 3f8748208dd4749c0800000000000000
+      internalID: -3943097358589069069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_5
+      name: EnemyBook_x4_outline_5
       rect:
         serializedVersion: 2
         x: 527
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dbcb5b15f413c15d0800000000000000
-      internalID: -3090541027539960643
+      spriteID: 1178f400134713700800000000000000
+      internalID: 518323185931749137
       vertices: []
       indices: 
       edges: []
@@ -219,7 +219,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 870457e87d55b314ba4128d910336404
+    spriteID: 177815d3de176a54e8832051f6f78959
     internalID: 0
     vertices: []
     indices: 
@@ -229,12 +229,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_0: -1846748915018881549
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_1: -3093655102705959343
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_2: -7915773411508963913
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_3: -9030863370762090594
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_4: -1939816807807070726
-      ChatGPT Image Jan 19, 2026, 08_11_30 PM (1)_5: -3090541027539960643
+      EnemyBook_x4_outline_0: 9112820503697069438
+      EnemyBook_x4_outline_1: -6168522881427851436
+      EnemyBook_x4_outline_2: 7551135852707369176
+      EnemyBook_x4_outline_3: 2513341950595567213
+      EnemyBook_x4_outline_4: -3943097358589069069
+      EnemyBook_x4_outline_5: 518323185931749137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

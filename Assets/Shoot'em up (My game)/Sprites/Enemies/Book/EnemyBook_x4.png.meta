@@ -1,0 +1,362 @@
+fileFormatVersion: 2
+guid: 2f1e1c4a0bea0824a9afccd1876f46b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5502342926684541816
+    second: EnemyBook_x4_0
+  - first:
+      213: 5713560484304010231
+    second: EnemyBook_x4_1
+  - first:
+      213: -2789679512549993209
+    second: EnemyBook_x4_2
+  - first:
+      213: -3664152375850228591
+    second: EnemyBook_x4_3
+  - first:
+      213: -6875787555156891172
+    second: EnemyBook_x4_4
+  - first:
+      213: 4519990718675976689
+    second: EnemyBook_x4_5
+  - first:
+      213: -9128337454055674270
+    second: EnemyBook_x4_6
+  - first:
+      213: 2812918894776165153
+    second: EnemyBook_x4_7
+  - first:
+      213: -1813235554296911690
+    second: EnemyBook_x4_8
+  - first:
+      213: 2364553988204627439
+    second: EnemyBook_x4_9
+  - first:
+      213: 6946986768085669098
+    second: EnemyBook_x4_10
+  - first:
+      213: -6082093551292340984
+    second: EnemyBook_x4_11
+  - first:
+      213: 6880543540718547849
+    second: EnemyBook_x4_12
+  - first:
+      213: 168178609606738472
+    second: EnemyBook_x4_13
+  - first:
+      213: 7040457716483776973
+    second: EnemyBook_x4_14
+  - first:
+      213: -4661270810516941815
+    second: EnemyBook_x4_15
+  - first:
+      213: -3909619308467562144
+    second: EnemyBook_x4_16
+  - first:
+      213: -250174389900158254
+    second: EnemyBook_x4_17
+  - first:
+      213: -2488175140360891964
+    second: EnemyBook_x4_18
+  - first:
+      213: -1226361676412118113
+    second: EnemyBook_x4_19
+  - first:
+      213: 1546509645256793758
+    second: EnemyBook_x4_20
+  - first:
+      213: 1707106003594119666
+    second: EnemyBook_x4_21
+  - first:
+      213: -8943545679501926937
+    second: EnemyBook_x4_22
+  - first:
+      213: -2195942413684115132
+    second: EnemyBook_x4_23
+  - first:
+      213: -4963306198171736624
+    second: EnemyBook_x4_24
+  - first:
+      213: 1888576624173831384
+    second: EnemyBook_x4_25
+  - first:
+      213: 8443510989979149855
+    second: EnemyBook_x4_26
+  - first:
+      213: 8001752461522393748
+    second: EnemyBook_x4_27
+  - first:
+      213: 1665208644284161730
+    second: EnemyBook_x4_28
+  - first:
+      213: -8138139991532048677
+    second: EnemyBook_x4_29
+  - first:
+      213: 4197725629850387904
+    second: EnemyBook_x4_30
+  - first:
+      213: 9180141419494513452
+    second: EnemyBook_x4_31
+  - first:
+      213: -7571690388846921855
+    second: EnemyBook_x4_32
+  - first:
+      213: -720868495794488988
+    second: EnemyBook_x4_33
+  - first:
+      213: 1210463707970420908
+    second: EnemyBook_x4_34
+  - first:
+      213: -4987352251099303605
+    second: EnemyBook_x4_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnemyBook_x4_6
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 573
+        width: 444
+        height: 394
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26e2e151371a15180800000000000000
+      internalID: -9128337454055674270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyBook_x4_13
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 607
+        width: 421
+        height: 392
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 822cd6ced8d755200800000000000000
+      internalID: 168178609606738472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyBook_x4_28
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 110
+        width: 443
+        height: 395
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ce977770720c1710800000000000000
+      internalID: 1665208644284161730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyBook_x4_30
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 198
+        width: 462
+        height: 302
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c509c74831514a30800000000000000
+      internalID: 4197725629850387904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f91559c3ddcef1249a742c992e82ffeb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      EnemyBook_x4_0: -5502342926684541816
+      EnemyBook_x4_1: 5713560484304010231
+      EnemyBook_x4_10: 6946986768085669098
+      EnemyBook_x4_11: -6082093551292340984
+      EnemyBook_x4_12: 6880543540718547849
+      EnemyBook_x4_13: 168178609606738472
+      EnemyBook_x4_14: 7040457716483776973
+      EnemyBook_x4_15: -4661270810516941815
+      EnemyBook_x4_16: -3909619308467562144
+      EnemyBook_x4_17: -250174389900158254
+      EnemyBook_x4_18: -2488175140360891964
+      EnemyBook_x4_19: -1226361676412118113
+      EnemyBook_x4_2: -2789679512549993209
+      EnemyBook_x4_20: 1546509645256793758
+      EnemyBook_x4_21: 1707106003594119666
+      EnemyBook_x4_22: -8943545679501926937
+      EnemyBook_x4_23: -2195942413684115132
+      EnemyBook_x4_24: -4963306198171736624
+      EnemyBook_x4_25: 1888576624173831384
+      EnemyBook_x4_26: 8443510989979149855
+      EnemyBook_x4_27: 8001752461522393748
+      EnemyBook_x4_28: 1665208644284161730
+      EnemyBook_x4_29: -8138139991532048677
+      EnemyBook_x4_3: -3664152375850228591
+      EnemyBook_x4_30: 4197725629850387904
+      EnemyBook_x4_31: 9180141419494513452
+      EnemyBook_x4_32: -7571690388846921855
+      EnemyBook_x4_33: -720868495794488988
+      EnemyBook_x4_34: 1210463707970420908
+      EnemyBook_x4_35: -4987352251099303605
+      EnemyBook_x4_4: -6875787555156891172
+      EnemyBook_x4_5: 4519990718675976689
+      EnemyBook_x4_6: -9128337454055674270
+      EnemyBook_x4_7: 2812918894776165153
+      EnemyBook_x4_8: -1813235554296911690
+      EnemyBook_x4_9: 2364553988204627439
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

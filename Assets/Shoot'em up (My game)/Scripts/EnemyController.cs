@@ -8,9 +8,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private PathType pathType = PathType.CatmullRom;
 
     [Header("Wave Settings")]
-    [SerializeField] private float _amplitude = 7f;
+    [SerializeField] private float _amplitude = 3f;
     [SerializeField] private float _waves = 4f;
-    [SerializeField] private float _duration = 40f;
+    [SerializeField] private float _duration = 30f;
     [SerializeField] private float _verticalDistance = 14f;
 
     void Start()

@@ -185,12 +185,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5441902122645585090, guid: f1685b5cec42f094c94f0ae610c34d12, type: 3}
+  m_Sprite: {fileID: -7434556310778087435, guid: efd657e55e9287541b8e35653bc70da5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.3, y: 3.110921}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -242,12 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387574c24771bf94b940d0bff9d530d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  _amplitude: 7
-  _waves: 4
-  _duration: 40
-  _verticalDistance: 14
-  _pathPointsCount: 60
+  _pathPointsCount: 40
   pathType: 1
+  _amplitude: 2
+  _waves: 4
+  _duration: 30
+  _verticalDistance: 14
 --- !u!1 &41932206
 GameObject:
   m_ObjectHideFlags: 0

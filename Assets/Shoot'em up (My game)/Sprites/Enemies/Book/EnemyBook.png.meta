@@ -1,37 +1,10 @@
 fileFormatVersion: 2
-guid: f1685b5cec42f094c94f0ae610c34d12
+guid: efd657e55e9287541b8e35653bc70da5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3819169560172522863
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_0
-  - first:
-      213: -4146386652061398886
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_1
-  - first:
-      213: -1806756047803225479
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_2
-  - first:
-      213: 3218600004313004007
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_3
-  - first:
-      213: -2221551400537234533
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_4
-  - first:
-      213: -6279254641346638761
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_5
-  - first:
-      213: -4218005185321143203
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_6
-  - first:
-      213: -5441902122645585090
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_7
-  - first:
-      213: 8454375916763599287
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_8
-  - first:
-      213: -5337191459512059404
-    second: ChatGPT Image Jan 19, 2026, 08_09_22 PM_9
+      213: -7434556310778087435
+    second: EnemyBook_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -140,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT Image Jan 19, 2026, 08_09_22 PM_7
+      name: EnemyBook_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 79
-        width: 463
-        height: 433
+        x: 106
+        y: 89
+        width: 330
+        height: 311
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3304451ada7a74b0800000000000000
-      internalID: -5441902122645585090
+      spriteID: 5f7fe61ec6623d890800000000000000
+      internalID: -7434556310778087435
       vertices: []
       indices: 
       edges: []
@@ -165,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2f20d473e9b1a9d449839c2e4c48fb5e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -175,16 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_0: 3819169560172522863
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_1: -4146386652061398886
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_2: -1806756047803225479
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_3: 3218600004313004007
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_4: -2221551400537234533
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_5: -6279254641346638761
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_6: -4218005185321143203
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_7: -5441902122645585090
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_8: 8454375916763599287
-      ChatGPT Image Jan 19, 2026, 08_09_22 PM_9: -5337191459512059404
+      EnemyBook_0: -7434556310778087435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
