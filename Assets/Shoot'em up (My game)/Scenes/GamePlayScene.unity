@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34014096}
   - component: {fileID: 34014095}
+  - component: {fileID: 34014099}
   - component: {fileID: 34014098}
   - component: {fileID: 34014097}
   m_Layer: 0
@@ -242,12 +243,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387574c24771bf94b940d0bff9d530d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  _pathPointsCount: 40
+--- !u!114 &34014099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34014094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
+  type: 0
+  _moveDuration: 30
   pathType: 1
-  _amplitude: 2
-  _waves: 4
-  _duration: 30
-  _verticalDistance: 14
+  amplitude: 3
+  frequency: 2
+  verticalDistance: 10
+  resolution: 30
+  radius: 4
+  loops: 2
+  clockwise: 1
+  circleResolution: 50
+  zigzagWidth: 3
+  zigzagCount: 5
+  zigzagVerticalDistance: 8
+  spiralStartRadius: 4
+  spiralEndRadius: 0.5
+  spiralTurns: 3
 --- !u!1 &41932206
 GameObject:
   m_ObjectHideFlags: 0
