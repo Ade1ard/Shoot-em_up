@@ -9,9 +9,23 @@ public enum TrajectoryType
     Spiral,
 }
 
+public enum MovementType
+{
+    Linear,
+    Curvelinear,
+}
+
 public class ObjectMovement : MonoBehaviour
 {
-    [Header("Path Settings")]
+    [Header("Movement Settings")]
+    [SerializeField] private MovementType _movementType = MovementType.Linear;
+    [SerializeField] private bool _isItEnemy;
+    [SerializeField] private bool _upDirection;
+
+    [Header("Linear Movement Settings")]
+    [SerializeField] private float _speed = 10;
+
+    [Header("Curvelinear Movement Settings")]
     [SerializeField] private TrajectoryType type = TrajectoryType.SineWave;
     [SerializeField] private float _moveDuration = 30f;
     [SerializeField] private PathType pathType = PathType.CatmullRom;
@@ -40,9 +54,28 @@ public class ObjectMovement : MonoBehaviour
 
     private void Start()
     {
-        Vector3[] path = GeneratePath(transform.position);
+        switch (_movementType)
+        {
+            case MovementType.Linear:
+                transform.DOMove((_upDirection ? Vector3.up : Vector3.down) * _speed, 2)
+                    .SetRelative()
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => Destroy(gameObject));
 
-        transform.DOPath(path, _moveDuration, pathType, PathMode.TopDown2D).SetEase(Ease.Linear);
+                return;
+
+            case MovementType.Curvelinear:
+                Vector3[] path = GeneratePath(transform.position);
+
+                var tween =  transform.DOPath(path, _moveDuration, pathType, PathMode.TopDown2D)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => Destroy(gameObject));
+
+                if (!_isItEnemy)
+                    tween.SetLookAt(0.01f);
+
+                return;
+        }
     }
 
     public Vector3[] GeneratePath(Vector3 startPosition)

@@ -219,14 +219,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34014094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
-  _projectilePrefab: {fileID: 0}
-  _PRJspeed: 0
-  _PRJdamage: 0
+  _projectilePrefab: {fileID: 9095561515226119892, guid: d8bacc0d5025e6a4ab409762c544efdd, type: 3}
+  _PRJDamage: 0
   _shootPoint: {fileID: 0}
   _shootDelay: 2
   _shootVFXPrefab: {fileID: 0}
@@ -255,12 +254,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
+  _movementType: 1
+  _isItEnemy: 1
+  _upDirection: 0
+  _speed: 10
   type: 0
-  _moveDuration: 30
+  _moveDuration: 13
   pathType: 1
-  amplitude: 3
-  frequency: 2
-  verticalDistance: 10
+  amplitude: 2
+  frequency: 3
+  verticalDistance: 13
   resolution: 30
   radius: 4
   loops: 2
@@ -6602,8 +6605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 3235747921286425940, guid: 9b51c5ae85395dc439f6e691649545d0, type: 3}
-  _PRJspeed: 0
-  _PRJdamage: 0
+  _PRJDamage: 0
   _shootPoint: {fileID: 2070185476}
   _shootDelay: 0.3
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}

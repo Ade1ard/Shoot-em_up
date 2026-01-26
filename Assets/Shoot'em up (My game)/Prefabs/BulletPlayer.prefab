@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5059737127395992530}
   - component: {fileID: 828791313908440585}
+  - component: {fileID: 5186869197460401504}
   - component: {fileID: 3235747921286425940}
   - component: {fileID: 7700706176413310029}
   - component: {fileID: 1803751769596293751}
@@ -94,6 +95,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5186869197460401504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6703673981427065524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
+  _movementType: 0
+  _upDirection: 1
+  _speed: 15
+  type: 0
+  _moveDuration: 2
+  pathType: 1
+  amplitude: 3
+  frequency: 2
+  verticalDistance: 10
+  resolution: 30
+  radius: 4
+  loops: 2
+  clockwise: 1
+  circleResolution: 50
+  zigzagWidth: 3
+  zigzagCount: 5
+  zigzagVerticalDistance: 8
+  spiralStartRadius: 4
+  spiralEndRadius: 0.5
+  spiralTurns: 3
 --- !u!114 &3235747921286425940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594ae3042bc880e4abd9248fb97f4196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
-  _speed: 10
   _damage: 10
 --- !u!50 &7700706176413310029
 Rigidbody2D:

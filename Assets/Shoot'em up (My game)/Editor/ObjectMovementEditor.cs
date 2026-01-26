@@ -7,14 +7,35 @@ public class ObjectMovementEditor : Editor
     {
         serializedObject.Update();
 
-        SerializedProperty typeProperty = serializedObject.FindProperty("type");
-        EditorGUILayout.PropertyField(typeProperty);
+        SerializedProperty MovementTypeProperty = serializedObject.FindProperty("_movementType");
+        EditorGUILayout.PropertyField(MovementTypeProperty);
+        MovementType currentMovementType = (MovementType)MovementTypeProperty.enumValueIndex;
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_isItEnemy"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_upDirection"));
+
+        switch (currentMovementType)
+        {
+            case MovementType.Linear:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("_speed"));
+                break;
+
+            case MovementType.Curvelinear:
+                CurveLinearEditor();
+                break;
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    private void CurveLinearEditor()
+    {
+        SerializedProperty TrajectoryTypeProperty = serializedObject.FindProperty("type");
+        EditorGUILayout.PropertyField(TrajectoryTypeProperty);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveDuration"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pathType"));
 
-        TrajectoryType currentType = (TrajectoryType)typeProperty.enumValueIndex;
+        TrajectoryType currentTrajectoryType = (TrajectoryType)TrajectoryTypeProperty.enumValueIndex;
 
-        switch (currentType)
+        switch (currentTrajectoryType)
         {
             case TrajectoryType.SineWave:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("amplitude"));
@@ -42,7 +63,5 @@ public class ObjectMovementEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("spiralTurns"));
                 break;
         }
-
-        serializedObject.ApplyModifiedProperties();
     }
 }

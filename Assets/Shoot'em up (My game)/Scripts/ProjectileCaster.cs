@@ -5,17 +5,22 @@ public class ProjectileCaster : MonoBehaviour
     [Header("Prefab")]
     [SerializeField] ProjectileCont _projectilePrefab;
 
-    [Header("ProjectileSettings")]
-    [SerializeField] private float _PRJspeed;
-    [SerializeField] private float _PRJdamage;
+    [Header("Projectile Settings")]
+    [SerializeField] private float _PRJDamage;
 
-    [Header("OwnSettings")]
+    [Header("Own Settings")]
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _shootDelay;
     [SerializeField] private ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
     private float _lastShootTime;
+
+    private void Start()
+    {
+        if (_shootPoint == null)
+            _shootPoint = transform;
+    }
 
     void Update()
     {
@@ -24,7 +29,7 @@ public class ProjectileCaster : MonoBehaviour
             _lastShootTime = Time.time;
 
             Vector3 InitPos = new Vector3(_shootPoint.position.x, _shootPoint.position.y, 0);
-            Instantiate(_projectilePrefab, InitPos, Quaternion.identity).Initialize(_PRJspeed, _PRJdamage);
+            Instantiate(_projectilePrefab, InitPos, Quaternion.identity).Initialize(_PRJDamage);
 
             if (_shootVFXPrefab != null)
                 Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
