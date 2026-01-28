@@ -36,8 +36,8 @@ public class WaveData : ScriptableObject
         public PatternType patternType = PatternType.Random;
 
         [Header("Pattern Settings")]
-        public float _radius = 5f; // Circle
-        public Vector2 _spacing = new Vector2(1.5f, 1.5f); // Grid
+        public float _radius = 3f; // Circle
+        public Vector2 _spacing = new Vector2(0.5f, 0.5f); // Grid
         public int _columns = 3; // Grid/Line
     }
 

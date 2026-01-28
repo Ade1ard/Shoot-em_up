@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: BasicWave
+  m_Name: BasicWave 1
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  _waveName: together
+  _waveName: one
   _difficultyLevel: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 1347978250879101239, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
     _minEnemyCount: 2
     _maxEnemyCount: 4
     _spawnTogether: 1
-    _delayBetweenEnemies: 1.5
+    _delayBetweenEnemies: 3
     _delayAfterGroup: 3
   _spawnPattern:
-    patternType: 2
+    patternType: 1
     _radius: 3
     _spacing: {x: 0.5, y: 0.5}
     _columns: 3
