@@ -31,6 +31,7 @@ public class ObjectMovementEditor : Editor
         SerializedProperty TrajectoryTypeProperty = serializedObject.FindProperty("type");
         EditorGUILayout.PropertyField(TrajectoryTypeProperty);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveDuration"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveDurationOffset"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pathType"));
 
         TrajectoryType currentTrajectoryType = (TrajectoryType)TrajectoryTypeProperty.enumValueIndex;

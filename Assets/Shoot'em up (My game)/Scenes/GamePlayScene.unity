@@ -6613,6 +6613,9 @@ MonoBehaviour:
   _shootDelay: 0.3
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
+  _spawnPositonOffset_X: 0.05
+  _spawnPositonOffset_Y: 0.05
+  _shootDelayOffset: 0.05
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0

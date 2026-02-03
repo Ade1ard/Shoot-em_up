@@ -22,8 +22,8 @@ MonoBehaviour:
     _delayBetweenEnemies: 3
     _delayAfterGroup: 3
   _spawnPattern:
-    patternType: 1
-    _radius: 3
+    patternType: 0
+    _radius: 2
     _spacing: {x: 0.5, y: 0.5}
     _columns: 3
   _waveStartDelay: 2

@@ -14,6 +14,11 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
+    [Header("Offsets")]
+    [SerializeField] private float _spawnPositonOffset_X = 0.1f;
+    [SerializeField] private float _spawnPositonOffset_Y = 0.1f;
+    [SerializeField] private float _shootDelayOffset = 0.1f;
+
     private float _lastShootTime;
 
     private void Start()
@@ -27,8 +32,12 @@ public class ProjectileCaster : MonoBehaviour
         if (Time.time - _lastShootTime > _shootDelay)
         {
             _lastShootTime = Time.time;
+            _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
 
-            Vector3 InitPos = new Vector3(_shootPoint.position.x, _shootPoint.position.y, 0);
+            Vector3 InitPos = new Vector3(_shootPoint.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
+                _shootPoint.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
+                0);
+
             Instantiate(_projectilePrefab, InitPos, Quaternion.identity).Initialize(_PRJDamage);
 
             if (_shootVFXPrefab != null)

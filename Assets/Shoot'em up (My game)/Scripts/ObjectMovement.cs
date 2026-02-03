@@ -28,6 +28,7 @@ public class ObjectMovement : MonoBehaviour
     [Header("Curvelinear Movement Settings")]
     [SerializeField] private TrajectoryType type = TrajectoryType.SineWave;
     [SerializeField] private float _moveDuration = 30f;
+    [SerializeField] private float _moveDurationOffset = 5f;
     [SerializeField] private PathType pathType = PathType.CatmullRom;
 
     [Header("SinWave")]
@@ -67,7 +68,7 @@ public class ObjectMovement : MonoBehaviour
             case MovementType.Curvelinear:
                 Vector3[] path = GeneratePath(transform.position);
 
-                var tween =  transform.DOPath(path, _moveDuration, pathType, PathMode.TopDown2D)
+                var tween =  transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
                     .SetEase(Ease.Linear)
                     .OnComplete(() => Destroy(gameObject));
 
@@ -76,6 +77,12 @@ public class ObjectMovement : MonoBehaviour
 
                 return;
         }
+    }
+
+    void Destroy()
+    {
+        DOTween.KillAll(this);
+        Destroy(gameObject);
     }
 
     public Vector3[] GeneratePath(Vector3 startPosition)

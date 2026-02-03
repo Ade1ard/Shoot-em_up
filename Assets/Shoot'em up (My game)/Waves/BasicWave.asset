@@ -23,9 +23,9 @@ MonoBehaviour:
     _delayAfterGroup: 3
   _spawnPattern:
     patternType: 2
-    _radius: 3
-    _spacing: {x: 0.5, y: 0.5}
-    _columns: 3
+    _radius: 2
+    _spacing: {x: 1, y: 1}
+    _columns: 2
   _waveStartDelay: 2
   _timeBetweenGroups: 3
   _baseXP: 100
