@@ -18,7 +18,7 @@ MonoBehaviour:
   - _enemyPrefab: {fileID: 1347978250879101239, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
     _minEnemyCount: 2
     _maxEnemyCount: 4
-    _spawnTogether: 1
+    _spawnTogether: 0
     _delayBetweenEnemies: 3
     _delayAfterGroup: 3
   _spawnPattern:

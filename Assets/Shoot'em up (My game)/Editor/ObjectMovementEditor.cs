@@ -28,7 +28,7 @@ public class ObjectMovementEditor : Editor
 
     private void CurveLinearEditor()
     {
-        SerializedProperty TrajectoryTypeProperty = serializedObject.FindProperty("type");
+        SerializedProperty TrajectoryTypeProperty = serializedObject.FindProperty("_type");
         EditorGUILayout.PropertyField(TrajectoryTypeProperty);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveDuration"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_moveDurationOffset"));
@@ -41,7 +41,7 @@ public class ObjectMovementEditor : Editor
             case TrajectoryType.SineWave:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("amplitude"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("frequency"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("verticalDistance"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("sinDistance"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("resolution"));
                 break;
 
@@ -52,16 +52,11 @@ public class ObjectMovementEditor : Editor
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("circleResolution"));
                 break;
 
-            case TrajectoryType.ZigZag:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("zigzagWidth"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("zigzagCount"));
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("zigzagVerticalDistance"));
-                break;
-
             case TrajectoryType.Spiral:
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("spiralStartRadius"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("spiralEndRadius"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("spiralTurns"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("spiralDistance"));
                 break;
         }
     }

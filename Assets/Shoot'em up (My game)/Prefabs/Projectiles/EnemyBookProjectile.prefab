@@ -52,8 +52,9 @@ MonoBehaviour:
   _isItEnemy: 0
   _upDirection: 0
   _speed: 10
-  type: 0
+  _type: 0
   _moveDuration: 5
+  _moveDurationOffset: 3
   pathType: 1
   amplitude: 1
   frequency: 2

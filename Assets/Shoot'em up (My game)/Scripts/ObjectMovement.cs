@@ -4,7 +4,6 @@ using UnityEngine;
 public enum TrajectoryType
 {
     SineWave,
-    ZigZag,
     Circle,
     Spiral,
 }
@@ -26,7 +25,7 @@ public class ObjectMovement : MonoBehaviour
     [SerializeField] private float _speed = 10;
 
     [Header("Curvelinear Movement Settings")]
-    [SerializeField] private TrajectoryType type = TrajectoryType.SineWave;
+    [SerializeField] private TrajectoryType _type = TrajectoryType.SineWave;
     [SerializeField] private float _moveDuration = 30f;
     [SerializeField] private float _moveDurationOffset = 5f;
     [SerializeField] private PathType pathType = PathType.CatmullRom;
@@ -34,7 +33,7 @@ public class ObjectMovement : MonoBehaviour
     [Header("SinWave")]
     public float amplitude = 3f;
     public float frequency = 2f;
-    public float verticalDistance = 10f;
+    public float sinDistance = 10f;
     public int resolution = 30;
 
     [Header("Circle")]
@@ -52,6 +51,7 @@ public class ObjectMovement : MonoBehaviour
     public float spiralStartRadius = 4f;
     public float spiralEndRadius = 0.5f;
     public int spiralTurns = 3;
+    public float spiralDistance = 10f;
 
     private void Start()
     {
@@ -79,40 +79,41 @@ public class ObjectMovement : MonoBehaviour
         }
     }
 
-    void Destroy()
+    public Vector3[] GeneratePath(Vector3 startPosition, Vector3 direction = default)
     {
-        DOTween.KillAll(this);
-        Destroy(gameObject);
-    }
+        if (direction == null)
+            direction = Vector3.down;
 
-    public Vector3[] GeneratePath(Vector3 startPosition)
-    {
-        switch (type)
+        switch (_type)
         {
             case TrajectoryType.SineWave:
-                return GenerateSinePath(startPosition);
+                return GenerateSinePath(startPosition, direction);
             case TrajectoryType.Circle:
                 return GenerateCirclePath(startPosition);
-            case TrajectoryType.ZigZag:
-                return GenerateZigZagPath(startPosition);
             case TrajectoryType.Spiral:
-                return GenerateSpiralPath(startPosition);
+                return GenerateSpiralPath(startPosition, direction);
             default:
                 return new Vector3[] {startPosition, startPosition + Vector3.down};
         }
     }
 
-    private Vector3[] GenerateSinePath(Vector3 start)
+    private Vector3[] GenerateSinePath(Vector3 start, Vector3 direction)
     {
         Vector3[] path = new Vector3[resolution];
+
+        Vector3 dirNormalized = direction.normalized;
+        Vector3 perpendicular = Vector3.Cross(dirNormalized, Vector3.forward).normalized;
 
         for (int i = 0; i < resolution; i++)
         {
             float t = (float)i / (resolution - 1);
-            float x = Mathf.Sin(t * Mathf.PI * 2 * frequency) * amplitude;
-            float y = start.y - t * verticalDistance;
 
-            path[i] = new Vector3(start.x + x, y, start.z);
+            Vector3 basePosition = start + dirNormalized * (sinDistance * t);
+
+            float sineValue = Mathf.Sin(t * Mathf.PI * 2 * frequency) * amplitude;
+            Vector3 offset = perpendicular * sineValue;
+
+            path[i] = basePosition + offset;
         }
 
         return path;
@@ -135,33 +136,13 @@ public class ObjectMovement : MonoBehaviour
         return path;
     }
 
-    private Vector3[] GenerateZigZagPath(Vector3 start)
-    {
-        int totalPoints = zigzagCount * 10;
-        Vector3[] path = new Vector3[totalPoints];
-
-        for (int i = 0; i < totalPoints; i++)
-        {
-            float t = (float)i / (totalPoints - 1);
-            int segment = Mathf.FloorToInt(t * zigzagCount);
-            float localT = (t * zigzagCount) - segment;
-
-            float x = Mathf.PingPong(segment, 1) * zigzagWidth;
-            if (segment % 2 == 1) x = zigzagWidth - x;
-
-            x = Mathf.SmoothStep(-zigzagWidth, zigzagWidth, localT) * (segment % 2 == 0 ? 1 : -1);
-            float y = start.y - t * zigzagVerticalDistance;
-
-            path[i] = new Vector3(start.x + x, y, start.z);
-        }
-
-        return path;
-    }
-
-    private Vector3[] GenerateSpiralPath(Vector3 start)
+    private Vector3[] GenerateSpiralPath(Vector3 start, Vector3 direction)
     {
         int res = 60;
         Vector3[] path = new Vector3[res];
+
+        Vector3 dirNormalized = direction.normalized;
+        Vector3 perpendicular = Vector3.Cross(dirNormalized, Vector3.forward).normalized;
 
         for (int i = 0; i < res; i++)
         {
@@ -169,10 +150,11 @@ public class ObjectMovement : MonoBehaviour
             float angle = t * Mathf.PI * 2 * spiralTurns;
             float currentRadius = Mathf.Lerp(spiralStartRadius, spiralEndRadius, t);
 
-            float x = Mathf.Cos(angle) * currentRadius;
-            float y = start.y - t * 8f;
+            Vector3 basePosition = start + dirNormalized * (sinDistance * t);
 
-            path[i] = new Vector3(start.x + x, y, start.z);
+            Vector3 spiralOffset = (dirNormalized * Mathf.Cos(angle) + perpendicular * Mathf.Sin(angle)) * currentRadius;
+
+            path[i] = basePosition + spiralOffset;
         }
 
         return path;
