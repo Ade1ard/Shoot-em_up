@@ -91,6 +91,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        enemy.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
         //EnemyController enemyController = enemy.GetComponent<EnemyController>();
         //if (enemyController != null)

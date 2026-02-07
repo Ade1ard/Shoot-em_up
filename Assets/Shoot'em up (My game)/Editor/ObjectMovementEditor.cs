@@ -12,6 +12,8 @@ public class ObjectMovementEditor : Editor
         MovementType currentMovementType = (MovementType)MovementTypeProperty.enumValueIndex;
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_isItEnemy"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("_upDirection"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_directionType"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("_directionOffset"));
 
         switch (currentMovementType)
         {

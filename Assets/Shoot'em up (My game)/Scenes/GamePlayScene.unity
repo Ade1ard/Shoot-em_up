@@ -6516,8 +6516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _moveSpeed: 10
-  _acceleration: 200
-  _deceleration: 500
+  _acceleration: 300
+  _deceleration: 600
   _inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!50 &1750253394
 Rigidbody2D:

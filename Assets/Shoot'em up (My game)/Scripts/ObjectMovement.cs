@@ -14,12 +14,22 @@ public enum MovementType
     Curvelinear,
 }
 
+public enum DirectionType
+{
+    Simple,
+    ToPlayer,
+}
+
 public class ObjectMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private MovementType _movementType = MovementType.Linear;
     [SerializeField] private bool _isItEnemy;
     [SerializeField] private bool _upDirection;
+
+    [Header("DirectionSettings")]
+    [SerializeField] private DirectionType _directionType = DirectionType.Simple;
+    [SerializeField] private float _directionOffset = 0.25f;
 
     [Header("Linear Movement Settings")]
     [SerializeField] private float _speed = 10;
@@ -42,48 +52,66 @@ public class ObjectMovement : MonoBehaviour
     public bool clockwise = true;
     public int circleResolution = 50;
 
-    [Header("ZigZag")]
-    public float zigzagWidth = 3f;
-    public int zigzagCount = 5;
-    public float zigzagVerticalDistance = 8f;
-
     [Header("Spiral")]
     public float spiralStartRadius = 4f;
     public float spiralEndRadius = 0.5f;
     public int spiralTurns = 3;
     public float spiralDistance = 10f;
 
-    private void Start()
+    public void StartMove(Vector3 spawnPosition = default)
     {
         switch (_movementType)
         {
             case MovementType.Linear:
-                transform.DOMove((_upDirection ? Vector3.up : Vector3.down) * _speed, 2)
+                transform.DOMove(CalculateDirection(spawnPosition) * _speed, 2)
                     .SetRelative()
                     .SetEase(Ease.Linear)
                     .OnComplete(() => Destroy(gameObject));
-
                 return;
 
             case MovementType.Curvelinear:
-                Vector3[] path = GeneratePath(transform.position);
-
+                Vector3[] path = GeneratePath(transform.position, CalculateDirection(spawnPosition));
                 var tween =  transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
                     .SetEase(Ease.Linear)
                     .OnComplete(() => Destroy(gameObject));
 
                 if (!_isItEnemy)
                     tween.SetLookAt(0.01f);
-
                 return;
         }
     }
 
-    public Vector3[] GeneratePath(Vector3 startPosition, Vector3 direction = default)
+    public Vector3 CalculateDirection(Vector3 spawnPosition = default)
     {
-        if (direction == null)
-            direction = Vector3.down;
+        if (spawnPosition == default)
+            return _upDirection? Vector3.up : Vector3.down;
 
+        switch (_directionType)
+        {
+            case DirectionType.Simple:
+                return CalculateSimpleDirection(spawnPosition);
+            case DirectionType.ToPlayer:
+                return Object.FindAnyObjectByType<PlayerController>().transform.position - spawnPosition;
+            default:
+                return CalculateSimpleDirection(spawnPosition);
+        }
+    }
+
+    Vector3 CalculateSimpleDirection(Vector3 spawnPosition)
+    {
+        float leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+
+        if (spawnPosition.x < leftBoundary + 2)
+            return new Vector3(1, Random.Range(-_directionOffset, _directionOffset), 0);
+
+        if (spawnPosition.x > -leftBoundary - 2)
+            return new Vector3(-1, Random.Range(-_directionOffset, _directionOffset), 0);
+
+        return new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
+    }
+
+    public Vector3[] GeneratePath(Vector3 startPosition, Vector3 direction)
+    {
         switch (_type)
         {
             case TrajectoryType.SineWave:
@@ -150,7 +178,7 @@ public class ObjectMovement : MonoBehaviour
             float angle = t * Mathf.PI * 2 * spiralTurns;
             float currentRadius = Mathf.Lerp(spiralStartRadius, spiralEndRadius, t);
 
-            Vector3 basePosition = start + dirNormalized * (sinDistance * t);
+            Vector3 basePosition = start + dirNormalized * (spiralDistance * t);
 
             Vector3 spiralOffset = (dirNormalized * Mathf.Cos(angle) + perpendicular * Mathf.Sin(angle)) * currentRadius;
 

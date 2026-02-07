@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6703673981427065524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,25 +108,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
   _movementType: 0
+  _isItEnemy: 0
   _upDirection: 1
+  _directionType: 0
+  _directionOffset: 1
   _speed: 15
-  type: 0
+  _type: 0
   _moveDuration: 2
+  _moveDurationOffset: 5
   pathType: 1
   amplitude: 3
   frequency: 2
-  verticalDistance: 10
+  sinDistance: 10
   resolution: 30
   radius: 4
   loops: 2
   clockwise: 1
   circleResolution: 50
-  zigzagWidth: 3
-  zigzagCount: 5
-  zigzagVerticalDistance: 8
   spiralStartRadius: 4
   spiralEndRadius: 0.5
   spiralTurns: 3
+  spiralDistance: 10
 --- !u!114 &3235747921286425940
 MonoBehaviour:
   m_ObjectHideFlags: 0
