@@ -52,7 +52,7 @@ MonoBehaviour:
   _isItEnemy: 0
   _upDirection: 0
   _directionType: 0
-  _directionOffset: 1
+  _directionOffset: 0.25
   _speed: 10
   _type: 0
   _moveDuration: 5
@@ -144,7 +144,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.21790493, y: -0.0039619207}
+  m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}

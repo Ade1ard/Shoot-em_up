@@ -50,7 +50,7 @@ MonoBehaviour:
   _movementType: 1
   _isItEnemy: 1
   _upDirection: 0
-  _directionType: 0
+  _directionType: 1
   _directionOffset: 0.25
   _speed: 10
   _type: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   _shootFlashAnimator: {fileID: 0}
   _spawnPositonOffset_X: 0.2
   _spawnPositonOffset_Y: 0.2
-  _shootDelayOffset: 0.2
+  _shootDelayOffset: 1
 --- !u!1 &1641332999120237413
 GameObject:
   m_ObjectHideFlags: 0

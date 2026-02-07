@@ -17,6 +17,7 @@ public enum MovementType
 public enum DirectionType
 {
     Simple,
+    Adaptive,
     ToPlayer,
 }
 
@@ -63,10 +64,15 @@ public class ObjectMovement : MonoBehaviour
         switch (_movementType)
         {
             case MovementType.Linear:
-                transform.DOMove(CalculateDirection(spawnPosition) * _speed, 2)
+                Vector3 direction = CalculateDirection(spawnPosition);
+                transform.DOMove(direction * _speed, 2)
                     .SetRelative()
                     .SetEase(Ease.Linear)
                     .OnComplete(() => Destroy(gameObject));
+
+                if (!_isItEnemy && _directionType != DirectionType.Simple)
+                    transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+
                 return;
 
             case MovementType.Curvelinear:
@@ -89,23 +95,25 @@ public class ObjectMovement : MonoBehaviour
         switch (_directionType)
         {
             case DirectionType.Simple:
-                return CalculateSimpleDirection(spawnPosition);
+                return _upDirection ? Vector3.up : Vector3.down;
             case DirectionType.ToPlayer:
-                return Object.FindAnyObjectByType<PlayerController>().transform.position - spawnPosition;
+                return (Object.FindAnyObjectByType<PlayerController>().transform.position - spawnPosition).normalized;
+            case DirectionType.Adaptive:
+                return CalculateAdaptiveDirection(spawnPosition).normalized;
             default:
-                return CalculateSimpleDirection(spawnPosition);
+                return _upDirection ? Vector3.up : Vector3.down;
         }
     }
 
-    Vector3 CalculateSimpleDirection(Vector3 spawnPosition)
+    Vector3 CalculateAdaptiveDirection(Vector3 spawnPosition)
     {
         float leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
 
         if (spawnPosition.x < leftBoundary + 2)
-            return new Vector3(1, Random.Range(-_directionOffset, _directionOffset), 0);
+            return new Vector3(1, Random.Range(-_directionOffset, 0), 0);
 
         if (spawnPosition.x > -leftBoundary - 2)
-            return new Vector3(-1, Random.Range(-_directionOffset, _directionOffset), 0);
+            return new Vector3(-1, Random.Range(-_directionOffset, 0), 0);
 
         return new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
     }

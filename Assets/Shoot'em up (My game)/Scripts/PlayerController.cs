@@ -12,8 +12,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputActionAsset _inputActions;
 
     private InputAction _moveAction;
+    private InputAction _slowDownAction;
 
     private Vector2 _moveInput;
+    private bool _slowDown;
 
     private Rigidbody2D _rigidbody;
     private Animator _animator;
@@ -34,12 +36,13 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _moveInput = _moveAction.ReadValue<Vector2>();
+        _slowDown = _slowDownAction.IsPressed();
         HandleMovement();
     }
 
     private void HandleMovement()
     {
-        Vector2 targetVelocity = _moveInput * _moveSpeed;
+        Vector2 targetVelocity = _moveInput * (_slowDown? _moveSpeed / 2 : _moveSpeed);
 
         Vector2 velocityDifference = targetVelocity - _rigidbody.linearVelocity;
         float accelerationRate = _moveInput.magnitude > 0.1f ? _acceleration : _deceleration;
@@ -52,7 +55,9 @@ public class PlayerController : MonoBehaviour
         InputActionMap playerActionMap = _inputActions.FindActionMap("Player");
 
         _moveAction = playerActionMap.FindAction("Move");
+        _slowDownAction = playerActionMap.FindAction("SlowDown");
 
         _moveAction.Enable();
+        _slowDownAction.Enable();
     }
 }

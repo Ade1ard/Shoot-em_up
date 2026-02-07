@@ -40,7 +40,7 @@ public class ProjectileCaster : MonoBehaviour
 
             var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
             projectile.Initialize(_PRJDamage);
-            projectile.GetComponent<ObjectMovement>().StartMove();
+            projectile.GetComponent<ObjectMovement>().StartMove(InitPos);
 
             if (_shootVFXPrefab != null)
                 Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
