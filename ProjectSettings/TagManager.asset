@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FxTemporaire
   - ScreenBounds
+  - TriggerScreenBounds
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -15,9 +15,9 @@ public class ProjectileCont : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("ScreenBounds"))
+        if (collision.TryGetComponent<EnemyController>(out EnemyController enemy))
         {
-
+            enemy.DealDamage(_damage);
         }
     }
 }

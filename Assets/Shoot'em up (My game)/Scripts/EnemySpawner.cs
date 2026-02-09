@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _difficultyIncreasePerWave = 0.1f;
 
     private int _currentWaveNumber = 1;
-    private List<GameObject> _activeEnemiesCount = new List<GameObject>();
+    private List<GameObject> _activeEnemies = new List<GameObject>();
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
 
@@ -36,6 +36,8 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(_currentWaveData._waveStartDelay);
 
             yield return StartCoroutine(SpawnWave(_currentWaveData));
+
+            yield return new WaitUntil(() => _activeEnemies.Count == 0);
 
             yield return new WaitForSeconds(_timeBetweenWaves);
         }
@@ -72,11 +74,6 @@ public class EnemySpawner : MonoBehaviour
             }
 
             yield return new WaitForSeconds(currentGroup._delayAfterGroup);
-
-            if (groupIndex < currentWave._enemyGroups.Count - 1)
-            {
-                yield return new WaitForSeconds(currentWave._timeBetweenGroups);
-            }
         }
         _currentWaveNumber++;
         _currentDifficulty += _difficultyIncreasePerWave;
@@ -93,19 +90,14 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         enemy.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
-        //EnemyController enemyController = enemy.GetComponent<EnemyController>();
-        //if (enemyController != null)
-        //{
-        //    enemyController.Initialize(difficultyMultiplier);
-        //    enemyController.OnDeath += HandleEnemyDeath;
+        EnemyController enemyController = enemy.GetComponent<EnemyController>();
+        if (enemyController != null)
+        {
+            enemyController.Initialize(_currentDifficulty);
+            enemyController.OnDeath += HandleEnemyDeath;
+        }
 
-        //    if (playerTransform != null)
-        //    {
-        //        enemyController.SetTarget();
-        //    }
-        //}
-
-        _activeEnemiesCount.Add(enemy);
+        _activeEnemies.Add(enemy);
     }
 
     Vector3 CalculateSpawnPosition(WaveData.SpawnPattern pattern, int index, int enemyCount, bool spawnTogether)
@@ -177,25 +169,24 @@ public class EnemySpawner : MonoBehaviour
 
     void HandleEnemyDeath(GameObject enemy, int xpValue)
     {
-        if (_activeEnemiesCount.Contains(enemy))
+        if (_activeEnemies.Contains(enemy))
         {
-            _activeEnemiesCount.Remove(enemy);
+            _activeEnemies.Remove(enemy);
 
             //PlayerStats.Instance?.AddXP(xpValue);
-            //PlayerStats.Instance?.AddCoins(currentWave.coinReward);
         }
     }
 
     void OnDestroy()
     {
-        foreach (var enemy in _activeEnemiesCount)
+        foreach (var enemy in _activeEnemies)
         {
             if (enemy != null)
             {
                 var enemyController = enemy.GetComponent<EnemyController>();
                 if (enemyController != null)
                 {
-                    //enemyController.OnDeath -= HandleEnemyDeath;
+                    enemyController.OnDeath -= HandleEnemyDeath;
                 }
             }
         }

@@ -59,16 +59,17 @@ public class ObjectMovement : MonoBehaviour
     public int spiralTurns = 3;
     public float spiralDistance = 10f;
 
+    private Vector3 _startPosition;
+
     public void StartMove(Vector3 spawnPosition = default)
     {
         switch (_movementType)
         {
             case MovementType.Linear:
                 Vector3 direction = CalculateDirection(spawnPosition);
-                transform.DOMove(direction * _speed, 2)
+                transform.DOMove(direction * _speed, 3)
                     .SetRelative()
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() => Destroy(gameObject));
+                    .SetEase(Ease.Linear);
 
                 if (!_isItEnemy && _directionType != DirectionType.Simple)
                     transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
@@ -77,12 +78,12 @@ public class ObjectMovement : MonoBehaviour
 
             case MovementType.Curvelinear:
                 Vector3[] path = GeneratePath(transform.position, CalculateDirection(spawnPosition));
-                var tween =  transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() => Destroy(gameObject));
+                var tween = transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
+                    .SetEase(Ease.Linear);
 
                 if (!_isItEnemy)
                     tween.SetLookAt(0.01f);
+
                 return;
         }
     }
@@ -194,5 +195,29 @@ public class ObjectMovement : MonoBehaviour
         }
 
         return path;
+    }
+
+    private void Start()
+    {
+        _startPosition = transform.position;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("TriggerScreenBounds"))
+        {
+            if (_isItEnemy)
+            {
+                DOTween.Kill(transform);
+
+                transform.position = _startPosition;
+                StartMove(_startPosition);
+            }
+            else
+            {
+                DOTween.Kill(transform);
+                Destroy(gameObject);
+            }
+        }
     }
 }

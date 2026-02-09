@@ -53,7 +53,7 @@ MonoBehaviour:
   _upDirection: 0
   _directionType: 0
   _directionOffset: 0.25
-  _speed: 10
+  _speed: 15
   _type: 0
   _moveDuration: 5
   _moveDurationOffset: 1.5

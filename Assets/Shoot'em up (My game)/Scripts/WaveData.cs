@@ -53,7 +53,6 @@ public class WaveData : ScriptableObject
 
     [Header("Timing")]
     public float _waveStartDelay = 2f;
-    public float _timeBetweenGroups = 3f;
 
     [Header("Rewards")]
     public int _baseXP = 100;
