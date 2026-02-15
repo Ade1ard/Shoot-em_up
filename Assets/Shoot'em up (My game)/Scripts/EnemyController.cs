@@ -5,38 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Health
 {
-    [Header("Parameters")]
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private int _xpReward;
-
-    private float _currentHealth;
+    [SerializeField] private int _xpReward = 10;
 
     public event Action<GameObject, int> OnDeath;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         GetComponentInChildren<Animator>().SetFloat("StartOffset", UnityEngine.Random.Range(0f, 1f));
-        _currentHealth = _maxHealth;
     }
 
-    public void Initialize(float difficulty)
+    protected override void Death()
     {
-        _maxHealth *= difficulty;
-        _currentHealth = _maxHealth;
-    }
-
-    public void DealDamage(float damage)
-    {
-        _currentHealth -= damage;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
-
-        if (_currentHealth <= 0f)
-        {
-            OnDeath?.Invoke(gameObject, _xpReward);
-            DOTween.Kill(transform);
-            Destroy(gameObject);
-        }
+        OnDeath?.Invoke(gameObject, _xpReward);
+        DOTween.Kill(transform);
+        Destroy(gameObject);
     }
 }

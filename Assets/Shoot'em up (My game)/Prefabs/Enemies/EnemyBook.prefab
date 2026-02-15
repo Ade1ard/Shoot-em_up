@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6720159454807428517}
   - component: {fileID: 6168062537455609239}
   - component: {fileID: 6339229913053647687}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBook
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   _maxHealth: 10
-  _xpReward: 0
+  _xpReward: 10
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 3946951621436988346}
   - component: {fileID: 6817214578110155571}
   - component: {fileID: 4854841910099279253}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ObjectView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

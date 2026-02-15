@@ -98,7 +98,7 @@ public class ObjectMovement : MonoBehaviour
             case DirectionType.Simple:
                 return _upDirection ? Vector3.up : Vector3.down;
             case DirectionType.ToPlayer:
-                return (Object.FindAnyObjectByType<PlayerController>().transform.position - spawnPosition).normalized;
+                return (Object.FindAnyObjectByType<PlayerMovement>().transform.position - spawnPosition).normalized;
             case DirectionType.Adaptive:
                 return CalculateAdaptiveDirection(spawnPosition).normalized;
             default:

@@ -7,6 +7,7 @@ TagManager:
   - FxTemporaire
   - ScreenBounds
   - TriggerScreenBounds
+  - Damageable
   - Enemy
   layers:
   - Default
@@ -15,10 +16,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - EnemyProjectile
+  - PlayerProjectile
   - 
   - 
   - 

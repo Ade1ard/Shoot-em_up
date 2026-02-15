@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9095561515226119892}
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyBookProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6703629787408364348}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 6703629787408364348}
   - component: {fileID: 6492754336619852710}
   - component: {fileID: 2207035292551250133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

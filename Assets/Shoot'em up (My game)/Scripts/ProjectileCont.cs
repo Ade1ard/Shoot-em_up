@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -15,9 +16,11 @@ public class ProjectileCont : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<EnemyController>(out EnemyController enemy))
+        if (collision.TryGetComponent<IDamageable>(out IDamageable IDA))
         {
-            enemy.DealDamage(_damage);
+            IDA.DealDamage(_damage);
+            DOTween.Kill(transform);
+            Destroy(gameObject);
         }
     }
 }

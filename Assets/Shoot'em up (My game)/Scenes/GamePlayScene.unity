@@ -5056,7 +5056,7 @@ GameObject:
   - component: {fileID: 196716497}
   - component: {fileID: 196716499}
   - component: {fileID: 196716498}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6281,6 +6281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFXR Smoke Source 3D
       objectReference: {fileID: 0}
+    - target: {fileID: 8656522925564163052, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8656522925583160108, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
       propertyPath: m_SortingOrder
       value: 3
@@ -6654,14 +6658,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1750253392}
   - component: {fileID: 1750253391}
-  - component: {fileID: 1750253393}
+  - component: {fileID: 1750253398}
   - component: {fileID: 1750253397}
   - component: {fileID: 1750253394}
   - component: {fileID: 1750253396}
   - component: {fileID: 1750253395}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Damageable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6742,22 +6746,6 @@ Transform:
   - {fileID: 196716497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1750253393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750253390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec24c53912a9064ab3da3ff3f1a1291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _moveSpeed: 10
-  _acceleration: 300
-  _deceleration: 600
-  _inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!50 &1750253394
 Rigidbody2D:
   serializedVersion: 5
@@ -6874,6 +6862,22 @@ MonoBehaviour:
   _spawnPositonOffset_X: 0.05
   _spawnPositonOffset_Y: 0.05
   _shootDelayOffset: 0.05
+--- !u!114 &1750253398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750253390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c722ffb3d36061f47b4c0be6effcf8e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  _moveSpeed: 10
+  _acceleration: 300
+  _deceleration: 600
+  _inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0
@@ -7028,7 +7032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070185476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
