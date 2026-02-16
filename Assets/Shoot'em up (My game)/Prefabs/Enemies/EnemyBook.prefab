@@ -159,7 +159,7 @@ MonoBehaviour:
   _directionOffset: 0.25
   _speed: 10
   _type: 0
-  _moveDuration: 10
+  _moveDuration: 15
   _moveDurationOffset: 3
   pathType: 1
   amplitude: 1
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   _healthBarAmount: {fileID: 4984148615627228899}
+  _healthBarCanvasGroup: {fileID: 6019746616283548423}
   _healthBarDrawingSpeed: 1
   _maxHealth: 30
   _xpReward: 10
@@ -424,7 +425,7 @@ RectTransform:
   m_GameObject: {fileID: 2801665999653397372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.8571428, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8641551073407603975}
@@ -432,7 +433,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.000104665756}
-  m_SizeDelta: {x: 166.6586, y: 74.391}
+  m_SizeDelta: {x: 205, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3568070154727553833
 CanvasRenderer:
@@ -500,7 +501,7 @@ RectTransform:
   m_GameObject: {fileID: 5917188370440416460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.007, z: 1}
+  m_LocalScale: {x: 0.0072, y: 0.0065, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 940774999242576253}
@@ -509,7 +510,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 2.1443}
-  m_SizeDelta: {x: 198.331, y: 99.8268}
+  m_SizeDelta: {x: 246, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3818016158837903656
 CanvasRenderer:

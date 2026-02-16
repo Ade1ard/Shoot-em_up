@@ -6,6 +6,7 @@ public abstract class Health : MonoBehaviour, IDamageable
 {
     [Header("UI")]
     [SerializeField] private Image _healthBarAmount;
+    [SerializeField] private CanvasGroup _healthBarCanvasGroup;
     [SerializeField] private float _healthBarDrawingSpeed = 1;
 
     [Header("Parameters")]
@@ -18,6 +19,7 @@ public abstract class Health : MonoBehaviour, IDamageable
     {
         _currentHealth = _maxHealth;
         StartDrawingBar();
+        _healthBarCanvasGroup.gameObject.SetActive(false);
     }
 
     public virtual void Initialize(float multiplier = default)
@@ -33,6 +35,7 @@ public abstract class Health : MonoBehaviour, IDamageable
         _currentHealth -= damage;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
 
+        _healthBarCanvasGroup.gameObject.SetActive(true);
         StartDrawingBar();
 
         if (_currentHealth <= 0f)
