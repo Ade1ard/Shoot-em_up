@@ -25,6 +25,8 @@ public class ProjectileCaster : MonoBehaviour
     {
         if (_shootPoint == null)
             _shootPoint = transform;
+
+        _lastShootTime = Time.time;
     }
 
     void Update()

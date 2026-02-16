@@ -71,7 +71,7 @@ public class ObjectMovement : MonoBehaviour
                     .SetRelative()
                     .SetEase(Ease.Linear);
 
-                if (!_isItEnemy && _directionType != DirectionType.Simple)
+                if (!_isItEnemy)
                     transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
 
                 return;
@@ -96,7 +96,7 @@ public class ObjectMovement : MonoBehaviour
         switch (_directionType)
         {
             case DirectionType.Simple:
-                return _upDirection ? Vector3.up : Vector3.down;
+                return _upDirection ? new Vector3(Random.Range(-_directionOffset, _directionOffset), 1, 0) : new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
             case DirectionType.ToPlayer:
                 return (Object.FindAnyObjectByType<PlayerMovement>().transform.position - spawnPosition).normalized;
             case DirectionType.Adaptive:
