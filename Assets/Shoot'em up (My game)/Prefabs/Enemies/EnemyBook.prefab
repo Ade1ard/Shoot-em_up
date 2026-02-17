@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &5103499307284310414
 MonoBehaviour:
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7604698136511989169}
   - component: {fileID: 8898764008918409892}
-  - component: {fileID: 453529624176285346}
+  - component: {fileID: 7552099269562904974}
   - component: {fileID: 6720159454807428517}
   - component: {fileID: 6168062537455609239}
   - component: {fileID: 6339229913053647687}
@@ -174,7 +174,7 @@ MonoBehaviour:
   spiralEndRadius: 1
   spiralTurns: 3
   spiralDistance: 15
---- !u!114 &453529624176285346
+--- !u!114 &7552099269562904974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,9 +183,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1347978250879101239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 387574c24771bf94b940d0bff9d530d5, type: 3}
+  m_Script: {fileID: 11500000, guid: d4b80b9a4472631459fa42622b32ce61, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _healthBarAmount: {fileID: 4984148615627228899}
   _healthBarCanvasGroup: {fileID: 6019746616283548423}
   _healthBarDrawingSpeed: 1

@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         enemy.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
-        EnemyController enemyController = enemy.GetComponent<EnemyController>();
+        Enemy enemyController = enemy.GetComponent<Enemy>();
         if (enemyController != null)
         {
             enemyController.Initialize(_currentDifficulty);
@@ -183,7 +183,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemy != null)
             {
-                var enemyController = enemy.GetComponent<EnemyController>();
+                var enemyController = enemy.GetComponent<Enemy>();
                 if (enemyController != null)
                 {
                     enemyController.OnDeath -= HandleEnemyDeath;

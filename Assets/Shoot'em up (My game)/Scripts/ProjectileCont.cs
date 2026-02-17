@@ -16,11 +16,19 @@ public class ProjectileCont : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IDamageable>(out IDamageable IDA))
+        if (collision.TryGetComponent<IDamageable>(out IDamageable IDA) && OnScreen())
         {
             IDA.DealDamage(_damage);
             DOTween.Kill(transform);
             Destroy(gameObject);
         }
+    }
+
+    bool OnScreen()
+    {
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        return viewportPos.x >= 0 && viewportPos.x <= 1 &&
+            viewportPos.y >= 0 && viewportPos.y <= 1;
     }
 }

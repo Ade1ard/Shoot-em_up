@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class EnemyController : Health
+public class Enemy : Health
 {
     [SerializeField] private int _xpReward = 10;
 

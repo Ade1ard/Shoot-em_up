@@ -31,7 +31,7 @@ public class ProjectileCaster : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - _lastShootTime > _shootDelay)
+        if (Time.time - _lastShootTime > _shootDelay && OnScreen())
         {
             _lastShootTime = Time.time;
             _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
@@ -50,5 +50,13 @@ public class ProjectileCaster : MonoBehaviour
             if (_shootFlashAnimator != null)
                 _shootFlashAnimator.SetTrigger("Shoot");
         }
+    }
+
+    bool OnScreen()
+    {
+        Vector3 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        return viewportPos.x >= 0 && viewportPos.x <= 1 &&
+            viewportPos.y >= 0 && viewportPos.y <= 1;
     }
 }
