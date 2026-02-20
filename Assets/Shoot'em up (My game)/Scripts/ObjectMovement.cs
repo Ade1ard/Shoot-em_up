@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public enum TrajectoryType
@@ -12,6 +13,7 @@ public enum MovementType
 {
     Linear,
     Curvelinear,
+    BetweenPoint,
 }
 
 public enum DirectionType
@@ -33,13 +35,18 @@ public class ObjectMovement : MonoBehaviour
     [SerializeField] private float _directionOffset = 0.25f;
 
     [Header("Linear Movement Settings")]
-    [SerializeField] private float _speed = 10;
+    [SerializeField] private float _linearSpeed = 10;
 
     [Header("Curvelinear Movement Settings")]
     [SerializeField] private TrajectoryType _type = TrajectoryType.SineWave;
     [SerializeField] private float _moveDuration = 30f;
     [SerializeField] private float _moveDurationOffset = 5f;
     [SerializeField] private PathType pathType = PathType.CatmullRom;
+
+    [Header("BetweenPoints Movement Settings")]
+    [SerializeField] private float _betweenPointsMoveDuration = 6f;
+    [SerializeField] private float _inPointTime = 3f;
+    [SerializeField] private float _inPointTimeOffset = 1f;
 
     [Header("SinWave")]
     public float amplitude = 3f;
@@ -60,6 +67,7 @@ public class ObjectMovement : MonoBehaviour
     public float spiralDistance = 10f;
 
     private Vector3 _startPosition;
+    private Coroutine _movementBPCoroutine;
 
     public void StartMove(Vector3 spawnPosition = default)
     {
@@ -67,7 +75,7 @@ public class ObjectMovement : MonoBehaviour
         {
             case MovementType.Linear:
                 Vector3 direction = CalculateDirection(spawnPosition);
-                transform.DOMove(direction * _speed, 3)
+                transform.DOMove(direction * _linearSpeed, 3)
                     .SetRelative()
                     .SetEase(Ease.Linear);
 
@@ -85,6 +93,32 @@ public class ObjectMovement : MonoBehaviour
                     tween.SetLookAt(0.01f);
 
                 return;
+
+            case MovementType.BetweenPoint:
+                if (_movementBPCoroutine == null)
+                    _movementBPCoroutine = StartCoroutine(MovementBetweenPoints());
+
+                return;
+        }
+    }
+
+    IEnumerator MovementBetweenPoints()
+    {
+        float bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
+        float leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+
+        while (true)
+        {
+            Vector3 point = new Vector3(Random.Range(-leftBoundary, leftBoundary), Random.Range(0, -bottomBoundary), 0);
+
+            var tween = transform.DOMove(point, _betweenPointsMoveDuration)
+                .SetEase(Ease.InOutSine);
+
+            if (!_isItEnemy)
+                transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg));
+
+            yield return tween.WaitForCompletion();
+            yield return new WaitForSeconds(_inPointTime + Random.Range(-_inPointTimeOffset, _inPointTimeOffset));
         }
     }
 
@@ -219,5 +253,11 @@ public class ObjectMovement : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (_movementBPCoroutine != null)
+            StopCoroutine(_movementBPCoroutine);
     }
 }

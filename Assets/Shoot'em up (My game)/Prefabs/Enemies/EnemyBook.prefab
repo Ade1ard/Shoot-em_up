@@ -152,16 +152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
-  _movementType: 1
+  _movementType: 2
   _isItEnemy: 1
   _upDirection: 0
   _directionType: 1
   _directionOffset: 0.25
-  _speed: 10
+  _linearSpeed: 10
   _type: 0
   _moveDuration: 15
   _moveDurationOffset: 3
   pathType: 1
+  _betweenPointsMoveDuration: 6
+  _timeBetweenPoints: 3
   amplitude: 1
   frequency: 5
   sinDistance: 30

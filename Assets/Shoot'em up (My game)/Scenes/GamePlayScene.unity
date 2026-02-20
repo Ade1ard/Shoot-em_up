@@ -7288,7 +7288,7 @@ MonoBehaviour:
   _healthBarAmount: {fileID: 1391973465}
   _healthBarCanvasGroup: {fileID: 313344274}
   _healthBarDrawingSpeed: 1
-  _maxHealth: 200
+  _maxHealth: 100
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695

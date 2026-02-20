@@ -18,11 +18,17 @@ public class ObjectMovementEditor : Editor
         switch (currentMovementType)
         {
             case MovementType.Linear:
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("_speed"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("_linearSpeed"));
                 break;
 
             case MovementType.Curvelinear:
                 CurveLinearEditor();
+                break;
+
+            case MovementType.BetweenPoint:
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("_betweenPointsMoveDuration"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("_inPointTime"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("_inPointTimeOffset"));
                 break;
         }
         serializedObject.ApplyModifiedProperties();

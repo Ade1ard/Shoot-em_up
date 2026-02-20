@@ -144,11 +144,13 @@ MonoBehaviour:
   _upDirection: 1
   _directionType: 0
   _directionOffset: 0
-  _speed: 22.5
+  _linearSpeed: 22.5
   _type: 0
   _moveDuration: 2
   _moveDurationOffset: 5
   pathType: 1
+  _speedBetweenPoints: 10
+  _timeBetweenPoints: 3
   amplitude: 3
   frequency: 2
   sinDistance: 10
