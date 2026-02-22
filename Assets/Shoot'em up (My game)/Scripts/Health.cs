@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,9 @@ public abstract class Health : MonoBehaviour, IDamageable
     [SerializeField] private float _healthBarDrawingSpeed = 1;
 
     [Header("Parameters")]
-    [SerializeField] private float _maxHealth;
+    public float _maxHealth = 100f;
 
-    private float _currentHealth;
+    [NonSerialized] public float _currentHealth;
     private Coroutine _healthBarCoroutine;
 
     protected virtual void Start()

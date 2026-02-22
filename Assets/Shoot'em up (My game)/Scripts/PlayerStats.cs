@@ -1,16 +1,25 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : Health
+public class PlayerStats : Health
 {
+    public int damage = 10;
+    public float attackSpeed = 1f;
+    public float movementSpeed = 5f;
+    public int projectileCount = 1;
+
     [Header("Canvas")]
     [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private float _canvasFollowSpeed = 35;
+
+    [NonSerialized] public UnityEvent onPlayerDied;
 
     private Vector3 v = Vector3.zero;
 
     protected override void Death()
     {
-        
+        onPlayerDied?.Invoke();
     }
 
     private void Update()

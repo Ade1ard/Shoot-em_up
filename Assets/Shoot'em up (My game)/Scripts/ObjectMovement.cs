@@ -69,6 +69,21 @@ public class ObjectMovement : MonoBehaviour
     private Vector3 _startPosition;
     private Coroutine _movementBPCoroutine;
 
+    private PlayerStats _player;
+
+    float _bottomBoundary;
+    float _leftBoundary;
+
+    private void Awake()
+    {
+        _startPosition = transform.position;
+
+        _player = Object.FindAnyObjectByType<PlayerStats>();
+
+        _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
+        _leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+    }
+
     public void StartMove(Vector3 spawnPosition = default)
     {
         switch (_movementType)
@@ -104,12 +119,9 @@ public class ObjectMovement : MonoBehaviour
 
     IEnumerator MovementBetweenPoints()
     {
-        float bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
-        float leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
-
         while (true)
         {
-            Vector3 point = new Vector3(Random.Range(-leftBoundary, leftBoundary), Random.Range(0, -bottomBoundary), 0);
+            Vector3 point = new Vector3(Random.Range(_leftBoundary+1, -_leftBoundary-1), Random.Range(0, -_bottomBoundary-1), 0);
 
             var tween = transform.DOMove(point, _betweenPointsMoveDuration)
                 .SetEase(Ease.InOutSine);
@@ -132,7 +144,7 @@ public class ObjectMovement : MonoBehaviour
             case DirectionType.Simple:
                 return _upDirection ? new Vector3(Random.Range(-_directionOffset, _directionOffset), 1, 0) : new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
             case DirectionType.ToPlayer:
-                return (Object.FindAnyObjectByType<PlayerMovement>().transform.position - spawnPosition).normalized;
+                return (_player.transform.position - spawnPosition).normalized;
             case DirectionType.Adaptive:
                 return CalculateAdaptiveDirection(spawnPosition).normalized;
             default:
@@ -142,12 +154,10 @@ public class ObjectMovement : MonoBehaviour
 
     Vector3 CalculateAdaptiveDirection(Vector3 spawnPosition)
     {
-        float leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
-
-        if (spawnPosition.x < leftBoundary + 2)
+        if (spawnPosition.x < _leftBoundary + 2)
             return new Vector3(1, Random.Range(-_directionOffset, 0), 0);
 
-        if (spawnPosition.x > -leftBoundary - 2)
+        if (spawnPosition.x > -_leftBoundary - 2)
             return new Vector3(-1, Random.Range(-_directionOffset, 0), 0);
 
         return new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
@@ -229,11 +239,6 @@ public class ObjectMovement : MonoBehaviour
         }
 
         return path;
-    }
-
-    private void Start()
-    {
-        _startPosition = transform.position;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
