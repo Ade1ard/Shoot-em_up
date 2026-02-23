@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class CardSelectionManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int cardsToShow = 3;
+    [SerializeField] private int _cardsToShow = 3;
 
     [Header("Prefabs")]
-    [SerializeField] private CardWidget cardPrefab;
-    [SerializeField] private GameObject selectionPanel;
+    [SerializeField] private CardWidget _cardPrefab;
+    [SerializeField] private GameObject _selectionPanel;
 
     [Header("Parent objects")]
-    [SerializeField] private Transform cardsParent;
-    [SerializeField] private GridLayoutGroup gridLayout;
+    [SerializeField] private Transform _cardsParent;
+    [SerializeField] private GridLayoutGroup _gridLayout;
 
     [Header("Cards pool")]
     [SerializeField] private List<CardEffect> _commonCards;
@@ -25,31 +25,32 @@ public class CardSelectionManager : MonoBehaviour
     [SerializeField][Range(0, 100)] private float _epicChance = 30f;
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
-    private PlayerStats playerStats;
+    private PlayerStats _playerStats;
 
     private void Start()
     {
-        playerStats = Object.FindAnyObjectByType<PlayerStats>();
+        _playerStats = FindAnyObjectByType<PlayerStats>();
 
-        selectionPanel.SetActive(false);
-        selectionPanel.transform.localScale = new Vector3(0, 0, 0);
+        _gridLayout.constraintCount = _cardsToShow;
+
+        _selectionPanel.SetActive(false);
+        _selectionPanel.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void ShowCardSelection()
     {
         ClearOldCards();
 
-        List<CardEffect> selectedEffects = GenerateCards(cardsToShow);
-
-        selectionPanel.transform.localScale = new Vector3(1, 1, 1);
-        selectionPanel.SetActive(true);
+        List<CardEffect> selectedEffects = GenerateCards(_cardsToShow);
+        _selectionPanel.transform.localScale = new Vector3(1, 1, 1);
+        _selectionPanel.SetActive(true);
 
         for (int i = 0; i < selectedEffects.Count; i++)
         {
             CreateCard(selectedEffects[i], i);
         }
 
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     private List<CardEffect> GenerateCards(int count)
@@ -79,21 +80,20 @@ public class CardSelectionManager : MonoBehaviour
 
     private void CreateCard(CardEffect effect, int index)
     {
-        CardWidget card = Instantiate(cardPrefab, cardsParent);
+        CardWidget card = Instantiate(_cardPrefab, _cardsParent);
 
-        float delay = index * 0.1f;
+        float delay = index * 1f;
         StartCoroutine(ShowCardWithDelay(card, effect, delay));
     }
 
     private System.Collections.IEnumerator ShowCardWithDelay(CardWidget card, CardEffect effect, float delay)
     {
-        card.gameObject.SetActive(false);
         card.transform.localScale = new Vector3(0,0,0);
 
         yield return new WaitForSeconds(delay);
 
-        card.transform.DOScale(new Vector3(1, 1, 1), card._showingDuration);
         card.gameObject.SetActive(true);
+        card.transform.DOScale(card._originalScale, card._showingDuration);
 
         card.Initialize(effect, OnCardSelected);
     }
@@ -107,25 +107,25 @@ public class CardSelectionManager : MonoBehaviour
 
     private void ApplyEffect(CardEffect effect)
     {
-        if (playerStats == null) return;
+        if (_playerStats == null) return;
 
         switch (effect.effectType)
         {
             case EffectType.MaxHealth:
-                playerStats._maxHealth += (int)effect.baseValue;
-                playerStats._currentHealth += (int)effect.baseValue;
+                _playerStats._maxHealth += (int)effect.baseValue;
+                _playerStats._currentHealth += (int)effect.baseValue;
                 break;
 
             case EffectType.Damage:
-                playerStats.damage += (int)effect.baseValue;
+                _playerStats.damage += (int)effect.baseValue;
                 break;
 
             case EffectType.AttackSpeed:
-                playerStats.attackSpeed *= effect.baseValue;
+                _playerStats.attackSpeed *= effect.baseValue;
                 break;
 
             case EffectType.ProjectileCount:
-                playerStats.projectileCount++;
+                _playerStats.projectileCount++;
                 break;
 
             case EffectType.SpecialAbility:
@@ -135,22 +135,20 @@ public class CardSelectionManager : MonoBehaviour
 
         if (effect.spawnVFX != null)
         {
-            Instantiate(effect.spawnVFX, playerStats.transform.position, Quaternion.identity);
+            Instantiate(effect.spawnVFX, _playerStats.transform.position, Quaternion.identity);
         }
     }
 
     private System.Collections.IEnumerator CloseSelection()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        selectionPanel.transform.DOScale(new Vector3(0, 0, 0), 1);
-        selectionPanel.SetActive(false);
+        yield return _selectionPanel.transform.DOScale(new Vector3(0, 0, 0), 0.5f).WaitForCompletion();
+        _selectionPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
     private void ClearOldCards()
     {
-        foreach (Transform child in cardsParent)
+        foreach (Transform child in _cardsParent)
         {
             Destroy(child.gameObject);
         }

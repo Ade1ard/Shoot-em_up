@@ -78,7 +78,7 @@ public class ObjectMovement : MonoBehaviour
     {
         _startPosition = transform.position;
 
-        _player = Object.FindAnyObjectByType<PlayerStats>();
+        _player = FindAnyObjectByType<PlayerStats>();
 
         _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         _leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;

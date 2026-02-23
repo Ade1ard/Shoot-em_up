@@ -5226,19 +5226,19 @@ Canvas:
   m_GameObject: {fileID: 227106282}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &227106286
 RectTransform:
@@ -5689,18 +5689,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e6b878db301254cb856363a90d93a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardSelectionManager
-  cardsToShow: 3
-  allowDuplicates: 1
-  cardPrefab: {fileID: 5190847775234049588, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
-  selectionPanel: {fileID: 355718299}
-  cardsParent: {fileID: 355718300}
-  gridLayout: {fileID: 355718302}
+  _cardsToShow: 3
+  _cardPrefab: {fileID: 5836860141474682824, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
+  _selectionPanel: {fileID: 355718299}
+  _cardsParent: {fileID: 355718300}
+  _gridLayout: {fileID: 355718302}
   _commonCards:
   - {fileID: 11400000, guid: 14225a9565bba0e47bfd00b18956c019, type: 2}
-  _epicCards: []
-  _legendCards: []
-  _epicChance: 30
-  _legendChance: 10
+  _epicCards:
+  - {fileID: 11400000, guid: f77a836f9f2b4d34499ba50e025b6d75, type: 2}
+  _legendCards:
+  - {fileID: 11400000, guid: 629ad70bb8d1f6048abad16fb4424dd0, type: 2}
+  _epicChance: 100
+  _legendChance: 100
 --- !u!4 &426549110
 Transform:
   m_ObjectHideFlags: 0
@@ -6836,7 +6837,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!1001 &1492988653
 PrefabInstance:
@@ -7342,7 +7343,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7215479654971587023, guid: a3fc67c908a58dc4c96a9600c69d4398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7518,12 +7519,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   _healthBarAmount: {fileID: 1391973465}
   _healthBarCanvasGroup: {fileID: 313344274}
-  _healthBarDrawingSpeed: 1
+  _healthBarDrawingSpeed: 0.5
   _maxHealth: 100
   damage: 10
   attackSpeed: 1
   movementSpeed: 5
   projectileCount: 1
+  level: 0
+  levelXPCost: 20
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695

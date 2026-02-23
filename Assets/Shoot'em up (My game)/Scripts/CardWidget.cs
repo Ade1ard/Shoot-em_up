@@ -1,13 +1,13 @@
+using DG.Tweening;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
-using DG.Tweening;
 
 public class CardWidget : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private Image _backgroundImage;
+    [SerializeField] private SpriteRenderer _backgroundCard;
     [SerializeField] private Image _iconImage;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
@@ -18,9 +18,14 @@ public class CardWidget : MonoBehaviour
     [SerializeField] private float _animationDuration = 0.2f;
     public float _showingDuration = 1f;
 
+    [Header("Colors")]
+    [SerializeField] private Color _common;
+    [SerializeField] private Color _epic;
+    [SerializeField] private Color _legend;
+
     private CardEffect _cardData;
     private Action<CardEffect> _onSelected;
-    private Vector3 _originalScale;
+    [NonSerialized] public Vector3 _originalScale;
 
     private void Awake()
     {
@@ -33,7 +38,9 @@ public class CardWidget : MonoBehaviour
         _cardData = effect;
         _onSelected = callback;
 
-        _iconImage.sprite = effect.icon;
+        if (_iconImage != null )
+            _iconImage.sprite = effect.icon;
+
         _nameText.text = effect.effectName;
         _descriptionText.text = effect.description;
 
@@ -45,13 +52,13 @@ public class CardWidget : MonoBehaviour
         switch (cost)
         {
             case 1: // common
-                _backgroundImage.color = Color.blue;
+                _backgroundCard.color = _common;
                 break;
             case 2: // epic
-                _backgroundImage.color = Color.magenta;
+                _backgroundCard.color = _epic;
                 break;
             case 3: // legend
-                _backgroundImage.color = Color.gold;
+                _backgroundCard.color = _legend;
                 break;
         }
     }
@@ -74,7 +81,5 @@ public class CardWidget : MonoBehaviour
             AudioSource.PlayClipAtPoint(_cardData.pickUpSound, Camera.main.transform.position);
 
         _onSelected?.Invoke(_cardData);
-
-        Destroy(gameObject, 1f);
     }
 }

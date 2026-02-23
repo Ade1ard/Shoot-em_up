@@ -19,10 +19,13 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> _activeEnemies = new List<GameObject>();
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
+    private PlayerStats _player;
 
     void Start()
     {
         StartCoroutine(WaveLoop());
+
+        _player = Object.FindAnyObjectByType<PlayerStats>();
     }
 
     IEnumerator WaveLoop()
@@ -173,7 +176,7 @@ public class EnemySpawner : MonoBehaviour
         {
             _activeEnemies.Remove(enemy);
 
-            //PlayerStats.Instance?.AddXP(xpValue);
+            _player.AddXP(xpValue);
         }
     }
 
