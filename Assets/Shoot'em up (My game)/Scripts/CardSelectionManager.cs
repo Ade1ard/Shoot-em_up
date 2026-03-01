@@ -10,7 +10,6 @@ public class CardSelectionManager : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private CardWidget _cardPrefab;
-    [SerializeField] private GameObject _selectionPanel;
 
     [Header("Parent objects")]
     [SerializeField] private Transform _cardsParent;
@@ -26,15 +25,13 @@ public class CardSelectionManager : MonoBehaviour
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
     private PlayerStats _playerStats;
+    private List<CardWidget> _cards;
 
     private void Start()
     {
         _playerStats = FindAnyObjectByType<PlayerStats>();
 
         _gridLayout.constraintCount = _cardsToShow;
-
-        _selectionPanel.SetActive(false);
-        _selectionPanel.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void ShowCardSelection()
@@ -42,15 +39,15 @@ public class CardSelectionManager : MonoBehaviour
         ClearOldCards();
 
         List<CardEffect> selectedEffects = GenerateCards(_cardsToShow);
-        _selectionPanel.transform.localScale = new Vector3(1, 1, 1);
-        _selectionPanel.SetActive(true);
+
+        _cards = new List<CardWidget>();
 
         for (int i = 0; i < selectedEffects.Count; i++)
         {
-            CreateCard(selectedEffects[i], i);
+            _cards.Add(CreateCard(selectedEffects[i], i));
         }
 
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 
     private List<CardEffect> GenerateCards(int count)
@@ -78,24 +75,13 @@ public class CardSelectionManager : MonoBehaviour
         return result;
     }
 
-    private void CreateCard(CardEffect effect, int index)
+    private CardWidget CreateCard(CardEffect effect, int index)
     {
         CardWidget card = Instantiate(_cardPrefab, _cardsParent);
 
-        float delay = index * 1f;
-        StartCoroutine(ShowCardWithDelay(card, effect, delay));
-    }
-
-    private System.Collections.IEnumerator ShowCardWithDelay(CardWidget card, CardEffect effect, float delay)
-    {
-        card.transform.localScale = new Vector3(0,0,0);
-
-        yield return new WaitForSeconds(delay);
-
-        card.gameObject.SetActive(true);
-        card.transform.DOScale(card._originalScale, card._showingDuration);
-
-        card.Initialize(effect, OnCardSelected);
+        float delay = index * 0.5f;
+        StartCoroutine(card.Initialization(effect, delay, OnCardSelected));
+        return card;
     }
 
     private void OnCardSelected(CardEffect selectedEffect)
@@ -141,8 +127,13 @@ public class CardSelectionManager : MonoBehaviour
 
     private System.Collections.IEnumerator CloseSelection()
     {
-        yield return _selectionPanel.transform.DOScale(new Vector3(0, 0, 0), 0.5f).WaitForCompletion();
-        _selectionPanel.SetActive(false);
+        foreach (CardWidget card in _cards)
+        {
+            card._eventTrigger.enabled = false;
+            card.transform.DORotate(new Vector3(0, 90, 0), 0.5f).SetEase(card._closeCurve).SetUpdate(true);
+        }
+        yield return new WaitForSecondsRealtime(0.5f);
+
         Time.timeScale = 1f;
     }
 

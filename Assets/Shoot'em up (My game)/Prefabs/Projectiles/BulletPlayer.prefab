@@ -149,8 +149,9 @@ MonoBehaviour:
   _moveDuration: 2
   _moveDurationOffset: 5
   pathType: 1
-  _speedBetweenPoints: 10
-  _timeBetweenPoints: 3
+  _betweenPointsMoveDuration: 6
+  _inPointTime: 3
+  _inPointTimeOffset: 1
   amplitude: 3
   frequency: 2
   sinDistance: 10
@@ -257,6 +258,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5059737127395992530}
     m_Modifications:
+    - target: {fileID: 761733100919246960, guid: 8395200fd9cf3f348a033ed7b487a7a6, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5638775421105475252, guid: 8395200fd9cf3f348a033ed7b487a7a6, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

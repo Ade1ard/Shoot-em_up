@@ -2,21 +2,27 @@ using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CardWidget : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private SpriteRenderer _backgroundCard;
+    [SerializeField] private Image _backgroundCard;
     [SerializeField] private Image _iconImage;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private Button _selectButton;
+    public EventTrigger _eventTrigger;
 
     [Header("Animation")]
     [SerializeField] private float _hoverScale = 1.1f;
     [SerializeField] private float _animationDuration = 0.2f;
     public float _showingDuration = 1f;
+
+    [Header("Animaiton Curves")]
+    public AnimationCurve _showCurve;
+    public AnimationCurve _closeCurve;
 
     [Header("Colors")]
     [SerializeField] private Color _common;
@@ -31,20 +37,30 @@ public class CardWidget : MonoBehaviour
     {
         _originalScale = transform.localScale;
         _selectButton.onClick.AddListener(OnCardClicked);
+        _eventTrigger.enabled = false;
     }
 
-    public void Initialize(CardEffect effect, Action<CardEffect> callback)
+    public System.Collections.IEnumerator Initialization(CardEffect effect, float delay, Action<CardEffect> callback)
     {
+        transform.localScale = new Vector3(0, 0, 0);
+
+        yield return new WaitForSecondsRealtime(delay);
+
+        gameObject.SetActive(true);
         _cardData = effect;
         _onSelected = callback;
 
-        if (_iconImage != null )
+        if (_iconImage != null)
             _iconImage.sprite = effect.icon;
 
         _nameText.text = effect.effectName;
         _descriptionText.text = effect.description;
 
         SetRarityColor(effect.cost);
+
+        yield return transform.DOScale(_originalScale, _showingDuration).SetEase(_showCurve).SetUpdate(true).WaitForCompletion();
+
+        _eventTrigger.enabled = true;
     }
 
     private void SetRarityColor(int cost)
@@ -65,12 +81,12 @@ public class CardWidget : MonoBehaviour
 
     public void OnHoverEnter()
     {
-        transform.DOScale(_originalScale * _hoverScale, _animationDuration);
+        transform.DOScale(_originalScale * _hoverScale, _animationDuration).SetUpdate(true);
     }
 
     public void OnHoverExit()
     {
-        transform.DOScale(_originalScale, _animationDuration);
+        transform.DOScale(_originalScale, _animationDuration).SetUpdate(true);
     }
 
     private void OnCardClicked()

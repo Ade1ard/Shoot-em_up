@@ -58,8 +58,9 @@ MonoBehaviour:
   _moveDuration: 5
   _moveDurationOffset: 1.5
   pathType: 1
-  _speedBetweenPoints: 10
-  _timeBetweenPoints: 3
+  _betweenPointsMoveDuration: 6
+  _inPointTime: 3
+  _inPointTimeOffset: 1
   amplitude: 1
   frequency: 2
   sinDistance: 10
@@ -261,7 +262,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e046515d639634d41af04026811de5e7, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

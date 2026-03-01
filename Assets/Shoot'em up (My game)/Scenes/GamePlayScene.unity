@@ -5670,7 +5670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426549110}
   - component: {fileID: 426549109}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5690,8 +5690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardSelectionManager
   _cardsToShow: 3
-  _cardPrefab: {fileID: 5836860141474682824, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
-  _selectionPanel: {fileID: 355718299}
+  _cardPrefab: {fileID: 4628632130140260448, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
   _cardsParent: {fileID: 355718300}
   _gridLayout: {fileID: 355718302}
   _commonCards:
@@ -6920,6 +6919,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8656522925583198860, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+      propertyPath: cullingMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656522925583198860, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
       propertyPath: ShapeModule.angle
       value: 10
       objectReference: {fileID: 0}
@@ -7412,7 +7415,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 26d8a0055d93c1642bf2efb317087fc1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
