@@ -129,8 +129,7 @@ public class CardSelectionManager : MonoBehaviour
     {
         foreach (CardWidget card in _cards)
         {
-            card._eventTrigger.enabled = false;
-            card.transform.DORotate(new Vector3(0, 90, 0), 0.5f).SetEase(card._closeCurve).SetUpdate(true);
+            card.Close();
         }
         yield return new WaitForSecondsRealtime(0.5f);
 

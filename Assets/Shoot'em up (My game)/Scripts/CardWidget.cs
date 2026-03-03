@@ -13,7 +13,7 @@ public class CardWidget : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private Button _selectButton;
-    public EventTrigger _eventTrigger;
+    [SerializeField] private EventTrigger _eventTrigger;
 
     [Header("Animation")]
     [SerializeField] private float _hoverScale = 1.1f;
@@ -61,6 +61,13 @@ public class CardWidget : MonoBehaviour
         yield return transform.DOScale(_originalScale, _showingDuration).SetEase(_showCurve).SetUpdate(true).WaitForCompletion();
 
         _eventTrigger.enabled = true;
+    }
+
+    public void Close()
+    {
+        _eventTrigger.enabled = false;
+        transform.DORotate(new Vector3(0, 90, 0), 0.5f).SetEase(_closeCurve).SetUpdate(true);
+        _backgroundCard.DOFade(0, 0.5f).SetEase(_closeCurve).SetUpdate(true);
     }
 
     private void SetRarityColor(int cost)
