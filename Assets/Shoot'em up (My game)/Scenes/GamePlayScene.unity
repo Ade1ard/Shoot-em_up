@@ -7523,13 +7523,14 @@ MonoBehaviour:
   _healthBarAmount: {fileID: 1391973465}
   _healthBarCanvasGroup: {fileID: 313344274}
   _healthBarDrawingSpeed: 0.5
+  _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _maxHealth: 100
   damage: 10
   attackSpeed: 1
   movementSpeed: 5
   projectileCount: 1
   level: 0
-  levelXPCost: 20
+  levelXPCost: 100
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695

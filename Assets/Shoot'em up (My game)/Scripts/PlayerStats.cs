@@ -32,6 +32,7 @@ public class PlayerStats : Health
 
     protected override void Death()
     {
+        base.Death();
         onPlayerDied?.Invoke();
     }
 

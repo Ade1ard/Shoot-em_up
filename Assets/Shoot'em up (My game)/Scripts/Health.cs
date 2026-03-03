@@ -10,6 +10,9 @@ public abstract class Health : MonoBehaviour, IDamageable
     [SerializeField] private CanvasGroup _healthBarCanvasGroup;
     [SerializeField] private float _healthBarDrawingSpeed = 1;
 
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem _deathVFX;
+
     [Header("Parameters")]
     public float _maxHealth = 100f;
 
@@ -45,7 +48,8 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     protected virtual void Death()
     {
-
+        if (_deathVFX != null)
+            Instantiate(_deathVFX, transform.position, Quaternion.identity);
     }
 
     private void StartDrawingBar()

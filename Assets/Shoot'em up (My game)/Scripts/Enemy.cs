@@ -20,6 +20,7 @@ public class Enemy : Health
 
     protected override void Death()
     {
+        base.Death();
         OnDeath?.Invoke(gameObject, _xpReward);
         DOTween.Kill(transform);
         Destroy(gameObject);

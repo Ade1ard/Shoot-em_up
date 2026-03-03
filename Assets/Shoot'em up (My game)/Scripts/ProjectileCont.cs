@@ -7,6 +7,7 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private float _damage = 10;
+    [SerializeField] private ParticleSystem _takeDamageVFX;
 
     public void Initialize(float damage = default)
     {
@@ -16,10 +17,13 @@ public class ProjectileCont : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IDamageable>(out IDamageable IDA) && OnScreen())
+        if (collision.TryGetComponent<IDamageable>(out IDamageable ID) && OnScreen())
         {
-            IDA.DealDamage(_damage);
+            ID.DealDamage(_damage);
             DOTween.Kill(transform);
+            if (_takeDamageVFX != null)
+                Instantiate(_takeDamageVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
+
             Destroy(gameObject);
         }
     }
