@@ -9,6 +9,7 @@ public class CardWidget : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private Image _backgroundCard;
+    [SerializeField] private Image _cardOutline;
     [SerializeField] private Image _iconImage;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
@@ -76,12 +77,18 @@ public class CardWidget : MonoBehaviour
         {
             case 1: // common
                 _backgroundCard.color = _common;
+                if (_cardOutline != null)
+                    _cardOutline.color = _common.gamma;
                 break;
             case 2: // epic
                 _backgroundCard.color = _epic;
+                if (_cardOutline != null)
+                    _cardOutline.color = _epic.gamma;
                 break;
             case 3: // legend
                 _backgroundCard.color = _legend;
+                if (_cardOutline != null)
+                    _cardOutline.color = _legend.gamma;
                 break;
         }
     }
