@@ -94,6 +94,10 @@
 
 		half4 _DissolveTex_ST;
 
+		half _UseDissolveOutline;
+		half4 _DissolveOutlineColor;
+		half _DissolveOutlineWidth;
+
 	#if !defined(SHADER_API_GLES)
 		float _ShadowStrength;
 		float4 _DitherCustom_TexelSize;
@@ -524,6 +528,18 @@
 			half dissolveTime = i.custom1.x;
 			half doubleDissolveWidth = 0;
 			if (_DoubleDissolve > 0) doubleDissolveWidth = i.custom1.y;
+	
+			#ifdef _DISSOLVE_OUTLINE
+				if (_UseDissolveOutline > 0)
+				{
+					float dissolveEdge = dissolveTex - dissolveTime;
+					float outlineWidth = _DissolveOutlineWidth;
+			
+					float outlineMask = 1 - smoothstep(0, outlineWidth, abs(dissolveEdge));
+			
+					particleColor.rgb = lerp(particleColor.rgb, _DissolveOutlineColor.rgb, outlineMask * _DissolveOutlineColor.a);
+				}
+			#endif
 		#else
 			half dissolveTex = 0;
 			half dissolveTime = 0;

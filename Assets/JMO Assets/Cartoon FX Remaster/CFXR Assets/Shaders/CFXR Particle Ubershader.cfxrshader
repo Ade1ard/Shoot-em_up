@@ -52,6 +52,9 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 	//# IF_PROPERTY _UseDissolveOffsetUV > 0
 		_DissolveScroll ("UV Scrolling", Vector) = (0,0,0,0)
 	//# END_IF
+	[Toggle(_DISSOLVE_OUTLINE)] _UseDissolveOutline ("Enable Dissolve Outline", Float) = 0
+	_DissolveOutlineColor ("Outline Color", Color) = (0,0,0,1)
+	_DissolveOutlineWidth ("Outline Width", Range(0.01, 0.3)) = 0.1
 	//# END_IF
 
 	//# --------------------------------------------------------
@@ -203,6 +206,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				//#pragma multi_compile SHADOWS_SCREEN
 
 				#pragma shader_feature_local _ _CFXR_DISSOLVE
+				#pragma shader_feature_local _ _DISSOLVE_OUTLINE
 				#pragma shader_feature_local_fragment _ _CFXR_UV_DISTORTION
 				// #pragma shader_feature_local _ _CFXR_GRADIENTMAP
 				#pragma shader_feature_local _ _CFXR_SECONDCOLOR_LERP _CFXR_FONT_COLORS
@@ -248,6 +252,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				//#pragma multi_compile SHADOWS_SCREEN
 
 				#pragma shader_feature_local _ _CFXR_DISSOLVE
+				#pragma shader_feature_local _ _DISSOLVE_OUTLINE
 				#pragma shader_feature_local_fragment _ _CFXR_UV_DISTORTION
 				// #pragma shader_feature_local _ _CFXR_GRADIENTMAP
 				#pragma shader_feature_local _ _CFXR_SECONDCOLOR_LERP _CFXR_FONT_COLORS
@@ -291,6 +296,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				#pragma fragment fragment_program
 
 				#pragma shader_feature_local _ _CFXR_DISSOLVE
+				#pragma shader_feature_local _ _DISSOLVE_OUTLINE
 				#pragma shader_feature_local_fragment _ _CFXR_UV_DISTORTION
 				#pragma shader_feature_local_fragment _ _CFXR_OVERLAYTEX_1X _CFXR_OVERLAYTEX_2X
 				#pragma shader_feature_local_fragment _ _FLIPBOOK_BLENDING
@@ -343,6 +349,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				//#pragma multi_compile SHADOWS_SCREEN
 
 				#pragma shader_feature_local _ _CFXR_DISSOLVE
+				#pragma shader_feature_local _ _DISSOLVE_OUTLINE
 				#pragma shader_feature_local_fragment _ _CFXR_UV_DISTORTION
 				// #pragma shader_feature_local _ _CFXR_GRADIENTMAP
 				#pragma shader_feature_local _ _CFXR_SECONDCOLOR_LERP _CFXR_FONT_COLORS
@@ -391,6 +398,7 @@ Shader "Cartoon FX/Remaster/Particle Ubershader"
 				// #pragma instancing_options procedural:vertInstancingSetup
 
 				#pragma shader_feature_local _ _CFXR_DISSOLVE
+				#pragma shader_feature_local _ _DISSOLVE_OUTLINE
 				#pragma shader_feature_local_fragment _ _CFXR_UV_DISTORTION
 				#pragma shader_feature_local_fragment _ _CFXR_OVERLAYTEX_1X _CFXR_OVERLAYTEX_2X
 				#pragma shader_feature_local_fragment _ _FLIPBOOK_BLENDING

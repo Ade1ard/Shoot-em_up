@@ -74,6 +74,7 @@ Material:
     - _DebugDissolveTime: 0
     - _DirLightScreenAtten: 1
     - _DirectLightingRamp: 1
+    - _DissolveOutlineWidth: 0.1
     - _DissolveSmooth: 0.15
     - _Distort: 0.1
     - _DoubleDissolve: 0
@@ -99,6 +100,7 @@ Material:
     - _UseBackLighting: 0
     - _UseDissolve: 1
     - _UseDissolveOffsetUV: 0
+    - _UseDissolveOutline: 0
     - _UseEF: 0
     - _UseEmission: 0
     - _UseFB: 0
@@ -114,6 +116,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 2, g: 2, b: 2, a: 1}
+    - _DissolveOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _DissolveScroll: {r: 0, g: 0, b: 0, a: 0}
     - _DistortScrolling: {r: 0, g: 0, b: 1, a: 1}
     - _OverlayTex_Scroll: {r: 0.1, g: 0.1, b: 1, a: 1}
