@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _difficultyIncreasePerWave = 0.1f;
 
     private int _currentWaveNumber = 1;
-    private List<GameObject> _activeEnemies = new List<GameObject>();
+    private List<Enemy> _activeEnemies = new List<Enemy>();
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
     private PlayerStats _player;
@@ -82,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
         _currentDifficulty += _difficultyIncreasePerWave;
     }
 
-    void SpawnSingleEnemy(GameObject enemyPrefab, Vector3 spawnPosition)
+    void SpawnSingleEnemy(Enemy enemyPrefab, Vector3 spawnPosition)
     {
         if (enemyPrefab == null)
         {
@@ -90,15 +90,11 @@ public class EnemySpawner : MonoBehaviour
             return;
         }
 
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        enemy.GetComponent<ObjectMovement>().StartMove(spawnPosition);
+        Enemy enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        enemy.gameObject.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
-        Enemy enemyController = enemy.GetComponent<Enemy>();
-        if (enemyController != null)
-        {
-            enemyController.Initialize(_currentDifficulty);
-            enemyController.OnDeath += HandleEnemyDeath;
-        }
+        enemy.Initialize(_currentDifficulty);
+        enemy.OnDeath += HandleEnemyDeath;
 
         _activeEnemies.Add(enemy);
     }
@@ -170,10 +166,11 @@ public class EnemySpawner : MonoBehaviour
         return _basePosition + offset;
     }
 
-    void HandleEnemyDeath(GameObject enemy, int xpValue)
+    void HandleEnemyDeath(Enemy enemy, int xpValue)
     {
         if (_activeEnemies.Contains(enemy))
         {
+            enemy.OnDeath -= HandleEnemyDeath;
             _activeEnemies.Remove(enemy);
 
             _player.AddXP(xpValue);
@@ -183,15 +180,7 @@ public class EnemySpawner : MonoBehaviour
     void OnDestroy()
     {
         foreach (var enemy in _activeEnemies)
-        {
             if (enemy != null)
-            {
-                var enemyController = enemy.GetComponent<Enemy>();
-                if (enemyController != null)
-                {
-                    enemyController.OnDeath -= HandleEnemyDeath;
-                }
-            }
-        }
+                enemy.OnDeath -= HandleEnemyDeath;
     }
 }

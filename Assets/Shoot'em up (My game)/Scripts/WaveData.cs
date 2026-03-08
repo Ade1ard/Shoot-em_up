@@ -8,7 +8,7 @@ public class WaveData : ScriptableObject
     public class EnemyGroup
     {
         [Header("EnemyPrefab")]
-        public GameObject _enemyPrefab;
+        public Enemy _enemyPrefab;
 
         [Header("Counts")]
         public int _minEnemyCount;

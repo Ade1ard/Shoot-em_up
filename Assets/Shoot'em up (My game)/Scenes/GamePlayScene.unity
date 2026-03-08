@@ -7530,7 +7530,7 @@ MonoBehaviour:
   movementSpeed: 5
   projectileCount: 1
   level: 0
-  levelXPCost: 100
+  levelXPCost: 50
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695

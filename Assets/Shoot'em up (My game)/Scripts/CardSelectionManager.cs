@@ -132,8 +132,8 @@ public class CardSelectionManager : MonoBehaviour
             card.Close();
         }
         yield return new WaitForSecondsRealtime(0.5f);
-
         Time.timeScale = 1f;
+        ClearScene();
     }
 
     private void ClearOldCards()
@@ -142,5 +142,11 @@ public class CardSelectionManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void ClearScene()
+    {
+        foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>(FindObjectsSortMode.None))
+             prj.Clear();
     }
 }

@@ -9,7 +9,7 @@ public class Enemy : Health
 {
     [SerializeField] private int _xpReward = 10;
 
-    public event Action<GameObject, int> OnDeath;
+    public event Action<Enemy, int> OnDeath;
 
     protected override void Start()
     {
@@ -21,7 +21,7 @@ public class Enemy : Health
     protected override void Death()
     {
         base.Death();
-        OnDeath?.Invoke(gameObject, _xpReward);
+        OnDeath?.Invoke(this, _xpReward);
         DOTween.Kill(transform);
         Destroy(gameObject);
     }

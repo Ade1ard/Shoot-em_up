@@ -3,13 +3,13 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(ProjectileCaster))]
 public class PlayerStats : Health
 {
     public int damage = 10;
     public float attackSpeed = 1f;
-    public float movementSpeed = 5f;
     public int projectileCount = 1;
-    public int level = 0;
+    private int level = 0;
     public int levelXPCost = 100;
 
     [Header("Canvas")]

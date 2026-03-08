@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -26,6 +27,15 @@ public class ProjectileCont : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    public void Clear()
+    {
+        if (_takeDamageVFX != null)
+            Instantiate(_takeDamageVFX, transform.position, Quaternion.identity);
+
+        DOTween.Kill(transform);
+        Destroy(gameObject);
     }
 
     bool OnScreen()

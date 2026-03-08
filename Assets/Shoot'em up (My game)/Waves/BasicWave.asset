@@ -15,7 +15,7 @@ MonoBehaviour:
   _waveName: together
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 1347978250879101239, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
     _minEnemyCount: 2
     _maxEnemyCount: 4
     _spawnTogether: 1
@@ -27,5 +27,4 @@ MonoBehaviour:
     _spacing: {x: 1, y: 1}
     _columns: 2
   _waveStartDelay: 2
-  _timeBetweenGroups: 3
   _baseXP: 100
