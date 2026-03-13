@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
-  m_Name: CardEffect_base
+  m_Name: led
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: base
-  description: add attack speed
+  effectName: Damage
+  description: Add damage
   icon: {fileID: 0}
-  cost: 1
-  effectType: 3
-  baseValue: 10
+  cost: 3
+  effectType: 2
+  baseValue: 5
   multiplierPerLevel: 1
   spawnVFX: {fileID: 0}
   pickUpSound: {fileID: 0}

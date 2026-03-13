@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -8,7 +7,7 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private float _damage = 10;
-    [SerializeField] private ParticleSystem _takeDamageVFX;
+    [SerializeField] private ParticleSystem _clearVFX;
 
     public void Initialize(float damage = default)
     {
@@ -20,10 +19,8 @@ public class ProjectileCont : MonoBehaviour
     {
         if (collision.TryGetComponent<IDamageable>(out IDamageable ID) && OnScreen())
         {
-            ID.DealDamage(_damage);
+            ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
             DOTween.Kill(transform);
-            if (_takeDamageVFX != null)
-                Instantiate(_takeDamageVFX, collision.ClosestPoint(transform.position), Quaternion.identity);
 
             Destroy(gameObject);
         }
@@ -31,8 +28,8 @@ public class ProjectileCont : MonoBehaviour
 
     public void Clear()
     {
-        if (_takeDamageVFX != null)
-            Instantiate(_takeDamageVFX, transform.position, Quaternion.identity);
+        if (_clearVFX != null)
+            Instantiate(_clearVFX, transform.position, Quaternion.identity);
 
         DOTween.Kill(transform);
         Destroy(gameObject);

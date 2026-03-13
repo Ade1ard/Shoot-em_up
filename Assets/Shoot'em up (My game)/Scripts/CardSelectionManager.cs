@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -107,7 +106,8 @@ public class CardSelectionManager : MonoBehaviour
                 break;
 
             case EffectType.AttackSpeed:
-                _playerStats.attackSpeed *= effect.baseValue;
+                _playerStats.shootDelay -= effect.baseValue;
+                _playerStats.shootDelay = Mathf.Clamp(_playerStats.shootDelay, 0.17f, 1);
                 break;
 
             case EffectType.ProjectileCount:
@@ -118,6 +118,7 @@ public class CardSelectionManager : MonoBehaviour
                 //playerStats.unlockSpecialAbility = true;
                 break;
         }
+        _playerStats.GiveStats();
 
         if (effect.spawnVFX != null)
         {

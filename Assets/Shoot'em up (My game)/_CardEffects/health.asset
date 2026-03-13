@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: health
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: health
+  effectName: Health
   description: add max health
   icon: {fileID: 0}
   cost: 2

@@ -12,6 +12,7 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     [Header("VFX")]
     [SerializeField] private ParticleSystem _deathVFX;
+    [SerializeField] private ParticleSystem _takeDamageVFX;
 
     [Header("Parameters")]
     public float _maxHealth = 100f;
@@ -34,7 +35,7 @@ public abstract class Health : MonoBehaviour, IDamageable
         _currentHealth = _maxHealth;
     }
 
-    public virtual void DealDamage(float damage)
+    public virtual void DealDamage(float damage, Vector3 closestPoint = default)
     {
         _currentHealth -= damage;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
@@ -44,6 +45,8 @@ public abstract class Health : MonoBehaviour, IDamageable
 
         if (_currentHealth <= 0f)
             Death();
+        else if (closestPoint != default)
+            Instantiate(_takeDamageVFX, closestPoint, Quaternion.identity);
     }
 
     protected virtual void Death()
@@ -71,5 +74,5 @@ public abstract class Health : MonoBehaviour, IDamageable
 
 public interface IDamageable
 {
-    void DealDamage(float damage);
+    void DealDamage(float damage, Vector3 closestPoint = default);
 }

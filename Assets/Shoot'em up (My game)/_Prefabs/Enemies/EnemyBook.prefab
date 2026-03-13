@@ -193,6 +193,7 @@ MonoBehaviour:
   _healthBarCanvasGroup: {fileID: 6019746616283548423}
   _healthBarDrawingSpeed: 1
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _maxHealth: 30
   _xpReward: 10
 --- !u!114 &6720159454807428517

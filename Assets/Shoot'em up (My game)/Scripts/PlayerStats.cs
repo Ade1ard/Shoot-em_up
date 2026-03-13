@@ -7,9 +7,9 @@ using UnityEngine.Events;
 public class PlayerStats : Health
 {
     public int damage = 10;
-    public float attackSpeed = 1f;
+    public float shootDelay = 1f;
     public int projectileCount = 1;
-    private int level = 0;
+    [NonSerialized] public int level = 0;
     public int levelXPCost = 100;
 
     [Header("Canvas")]
@@ -19,6 +19,7 @@ public class PlayerStats : Health
     [NonSerialized] public UnityEvent onPlayerDied;
 
     private CardSelectionManager _cardManager;
+    private ProjectileCaster _playerPRJCaster;
 
     private Vector3 v = Vector3.zero;
     private int XP;
@@ -28,7 +29,11 @@ public class PlayerStats : Health
         base.Start();
 
         _cardManager = FindAnyObjectByType<CardSelectionManager>();
+        _playerPRJCaster = GetComponent<ProjectileCaster>();
+        GiveStats();
     }
+
+    public void GiveStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
 
     protected override void Death()
     {

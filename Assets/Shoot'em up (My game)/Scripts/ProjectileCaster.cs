@@ -5,12 +5,13 @@ public class ProjectileCaster : MonoBehaviour
     [Header("Prefab")]
     [SerializeField] ProjectileCont _projectilePrefab;
 
-    [Header("Projectile Settings")]
+    [Header("Stats")]
     [SerializeField] private float _PRJDamage;
-
-    [Header("Own Settings")]
-    [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _shootDelay;
+    [SerializeField] private int _projectileCount = 1;
+
+    [Header("Settings")]
+    [SerializeField] private Transform _shootPoint;
     [SerializeField] private ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
@@ -27,6 +28,13 @@ public class ProjectileCaster : MonoBehaviour
             _shootPoint = transform;
 
         _lastShootTime = Time.time;
+    }
+
+    public void GetStats(float damage, float shootDelay, int projectileCount) //for Player
+    {
+        _PRJDamage = damage;
+        _shootDelay = shootDelay;
+        _projectileCount = projectileCount;
     }
 
     void Update()
