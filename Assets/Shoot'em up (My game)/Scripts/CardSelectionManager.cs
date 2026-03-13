@@ -111,7 +111,9 @@ public class CardSelectionManager : MonoBehaviour
                 break;
 
             case EffectType.ProjectileCount:
-                _playerStats.projectileCount++;
+                _playerStats.projectileCount += 1;
+                _playerStats.projectileCount = Mathf.Clamp(_playerStats.projectileCount, 1, 3);
+                _playerStats.UpdateProjectileCount();
                 break;
 
             case EffectType.SpecialAbility:

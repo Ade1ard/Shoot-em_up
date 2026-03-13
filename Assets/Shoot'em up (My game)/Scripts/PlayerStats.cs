@@ -31,9 +31,11 @@ public class PlayerStats : Health
         _cardManager = FindAnyObjectByType<CardSelectionManager>();
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         GiveStats();
+        UpdateProjectileCount();
     }
 
     public void GiveStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
+    public void UpdateProjectileCount() { _playerPRJCaster.GetShootPoints(projectileCount); }
 
     protected override void Death()
     {

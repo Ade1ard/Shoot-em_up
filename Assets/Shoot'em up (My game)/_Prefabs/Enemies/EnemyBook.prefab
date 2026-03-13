@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 1347978250879101239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 5.94, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -210,8 +210,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: d8bacc0d5025e6a4ab409762c544efdd, type: 3}
   _PRJDamage: 0
-  _shootPoint: {fileID: 0}
   _shootDelay: 2
+  _projectileCount: 1
+  _shootPoints: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPositonOffset_X: 0.2

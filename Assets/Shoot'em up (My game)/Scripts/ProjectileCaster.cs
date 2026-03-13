@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileCaster : MonoBehaviour
@@ -11,7 +12,7 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private int _projectileCount = 1;
 
     [Header("Settings")]
-    [SerializeField] private Transform _shootPoint;
+    [SerializeField] Transform _shootPoints;
     [SerializeField] private ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
@@ -21,13 +22,15 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private float _shootDelayOffset = 0.1f;
 
     private float _lastShootTime;
+    private List<Transform> _shootP = new List<Transform>();
 
     private void Start()
     {
-        if (_shootPoint == null)
-            _shootPoint = transform;
+        if (_shootPoints == null)
+            _shootPoints = transform;
 
         _lastShootTime = Time.time;
+        GetShootPoints(_projectileCount);
     }
 
     public void GetStats(float damage, float shootDelay, int projectileCount) //for Player
@@ -41,22 +44,54 @@ public class ProjectileCaster : MonoBehaviour
     {
         if (Time.time - _lastShootTime > _shootDelay && OnScreen())
         {
-            _lastShootTime = Time.time;
-            _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
+            foreach (var p in _shootP)
+            {
+                _lastShootTime = Time.time;
+                _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
 
-            Vector3 InitPos = new Vector3(_shootPoint.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
-                _shootPoint.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
-                0);
+                Vector3 InitPos = new Vector3(p.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
+                    p.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
+                    0);
 
-            var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
-            projectile.Initialize(_PRJDamage);
-            projectile.GetComponent<ObjectMovement>().StartMove(InitPos);
+                var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
+                projectile.Initialize(_PRJDamage);
+                projectile.GetComponent<ObjectMovement>().StartMove(InitPos);
+            }
 
             if (_shootVFXPrefab != null)
-                Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
+                Instantiate(_shootVFXPrefab, _shootPoints.position, Quaternion.identity, transform);
 
             if (_shootFlashAnimator != null)
                 _shootFlashAnimator.SetTrigger("Shoot");
+        }
+    }
+
+    public void GetShootPoints(int count)
+    {
+        foreach (Transform p in _shootP)
+            Destroy(p.gameObject);
+        _shootP.Clear();
+
+        if (count == 1)
+        {
+            GameObject bullet = new GameObject($"{gameObject.name}ShootPoint");
+            bullet.transform.SetParent(_shootPoints);
+            bullet.transform.localPosition = Vector3.zero;
+            _shootP.Add(bullet.transform);
+            return;
+        }
+
+        float totalWidth = count - 0.5f;
+        float startX = -totalWidth / 2f;
+        float step = totalWidth / (count - 1);
+
+        for (int i = 0; i < count; i++)
+        {
+            float x = startX + i * step;
+            GameObject bullet = new GameObject($"{gameObject.name}ShootPoint{i}");
+            bullet.transform.SetParent(_shootPoints);
+            bullet.transform.localPosition = new Vector3(x, 0, 0);
+            _shootP.Add(bullet.transform);
         }
     }
 

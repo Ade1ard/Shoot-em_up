@@ -5699,6 +5699,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f77a836f9f2b4d34499ba50e025b6d75, type: 2}
   _legendCards:
   - {fileID: 11400000, guid: 629ad70bb8d1f6048abad16fb4424dd0, type: 2}
+  - {fileID: 11400000, guid: 099653b2aca618c489b272bf85652fa3, type: 2}
   _epicChance: 100
   _legendChance: 100
 --- !u!4 &426549110
@@ -6071,6 +6072,37 @@ MonoBehaviour:
   - {fileID: 430519642}
   - {fileID: 1386549630}
   _boundsOffset: 2.5
+--- !u!1 &728105649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728105650}
+  m_Layer: 6
+  m_Name: ShootPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &728105650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728105649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1750253392}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903007544
 GameObject:
   m_ObjectHideFlags: 0
@@ -7371,8 +7403,8 @@ Transform:
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 728105650}
   - {fileID: 1492988654}
-  - {fileID: 2070185476}
   - {fileID: 196716497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7487,7 +7519,8 @@ MonoBehaviour:
   _PRJDamage: 0
   _shootDelay: 0.3
   _projectileCount: 1
-  _shootPoint: {fileID: 2070185476}
+  _shootPoints: {fileID: 728105650}
+  _shootPointsGridWidth: 3
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
   _spawnPositonOffset_X: 0.05
@@ -7530,7 +7563,8 @@ MonoBehaviour:
   damage: 10
   shootDelay: 0.4
   projectileCount: 1
-  levelXPCost: 50
+  _shootPointsGridWidth: 1.5
+  levelXPCost: 30
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695
@@ -7677,37 +7711,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2070185475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070185476}
-  m_Layer: 6
-  m_Name: ShootPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2070185476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070185475}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1750253392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
