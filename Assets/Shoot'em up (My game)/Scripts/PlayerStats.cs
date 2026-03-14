@@ -20,6 +20,7 @@ public class PlayerStats : Health
 
     private CardSelectionManager _cardManager;
     private ProjectileCaster _playerPRJCaster;
+    private UIView _UIView;
 
     private Vector3 v = Vector3.zero;
     private int XP;
@@ -29,9 +30,11 @@ public class PlayerStats : Health
         base.Start();
 
         _cardManager = FindAnyObjectByType<CardSelectionManager>();
+        _UIView = FindAnyObjectByType<UIView>();
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         GiveStats();
         UpdateProjectileCount();
+        _UIView.StartDrawingBar(XP, levelXPCost);
     }
 
     public void GiveStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
@@ -51,6 +54,7 @@ public class PlayerStats : Health
     public void AddXP(int amount)
     {
         XP += math.abs(amount);
+        _UIView.StartDrawingBar(XP, levelXPCost);
 
         if (XP >= levelXPCost)
         {
@@ -58,6 +62,7 @@ public class PlayerStats : Health
             level += 1;
 
             _cardManager.ShowCardSelection();
+            _UIView.StartDrawingBar(XP, levelXPCost);
         }
     }
 }

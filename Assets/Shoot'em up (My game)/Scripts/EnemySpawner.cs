@@ -20,12 +20,15 @@ public class EnemySpawner : MonoBehaviour
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
     private PlayerStats _player;
+    private UIView _UIView;
 
     void Start()
     {
         StartCoroutine(WaveLoop());
 
-        _player = Object.FindAnyObjectByType<PlayerStats>();
+        _player = FindAnyObjectByType<PlayerStats>();
+        _UIView = FindAnyObjectByType<UIView>();
+        _UIView.ShowCurrentWave(_currentWaveNumber);
     }
 
     IEnumerator WaveLoop()
@@ -79,6 +82,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(currentGroup._delayAfterGroup);
         }
         _currentWaveNumber++;
+        _UIView.ShowCurrentWave(_currentWaveNumber);
         _currentDifficulty += _difficultyIncreasePerWave;
     }
 
