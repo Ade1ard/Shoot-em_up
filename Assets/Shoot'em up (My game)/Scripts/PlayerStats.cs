@@ -34,7 +34,6 @@ public class PlayerStats : Health
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         GiveStats();
         UpdateProjectileCount();
-        _UIView.StartDrawingBar(XP, levelXPCost);
     }
 
     public void GiveStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }

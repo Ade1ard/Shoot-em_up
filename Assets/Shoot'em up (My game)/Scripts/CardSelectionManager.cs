@@ -24,17 +24,20 @@ public class CardSelectionManager : MonoBehaviour
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
     private PlayerStats _playerStats;
+    private UIView _UIView;
     private List<CardWidget> _cards;
 
     private void Start()
     {
         _playerStats = FindAnyObjectByType<PlayerStats>();
+        _UIView = FindAnyObjectByType<UIView>();
 
         _gridLayout.constraintCount = _cardsToShow;
     }
 
     public void ShowCardSelection()
     {
+        _UIView.ShowUI(false);
         ClearOldCards();
 
         List<CardEffect> selectedEffects = GenerateCards(_cardsToShow);
@@ -137,6 +140,7 @@ public class CardSelectionManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         Time.timeScale = 1f;
         ClearScene();
+        _UIView.ShowUI(true);
     }
 
     private void ClearOldCards()
