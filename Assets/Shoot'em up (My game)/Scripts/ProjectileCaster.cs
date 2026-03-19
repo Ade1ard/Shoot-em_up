@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class ProjectileCaster : MonoBehaviour
 {
     [Header("Prefab")]
@@ -21,8 +22,12 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private float _spawnPositonOffset_Y = 0.1f;
     [SerializeField] private float _shootDelayOffset = 0.1f;
 
+    [Header("Sound")]
+    [SerializeField] private List<AudioClip> _shootSounds = new List<AudioClip>();
+
     private float _lastShootTime;
     private List<Transform> _shootP = new List<Transform>();
+    private AudioSource _audioSource;
 
     private void Start()
     {
@@ -31,6 +36,8 @@ public class ProjectileCaster : MonoBehaviour
 
         _lastShootTime = Time.time;
         GetShootPoints(_projectileCount);
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void GetStats(float damage, float shootDelay, int projectileCount) //for Player
@@ -57,6 +64,8 @@ public class ProjectileCaster : MonoBehaviour
                 projectile.Initialize(_PRJDamage);
                 projectile.GetComponent<ObjectMovement>().StartMove(InitPos);
             }
+            if (_shootSounds.Count != 0)
+                _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
 
             if (_shootVFXPrefab != null)
                 Instantiate(_shootVFXPrefab, _shootPoints.position, Quaternion.identity, transform);

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class CardWidget : MonoBehaviour
 {
     [Header("UI")]
@@ -30,15 +31,23 @@ public class CardWidget : MonoBehaviour
     [SerializeField] private Color _epic;
     [SerializeField] private Color _legend;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _hoverEnterSound;
+    [SerializeField] private AudioClip _hoverExitSound;
+    [SerializeField] private AudioClip _clickSound;
+
     private CardEffect _cardData;
     private Action<CardEffect> _onSelected;
     [NonSerialized] public Vector3 _originalScale;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _originalScale = transform.localScale;
         _selectButton.onClick.AddListener(OnCardClicked);
         _eventTrigger.enabled = false;
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public System.Collections.IEnumerator Initialization(CardEffect effect, float delay, Action<CardEffect> callback)
@@ -96,16 +105,20 @@ public class CardWidget : MonoBehaviour
     public void OnHoverEnter()
     {
         transform.DOScale(_originalScale * _hoverScale, _animationDuration).SetUpdate(true);
+        _audioSource.PlayOneShot(_hoverEnterSound);
     }
 
     public void OnHoverExit()
     {
         transform.DOScale(_originalScale, _animationDuration).SetUpdate(true);
+        _audioSource.PlayOneShot(_hoverExitSound);
     }
 
     private void OnCardClicked()
     {
         _selectButton.interactable = false;
+
+        _audioSource.PlayOneShot(_clickSound);
 
         if (_cardData.pickUpSound != null)
             AudioSource.PlayClipAtPoint(_cardData.pickUpSound, Camera.main.transform.position);

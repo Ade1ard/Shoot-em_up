@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class Health : MonoBehaviour, IDamageable
 {
     [Header("UI")]
@@ -14,17 +16,24 @@ public abstract class Health : MonoBehaviour, IDamageable
     [SerializeField] private ParticleSystem _deathVFX;
     [SerializeField] private ParticleSystem _takeDamageVFX;
 
+    [Header("Sounds")]
+    [SerializeField] private List<AudioClip> _hitSounds = new List<AudioClip>();
+    [SerializeField] private AudioClip _deadSound;
+
     [Header("Parameters")]
     public float _maxHealth = 100f;
 
     [NonSerialized] public float _currentHealth;
     private Coroutine _healthBarCoroutine;
+    private AudioSource _audioSource;
 
     protected virtual void Start()
     {
         _currentHealth = _maxHealth;
         StartDrawingBar();
         _healthBarCanvasGroup.gameObject.SetActive(false);
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void Initialize(float multiplier = default)
@@ -43,6 +52,9 @@ public abstract class Health : MonoBehaviour, IDamageable
         _healthBarCanvasGroup.gameObject.SetActive(true);
         StartDrawingBar();
 
+        if (_hitSounds.Count != 0)
+            _audioSource.PlayOneShot(_hitSounds[UnityEngine.Random.Range(0, _hitSounds.Count)]);
+
         if (_currentHealth <= 0f)
             Death();
         else if (closestPoint != default)
@@ -53,6 +65,8 @@ public abstract class Health : MonoBehaviour, IDamageable
     {
         if (_deathVFX != null)
             Instantiate(_deathVFX, transform.position, Quaternion.identity);
+        if (_deadSound != null)
+            _audioSource.PlayOneShot(_deadSound);
     }
 
     private void StartDrawingBar()
