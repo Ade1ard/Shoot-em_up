@@ -23,6 +23,6 @@ public class Enemy : Health
         base.Death();
         OnDeath?.Invoke(this, _xpReward);
         DOTween.Kill(transform);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.1f);
     }
 }

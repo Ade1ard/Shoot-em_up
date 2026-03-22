@@ -196,9 +196,9 @@ MonoBehaviour:
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
-  - {fileID: 8300000, guid: 3f57eb18f54067449b649cbade2b0b78, type: 3}
-  - {fileID: 8300000, guid: f950ce2961e454f448d4dd247ba64f07, type: 3}
-  - {fileID: 8300000, guid: 0f27a3ed362c31a4ab408d57b04cb7bd, type: 3}
+  - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
+  - {fileID: 8300000, guid: ca1fde30be290764f86abe16f4401b29, type: 3}
+  _deadSound: {fileID: 0}
   _maxHealth: 30
   _xpReward: 10
 --- !u!114 &6720159454807428517
@@ -223,7 +223,8 @@ MonoBehaviour:
   _spawnPositonOffset_X: 0.2
   _spawnPositonOffset_Y: 0.2
   _shootDelayOffset: 1
-  _shootSounds: []
+  _shootSounds:
+  - {fileID: 8300000, guid: a6ee3fc84a00a7c4d8a0267ebe7ecbcd, type: 3}
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5

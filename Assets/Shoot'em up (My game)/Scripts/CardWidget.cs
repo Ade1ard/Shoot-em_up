@@ -105,20 +105,23 @@ public class CardWidget : MonoBehaviour
     public void OnHoverEnter()
     {
         transform.DOScale(_originalScale * _hoverScale, _animationDuration).SetUpdate(true);
-        _audioSource.PlayOneShot(_hoverEnterSound);
+        if (_hoverEnterSound != null)
+            _audioSource.PlayOneShot(_hoverEnterSound);
     }
 
     public void OnHoverExit()
     {
         transform.DOScale(_originalScale, _animationDuration).SetUpdate(true);
-        _audioSource.PlayOneShot(_hoverExitSound);
+        if (_hoverExitSound != null)
+            _audioSource.PlayOneShot(_hoverExitSound);
     }
 
     private void OnCardClicked()
     {
         _selectButton.interactable = false;
 
-        _audioSource.PlayOneShot(_clickSound);
+        if (_clickSound != null)
+            _audioSource.PlayOneShot(_clickSound);
 
         if (_cardData.pickUpSound != null)
             AudioSource.PlayClipAtPoint(_cardData.pickUpSound, Camera.main.transform.position);
