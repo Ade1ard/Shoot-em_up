@@ -196,9 +196,8 @@ MonoBehaviour:
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
-  - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
-  - {fileID: 8300000, guid: ca1fde30be290764f86abe16f4401b29, type: 3}
-  _deadSound: {fileID: 0}
+  - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   _maxHealth: 30
   _xpReward: 10
 --- !u!114 &6720159454807428517
@@ -224,7 +223,8 @@ MonoBehaviour:
   _spawnPositonOffset_Y: 0.2
   _shootDelayOffset: 1
   _shootSounds:
-  - {fileID: 8300000, guid: a6ee3fc84a00a7c4d8a0267ebe7ecbcd, type: 3}
+  - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
+  - {fileID: 8300000, guid: 78b1e97a8d2dded41a287a9f77748bf2, type: 3}
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5
@@ -311,7 +311,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

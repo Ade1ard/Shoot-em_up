@@ -66,7 +66,7 @@ public abstract class Health : MonoBehaviour, IDamageable
         if (_deathVFX != null)
             Instantiate(_deathVFX, transform.position, Quaternion.identity);
         if (_deadSound != null)
-            _audioSource.PlayOneShot(_deadSound);
+            AudioSource.PlayClipAtPoint(_deadSound, transform.position, _audioSource.volume);
     }
 
     private void StartDrawingBar()

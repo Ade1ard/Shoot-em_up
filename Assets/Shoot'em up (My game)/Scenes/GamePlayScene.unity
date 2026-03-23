@@ -7983,7 +7983,7 @@ MonoBehaviour:
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
   - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
-  - {fileID: 8300000, guid: ca1fde30be290764f86abe16f4401b29, type: 3}
+  - {fileID: 8300000, guid: 98f53a28c86df6f479786cb6aa1ea7da, type: 3}
   _deadSound: {fileID: 8300000, guid: 6da380b93e553dd4d9aff831f34b9575, type: 3}
   _maxHealth: 100
   damage: 10
