@@ -21,3 +21,5 @@ MonoBehaviour:
   multiplierPerLevel: 1
   spawnVFX: {fileID: 0}
   pickUpSound: {fileID: 0}
+  _haveLimit: 1
+  _chooselimit: 2

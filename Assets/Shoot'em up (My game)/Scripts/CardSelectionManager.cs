@@ -65,13 +65,16 @@ public class CardSelectionManager : MonoBehaviour
         if (Random.Range(0f, 100f) < _legendChance)
             pool.AddRange(_legendCards);
 
-        for (int i = 0; i < count; i++)
+        while (result.Count < count)
         {
             if (pool.Count == 0) break;
 
-            int randomIndex = Random.Range(0, pool.Count);
-            result.Add(pool[randomIndex]);
-            pool.RemoveAt(randomIndex);
+            CardEffect effect = pool[Random.Range(0, pool.Count)];
+            
+            if (effect._chooseCount < effect._chooselimit)
+                result.Add(effect);
+
+            pool.Remove(effect);
         }
 
         return result;
@@ -123,7 +126,10 @@ public class CardSelectionManager : MonoBehaviour
                 //playerStats.unlockSpecialAbility = true;
                 break;
         }
-        _playerStats.GiveStats();
+        if (effect._haveLimit)
+            effect._chooseCount++;
+
+        _playerStats.UpdateStats();
 
         if (effect.spawnVFX != null)
         {

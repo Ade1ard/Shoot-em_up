@@ -32,11 +32,11 @@ public class PlayerStats : Health
         _cardManager = FindAnyObjectByType<CardSelectionManager>();
         _UIView = FindAnyObjectByType<UIView>();
         _playerPRJCaster = GetComponent<ProjectileCaster>();
-        GiveStats();
+        UpdateStats();
         UpdateProjectileCount();
     }
 
-    public void GiveStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
+    public void UpdateStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
     public void UpdateProjectileCount() { _playerPRJCaster.GetShootPoints(projectileCount); }
 
     protected override void Death()
@@ -59,6 +59,7 @@ public class PlayerStats : Health
         {
             XP = 0;
             level += 1;
+            levelXPCost += 10;
 
             _cardManager.ShowCardSelection();
             _UIView.StartDrawingBar(XP, levelXPCost);

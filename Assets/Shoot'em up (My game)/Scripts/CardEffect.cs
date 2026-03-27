@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewCardEffect", menuName = "Scriptable Objects/Card Effect")]
@@ -19,6 +20,11 @@ public class CardEffect : ScriptableObject
     [Header("Visual effects")]
     public GameObject spawnVFX;
     public AudioClip pickUpSound;
+
+    [Header("Limit")]
+    public bool _haveLimit = false;
+    public int _chooselimit = 3;
+    [NonSerialized] public int _chooseCount = 0;
 }
 
 public enum EffectType
