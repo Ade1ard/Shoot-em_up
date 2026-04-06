@@ -59,8 +59,9 @@ public class PlayerStats : Health
         XP += math.abs(amount);
         _UIView.StartDrawingBar(XP, levelXPCost);
 
-        score += (int)(amount * 10 * difficulty);
-        _scoreUI.UpdateScoreAmount(score);
+        int addScore = (int)(amount * 10 * difficulty);
+        _scoreUI.UpdateScoreAmount(score, addScore);
+        score += addScore;
 
         if (XP >= levelXPCost)
         {

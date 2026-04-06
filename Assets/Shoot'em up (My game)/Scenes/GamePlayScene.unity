@@ -5276,6 +5276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIView
   _currentWaveText: {fileID: 442846743}
+  _expBar: {fileID: 1531053261}
   _expBarFill: {fileID: 1881413620}
   _gamePlayUI: {fileID: 1734761665}
   _timeText: {fileID: 312495401}
