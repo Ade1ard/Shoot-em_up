@@ -21,17 +21,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;
 
+    private int _animatorKey;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animatorKey = Animator.StringToHash("HorizontalDirection");
 
         InitializeInput();
     }
 
     private void Update()
     {
-        _animator.SetFloat("HorizontalDirection", _moveAction.ReadValue<Vector2>().x);
+        _animator.SetFloat(_animatorKey, _moveAction.ReadValue<Vector2>().x);
     }
 
     private void FixedUpdate()

@@ -9,6 +9,8 @@ public class UIView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentWaveText;
     [SerializeField] private Image _expBarFill;
     [SerializeField] private CanvasGroup _gamePlayUI;
+    [SerializeField] private TextMeshProUGUI _timeText;
+
     [Header("Parameters")]
     [SerializeField] private float _barDrawingSpeed = 1;
     [SerializeField] private float _fadeSpeed = 1;
@@ -21,14 +23,24 @@ public class UIView : MonoBehaviour
         _currentWaveText.text = $"Current wave - {wave}";
     }
 
+    private void Update()
+    {
+        ShowTime((int)Time.time);
+    }
+
+    private void ShowTime(int time)
+    {
+        _timeText.text = $"{time / 60}:{(time % 60).ToString("D2")}";
+    }
+
     public void ShowUI(bool _bool)
     {
         if (_fadingUICoroutine != null)
             StopCoroutine(_fadingUICoroutine);
-        _fadingUICoroutine = StartCoroutine(FadeUI(_bool));
+        _fadingUICoroutine = StartCoroutine(UIShowing(_bool));
     }
 
-    private IEnumerator FadeUI(bool _bool)
+    private IEnumerator UIShowing(bool _bool)
     {
         int amount = _bool ? 1 : 0;
         while (_gamePlayUI.alpha != amount)

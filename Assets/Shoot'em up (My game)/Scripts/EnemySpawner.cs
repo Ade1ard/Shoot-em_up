@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _currentDifficulty = 1f;
     [SerializeField] private float _difficultyIncreasePerWave = 0.1f;
 
-    private int _currentWaveNumber = 1;
+    private int _currentWaveNumber = 0;
     private List<Enemy> _activeEnemies = new List<Enemy>();
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
@@ -24,11 +24,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(WaveLoop());
-
         _player = FindAnyObjectByType<PlayerStats>();
         _UIView = FindAnyObjectByType<UIView>();
-        _UIView.ShowCurrentWave(_currentWaveNumber);
+        _UIView.ShowCurrentWave(1);
+
+        StartCoroutine(WaveLoop());
     }
 
     IEnumerator WaveLoop()
@@ -37,7 +37,10 @@ public class EnemySpawner : MonoBehaviour
         {
             _currentWaveData = SelectNextWave();
 
+            _currentWaveNumber++;
             Debug.Log($"Wave begin {_currentWaveNumber}: {_currentWaveData._waveName}: Wave difficulty{_currentWaveData._difficultyLevel}: Current difficulty {_currentDifficulty}");
+            _UIView.ShowCurrentWave(_currentWaveNumber);
+            _currentDifficulty += _difficultyIncreasePerWave;
 
             yield return new WaitForSeconds(_currentWaveData._waveStartDelay);
 
@@ -81,9 +84,6 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(currentGroup._delayAfterGroup);
         }
-        _currentWaveNumber++;
-        _UIView.ShowCurrentWave(_currentWaveNumber);
-        _currentDifficulty += _difficultyIncreasePerWave;
     }
 
     void SpawnSingleEnemy(Enemy enemyPrefab, Vector3 spawnPosition)
@@ -177,7 +177,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.OnDeath -= HandleEnemyDeath;
             _activeEnemies.Remove(enemy);
 
-            _player.AddXP(xpValue);
+            _player.AddXP((int)(xpValue * _currentDifficulty), _currentDifficulty);
         }
     }
 
