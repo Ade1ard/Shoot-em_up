@@ -5276,7 +5276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIView
   _currentWaveText: {fileID: 442846743}
-  _expBar: {fileID: 1531053261}
   _expBarFill: {fileID: 1881413620}
   _gamePlayUI: {fileID: 1734761665}
   _timeText: {fileID: 312495401}
@@ -5295,6 +5294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreUI
   _scoreAmountText: {fileID: 421605187}
+  _scoreBar: {fileID: 1633973445}
   _scoreCanvasGroup: {fileID: 1908266176}
 --- !u!1 &312495399
 GameObject:
@@ -8157,7 +8157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.88851655, b: 0.48584908, a: 1}
+  m_Color: {r: 0.53333336, g: 0.90811986, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
