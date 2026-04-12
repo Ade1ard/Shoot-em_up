@@ -19,6 +19,7 @@ public class Bootstrap : MonoBehaviour
     {
         var Initializables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IInitializable>().ToList();
 
+        G.Get<GameMain>().Init();
         foreach (var init in Initializables)
             init.Init();
     }

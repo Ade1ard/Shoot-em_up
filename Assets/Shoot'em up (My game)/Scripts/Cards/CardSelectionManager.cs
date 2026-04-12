@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,13 +24,14 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField][Range(0, 100)] private float _epicChance = 30f;
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
-    private Player _player;
+    public event Action<CardEffect> OnCardApplied;
+    public event Action OnSelectionClosed;
+
     private UIView _UIView;
     private List<CardWidget> _cards;
 
     public void Init()
     {
-        _player = G.Get<Player>();
         _UIView = G.Get<UIView>();
 
         _gridLayout.constraintCount = _cardsToShow;
@@ -48,8 +50,6 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         {
             _cards.Add(CreateCard(selectedEffects[i], i));
         }
-
-        Time.timeScale = 0f;
     }
 
     private List<CardEffect> GenerateCards(int count)
@@ -59,17 +59,17 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
 
         pool.AddRange(_commonCards);
 
-        if (Random.Range(0f, 100f) < _epicChance)
+        if (UnityEngine.Random.Range(0f, 100f) < _epicChance)
             pool.AddRange(_epicCards);
 
-        if (Random.Range(0f, 100f) < _legendChance)
+        if (UnityEngine.Random.Range(0f, 100f) < _legendChance)
             pool.AddRange(_legendCards);
 
         while (result.Count < count)
         {
             if (pool.Count == 0) break;
 
-            CardEffect effect = pool[Random.Range(0, pool.Count)];
+            CardEffect effect = pool[UnityEngine.Random.Range(0, pool.Count)];
             
             if (effect._chooseCount < effect._chooselimit)
                 result.Add(effect);
@@ -91,50 +91,9 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
 
     private void OnCardSelected(CardEffect selectedEffect)
     {
-        ApplyEffect(selectedEffect);
+        OnCardApplied?.Invoke(selectedEffect);
 
         StartCoroutine(CloseSelection());
-    }
-
-    private void ApplyEffect(CardEffect effect)
-    {
-        if (_player == null) return;
-
-        switch (effect.effectType)
-        {
-            case EffectType.MaxHealth:
-                _player._maxHealth += (int)effect.baseValue;
-                _player._currentHealth += (int)effect.baseValue;
-                break;
-
-            case EffectType.Damage:
-                _player.damage += (int)effect.baseValue;
-                break;
-
-            case EffectType.AttackSpeed:
-                _player.shootDelay -= effect.baseValue;
-                _player.shootDelay = Mathf.Clamp(_player.shootDelay, 0.17f, 1);
-                break;
-
-            case EffectType.ProjectileCount:
-                _player.projectileCount += 1;
-                _player.projectileCount = Mathf.Clamp(_player.projectileCount, 1, 3);
-                _player.UpdateProjectileCount();
-                break;
-
-            case EffectType.SpecialAbility:
-                //playerStats.unlockSpecialAbility = true;
-                break;
-        }
-        if (effect._haveLimit)
-            effect._chooseCount++;
-
-        _player.UpdateStats();
-
-        if (effect.spawnVFX != null)
-        {
-            Instantiate(effect.spawnVFX, _player.transform.position, Quaternion.identity);
-        }
     }
 
     private System.Collections.IEnumerator CloseSelection()
@@ -144,8 +103,8 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
             card.Close();
         }
         yield return new WaitForSecondsRealtime(0.5f);
-        Time.timeScale = 1f;
-        ClearScene();
+
+        OnSelectionClosed?.Invoke();
         _UIView.ShowUI(true);
     }
 
@@ -155,11 +114,5 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         {
             Destroy(child.gameObject);
         }
-    }
-
-    private void ClearScene()
-    {
-        foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>(FindObjectsSortMode.None))
-             prj.Clear();
     }
 }

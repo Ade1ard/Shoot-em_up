@@ -20,17 +20,17 @@ public class Player : Health, IInitializable
     [NonSerialized] public int level = 0;
     [NonSerialized] public int score = 0;
 
-    private CardSelectionManager _cardManager;
     private ProjectileCaster _playerPRJCaster;
     private UIView _UIView;
     private ScoreUI _scoreUI;
+
+    public Action OnLevelUp;
 
     private Vector3 v = Vector3.zero;
     private int XP;
 
     public void Init()
     {
-        _cardManager = G.Get<CardSelectionManager>();
         _UIView = G.Get<UIView>();
         _scoreUI = G.Get<ScoreUI>();
 
@@ -54,6 +54,30 @@ public class Player : Health, IInitializable
         _playerCanvas.transform.position = Vector3.SmoothDamp(_playerCanvas.transform.position, transform.position, ref v, 1 / _canvasFollowSpeed);
     }
 
+    public void AddMaxHP(int amount)
+    {
+        _maxHealth += amount;
+        _currentHealth += amount;
+    }
+
+    public void AddDamage(int amount)
+    {
+        damage += amount;
+    }
+
+    public void AddAttackSpeed(float amount)
+    {
+        shootDelay -= amount;
+        shootDelay = Mathf.Clamp(shootDelay, 0.17f, 1);
+    }
+
+    public void AddPrjcCount()
+    {
+        projectileCount += 1;
+        projectileCount = Mathf.Clamp(projectileCount, 1, 3);
+        UpdateProjectileCount();
+    }
+
     public void AddXP(int amount, float difficulty)
     {
         XP += math.abs(amount);
@@ -69,7 +93,7 @@ public class Player : Health, IInitializable
             level += 1;
             levelXPCost = (int)(levelXPCost * levelMultiplier);
 
-            _cardManager.ShowCardSelection();
+            OnLevelUp?.Invoke();
             _UIView.StartDrawingBar(XP, levelXPCost);
         }
     }

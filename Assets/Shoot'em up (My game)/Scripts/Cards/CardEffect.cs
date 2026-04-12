@@ -18,7 +18,6 @@ public class CardEffect : ScriptableObject
     public float multiplierPerLevel = 1f;
 
     [Header("Visual effects")]
-    public GameObject spawnVFX;
     public AudioClip pickUpSound;
 
     [Header("Limit")]
