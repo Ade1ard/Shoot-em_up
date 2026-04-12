@@ -1,0 +1,30 @@
+using System.Linq;
+using UnityEngine;
+
+public class Bootstrap : MonoBehaviour
+{
+    void Awake()
+    {
+        G.Register<GameMain>(new GameMain());
+        G.Register<EnemySpawner>(FindFirstObjectByType<EnemySpawner>());
+        G.Register<CardSelectionManager>(FindFirstObjectByType<CardSelectionManager>());
+        G.Register<Player>(FindFirstObjectByType<Player>());
+        G.Register<UIView>(FindFirstObjectByType<UIView>());
+        G.Register<ScoreUI>(FindFirstObjectByType<ScoreUI>());
+
+        InitAll();
+    }
+
+    void InitAll()
+    {
+        var Initializables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IInitializable>().ToList();
+
+        foreach (var init in Initializables)
+            init.Init();
+    }
+
+    private void Start()
+    {
+        G.Get<GameMain>().StartGame();
+    }
+}

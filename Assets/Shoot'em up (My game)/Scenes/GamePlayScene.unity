@@ -5595,6 +5595,50 @@ MonoBehaviour:
   m_Spacing: {x: 50, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 3
+--- !u!1 &359770888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 359770890}
+  - component: {fileID: 359770889}
+  m_Layer: 0
+  m_Name: Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &359770889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359770888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72fbd5a20e800f428b54559dfa219f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bootstrap
+--- !u!4 &359770890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359770888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47319, y: -2.08194, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412115532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8245,7 +8289,7 @@ GameObject:
   - component: {fileID: 1750253392}
   - component: {fileID: 1750253391}
   - component: {fileID: 1750253398}
-  - component: {fileID: 1750253399}
+  - component: {fileID: 1750253401}
   - component: {fileID: 1750253397}
   - component: {fileID: 1750253394}
   - component: {fileID: 1750253396}
@@ -8469,35 +8513,6 @@ MonoBehaviour:
   _acceleration: 300
   _deceleration: 600
   _inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
---- !u!114 &1750253399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750253390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88206934287bddb42918bf9567ce5f25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  _healthBarAmount: {fileID: 1391973465}
-  _healthBarCanvasGroup: {fileID: 313344274}
-  _healthBarDrawingSpeed: 0.5
-  _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
-  _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
-  _hitSounds:
-  - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
-  - {fileID: 8300000, guid: 98f53a28c86df6f479786cb6aa1ea7da, type: 3}
-  _deadSound: {fileID: 8300000, guid: 6da380b93e553dd4d9aff831f34b9575, type: 3}
-  _maxHealth: 100
-  damage: 10
-  shootDelay: 0.4
-  projectileCount: 1
-  levelXPCost: 60
-  levelMultiplier: 1.2
-  _playerCanvas: {fileID: 1410374243}
-  _canvasFollowSpeed: 35
 --- !u!82 &1750253400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8595,6 +8610,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1750253401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750253390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9104682319a48a4c80b933a3197912d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  _healthBarAmount: {fileID: 1391973465}
+  _healthBarCanvasGroup: {fileID: 313344274}
+  _healthBarDrawingSpeed: 0.5
+  _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
+  _hitSounds:
+  - {fileID: 8300000, guid: 98f53a28c86df6f479786cb6aa1ea7da, type: 3}
+  - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
+  _deadSound: {fileID: 8300000, guid: 6da380b93e553dd4d9aff831f34b9575, type: 3}
+  _maxHealth: 100
+  damage: 10
+  shootDelay: 0.4
+  projectileCount: 1
+  levelXPCost: 60
+  levelMultiplier: 1.2
+  _playerCanvas: {fileID: 1410374243}
+  _canvasFollowSpeed: 35
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0
@@ -8879,6 +8923,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 359770890}
   - {fileID: 519420032}
   - {fileID: 1259317501}
   - {fileID: 619394802}

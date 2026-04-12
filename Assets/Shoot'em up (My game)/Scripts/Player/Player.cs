@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(ProjectileCaster))]
-public class PlayerStats : Health
+public class Player : Health, IInitializable
 {
     public int damage = 10;
     public float shootDelay = 1f;
@@ -28,14 +28,14 @@ public class PlayerStats : Health
     private Vector3 v = Vector3.zero;
     private int XP;
 
-    protected override void Start()
+    public void Init()
     {
-        base.Start();
+        _cardManager = G.Get<CardSelectionManager>();
+        _UIView = G.Get<UIView>();
+        _scoreUI = G.Get<ScoreUI>();
 
-        _cardManager = FindAnyObjectByType<CardSelectionManager>();
-        _UIView = FindAnyObjectByType<UIView>();
         _playerPRJCaster = GetComponent<ProjectileCaster>();
-        _scoreUI = FindAnyObjectByType<ScoreUI>();
+
         UpdateStats();
         UpdateProjectileCount();
     }

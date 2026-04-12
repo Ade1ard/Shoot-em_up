@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IInitializable
 {
     [Header("Movement settings")]
     [SerializeField] private float _moveSpeed;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private int _animatorKey;
 
-    private void Start()
+    public void Init()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();

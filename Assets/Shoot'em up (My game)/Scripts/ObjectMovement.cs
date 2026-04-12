@@ -69,7 +69,7 @@ public class ObjectMovement : MonoBehaviour
     private Vector3 _startPosition;
     private Coroutine _movementBPCoroutine;
 
-    private PlayerStats _player;
+    private Player _player;
 
     float _bottomBoundary;
     float _leftBoundary;
@@ -78,7 +78,7 @@ public class ObjectMovement : MonoBehaviour
     {
         _startPosition = transform.position;
 
-        _player = FindAnyObjectByType<PlayerStats>();
+        _player = FindAnyObjectByType<Player>();
 
         _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         _leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;

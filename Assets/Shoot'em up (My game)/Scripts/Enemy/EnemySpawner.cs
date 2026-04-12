@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour, IInitializable
 {
     [Header("Spawn points")]
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
@@ -19,15 +19,18 @@ public class EnemySpawner : MonoBehaviour
     private List<Enemy> _activeEnemies = new List<Enemy>();
     private WaveData _currentWaveData;
     private Vector3 _basePosition;
-    private PlayerStats _player;
+    private Player _player;
     private UIView _UIView;
 
-    void Start()
+    public void Init()
     {
-        _player = FindAnyObjectByType<PlayerStats>();
-        _UIView = FindAnyObjectByType<UIView>();
+        _player = G.Get<Player>();
+        _UIView = G.Get<UIView>();
         _UIView.ShowCurrentWave(1);
+    }
 
+    public void StartSpawning()
+    {
         StartCoroutine(WaveLoop());
     }
 

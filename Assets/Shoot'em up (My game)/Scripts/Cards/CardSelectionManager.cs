@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardSelectionManager : MonoBehaviour
+public class CardSelectionManager : MonoBehaviour, IInitializable
 {
     [Header("Settings")]
     [SerializeField] private int _cardsToShow = 3;
@@ -23,14 +23,14 @@ public class CardSelectionManager : MonoBehaviour
     [SerializeField][Range(0, 100)] private float _epicChance = 30f;
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
-    private PlayerStats _playerStats;
+    private Player _player;
     private UIView _UIView;
     private List<CardWidget> _cards;
 
-    private void Start()
+    public void Init()
     {
-        _playerStats = FindAnyObjectByType<PlayerStats>();
-        _UIView = FindAnyObjectByType<UIView>();
+        _player = G.Get<Player>();
+        _UIView = G.Get<UIView>();
 
         _gridLayout.constraintCount = _cardsToShow;
     }
@@ -98,28 +98,28 @@ public class CardSelectionManager : MonoBehaviour
 
     private void ApplyEffect(CardEffect effect)
     {
-        if (_playerStats == null) return;
+        if (_player == null) return;
 
         switch (effect.effectType)
         {
             case EffectType.MaxHealth:
-                _playerStats._maxHealth += (int)effect.baseValue;
-                _playerStats._currentHealth += (int)effect.baseValue;
+                _player._maxHealth += (int)effect.baseValue;
+                _player._currentHealth += (int)effect.baseValue;
                 break;
 
             case EffectType.Damage:
-                _playerStats.damage += (int)effect.baseValue;
+                _player.damage += (int)effect.baseValue;
                 break;
 
             case EffectType.AttackSpeed:
-                _playerStats.shootDelay -= effect.baseValue;
-                _playerStats.shootDelay = Mathf.Clamp(_playerStats.shootDelay, 0.17f, 1);
+                _player.shootDelay -= effect.baseValue;
+                _player.shootDelay = Mathf.Clamp(_player.shootDelay, 0.17f, 1);
                 break;
 
             case EffectType.ProjectileCount:
-                _playerStats.projectileCount += 1;
-                _playerStats.projectileCount = Mathf.Clamp(_playerStats.projectileCount, 1, 3);
-                _playerStats.UpdateProjectileCount();
+                _player.projectileCount += 1;
+                _player.projectileCount = Mathf.Clamp(_player.projectileCount, 1, 3);
+                _player.UpdateProjectileCount();
                 break;
 
             case EffectType.SpecialAbility:
@@ -129,11 +129,11 @@ public class CardSelectionManager : MonoBehaviour
         if (effect._haveLimit)
             effect._chooseCount++;
 
-        _playerStats.UpdateStats();
+        _player.UpdateStats();
 
         if (effect.spawnVFX != null)
         {
-            Instantiate(effect.spawnVFX, _playerStats.transform.position, Quaternion.identity);
+            Instantiate(effect.spawnVFX, _player.transform.position, Quaternion.identity);
         }
     }
 
