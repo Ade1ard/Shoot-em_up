@@ -11,6 +11,7 @@ public class Bootstrap : MonoBehaviour
         G.Register<Player>(FindFirstObjectByType<Player>());
         G.Register<UIView>(FindFirstObjectByType<UIView>());
         G.Register<ScoreUI>(FindFirstObjectByType<ScoreUI>());
+        G.Register<GameOverUI>(FindAnyObjectByType<GameOverUI>());
 
         InitAll();
     }

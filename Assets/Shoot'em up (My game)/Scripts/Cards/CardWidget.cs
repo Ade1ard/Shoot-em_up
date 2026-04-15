@@ -52,7 +52,7 @@ public class CardWidget : MonoBehaviour
 
     public System.Collections.IEnumerator Initialization(CardEffect effect, float delay, Action<CardEffect> callback)
     {
-        transform.localScale = new Vector3(0, 0, 0);
+        transform.localScale = Vector3.zero;
 
         yield return new WaitForSecondsRealtime(delay);
 

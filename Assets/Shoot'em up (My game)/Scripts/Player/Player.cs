@@ -16,7 +16,6 @@ public class Player : Health, IInitializable
     [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private float _canvasFollowSpeed = 35;
 
-    [NonSerialized] public UnityEvent onPlayerDied;
     [NonSerialized] public int level = 0;
     [NonSerialized] public int score = 0;
 
@@ -25,6 +24,7 @@ public class Player : Health, IInitializable
     private ScoreUI _scoreUI;
 
     public Action OnLevelUp;
+    public Action OnPlayerDied;
 
     private Vector3 v = Vector3.zero;
     private int XP;
@@ -46,7 +46,7 @@ public class Player : Health, IInitializable
     protected override void Death()
     {
         base.Death();
-        onPlayerDied?.Invoke();
+        OnPlayerDied?.Invoke();
     }
 
     private void Update()
