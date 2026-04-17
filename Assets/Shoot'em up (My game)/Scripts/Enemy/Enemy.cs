@@ -18,11 +18,24 @@ public class Enemy : Health
         GetComponentInChildren<Animator>().SetFloat("StartOffset", UnityEngine.Random.Range(0f, 1f));
     }
 
+    public void Initialize(float multiplier = default)
+    {
+        if (multiplier != 0)
+            _maxHealth *= multiplier;
+
+        _currentHealth = _maxHealth;
+    }
+
     protected override void Death()
     {
         DOTween.Kill(transform);
         base.Death();
         OnDeath?.Invoke(this, _xpReward);
         Destroy(gameObject, 0.1f);
+    }
+
+    public void HideUI()
+    {
+        _healthBarCanvasGroup.gameObject.SetActive(false);
     }
 }

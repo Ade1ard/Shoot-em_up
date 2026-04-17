@@ -1,7 +1,6 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(ProjectileCaster))]
 public class Player : Health, IInitializable
@@ -96,5 +95,10 @@ public class Player : Health, IInitializable
             OnLevelUp?.Invoke();
             _UIView.StartDrawingBar(XP, levelXPCost);
         }
+    }
+
+    public void HideUI()
+    {
+        _healthBarCanvasGroup.gameObject.SetActive(false);
     }
 }

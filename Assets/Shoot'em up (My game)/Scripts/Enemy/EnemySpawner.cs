@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class EnemySpawner : MonoBehaviour, IInitializable
 {
@@ -21,6 +22,8 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     private Vector3 _basePosition;
     private Player _player;
     private UIView _UIView;
+
+    private Action _hideUI;
 
     public void Init()
     {
@@ -65,7 +68,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
                 possibleWaves.Add(wave);
         }
 
-        return possibleWaves[Random.Range(0, possibleWaves.Count)];
+        return possibleWaves[UnityEngine.Random.Range(0, possibleWaves.Count)];
     }
 
     IEnumerator SpawnWave(WaveData currentWave)
@@ -76,7 +79,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
 
             int enemyCount = currentWave.GetRandomCountForGroup(groupIndex);
 
-            _basePosition = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
+            _basePosition = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)].position;
 
             for (int i = 0; i < enemyCount; i++)
             {
@@ -101,6 +104,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         enemy.gameObject.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
         enemy.Initialize(_currentDifficulty);
+        _hideUI += enemy.HideUI;
         enemy.OnDeath += HandleEnemyDeath;
 
         _activeEnemies.Add(enemy);
@@ -112,7 +116,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         if (_spawnPoints.Count > 0)
         {
             if (!spawnTogether)
-                _basePosition = _spawnPoints[Random.Range(0, _spawnPoints.Count)].position;
+                _basePosition = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)].position;
         }
         else
         {
@@ -125,8 +129,8 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         {
             case WaveData.SpawnPattern.PatternType.Random:
                 offset = new Vector3(
-                    Random.Range(-pattern._radius, pattern._radius),
-                    Random.Range(-pattern._radius / 2, pattern._radius / 2),
+                    UnityEngine.Random.Range(-pattern._radius, pattern._radius),
+                    UnityEngine.Random.Range(-pattern._radius / 2, pattern._radius / 2),
                     0
                 );
                 break;
@@ -173,11 +177,17 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         return _basePosition + offset;
     }
 
+    public void HideAllEnemiesUI()
+    {
+        _hideUI?.Invoke();
+    }
+
     void HandleEnemyDeath(Enemy enemy, int xpValue)
     {
         if (_activeEnemies.Contains(enemy))
         {
             enemy.OnDeath -= HandleEnemyDeath;
+            _hideUI -= enemy.HideUI;
             _activeEnemies.Remove(enemy);
 
             _player.AddXP((int)(xpValue * _currentDifficulty), _currentDifficulty);

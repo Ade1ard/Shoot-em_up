@@ -6,6 +6,7 @@ public class GameMain : IInitializable
     private Player _player;
     private GameOverUI _gameOverUI;
     private UIView _uiView;
+    private EnemySpawner _enemySpawner;
 
     public void Init()
     {
@@ -13,6 +14,7 @@ public class GameMain : IInitializable
         _player = G.Get<Player>();
         _gameOverUI = G.Get<GameOverUI>();
         _uiView = G.Get<UIView>();
+        _enemySpawner = G.Get<EnemySpawner>();
 
         _player.OnLevelUp += ShowCardSelection;
         _player.OnPlayerDied += GameOver;
@@ -22,7 +24,7 @@ public class GameMain : IInitializable
 
     public void StartGame()
     {
-        G.Get<EnemySpawner>().StartSpawning();
+        _enemySpawner.StartSpawning();
     }
 
     private void ShowCardSelection()
@@ -41,6 +43,8 @@ public class GameMain : IInitializable
     private void GameOver()
     {
         _uiView.ShowUI(false);
+        _enemySpawner.HideAllEnemiesUI();
+        _player.HideUI();
         _gameOverUI.ShowGameOver(_player.score, (int)Time.time);
         Time.timeScale = 0;
     }

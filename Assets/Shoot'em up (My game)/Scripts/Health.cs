@@ -9,7 +9,7 @@ public abstract class Health : MonoBehaviour, IDamageable
 {
     [Header("UI")]
     [SerializeField] private Image _healthBarAmount;
-    [SerializeField] private CanvasGroup _healthBarCanvasGroup;
+    public CanvasGroup _healthBarCanvasGroup;
     [SerializeField] private float _healthBarDrawingSpeed = 1;
 
     [Header("VFX")]
@@ -34,14 +34,6 @@ public abstract class Health : MonoBehaviour, IDamageable
         _healthBarCanvasGroup.gameObject.SetActive(false);
 
         _audioSource = GetComponent<AudioSource>();
-    }
-
-    public virtual void Initialize(float multiplier = default)
-    {
-        if (multiplier != 0)
-            _maxHealth *= multiplier;
-
-        _currentHealth = _maxHealth;
     }
 
     public virtual void DealDamage(float damage, Vector3 closestPoint = default)
