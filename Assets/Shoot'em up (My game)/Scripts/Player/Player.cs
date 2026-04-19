@@ -39,8 +39,8 @@ public class Player : Health, IInitializable
         UpdateProjectileCount();
     }
 
-    public void UpdateStats() { _playerPRJCaster.GetStats(damage, shootDelay, projectileCount); }
-    public void UpdateProjectileCount() { _playerPRJCaster.GetShootPoints(projectileCount); }
+    public void UpdateStats() { _playerPRJCaster.TakeStats(damage, shootDelay, projectileCount); }
+    public void UpdateProjectileCount() { _playerPRJCaster.ChangeShootPoints(projectileCount); }
 
     protected override void Death()
     {
@@ -97,8 +97,13 @@ public class Player : Health, IInitializable
         }
     }
 
-    public void HideUI()
+    public void ReloadStats()
     {
-        _healthBarCanvasGroup.gameObject.SetActive(false);
+
+    }
+
+    public void UIVIsible(bool visible)
+    {
+        _healthBarCanvasGroup.gameObject.SetActive(visible);
     }
 }

@@ -4,6 +4,8 @@ public class GameMain : IInitializable
 {
     private CardSelectionManager _cardManager;
     private Player _player;
+    private PlayerMovement _playerMovement;
+    private InputManager _inputManager;
     private GameOverUI _gameOverUI;
     private UIView _uiView;
     private EnemySpawner _enemySpawner;
@@ -12,6 +14,8 @@ public class GameMain : IInitializable
     {
         _cardManager = G.Get<CardSelectionManager>();
         _player = G.Get<Player>();
+        _playerMovement = G.Get<PlayerMovement>();
+        _inputManager = G.Get<InputManager>();
         _gameOverUI = G.Get<GameOverUI>();
         _uiView = G.Get<UIView>();
         _enemySpawner = G.Get<EnemySpawner>();
@@ -20,11 +24,15 @@ public class GameMain : IInitializable
         _player.OnPlayerDied += GameOver;
         _cardManager.OnSelectionClosed += CloseSelection;
         _cardManager.OnCardApplied += ApplyEffect;
+        _inputManager.OnGameRestarted += RestartGame;
     }
 
     public void StartGame()
     {
         _enemySpawner.StartSpawning();
+        _playerMovement.SetInputEnabled(true);
+        _inputManager.EnablePlayerInput(true);
+        _inputManager.RestartEnable(false);
     }
 
     private void ShowCardSelection()
@@ -42,11 +50,33 @@ public class GameMain : IInitializable
 
     private void GameOver()
     {
+        _playerMovement.SetInputEnabled(false);
+        _inputManager.EnablePlayerInput(false);
+
         _uiView.ShowUI(false);
-        _enemySpawner.HideAllEnemiesUI();
-        _player.HideUI();
+        _enemySpawner.AllEnemiesUIVisible(false);
+        _player.UIVIsible(false);
+
         _gameOverUI.ShowGameOver(_player.score, (int)Time.time);
         Time.timeScale = 0;
+
+        _inputManager.RestartEnable(true);
+    }
+
+    private void RestartGame()
+    {
+        _inputManager.RestartEnable(false);
+        Time.timeScale = 1;
+
+        ClearScene();
+        _enemySpawner.ClearAllEnemies();
+
+        _gameOverUI.CloseGameOver();
+
+        _uiView.ShowUI(true);
+
+        _playerMovement.SetInputEnabled(true);
+        _inputManager.EnablePlayerInput(true);
     }
 
     private void ApplyEffect(CardEffect effect)

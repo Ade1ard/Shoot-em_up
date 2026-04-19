@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour, IInitializable
@@ -9,17 +8,14 @@ public class PlayerMovement : MonoBehaviour, IInitializable
     [SerializeField] private float _acceleration;
     [SerializeField] private float _deceleration;
 
-    [Header("Input")]
-    [SerializeField] InputActionAsset _inputActions;
-
-    private InputAction _moveAction;
-    private InputAction _slowDownAction;
-
     private Vector2 _moveInput;
     private bool _slowDown;
 
+    private bool _isInputEnabled;
+
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    private InputManager _inputManager;
 
     private int _animatorKey;
 
@@ -28,19 +24,14 @@ public class PlayerMovement : MonoBehaviour, IInitializable
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _animatorKey = Animator.StringToHash("HorizontalDirection");
+        _inputManager = G.Get<InputManager>();
 
-        InitializeInput();
-    }
-
-    private void Update()
-    {
-        _animator.SetFloat(_animatorKey, _moveAction.ReadValue<Vector2>().x);
+        _inputManager.OnMoveInputChanged += MoveInputChanged;
+        _inputManager.OnSlowDownChanged += SlowDownChanged;
     }
 
     private void FixedUpdate()
     {
-        _moveInput = _moveAction.ReadValue<Vector2>();
-        _slowDown = _slowDownAction.IsPressed();
         HandleMovement();
     }
 
@@ -54,14 +45,35 @@ public class PlayerMovement : MonoBehaviour, IInitializable
         _rigidbody.AddForce(velocityDifference * accelerationRate * Time.fixedDeltaTime);
     }
 
-    private void InitializeInput()
+    private void MoveInputChanged(Vector2 vec)
     {
-        InputActionMap playerActionMap = _inputActions.FindActionMap("Player");
+        if (_isInputEnabled)
+        {
+            _moveInput = vec;
+            _animator.SetFloat(_animatorKey, vec.x);
+        }
+    }
 
-        _moveAction = playerActionMap.FindAction("Move");
-        _slowDownAction = playerActionMap.FindAction("SlowDown");
+    private void SlowDownChanged(bool enable)
+    {
+        if (_isInputEnabled)
+            _slowDown = enable;
+    }
 
-        _moveAction.Enable();
-        _slowDownAction.Enable();
+    public void SetInputEnabled(bool enabled)
+    {
+        _isInputEnabled = enabled;
+
+        if (!enabled)
+        {
+            _moveInput = Vector2.zero;
+            _animator.SetFloat(_animatorKey, 0f);
+        }
+    }
+
+    private void OnDisable()
+    {
+        _inputManager.OnMoveInputChanged -= MoveInputChanged;
+        _inputManager.OnSlowDownChanged -= SlowDownChanged;
     }
 }

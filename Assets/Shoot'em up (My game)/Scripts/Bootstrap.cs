@@ -6,9 +6,11 @@ public class Bootstrap : MonoBehaviour
     void Awake()
     {
         G.Register<GameMain>(new GameMain());
+        G.Register<InputManager>(FindFirstObjectByType<InputManager>());
         G.Register<EnemySpawner>(FindFirstObjectByType<EnemySpawner>());
         G.Register<CardSelectionManager>(FindFirstObjectByType<CardSelectionManager>());
         G.Register<Player>(FindFirstObjectByType<Player>());
+        G.Register<PlayerMovement>(FindFirstObjectByType<PlayerMovement>());
         G.Register<UIView>(FindFirstObjectByType<UIView>());
         G.Register<ScoreUI>(FindFirstObjectByType<ScoreUI>());
         G.Register<GameOverUI>(FindAnyObjectByType<GameOverUI>());

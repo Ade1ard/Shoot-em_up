@@ -34,8 +34,8 @@ public class Enemy : Health
         Destroy(gameObject, 0.1f);
     }
 
-    public void HideUI()
+    public void UIVisible(bool visible)
     {
-        _healthBarCanvasGroup.gameObject.SetActive(false);
+        _healthBarCanvasGroup.gameObject.SetActive(visible);
     }
 }

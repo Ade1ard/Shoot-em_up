@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class EnemySpawner : MonoBehaviour, IInitializable
 {
@@ -23,7 +24,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     private Player _player;
     private UIView _UIView;
 
-    private Action _hideUI;
+    private Action<bool> _UIVisible;
 
     public void Init()
     {
@@ -104,7 +105,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         enemy.gameObject.GetComponent<ObjectMovement>().StartMove(spawnPosition);
 
         enemy.Initialize(_currentDifficulty);
-        _hideUI += enemy.HideUI;
+        _UIVisible += enemy.UIVisible;
         enemy.OnDeath += HandleEnemyDeath;
 
         _activeEnemies.Add(enemy);
@@ -177,9 +178,9 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         return _basePosition + offset;
     }
 
-    public void HideAllEnemiesUI()
+    public void AllEnemiesUIVisible(bool visible)
     {
-        _hideUI?.Invoke();
+        _UIVisible?.Invoke(visible);
     }
 
     void HandleEnemyDeath(Enemy enemy, int xpValue)
@@ -187,11 +188,23 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         if (_activeEnemies.Contains(enemy))
         {
             enemy.OnDeath -= HandleEnemyDeath;
-            _hideUI -= enemy.HideUI;
+            _UIVisible -= enemy.UIVisible;
             _activeEnemies.Remove(enemy);
 
             _player.AddXP((int)(xpValue * _currentDifficulty), _currentDifficulty);
         }
+    }
+
+    public void ClearAllEnemies()
+    {
+        foreach (Enemy enemy in _activeEnemies)
+        {
+            enemy.OnDeath -= HandleEnemyDeath;
+            _UIVisible -= enemy.UIVisible;
+            DOTween.Kill(enemy.transform);
+            Destroy(enemy.gameObject);
+        }
+        _activeEnemies.Clear();
     }
 
     void OnDestroy()
