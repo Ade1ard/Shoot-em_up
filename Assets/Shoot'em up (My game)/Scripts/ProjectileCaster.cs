@@ -7,11 +7,6 @@ public class ProjectileCaster : MonoBehaviour
     [Header("Prefab")]
     [SerializeField] ProjectileCont _projectilePrefab;
 
-    [Header("Stats")]
-    [SerializeField] private float _PRJDamage;
-    [SerializeField] private float _shootDelay;
-    [SerializeField] private int _projectileCount = 1;
-
     [Header("Settings")]
     [SerializeField] Transform _shootPoints;
     [SerializeField] private ParticleSystem _shootVFXPrefab;
@@ -25,6 +20,9 @@ public class ProjectileCaster : MonoBehaviour
     [Header("Sound")]
     [SerializeField] private List<AudioClip> _shootSounds = new List<AudioClip>();
 
+    private float _PRJDamage;
+    private float _shootDelay;
+    private int _projectileCount;
     private float _lastShootTime;
     private List<Transform> _shootP = new List<Transform>();
     private AudioSource _audioSource;
@@ -40,7 +38,7 @@ public class ProjectileCaster : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void TakeStats(float damage, float shootDelay, int projectileCount) //for Player
+    public void TakeStats(float damage, float shootDelay, int projectileCount)
     {
         _PRJDamage = damage;
         _shootDelay = shootDelay;

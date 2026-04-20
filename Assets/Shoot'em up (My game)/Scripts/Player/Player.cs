@@ -5,11 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(ProjectileCaster))]
 public class Player : Health, IInitializable
 {
-    public int damage = 10;
-    public float shootDelay = 1f;
-    public int projectileCount = 1;
-    public int levelXPCost = 100;
-    public float levelMultiplier = 1.2f;
+    [System.Serializable]
+    public class PlayerData
+    {
+        public int damage = 10;
+        public float shootDelay = 1f;
+        public int projectileCount = 1;
+        public int levelXPCost = 100;
+        public float levelMultiplier = 1.2f;
+    }
+    public PlayerData playerData = new PlayerData();
 
     [Header("Canvas")]
     [SerializeField] private Canvas _playerCanvas;
@@ -17,6 +22,13 @@ public class Player : Health, IInitializable
 
     [NonSerialized] public int level = 0;
     [NonSerialized] public int score = 0;
+    private int XP;
+
+    private int damageMod = 10;
+    private float shootDelayMod = 1f;
+    private int projectileCountMod = 1;
+    private int levelXPCostMod = 100;
+    private float levelMultiplierMod = 1.2f;
 
     private ProjectileCaster _playerPRJCaster;
     private UIView _UIView;
@@ -26,7 +38,6 @@ public class Player : Health, IInitializable
     public Action OnPlayerDied;
 
     private Vector3 v = Vector3.zero;
-    private int XP;
 
     public void Init()
     {
@@ -35,12 +46,13 @@ public class Player : Health, IInitializable
 
         _playerPRJCaster = GetComponent<ProjectileCaster>();
 
+        LoadBasicStats();
         UpdateStats();
         UpdateProjectileCount();
     }
 
-    public void UpdateStats() { _playerPRJCaster.TakeStats(damage, shootDelay, projectileCount); }
-    public void UpdateProjectileCount() { _playerPRJCaster.ChangeShootPoints(projectileCount); }
+    public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, projectileCountMod); }
+    public void UpdateProjectileCount() { _playerPRJCaster.ChangeShootPoints(projectileCountMod); }
 
     protected override void Death()
     {
@@ -61,45 +73,49 @@ public class Player : Health, IInitializable
 
     public void AddDamage(int amount)
     {
-        damage += amount;
+        damageMod += amount;
     }
 
     public void AddAttackSpeed(float amount)
     {
-        shootDelay -= amount;
-        shootDelay = Mathf.Clamp(shootDelay, 0.17f, 1);
+        shootDelayMod -= amount;
+        shootDelayMod = Mathf.Clamp(shootDelayMod, 0.17f, 1);
     }
 
     public void AddPrjcCount()
     {
-        projectileCount += 1;
-        projectileCount = Mathf.Clamp(projectileCount, 1, 3);
+        projectileCountMod += 1;
+        projectileCountMod = Mathf.Clamp(projectileCountMod, 1, 3);
         UpdateProjectileCount();
     }
 
     public void AddXP(int amount, float difficulty)
     {
         XP += math.abs(amount);
-        _UIView.StartDrawingBar(XP, levelXPCost);
+        _UIView.StartDrawingBar(XP, levelXPCostMod);
 
         int addScore = (int)(amount * 10 * difficulty);
         _scoreUI.UpdateScoreAmount(score, addScore);
         score += addScore;
 
-        if (XP >= levelXPCost)
+        if (XP >= levelXPCostMod)
         {
             XP = 0;
             level += 1;
-            levelXPCost = (int)(levelXPCost * levelMultiplier);
+            levelXPCostMod = (int)(levelXPCostMod * levelMultiplierMod);
 
             OnLevelUp?.Invoke();
-            _UIView.StartDrawingBar(XP, levelXPCost);
+            _UIView.StartDrawingBar(XP, levelXPCostMod);
         }
     }
 
-    public void ReloadStats()
+    public void LoadBasicStats()
     {
-
+        damageMod = playerData.damage;
+        shootDelayMod = playerData.shootDelay;
+        projectileCountMod = playerData.projectileCount;
+        levelXPCostMod = playerData.levelXPCost;
+        levelMultiplierMod = playerData.levelMultiplier;
     }
 
     public void UIVIsible(bool visible)

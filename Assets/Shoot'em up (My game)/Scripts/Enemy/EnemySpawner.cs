@@ -3,20 +3,21 @@ using System.Collections;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using System.Linq;
 
 public class EnemySpawner : MonoBehaviour, IInitializable
 {
     [Header("Spawn points")]
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
-    [Header("Waves")]
-    [SerializeField] private List<WaveData> _availableWaves = new List<WaveData>();
+    [Header("Param")]
     [SerializeField] private float _timeBetweenWaves = 5f;
 
     [Header("Difficulty")]
     [SerializeField] private float _currentDifficulty = 1f;
     [SerializeField] private float _difficultyIncreasePerWave = 0.1f;
 
+    private List<WaveData> _availableWaves = new List<WaveData>();
     private int _currentWaveNumber = 0;
     private List<Enemy> _activeEnemies = new List<Enemy>();
     private WaveData _currentWaveData;
@@ -31,6 +32,13 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         _player = G.Get<Player>();
         _UIView = G.Get<UIView>();
         _UIView.ShowCurrentWave(1);
+
+        LoadWaves();
+    }
+
+    private void LoadWaves()
+    {
+        _availableWaves = Resources.LoadAll<WaveData>("Waves").ToList();
     }
 
     public void StartSpawning()

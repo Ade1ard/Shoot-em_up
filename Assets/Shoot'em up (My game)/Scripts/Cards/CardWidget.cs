@@ -66,7 +66,7 @@ public class CardWidget : MonoBehaviour
         _nameText.text = effect.effectName;
         _descriptionText.text = effect.description;
 
-        SetRarityColor(effect.cost);
+        SetRarityColor(effect.rarity);
 
         yield return transform.DOScale(_originalScale, _showingDuration).SetEase(_showCurve).SetUpdate(true).WaitForCompletion();
 
@@ -80,21 +80,21 @@ public class CardWidget : MonoBehaviour
         _backgroundCard.DOFade(0, 0.5f).SetEase(_closeCurve).SetUpdate(true);
     }
 
-    private void SetRarityColor(int cost)
+    private void SetRarityColor(Rarity rarity)
     {
-        switch (cost)
+        switch (rarity)
         {
-            case 1: // common
+            case Rarity.common:
                 _backgroundCard.color = _common;
                 if (_cardOutline != null)
                     _cardOutline.color = _common.gamma;
                 break;
-            case 2: // epic
+            case Rarity.epic:
                 _backgroundCard.color = _epic;
                 if (_cardOutline != null)
                     _cardOutline.color = _epic.gamma;
                 break;
-            case 3: // legend
+            case Rarity.legend:
                 _backgroundCard.color = _legend;
                 if (_cardOutline != null)
                     _cardOutline.color = _legend.gamma;

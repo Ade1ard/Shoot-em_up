@@ -15,11 +15,10 @@ MonoBehaviour:
   effectName: Bullet count
   description: Bullet count +1
   icon: {fileID: 0}
-  cost: 3
+  rarity: 2
   effectType: 4
   baseValue: 1
   multiplierPerLevel: 1
-  spawnVFX: {fileID: 0}
   pickUpSound: {fileID: 0}
   _haveLimit: 1
   _chooselimit: 2

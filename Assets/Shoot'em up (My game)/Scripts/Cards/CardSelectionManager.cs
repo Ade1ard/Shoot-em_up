@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,14 +16,13 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField] private Transform _cardsParent;
     [SerializeField] private GridLayoutGroup _gridLayout;
 
-    [Header("Cards pool")]
-    [SerializeField] private List<CardEffect> _commonCards;
-    [SerializeField] private List<CardEffect> _epicCards;
-    [SerializeField] private List<CardEffect> _legendCards;
-
     [Header("Chance")]
     [SerializeField][Range(0, 100)] private float _epicChance = 30f;
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
+
+    private List<CardEffect> _commonCards = new List<CardEffect>();
+    private List<CardEffect> _epicCards = new List<CardEffect>();
+    private List<CardEffect> _legendCards = new List<CardEffect>();
 
     public event Action<CardEffect> OnCardApplied;
     public event Action OnSelectionClosed;
@@ -35,6 +35,26 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         _UIView = G.Get<UIView>();
 
         _gridLayout.constraintCount = _cardsToShow;
+        LoadCardEffects();
+    }
+
+    private void LoadCardEffects()
+    {
+        foreach (CardEffect effect in Resources.LoadAll<CardEffect>("CardEffects"))
+        {
+            switch (effect.rarity)
+            {
+                case Rarity.common:
+                    _commonCards.Add(effect);
+                    break;
+                case Rarity.epic:
+                    _epicCards.Add(effect);
+                    break;
+                case Rarity.legend:
+                    _legendCards.Add(effect);
+                    break;
+            }
+        }
     }
 
     public void ShowCardSelection()

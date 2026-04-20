@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class ProjectileCont : MonoBehaviour
 {
-    [SerializeField] private float _damage = 10;
     [SerializeField] private ParticleSystem _clearVFX;
+    private float _damage;
 
     public void Initialize(float damage = default)
     {
         if (damage != 0)
             _damage = damage;
+        else
+            _damage = 10;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

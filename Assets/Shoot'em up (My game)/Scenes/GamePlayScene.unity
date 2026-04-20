@@ -6365,13 +6365,6 @@ MonoBehaviour:
   _cardPrefab: {fileID: 4628632130140260448, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
   _cardsParent: {fileID: 355718300}
   _gridLayout: {fileID: 355718302}
-  _commonCards:
-  - {fileID: 11400000, guid: 14225a9565bba0e47bfd00b18956c019, type: 2}
-  _epicCards:
-  - {fileID: 11400000, guid: f77a836f9f2b4d34499ba50e025b6d75, type: 2}
-  _legendCards:
-  - {fileID: 11400000, guid: 629ad70bb8d1f6048abad16fb4424dd0, type: 2}
-  - {fileID: 11400000, guid: 099653b2aca618c489b272bf85652fa3, type: 2}
   _epicChance: 100
   _legendChance: 100
 --- !u!4 &426549110
@@ -9614,9 +9607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 3235747921286425940, guid: 9b51c5ae85395dc439f6e691649545d0, type: 3}
-  _PRJDamage: 0
-  _shootDelay: 0.3
-  _projectileCount: 1
   _shootPoints: {fileID: 728105650}
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
@@ -9759,11 +9749,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
   _deadSound: {fileID: 8300000, guid: 6da380b93e553dd4d9aff831f34b9575, type: 3}
   _maxHealth: 100
-  damage: 10
-  shootDelay: 0.4
-  projectileCount: 1
-  levelXPCost: 60
-  levelMultiplier: 1.2
+  playerData:
+    damage: 10
+    shootDelay: 0.4
+    projectileCount: 1
+    levelXPCost: 60
+    levelMultiplier: 1.2
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
 --- !u!1 &1817825695
@@ -10025,9 +10016,6 @@ MonoBehaviour:
   - {fileID: 1343686844}
   - {fileID: 430519642}
   - {fileID: 1386549630}
-  _availableWaves:
-  - {fileID: 11400000, guid: e28b624e3fe27dc499d6e936f9176a25, type: 2}
-  - {fileID: 11400000, guid: 7264c63ea6017d54db928bd85971521c, type: 2}
   _timeBetweenWaves: 5
   _currentDifficulty: 1
   _difficultyIncreasePerWave: 0.1

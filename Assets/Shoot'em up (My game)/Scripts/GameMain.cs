@@ -30,8 +30,7 @@ public class GameMain : IInitializable
     public void StartGame()
     {
         _enemySpawner.StartSpawning();
-        _playerMovement.SetInputEnabled(true);
-        _inputManager.EnablePlayerInput(true);
+        PlayerMovementEnable(true);
         _inputManager.RestartEnable(false);
     }
 
@@ -40,18 +39,19 @@ public class GameMain : IInitializable
         Time.timeScale = 0;
 
         _cardManager.ShowCardSelection();
+        PlayerMovementEnable(false);
     }
 
     private void CloseSelection()
     {
         Time.timeScale = 1;
         ClearScene();
+        PlayerMovementEnable(true);
     }
 
     private void GameOver()
     {
-        _playerMovement.SetInputEnabled(false);
-        _inputManager.EnablePlayerInput(false);
+        PlayerMovementEnable(false);
 
         _uiView.ShowUI(false);
         _enemySpawner.AllEnemiesUIVisible(false);
@@ -75,8 +75,8 @@ public class GameMain : IInitializable
 
         _uiView.ShowUI(true);
 
-        _playerMovement.SetInputEnabled(true);
-        _inputManager.EnablePlayerInput(true);
+        _player.LoadBasicStats();
+        PlayerMovementEnable(true);
     }
 
     private void ApplyEffect(CardEffect effect)
@@ -115,5 +115,11 @@ public class GameMain : IInitializable
     {
         foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>(FindObjectsSortMode.None))
             prj.Clear();
+    }
+
+    private void PlayerMovementEnable(bool enable)
+    {
+        _playerMovement.SetInputEnabled(enable);
+        _inputManager.EnablePlayerInput(enable);
     }
 }

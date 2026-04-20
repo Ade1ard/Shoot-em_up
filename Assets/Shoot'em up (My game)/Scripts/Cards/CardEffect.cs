@@ -8,7 +8,7 @@ public class CardEffect : ScriptableObject
     public string effectName;
     public string description;
     public Sprite icon;
-    public int cost = 1;
+    public Rarity rarity;
 
     [Header("Effect type")]
     public EffectType effectType;
@@ -34,4 +34,11 @@ public enum EffectType
     AttackSpeed,
     ProjectileCount,
     SpecialAbility
+}
+
+public enum Rarity
+{
+    common,
+    epic,
+    legend,
 }

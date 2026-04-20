@@ -8,6 +8,9 @@ using UnityEngine;
 public class Enemy : Health
 {
     [SerializeField] private int _xpReward = 10;
+    [SerializeField] private float _PRJDamage = 10;
+    [SerializeField] private float _shootDelay = 2;
+    [SerializeField] private int _projectileCount = 1;
 
     public event Action<Enemy, int> OnDeath;
 
@@ -24,6 +27,7 @@ public class Enemy : Health
             _maxHealth *= multiplier;
 
         _currentHealth = _maxHealth;
+        GetComponent<ProjectileCaster>().TakeStats(_PRJDamage, _shootDelay, _projectileCount);
     }
 
     protected override void Death()
