@@ -40,9 +40,9 @@ public class UIView : MonoBehaviour
         _fadingUICoroutine = StartCoroutine(UIShowing(_bool));
     }
 
-    private IEnumerator UIShowing(bool _bool)
+    private IEnumerator UIShowing(bool visible)
     {
-        int amount = _bool ? 1 : 0;
+        int amount = visible ? 1 : 0;
         while (_gamePlayUI.alpha != amount)
         {
             _gamePlayUI.alpha = Mathf.MoveTowards(_gamePlayUI.alpha, amount, _fadeSpeed / 100);

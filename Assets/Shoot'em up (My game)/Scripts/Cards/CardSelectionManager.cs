@@ -135,4 +135,20 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
             Destroy(child.gameObject);
         }
     }
+
+    public void ClearAllChooseLimits()
+    {
+        ClearLimitsInList(_commonCards);
+        ClearLimitsInList(_epicCards);
+        ClearLimitsInList(_legendCards);
+    }
+
+    private void ClearLimitsInList(List<CardEffect> cards)
+    {
+        foreach (CardEffect card in cards)
+        {
+            if (card._haveLimit)
+                card._chooseCount = 0;
+        }
+    }
 }

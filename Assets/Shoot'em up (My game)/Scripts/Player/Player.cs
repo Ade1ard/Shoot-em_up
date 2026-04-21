@@ -5,17 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(ProjectileCaster))]
 public class Player : Health, IInitializable
 {
-    [System.Serializable]
-    public class PlayerData
-    {
-        public int damage = 10;
-        public float shootDelay = 1f;
-        public int projectileCount = 1;
-        public int levelXPCost = 100;
-        public float levelMultiplier = 1.2f;
-    }
-    public PlayerData playerData = new PlayerData();
-
     [Header("Canvas")]
     [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private float _canvasFollowSpeed = 35;
@@ -23,6 +12,8 @@ public class Player : Health, IInitializable
     [NonSerialized] public int level = 0;
     [NonSerialized] public int score = 0;
     private int XP;
+
+    private PlayerData _playerData;
 
     private int damageMod = 10;
     private float shootDelayMod = 1f;
@@ -45,6 +36,7 @@ public class Player : Health, IInitializable
         _scoreUI = G.Get<ScoreUI>();
 
         _playerPRJCaster = GetComponent<ProjectileCaster>();
+        _playerData = Resources.Load<PlayerData>("Player/PlayerData");
 
         LoadBasicStats();
         UpdateStats();
@@ -111,11 +103,14 @@ public class Player : Health, IInitializable
 
     public void LoadBasicStats()
     {
-        damageMod = playerData.damage;
-        shootDelayMod = playerData.shootDelay;
-        projectileCountMod = playerData.projectileCount;
-        levelXPCostMod = playerData.levelXPCost;
-        levelMultiplierMod = playerData.levelMultiplier;
+        base.InitHP(_playerData.maxHealth);
+        shootDelayMod = _playerData.shootDelay;
+        projectileCountMod = _playerData.projectileCount;
+        levelXPCostMod = _playerData.levelXPCost;
+        levelMultiplierMod = _playerData.levelMultiplier;
+
+        UpdateStats();
+        UpdateProjectileCount();
     }
 
     public void UIVIsible(bool visible)

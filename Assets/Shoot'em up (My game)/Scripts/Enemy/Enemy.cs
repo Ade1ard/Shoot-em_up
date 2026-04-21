@@ -7,10 +7,12 @@ using UnityEngine;
 
 public class Enemy : Health
 {
-    [SerializeField] private int _xpReward = 10;
-    [SerializeField] private float _PRJDamage = 10;
-    [SerializeField] private float _shootDelay = 2;
-    [SerializeField] private int _projectileCount = 1;
+    [Header("Parameters")]
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private int xpReward = 10;
+    [SerializeField] private float PRJDamage = 10;
+    [SerializeField] private float shootDelay = 2;
+    [SerializeField] private int projectileCount = 1;
 
     public event Action<Enemy, int> OnDeath;
 
@@ -24,17 +26,17 @@ public class Enemy : Health
     public void Initialize(float multiplier = default)
     {
         if (multiplier != 0)
-            _maxHealth *= multiplier;
+            maxHealth *= multiplier;
 
-        _currentHealth = _maxHealth;
-        GetComponent<ProjectileCaster>().TakeStats(_PRJDamage, _shootDelay, _projectileCount);
+        base.InitHP(maxHealth);
+        GetComponent<ProjectileCaster>().TakeStats(PRJDamage, shootDelay, projectileCount);
     }
 
     protected override void Death()
     {
         DOTween.Kill(transform);
         base.Death();
-        OnDeath?.Invoke(this, _xpReward);
+        OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
     }
 

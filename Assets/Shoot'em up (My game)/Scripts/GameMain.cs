@@ -75,6 +75,7 @@ public class GameMain : IInitializable
 
         _uiView.ShowUI(true);
 
+        _cardManager.ClearAllChooseLimits();
         _player.LoadBasicStats();
         PlayerMovementEnable(true);
     }

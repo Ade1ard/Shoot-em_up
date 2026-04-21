@@ -20,17 +20,20 @@ public abstract class Health : MonoBehaviour, IDamageable
     [SerializeField] private List<AudioClip> _hitSounds = new List<AudioClip>();
     [SerializeField] private AudioClip _deadSound;
 
-    [Header("Parameters")]
-    public float _maxHealth = 100f;
-
+    [NonSerialized] public float _maxHealth;
     [NonSerialized] public float _currentHealth;
     private Coroutine _healthBarCoroutine;
     private AudioSource _audioSource;
 
+    protected virtual void InitHP(float maxhealth)
+    {
+        _maxHealth = maxhealth;
+        _currentHealth = maxhealth;
+        StartDrawingBar();
+    }
+
     protected virtual void Start()
     {
-        _currentHealth = _maxHealth;
-        StartDrawingBar();
         _healthBarCanvasGroup.gameObject.SetActive(false);
 
         _audioSource = GetComponent<AudioSource>();
