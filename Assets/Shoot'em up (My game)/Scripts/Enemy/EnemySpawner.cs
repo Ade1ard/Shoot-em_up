@@ -215,6 +215,12 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         _activeEnemies.Clear();
     }
 
+    public void SetBasicDifficulty()
+    {
+        _currentDifficulty = 1;
+        _currentWaveNumber = 0;
+    }
+
     void OnDestroy()
     {
         foreach (var enemy in _activeEnemies)

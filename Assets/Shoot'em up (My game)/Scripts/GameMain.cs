@@ -1,4 +1,12 @@
+using System.Collections;
 using UnityEngine;
+
+public enum GameState
+{
+    Running,
+    CardSelection,
+    GameOver,
+}
 
 public class GameMain : IInitializable
 {
@@ -8,7 +16,16 @@ public class GameMain : IInitializable
     private InputManager _inputManager;
     private GameOverUI _gameOverUI;
     private UIView _uiView;
+    private ScoreUI _scoreUI;
     private EnemySpawner _enemySpawner;
+
+    private GameState _currentState;
+
+    private float _runStartTime;
+    private bool _isRunning;
+    private float _runTime => _isRunning? Time.time - _runStartTime : 0f;
+
+    private WaitForSeconds _wait = new WaitForSeconds(0.1f);
 
     public void Init()
     {
@@ -18,67 +35,117 @@ public class GameMain : IInitializable
         _inputManager = G.Get<InputManager>();
         _gameOverUI = G.Get<GameOverUI>();
         _uiView = G.Get<UIView>();
+        _scoreUI = G.Get<ScoreUI>();
         _enemySpawner = G.Get<EnemySpawner>();
 
         _player.OnLevelUp += ShowCardSelection;
         _player.OnPlayerDied += GameOver;
+        _player.OnXPChanged += UpdateXP;
+        _player.OnScoreChanged += UpdateScore;
         _cardManager.OnSelectionClosed += CloseSelection;
         _cardManager.OnCardApplied += ApplyEffect;
         _inputManager.OnGameRestarted += RestartGame;
     }
 
+    public void SetGameState(GameState newState)
+    {
+        if (_currentState == newState) return;
+
+        ExitState(_currentState);
+        _currentState = newState;
+        EnterState(newState);
+    }
+
+    private void EnterState(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Running:
+                Time.timeScale = 1;
+                PlayerMovementEnable(true);
+                _uiView.ShowUI(true);
+                _enemySpawner.AllEnemiesUIVisible(true);
+                _player.UIVisible(true);
+
+                break;
+
+            case GameState.CardSelection:
+                _cardManager.ShowCardSelection();
+
+                break;
+
+            case GameState.GameOver:
+                _gameOverUI.ShowGameOver(_player.score, (int)_runTime);
+                _inputManager.RestartEnable(true);
+
+                break;
+        }
+    }
+
+    private void ExitState(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Running:
+                Time.timeScale = 0;
+                PlayerMovementEnable(false);
+
+                _uiView.ShowUI(false);
+                _enemySpawner.AllEnemiesUIVisible(false);
+                _player.UIVisible(false);
+
+                break;
+
+            case GameState.CardSelection:
+                ClearScene();
+                break;
+
+            case GameState.GameOver:
+
+                break;
+        }
+    }
+
     public void StartGame()
     {
+        _runStartTime = Time.time;
+        _isRunning = true;
+
+        _uiView.StartCoroutine(RunTime());
         _enemySpawner.StartSpawning();
-        PlayerMovementEnable(true);
-        _inputManager.RestartEnable(false);
+
+        EnterState(GameState.Running);
     }
 
-    private void ShowCardSelection()
-    {
-        Time.timeScale = 0;
+    private void ShowCardSelection() => SetGameState(GameState.CardSelection);
 
-        _cardManager.ShowCardSelection();
-        PlayerMovementEnable(false);
-    }
+    private void CloseSelection() => SetGameState(GameState.Running);
 
-    private void CloseSelection()
-    {
-        Time.timeScale = 1;
-        ClearScene();
-        PlayerMovementEnable(true);
-    }
-
-    private void GameOver()
-    {
-        PlayerMovementEnable(false);
-
-        _uiView.ShowUI(false);
-        _enemySpawner.AllEnemiesUIVisible(false);
-        _player.UIVIsible(false);
-
-        _gameOverUI.ShowGameOver(_player.score, (int)Time.time);
-        Time.timeScale = 0;
-
-        _inputManager.RestartEnable(true);
-    }
+    private void GameOver() => SetGameState(GameState.GameOver);
 
     private void RestartGame()
     {
+        _runStartTime = Time.time;
         _inputManager.RestartEnable(false);
-        Time.timeScale = 1;
-
-        ClearScene();
-        _enemySpawner.ClearAllEnemies();
-
-        _gameOverUI.CloseGameOver();
-
-        _uiView.ShowUI(true);
 
         _cardManager.ClearAllChooseLimits();
         _player.LoadBasicStats();
-        PlayerMovementEnable(true);
+
+        _gameOverUI.CloseGameOver();
+        _uiView.UpdateXP(0, 60);
+
+        ClearScene();
+        _enemySpawner.ClearAllEnemies();
+        _enemySpawner.SetBasicDifficulty();
+
+        SetGameState(GameState.Running);
     }
+
+
+
+    private void UpdateXP(int exp, int levelCost) => _uiView.UpdateXP(exp, levelCost);
+
+    private void UpdateScore(int score, int amount) => _scoreUI.UpdateScoreAmount(score, amount);
 
     private void ApplyEffect(CardEffect effect)
     {
@@ -122,5 +189,14 @@ public class GameMain : IInitializable
     {
         _playerMovement.SetInputEnabled(enable);
         _inputManager.EnablePlayerInput(enable);
+    }
+
+    private IEnumerator RunTime()
+    {
+        while (_isRunning)
+        {
+            _uiView.ShowTime((int)_runTime);
+            yield return _wait;
+        }
     }
 }

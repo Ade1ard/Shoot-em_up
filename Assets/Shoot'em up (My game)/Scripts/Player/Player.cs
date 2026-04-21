@@ -9,7 +9,7 @@ public class Player : Health, IInitializable
     [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private float _canvasFollowSpeed = 35;
 
-    [NonSerialized] public int level = 0;
+    [NonSerialized] public int level = 1;
     [NonSerialized] public int score = 0;
     private int XP;
 
@@ -22,19 +22,16 @@ public class Player : Health, IInitializable
     private float levelMultiplierMod = 1.2f;
 
     private ProjectileCaster _playerPRJCaster;
-    private UIView _UIView;
-    private ScoreUI _scoreUI;
 
     public Action OnLevelUp;
     public Action OnPlayerDied;
+    public Action<int, int> OnXPChanged;
+    public Action<int, int> OnScoreChanged;
 
     private Vector3 v = Vector3.zero;
 
     public void Init()
     {
-        _UIView = G.Get<UIView>();
-        _scoreUI = G.Get<ScoreUI>();
-
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         _playerData = Resources.Load<PlayerData>("Player/PlayerData");
 
@@ -84,10 +81,9 @@ public class Player : Health, IInitializable
     public void AddXP(int amount, float difficulty)
     {
         XP += math.abs(amount);
-        _UIView.StartDrawingBar(XP, levelXPCostMod);
 
         int addScore = (int)(amount * 10 * difficulty);
-        _scoreUI.UpdateScoreAmount(score, addScore);
+        OnScoreChanged?.Invoke(score, addScore);
         score += addScore;
 
         if (XP >= levelXPCostMod)
@@ -97,8 +93,8 @@ public class Player : Health, IInitializable
             levelXPCostMod = (int)(levelXPCostMod * levelMultiplierMod);
 
             OnLevelUp?.Invoke();
-            _UIView.StartDrawingBar(XP, levelXPCostMod);
         }
+        OnXPChanged?.Invoke(XP, levelXPCostMod);
     }
 
     public void LoadBasicStats()
@@ -109,12 +105,11 @@ public class Player : Health, IInitializable
         levelXPCostMod = _playerData.levelXPCost;
         levelMultiplierMod = _playerData.levelMultiplier;
 
+        level = 1;
+        score = 0;
+        XP = 0;
+
         UpdateStats();
         UpdateProjectileCount();
-    }
-
-    public void UIVIsible(bool visible)
-    {
-        _healthBarCanvasGroup.gameObject.SetActive(visible);
     }
 }

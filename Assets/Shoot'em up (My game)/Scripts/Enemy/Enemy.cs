@@ -39,9 +39,4 @@ public class Enemy : Health
         OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
     }
-
-    public void UIVisible(bool visible)
-    {
-        _healthBarCanvasGroup.gameObject.SetActive(visible);
-    }
 }

@@ -23,12 +23,7 @@ public class UIView : MonoBehaviour
         _currentWaveText.text = $"Current wave - {wave}";
     }
 
-    private void Update()
-    {
-        ShowTime((int)Time.time);
-    }
-
-    private void ShowTime(int time)
+    public void ShowTime(int time)
     {
         _timeText.text = $"{time / 60}:{(time % 60).ToString("D2")}";
     }
@@ -51,7 +46,7 @@ public class UIView : MonoBehaviour
         _fadingUICoroutine = null;
     }
 
-    public void StartDrawingBar(int exp, int levelCost)
+    public void UpdateXP(int exp, int levelCost)
     {
         if (_drawingBarCoroutine != null)
             StopCoroutine(_drawingBarCoroutine);

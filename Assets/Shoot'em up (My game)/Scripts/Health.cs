@@ -79,6 +79,13 @@ public abstract class Health : MonoBehaviour, IDamageable
         }
         _healthBarCoroutine = null;
     }
+
+    public void UIVisible(bool visible)
+    {
+        if (visible && _currentHealth == _maxHealth) return;
+
+        _healthBarCanvasGroup.gameObject.SetActive(visible);
+    }
 }
 
 public interface IDamageable
