@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -123,7 +124,9 @@ public class GameMain : IInitializable
 
     private void GameOver() => SetGameState(GameState.GameOver);
 
-    private void RestartGame()
+    private void RestartGame() => _player.StartCoroutine(RestartingGame());
+
+    private IEnumerator RestartingGame()
     {
         _runStartTime = Time.time;
         _inputManager.RestartEnable(false);
@@ -134,9 +137,14 @@ public class GameMain : IInitializable
         _gameOverUI.CloseGameOver();
         _uiView.UpdateXP(0, 60);
 
+        yield return _player.RestartAnimScaleFade().WaitForCompletion();
+        Time.timeScale = 1;
+
         ClearScene();
         _enemySpawner.ClearAllEnemies();
         _enemySpawner.SetBasicDifficulty();
+
+        yield return _player.RestartAnimStartPos().WaitForCompletion();
 
         SetGameState(GameState.Running);
     }

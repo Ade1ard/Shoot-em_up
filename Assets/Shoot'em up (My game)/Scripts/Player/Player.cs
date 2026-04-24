@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,6 +9,11 @@ public class Player : Health, IInitializable
     [Header("Canvas")]
     [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private float _canvasFollowSpeed = 35;
+
+    [Header("Animation")]
+    [SerializeField] private float _animDuration = 1;
+    [SerializeField] private AnimationCurve _fadeCurve;
+    [SerializeField] private AnimationCurve _appearCurve;
 
     [NonSerialized] public int level = 1;
     [NonSerialized] public int score = 0;
@@ -29,6 +35,8 @@ public class Player : Health, IInitializable
     public Action<int, int> OnScoreChanged;
 
     private Vector3 v = Vector3.zero;
+    private Vector2 _startPosition;
+    private Vector3 _originalScale;
 
     public void Init()
     {
@@ -111,5 +119,29 @@ public class Player : Health, IInitializable
 
         UpdateStats();
         UpdateProjectileCount();
+    }
+
+    public Tween RestartAnimScaleFade()
+    {
+        Vector2 pos = new Vector2(_startPosition.x, _startPosition.y - 20);
+        return transform.DOScale(new Vector3(0, 0, _originalScale.z), _animDuration).SetUpdate(true).SetEase(_fadeCurve).OnComplete(() => SetScaleAndPos(pos));
+    }
+
+    public Tween RestartAnimStartPos()
+    {
+        return transform.DOMove(_startPosition, _animDuration).SetUpdate(true).SetEase(_appearCurve);
+    }
+
+    private void SetScaleAndPos(Vector2 pos)
+    {
+        transform.position = pos;
+        transform.localScale = _originalScale;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _startPosition = transform.position;
+        _originalScale = transform.localScale;
     }
 }

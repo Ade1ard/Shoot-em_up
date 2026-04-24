@@ -5602,6 +5602,15 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.7224555
+      value: 1.0498507
+      inSlope: 0.032330174
+      outSlope: 0.032330174
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.65470994
+    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -5613,7 +5622,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _showDuration: 1
+  _closeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.05952361
+      outSlope: 0.05952361
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20000067
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.095251
+      outSlope: 4.095251
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.024999917
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _showDuration: 0.8
 --- !u!1 &312495399
 GameObject:
   m_ObjectHideFlags: 0
@@ -8602,6 +8635,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8656522925563801548, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
   m_PrefabInstance: {fileID: 1492988653}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1492988657 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8656522925583198860, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+  m_PrefabInstance: {fileID: 1492988653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1531053261
 GameObject:
   m_ObjectHideFlags: 0
@@ -9748,15 +9786,67 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 98f53a28c86df6f479786cb6aa1ea7da, type: 3}
   - {fileID: 8300000, guid: 7bf6074a8964a2f408a07f4c6ce7433f, type: 3}
   _deadSound: {fileID: 8300000, guid: 6da380b93e553dd4d9aff831f34b9575, type: 3}
-  _maxHealth: 100
-  playerData:
-    damage: 10
-    shootDelay: 0.4
-    projectileCount: 1
-    levelXPCost: 60
-    levelMultiplier: 1.2
   _playerCanvas: {fileID: 1410374243}
   _canvasFollowSpeed: 35
+  _animDuration: 1
+  _fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.05952361
+      outSlope: 0.05952361
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20000067
+    - serializedVersion: 3
+      time: 0.36693904
+      value: -0.09190272
+      inSlope: 0.03876078
+      outSlope: 0.03876078
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.095251
+      outSlope: 4.095251
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.024999917
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _appearCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _smokeVFX: {fileID: 1492988657}
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class GameOverUI : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private AnimationCurve _showCurve;
+    [SerializeField] private AnimationCurve _closeCurve;
     [SerializeField] private float _showDuration;
 
     private Vector3 _originalScale;
@@ -32,7 +33,7 @@ public class GameOverUI : MonoBehaviour
     public void CloseGameOver()
     {
         Vector3 pos = _originalPosition + new Vector3(0, 10, 0);
-        _gameOverScreen.transform.DOMove(pos, _showDuration).SetUpdate(true).OnComplete(() => Reload());
+        _gameOverScreen.transform.DOMove(pos, _showDuration).SetEase(_closeCurve).SetUpdate(true).OnComplete(() => Reload());
     }
 
     private void Reload()
