@@ -21,9 +21,11 @@ public class ProjectileCont : MonoBehaviour
     {
         if (collision.TryGetComponent<IDamageable>(out IDamageable ID) && OnScreen())
         {
-            ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
-            DOTween.Kill(transform);
+            if (!ID.CanDamage()) return;
 
+            ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
+
+            DOTween.Kill(transform);
             Destroy(gameObject);
         }
     }

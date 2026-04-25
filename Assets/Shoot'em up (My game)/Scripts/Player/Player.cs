@@ -15,6 +15,10 @@ public class Player : Health, IInitializable
     [SerializeField] private AnimationCurve _fadeCurve;
     [SerializeField] private AnimationCurve _appearCurve;
 
+    [Header("HitAnim")]
+    [SerializeField] private Color _hitColor;
+    [SerializeField] private float _noHitDuration = 1;
+
     [NonSerialized] public int level = 1;
     [NonSerialized] public int score = 0;
     private int XP;
@@ -28,6 +32,9 @@ public class Player : Health, IInitializable
     private float levelMultiplierMod = 1.2f;
 
     private ProjectileCaster _playerPRJCaster;
+    private SpriteRenderer _sprite;
+
+    private float _lastHitTime;
 
     public Action OnLevelUp;
     public Action OnPlayerDied;
@@ -41,6 +48,7 @@ public class Player : Health, IInitializable
     public void Init()
     {
         _playerPRJCaster = GetComponent<ProjectileCaster>();
+        _sprite = GetComponent<SpriteRenderer>();
         _playerData = Resources.Load<PlayerData>("Player/PlayerData");
 
         LoadBasicStats();
@@ -50,6 +58,25 @@ public class Player : Health, IInitializable
 
     public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, projectileCountMod); }
     public void UpdateProjectileCount() { _playerPRJCaster.ChangeShootPoints(projectileCountMod); }
+
+    public override void DealDamage(float damage, Vector3 closestPoint = default)
+    {
+        base.DealDamage(damage, closestPoint);
+        _lastHitTime = Time.time;
+        if (_currentHealth > 0)
+            FlashHitAnim(_noHitDuration);
+    }
+
+    public override bool CanDamage()
+    {
+        return Time.time - _lastHitTime > _noHitDuration;
+    }
+
+    private void FlashHitAnim(float duration)
+    {
+        Color origColor = _sprite.color;
+        _sprite.DOColor(_hitColor, 0.2f).SetLoops((int)math.ceil(duration / 0.2f), LoopType.Yoyo).OnComplete(() => _sprite.color = origColor);
+    }
 
     protected override void Death()
     {

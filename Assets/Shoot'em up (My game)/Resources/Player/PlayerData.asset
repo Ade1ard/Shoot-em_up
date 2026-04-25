@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365dd2fc51a25b34a9e957bb96be6ce9, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxHealth: 20
+  maxHealth: 100
   damage: 10
   shootDelay: 0.4
   projectileCount: 1

@@ -56,6 +56,8 @@ public abstract class Health : MonoBehaviour, IDamageable
             Instantiate(_takeDamageVFX, closestPoint, Quaternion.identity);
     }
 
+    public virtual bool CanDamage() { return true; }
+
     protected virtual void Death()
     {
         if (_deathVFX != null)
@@ -91,4 +93,5 @@ public abstract class Health : MonoBehaviour, IDamageable
 public interface IDamageable
 {
     void DealDamage(float damage, Vector3 closestPoint = default);
+    bool CanDamage();
 }
