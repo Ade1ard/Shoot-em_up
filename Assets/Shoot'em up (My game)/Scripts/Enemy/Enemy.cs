@@ -14,6 +14,8 @@ public class Enemy : Health
     [SerializeField] private float shootDelay = 2;
     [SerializeField] private int projectileCount = 1;
 
+    private ProjectileCaster _projectileCaster;
+
     public event Action<Enemy, int> OnDeath;
 
     protected override void Start()
@@ -29,11 +31,15 @@ public class Enemy : Health
             maxHealth *= multiplier;
 
         base.InitHP(maxHealth);
-        GetComponent<ProjectileCaster>().TakeStats(PRJDamage, shootDelay, projectileCount);
+
+        _projectileCaster = GetComponent<ProjectileCaster>();
+        _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+        _projectileCaster.IsShooting(true);
     }
 
     protected override void Death()
     {
+        base.UIVisible(false);
         DOTween.Kill(transform);
         base.Death();
         OnDeath?.Invoke(this, xpReward);

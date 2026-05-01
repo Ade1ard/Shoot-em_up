@@ -24,6 +24,7 @@ public class ProjectileCaster : MonoBehaviour
     private float _shootDelay;
     private int _projectileCount;
     private float _lastShootTime;
+    private bool _isShooting;
     private List<Transform> _shootP = new List<Transform>();
     private AudioSource _audioSource;
 
@@ -38,6 +39,8 @@ public class ProjectileCaster : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    public void IsShooting(bool isShooting) { _isShooting  = isShooting; }
+
     public void TakeStats(float damage, float shootDelay, int projectileCount)
     {
         _PRJDamage = damage;
@@ -47,6 +50,8 @@ public class ProjectileCaster : MonoBehaviour
 
     void Update()
     {
+        if (!_isShooting) return;
+
         if (Time.time - _lastShootTime > _shootDelay && OnScreen())
         {
             foreach (var p in _shootP)

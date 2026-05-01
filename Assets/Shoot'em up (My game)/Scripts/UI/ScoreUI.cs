@@ -18,16 +18,21 @@ public class ScoreUI : MonoBehaviour
     private readonly WaitForSeconds _wait = new WaitForSeconds(2);
 
     public void UpdateScoreAmount(int score, int amount)
-    { 
-        _scoreAmountText.text = amount.ToString(); 
-        if ( _coroutine != null)
+    {
+        _scoreAmountText.text = amount.ToString();
+        StopScoreShowing();
+        _coroutine = StartCoroutine(ScoreAnimation(score, amount));
+    }
+
+    public void StopScoreShowing()
+    {
+        if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
             if (_animaton.IsActive())
                 _animaton.Kill(true);
             DOTween.Kill(_scoreCanvasGroup);
         }
-        _coroutine = StartCoroutine(ScoreAnimation(score, amount));
     }
 
     private IEnumerator ScoreAnimation(int score, int amount)

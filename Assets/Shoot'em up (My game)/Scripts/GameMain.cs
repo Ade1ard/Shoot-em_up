@@ -92,6 +92,7 @@ public class GameMain : IInitializable
                 PlayerMovementEnable(false);
 
                 _uiView.ShowUI(false);
+                _scoreUI.StopScoreShowing();
                 _enemySpawner.AllEnemiesUIVisible(false);
                 _player.UIVisible(false);
 
@@ -136,6 +137,7 @@ public class GameMain : IInitializable
 
         _gameOverUI.CloseGameOver();
         _uiView.UpdateXP(0, 60);
+        _uiView.ShowCurrentWave(1);
 
         yield return _player.RestartAnimScaleFade().WaitForCompletion();
         Time.timeScale = 1;

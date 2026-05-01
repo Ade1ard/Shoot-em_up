@@ -150,13 +150,14 @@ public class Player : Health, IInitializable
 
     public Tween RestartAnimScaleFade()
     {
+        _playerPRJCaster.IsShooting(false);
         Vector2 pos = new Vector2(_startPosition.x, _startPosition.y - 20);
         return transform.DOScale(new Vector3(0, 0, _originalScale.z), _animDuration).SetUpdate(true).SetEase(_fadeCurve).OnComplete(() => SetScaleAndPos(pos));
     }
 
     public Tween RestartAnimStartPos()
     {
-        return transform.DOMove(_startPosition, _animDuration).SetUpdate(true).SetEase(_appearCurve);
+        return transform.DOMove(_startPosition, _animDuration).SetUpdate(true).SetEase(_appearCurve).OnComplete(() => _playerPRJCaster.IsShooting(true));
     }
 
     private void SetScaleAndPos(Vector2 pos)
@@ -168,6 +169,7 @@ public class Player : Health, IInitializable
     protected override void Start()
     {
         base.Start();
+        _playerPRJCaster.IsShooting(true);
         _startPosition = transform.position;
         _originalScale = transform.localScale;
     }
