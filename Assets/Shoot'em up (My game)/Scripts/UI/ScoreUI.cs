@@ -40,8 +40,8 @@ public class ScoreUI : MonoBehaviour
         _animaton = DOTween.Sequence();
         _animaton
             .Append(_scoreCanvasGroup.DOFade(1, 0.4f))
-            .Join(_scoreCanvasGroup.transform.DOShakePosition(1f, 2))
-            .Join(_scoreCanvasGroup.transform.DOShakeRotation(1f, 3))
+            .Join(_scoreCanvasGroup.transform.DOShakePosition(1f, 3))
+            .Join(_scoreCanvasGroup.transform.DOShakeRotation(1f, 4))
             .Join(_scoreBar.DOColor(GetRandomColor(), 1))
             .Join(_scoreAmountText.transform.DOShakeRotation(2.5f, 4))
             .Join(_scoreAmountText.transform.DOShakePosition(1.5f, 2))

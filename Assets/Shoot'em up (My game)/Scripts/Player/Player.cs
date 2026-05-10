@@ -33,6 +33,7 @@ public class Player : Health, IInitializable
 
     private ProjectileCaster _playerPRJCaster;
     private SpriteRenderer _sprite;
+    private CameraShake _cameraShake;
 
     private float _lastHitTime;
 
@@ -49,6 +50,7 @@ public class Player : Health, IInitializable
     {
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         _sprite = GetComponent<SpriteRenderer>();
+        _cameraShake = G.Get<CameraShake>();
         _playerData = Resources.Load<PlayerData>("Player/PlayerData");
 
         LoadBasicStats();
@@ -64,7 +66,11 @@ public class Player : Health, IInitializable
         base.DealDamage(damage, closestPoint);
         _lastHitTime = Time.time;
         if (_currentHealth > 0)
+        {
             FlashHitAnim(_noHitDuration);
+            if (_cameraShake != null)
+                _cameraShake.Shake();
+        }
     }
 
     public override bool CanDamage()

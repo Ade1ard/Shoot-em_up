@@ -14,6 +14,7 @@ public class Bootstrap : MonoBehaviour
         G.Register<UIView>(FindFirstObjectByType<UIView>());
         G.Register<ScoreUI>(FindFirstObjectByType<ScoreUI>());
         G.Register<GameOverUI>(FindAnyObjectByType<GameOverUI>());
+        G.Register(FindFirstObjectByType<CameraShake>());
 
         InitAll();
     }
