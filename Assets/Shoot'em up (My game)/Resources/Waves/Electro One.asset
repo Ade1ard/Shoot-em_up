@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: BasicWave 1
+  m_Name: Electro One
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
-  _waveName: one
+  _waveName: Electro one
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
-    _minEnemyCount: 2
-    _maxEnemyCount: 5
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: c0c6c6ed408c9d54ba7859f0e376eab5, type: 3}
+    _minEnemyCount: 1
+    _maxEnemyCount: 2
     _spawnTogether: 0
-    _delayBetweenEnemies: 3
-    _delayAfterGroup: 3
+    _delayBetweenEnemies: 5
+    _delayAfterGroup: 5
   _spawnPattern:
     patternType: 0
     _radius: 2
