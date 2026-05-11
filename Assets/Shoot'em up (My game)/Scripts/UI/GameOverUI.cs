@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _gameOverScreen;
     [SerializeField] private TextMeshProUGUI _gameOverText;
+    [SerializeField] private TextMeshProUGUI _restartText;
     [SerializeField] private TextMeshProUGUI _time;
     [SerializeField] private TextMeshProUGUI _scoreAmount;
     [SerializeField] private Image _scoreBar;
@@ -19,8 +21,19 @@ public class GameOverUI : MonoBehaviour
     private Vector3 _originalScale;
     private Vector3 _originalPosition;
 
+    private Coroutine coroutine;
+
     public void ShowGameOver(int scoreAmount, int runTime)
     {
+        if (coroutine != null)
+            StopCoroutine(coroutine);
+        coroutine = StartCoroutine(GameOverAnim(scoreAmount, runTime));
+    }
+
+    private IEnumerator GameOverAnim(int scoreAmount, int runTime)
+    {
+        _restartText.alpha = 0;
+
         _gameOverScreen.transform.localScale = Vector3.zero;
         _gameOverScreen.gameObject.SetActive(true);
         _gameOverScreen.transform.DOScale(_originalScale, _showDuration).SetEase(_showCurve).SetUpdate(true);
@@ -28,10 +41,16 @@ public class GameOverUI : MonoBehaviour
         _time.text = $"{runTime / 60}:{(runTime % 60).ToString("D2")}";
         _scoreAmount.text = scoreAmount.ToString();
         _scoreBar.DOColor(GetRandomColor(), 1).SetUpdate(true);
+
+        yield return new WaitForSecondsRealtime(2);
+        _restartText.DOFade(1, 1).SetUpdate(true);
     }
 
     public void CloseGameOver()
     {
+        if (coroutine != null)
+            StopCoroutine(coroutine);
+
         Vector3 pos = _originalPosition + new Vector3(0, 10, 0);
         _gameOverScreen.transform.DOMove(pos, _showDuration).SetEase(_closeCurve).SetUpdate(true).OnComplete(() => Reload());
     }

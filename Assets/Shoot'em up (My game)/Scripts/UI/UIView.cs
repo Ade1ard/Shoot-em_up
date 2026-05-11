@@ -65,6 +65,7 @@ public class UIView : MonoBehaviour
 
     private void Start()
     {
+        _gamePlayUI.gameObject.SetActive(true);
         _gamePlayUI.alpha = 0;
         ShowUI(true);
         _expBarFill.fillAmount = 0;
