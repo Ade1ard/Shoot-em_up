@@ -166,6 +166,8 @@ public class Player : Health, IInitializable
         return transform.DOMove(_startPosition, _animDuration).SetUpdate(true).SetEase(_appearCurve).OnComplete(() => _playerPRJCaster.IsShooting(true));
     }
 
+    public void IsShooting(bool isShooting) { _playerPRJCaster.IsShooting(isShooting); }
+
     private void SetScaleAndPos(Vector2 pos)
     {
         transform.position = pos;

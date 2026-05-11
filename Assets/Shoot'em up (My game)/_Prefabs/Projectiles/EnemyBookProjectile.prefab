@@ -48,31 +48,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
-  _movementType: 0
   _isItEnemy: 0
-  _upDirection: 0
-  _directionType: 0
-  _directionOffset: 0.25
-  _linearSpeed: 15
-  _type: 0
-  _moveDuration: 5
-  _moveDurationOffset: 1.5
-  pathType: 1
-  _betweenPointsMoveDuration: 6
-  _inPointTime: 3
-  _inPointTimeOffset: 1
-  amplitude: 1
-  frequency: 2
-  sinDistance: 10
-  resolution: 30
-  radius: 4
-  loops: 2
-  clockwise: 1
-  circleResolution: 50
-  spiralStartRadius: 4
-  spiralEndRadius: 0.5
-  spiralTurns: 3
-  spiralDistance: 10
+  _movementType:
+    rid: 920530094028226855
+  _dirGenerator:
+    rid: 920530094028226826
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530094028226826
+      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
+      data:
+        _upDirection: 0
+        _directionOffset: 0.25
+    - rid: 920530094028226855
+      type: {class: LinearMove, ns: , asm: Assembly-CSharp}
+      data:
+        _linearSpeed: 15
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594ae3042bc880e4abd9248fb97f4196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
-  _damage: 10
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
 --- !u!50 &3503946192638833755
 Rigidbody2D:

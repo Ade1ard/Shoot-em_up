@@ -64,6 +64,7 @@ public class GameMain : IInitializable
             case GameState.Running:
                 Time.timeScale = 1;
                 PlayerMovementEnable(true);
+                _player.IsShooting(true);
                 _uiView.ShowUI(true);
                 _enemySpawner.AllEnemiesUIVisible(true);
                 _player.UIVisible(true);
@@ -90,6 +91,7 @@ public class GameMain : IInitializable
             case GameState.Running:
                 Time.timeScale = 0;
                 PlayerMovementEnable(false);
+                _player.IsShooting(false);
 
                 _uiView.ShowUI(false);
                 _scoreUI.StopScoreShowing();
@@ -103,6 +105,7 @@ public class GameMain : IInitializable
                 break;
 
             case GameState.GameOver:
+                _scoreUI.StopScoreShowing();
 
                 break;
         }

@@ -153,31 +153,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fa1ea94f9eed9429478dde4ed05060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
-  _movementType: 2
   _isItEnemy: 1
-  _upDirection: 0
-  _directionType: 1
-  _directionOffset: 0.25
-  _linearSpeed: 10
-  _type: 0
-  _moveDuration: 15
-  _moveDurationOffset: 3
-  pathType: 1
-  _betweenPointsMoveDuration: 6
-  _inPointTime: 3
-  _inPointTimeOffset: 1
-  amplitude: 1
-  frequency: 5
-  sinDistance: 30
-  resolution: 45
-  radius: 4
-  loops: 2
-  clockwise: 1
-  circleResolution: 50
-  spiralStartRadius: 3
-  spiralEndRadius: 1
-  spiralTurns: 3
-  spiralDistance: 15
+  _movementType:
+    rid: 920530094028226851
+  _dirGenerator:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 920530094028226851
+      type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
+      data:
+        _betweenPointsMoveDuration: 6
+        _inPointTime: 4
+        _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
 MonoBehaviour:
   m_ObjectHideFlags: 0

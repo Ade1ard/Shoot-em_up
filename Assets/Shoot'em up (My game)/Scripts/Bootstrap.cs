@@ -16,6 +16,11 @@ public class Bootstrap : MonoBehaviour
         G.Register<GameOverUI>(FindAnyObjectByType<GameOverUI>());
         G.Register(FindFirstObjectByType<CameraShake>());
 
+        G._player = FindFirstObjectByType<Player>();
+
+        G._bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
+        G._leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
+
         InitAll();
     }
 

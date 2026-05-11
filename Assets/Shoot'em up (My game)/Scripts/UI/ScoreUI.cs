@@ -14,8 +14,8 @@ public class ScoreUI : MonoBehaviour
     private Coroutine _coroutine;
     private Sequence _animaton;
 
-    private readonly WaitForSeconds _waitShort = new WaitForSeconds(0.005f);
-    private readonly WaitForSeconds _wait = new WaitForSeconds(2);
+    private readonly WaitForSecondsRealtime _waitShort = new WaitForSecondsRealtime(0.005f);
+    private readonly WaitForSecondsRealtime _wait = new WaitForSecondsRealtime(2);
 
     public void UpdateScoreAmount(int score, int amount)
     {
@@ -29,6 +29,7 @@ public class ScoreUI : MonoBehaviour
         if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
+            _coroutine = null;
             if (_animaton.IsActive())
                 _animaton.Kill(true);
             DOTween.Kill(_scoreCanvasGroup);
