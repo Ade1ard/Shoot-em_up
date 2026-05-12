@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
   m_Name: BookTogether
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
+  _spawnPattern:
+    rid: 920530110659166306
   _waveName: BookTogether
   _difficultyLevel: 1
   _enemyGroups:
@@ -21,10 +23,12 @@ MonoBehaviour:
     _spawnTogether: 1
     _delayBetweenEnemies: 1.5
     _delayAfterGroup: 3
-  _spawnPattern:
-    patternType: 2
-    _radius: 2
-    _spacing: {x: 1, y: 1}
-    _columns: 2
-  _waveStartDelay: 2
+  _waveStartDelay: 1
   _baseXP: 100
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530110659166306
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+      data:
+        _radius: 3

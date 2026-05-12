@@ -187,7 +187,7 @@ ParticleSystemRenderer:
   m_SortingOrder: -2
   m_RenderMode: 4
   m_MeshDistribution: 0
-  m_SortMode: 4
+  m_SortMode: 2
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -407,7 +407,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 2
       minColor: {r: 0, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.6830188, g: 0.6830188, b: 0.6830188, a: 1}
+      maxColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -471,8 +471,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 17
-      minScalar: 5
+      scalar: 20
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4950,7 +4950,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.14, y: 13.14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1604819933}
@@ -5170,7 +5170,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -10
   m_Sprite: {fileID: 8603614310132900887, guid: 6812e3af1984ae04d8b357cd786d0b68, type: 3}
   m_Color: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
   m_FlipX: 0
@@ -5247,7 +5247,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 4923449004493730158, guid: b242b8df5d9d8734ca67780b9be219ef, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6745098}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7611,7 +7611,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -10
   m_Sprite: {fileID: 8603614310132900887, guid: 6812e3af1984ae04d8b357cd786d0b68, type: 3}
   m_Color: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
   m_FlipX: 0
@@ -7960,7 +7960,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -10
   m_Sprite: {fileID: 8603614310132900887, guid: 6812e3af1984ae04d8b357cd786d0b68, type: 3}
   m_Color: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
   m_FlipX: 0
@@ -8420,7 +8420,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 4923449004493730158, guid: b242b8df5d9d8734ca67780b9be219ef, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6745098}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9065,7 +9065,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 4923449004493730158, guid: b242b8df5d9d8734ca67780b9be219ef, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6745098}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9140,7 +9140,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 4923449004493730158, guid: b242b8df5d9d8734ca67780b9be219ef, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6745098}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9844,11 +9844,20 @@ MonoBehaviour:
   _shootPoints: {fileID: 728105650}
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
-  _spawnPositonOffset_X: 0.05
-  _spawnPositonOffset_Y: 0.05
-  _shootDelayOffset: 0.05
+  _spawnPattern:
+    rid: 920530110659166315
+  _spawnPositonOffset_X: 0.03
+  _spawnPositonOffset_Y: 0.03
+  _shootDelayOffset: 0
   _shootSounds:
   - {fileID: 8300000, guid: f950ce2961e454f448d4dd247ba64f07, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530110659166315
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+      data:
+        _Width: 1
 --- !u!114 &1750253398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10107,7 +10116,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -4
+  m_SortingOrder: -10
   m_Sprite: {fileID: 8603614310132900887, guid: 6812e3af1984ae04d8b357cd786d0b68, type: 3}
   m_Color: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
   m_FlipX: 0
@@ -10303,7 +10312,7 @@ MonoBehaviour:
   - {fileID: 1343686844}
   - {fileID: 430519642}
   - {fileID: 1386549630}
-  _timeBetweenWaves: 5
+  _timeBetweenWaves: 0
   _currentDifficulty: 1
   _difficultyIncreasePerWave: 0.1
 --- !u!4 &1935066691

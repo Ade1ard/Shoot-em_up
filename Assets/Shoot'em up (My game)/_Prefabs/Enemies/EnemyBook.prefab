@@ -211,12 +211,21 @@ MonoBehaviour:
   _shootPoints: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
+  _spawnPattern:
+    rid: 920530110659166313
   _spawnPositonOffset_X: 0.2
   _spawnPositonOffset_Y: 0.2
   _shootDelayOffset: 1
   _shootSounds:
   - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
   - {fileID: 8300000, guid: 78b1e97a8d2dded41a287a9f77748bf2, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530110659166313
+      type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
+      data:
+        _radius: 0.1
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5

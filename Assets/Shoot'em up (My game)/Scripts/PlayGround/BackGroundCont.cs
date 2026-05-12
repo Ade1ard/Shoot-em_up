@@ -44,7 +44,10 @@ public class BackGroundCont : MonoBehaviour
         foreach (var cloud in _backGroundClouds)
         {
             if (cloud.transform.position.y + _cloudHeight / 2 < _bottomBoundary)
+            {
                 cloud.transform.position += new Vector3(Random.Range(-_cloudsHorPositionOffset, _cloudsHorPositionOffset), _cloudHeight * _backGroundClouds.Count / _cloudSpriteCountHorizontal, 0);
+                cloud.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            }
         }
     }
 

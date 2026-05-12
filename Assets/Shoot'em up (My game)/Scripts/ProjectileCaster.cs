@@ -12,6 +12,10 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] private ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
+    [Header("SpawnPattern")]
+    [SerializeReference, SubclassSelector]
+    [SerializeField] private ISpawnFormation _spawnPattern;
+
     [Header("Offsets")]
     [SerializeField] private float _spawnPositonOffset_X = 0.1f;
     [SerializeField] private float _spawnPositonOffset_Y = 0.1f;
@@ -93,16 +97,11 @@ public class ProjectileCaster : MonoBehaviour
             return;
         }
 
-        float totalWidth = count - 0.5f;
-        float startX = -totalWidth / 2f;
-        float step = totalWidth / (count - 1);
-
         for (int i = 0; i < count; i++)
         {
-            float x = startX + i * step;
             GameObject bullet = new GameObject($"{gameObject.name}ShootPoint{i}");
             bullet.transform.SetParent(_shootPoints);
-            bullet.transform.localPosition = new Vector3(x, 0, 0);
+            bullet.transform.localPosition = _spawnPattern.CalculateSpawnPosition(Vector3.zero, i, _projectileCount);
             _shootP.Add(bullet.transform);
         }
     }

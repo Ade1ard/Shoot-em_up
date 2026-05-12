@@ -20,26 +20,9 @@ public class WaveData : ScriptableObject
         public float _delayAfterGroup;
     }
 
-    [System.Serializable]
-    public class SpawnPattern
-    {
-        public enum PatternType
-        {
-            Random,
-            Circle,     
-            Line,
-            VFormation,
-            Grid,
-        }
-
-        [Header("Pattern")]
-        public PatternType patternType = PatternType.Random;
-
-        [Header("Pattern Settings")]
-        public float _radius = 3f; // Circle
-        public Vector2 _spacing = new Vector2(0.5f, 0.5f); // Grid
-        public int _columns = 3; // Grid/Line
-    }
+    [Header("Pattern")]
+    [SerializeReference, SubclassSelector]
+    public ISpawnFormation _spawnPattern;
 
     [Header("Settings")]
     public string _waveName = "New Wave";
@@ -47,9 +30,6 @@ public class WaveData : ScriptableObject
 
     [Header("Wave")]
     public List<EnemyGroup> _enemyGroups = new List<EnemyGroup>();
-
-    [Header("Pattern")]
-    public SpawnPattern _spawnPattern = new SpawnPattern();
 
     [Header("Timing")]
     public float _waveStartDelay = 2f;

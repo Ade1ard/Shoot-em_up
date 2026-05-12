@@ -119,7 +119,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         _activeEnemies.Add(enemy);
     }
 
-    Vector3 CalculateSpawnPosition(WaveData.SpawnPattern pattern, int index, int enemyCount, bool spawnTogether)
+    Vector3 CalculateSpawnPosition(ISpawnFormation spawnPattern, int index, int enemyCount, bool spawnTogether)
     {
 
         if (_spawnPoints.Count > 0)
@@ -134,54 +134,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
 
         Vector3 offset = Vector3.zero;
 
-        switch (pattern.patternType)
-        {
-            case WaveData.SpawnPattern.PatternType.Random:
-                offset = new Vector3(
-                    UnityEngine.Random.Range(-pattern._radius, pattern._radius),
-                    UnityEngine.Random.Range(-pattern._radius / 2, pattern._radius / 2),
-                    0
-                );
-                break;
-
-            case WaveData.SpawnPattern.PatternType.Circle:
-                float angle = (index / (float)enemyCount) * Mathf.PI * 2;
-                offset = new Vector3(
-                    Mathf.Cos(angle) * pattern._radius,
-                    Mathf.Sin(angle) * pattern._radius,
-                    0
-                );
-                break;
-
-            case WaveData.SpawnPattern.PatternType.Line:
-                float t = index / (float)Mathf.Max(1, enemyCount - 1);
-                offset = new Vector3(
-                    Mathf.Lerp(-pattern._radius, pattern._radius, t),
-                    0,
-                    0
-                );
-                break;
-
-            case WaveData.SpawnPattern.PatternType.VFormation:
-                float centerIndex = (enemyCount - 1) / 2f;
-                float distanceFromCenter = Mathf.Abs(index - centerIndex);
-                offset = new Vector3(
-                    (index - centerIndex) * pattern._spacing.x,
-                    -distanceFromCenter * pattern._spacing.y,
-                    0
-                );
-                break;
-
-            case WaveData.SpawnPattern.PatternType.Grid:
-                int row = index / pattern._columns;
-                int col = index % pattern._columns;
-                offset = new Vector3(
-                    (col - (pattern._columns - 1) / 2f) * pattern._spacing.x,
-                    -row * pattern._spacing.y,
-                    0
-                );
-                break;
-        };
+        spawnPattern.CalculateSpawnPosition(_basePosition, index, enemyCount);
 
         return _basePosition + offset;
     }

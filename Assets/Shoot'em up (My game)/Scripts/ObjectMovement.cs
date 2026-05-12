@@ -22,7 +22,8 @@ public class ObjectMovement : MonoBehaviour
 
     public void StartMove(Vector3 startPosition = default)
     {
-        _movementType.Move(transform, startPosition, _dirGenerator, _isItEnemy);
+        if (_movementType != null)
+            _movementType.Move(transform, startPosition, _dirGenerator, _isItEnemy);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
