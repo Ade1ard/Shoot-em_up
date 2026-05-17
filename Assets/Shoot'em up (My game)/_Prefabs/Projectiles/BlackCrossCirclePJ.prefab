@@ -52,19 +52,18 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226855
   _dirGenerator:
-    rid: 920530094028226826
+    rid: 920530228125368446
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226826
-      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
-      data:
-        _upDirection: 0
-        _directionOffset: 0.25
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
         _linearSpeed: 7
+    - rid: 920530228125368446
+      type: {class: AdaptiveDir, ns: , asm: Assembly-CSharp}
+      data:
+        _directionOffset: 0.25
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0

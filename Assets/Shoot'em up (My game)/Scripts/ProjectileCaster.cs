@@ -38,7 +38,7 @@ public class ProjectileCaster : MonoBehaviour
             _shootPoints = transform;
 
         _lastShootTime = Time.time;
-        ChangeShootPoints(_projectileCount);
+        UpdateShootPoints(_projectileCount);
 
         _audioSource = GetComponent<AudioSource>();
     }
@@ -50,6 +50,7 @@ public class ProjectileCaster : MonoBehaviour
         _PRJDamage = damage;
         _shootDelay = shootDelay;
         _projectileCount = projectileCount;
+       UpdateShootPoints(_projectileCount);
     }
 
     void Update()
@@ -82,7 +83,7 @@ public class ProjectileCaster : MonoBehaviour
         }
     }
 
-    public void ChangeShootPoints(int count)
+    private void UpdateShootPoints(int count)
     {
         foreach (Transform p in _shootP)
             Destroy(p.gameObject);

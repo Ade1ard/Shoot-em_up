@@ -55,11 +55,9 @@ public class Player : Health, IInitializable
 
         LoadBasicStats();
         UpdateStats();
-        UpdateProjectileCount();
     }
 
     public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, projectileCountMod); }
-    public void UpdateProjectileCount() { _playerPRJCaster.ChangeShootPoints(projectileCountMod); }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
@@ -116,7 +114,7 @@ public class Player : Health, IInitializable
     {
         projectileCountMod += 1;
         projectileCountMod = Mathf.Clamp(projectileCountMod, 1, 3);
-        UpdateProjectileCount();
+        UpdateStats();
     }
 
     public void AddXP(int amount, float difficulty)
@@ -151,7 +149,6 @@ public class Player : Health, IInitializable
         XP = 0;
 
         UpdateStats();
-        UpdateProjectileCount();
     }
 
     public Tween RestartAnimScaleFade()

@@ -18,19 +18,23 @@ public class BackGroundCont : MonoBehaviour
     private float _cloudHeight;
     private float _backGroundHeight;
     private float _bottomBoundary;
+    private float _stepBackground;
+    private float _stepCloud;
 
     void Start()
     {
         _bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         _cloudHeight = _backGroundClouds[0].bounds.size.y;
         _backGroundHeight = _backGrounds[0].bounds.size.y;
+        _stepBackground = _backGroundHeight * _backGrounds.Count / _backgroundSpriteCountHorizontal - 0.2f;
+        _stepCloud = _cloudHeight * _backGroundClouds.Count / _cloudSpriteCountHorizontal;
         SetStartPosition();
     }
 
     void Update()
     {
-        MoveBackGround();
         LoopBackGround();
+        MoveBackGround();
     }
 
     private void LoopBackGround()
@@ -38,14 +42,14 @@ public class BackGroundCont : MonoBehaviour
         foreach (var backGround in _backGrounds)
         {
             if (backGround.transform.position.y + _backGroundHeight / 2 < _bottomBoundary)
-                backGround.transform.position += new Vector3(0, _backGroundHeight * _backGrounds.Count / _backgroundSpriteCountHorizontal - 0.2f, 0);
+                backGround.transform.position += new Vector3(0, _stepBackground, 0);
         }
 
         foreach (var cloud in _backGroundClouds)
         {
             if (cloud.transform.position.y + _cloudHeight / 2 < _bottomBoundary)
             {
-                cloud.transform.position += new Vector3(Random.Range(-_cloudsHorPositionOffset, _cloudsHorPositionOffset), _cloudHeight * _backGroundClouds.Count / _cloudSpriteCountHorizontal, 0);
+                cloud.transform.position += new Vector3(Random.Range(-_cloudsHorPositionOffset, _cloudsHorPositionOffset), _stepCloud, 0);
                 cloud.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
             }
         }

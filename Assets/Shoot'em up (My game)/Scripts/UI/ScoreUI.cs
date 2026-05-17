@@ -19,7 +19,6 @@ public class ScoreUI : MonoBehaviour
 
     public void UpdateScoreAmount(int score, int amount)
     {
-        _scoreAmountText.text = amount.ToString();
         StopScoreAnim();
         _coroutine = StartCoroutine(ScoreAnimation(score, amount));
     }

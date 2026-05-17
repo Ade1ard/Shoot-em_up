@@ -78,6 +78,7 @@ public class GameMain : IInitializable
 
             case GameState.GameOver:
                 _gameOverUI.ShowGameOver(_player.score, (int)_runTime);
+                ClearScene();
                 _inputManager.RestartEnable(true);
 
                 break;
@@ -146,7 +147,6 @@ public class GameMain : IInitializable
         yield return _player.RestartAnimScaleFade().WaitForCompletion();
         Time.timeScale = 1;
 
-        ClearScene();
         _enemySpawner.ClearAllEnemies();
         _enemySpawner.SetBasicDifficulty();
 

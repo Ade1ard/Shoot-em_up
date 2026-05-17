@@ -69,6 +69,7 @@ public class LinearMove: IMovementType
         Vector3 direction = dirGenerator.GenerateDirection(startPosition);
         transform.DOMove(direction * _linearSpeed, 3)
             .SetRelative()
+            .SetLoops(-1, LoopType.Incremental)
             .SetEase(Ease.Linear);
 
         if (!isItEnemy)
@@ -311,10 +312,10 @@ public class AdaptiveDir: IDirectionGenerator
 
     public Vector3 GenerateDirection(Vector3 startPosition)
     {
-        if (startPosition.x < G._leftBoundary + 2)
+        if (startPosition.x < G._leftBoundary + 5)
             return new Vector3(1, Random.Range(-_directionOffset, 0), 0);
 
-        if (startPosition.x > -G._leftBoundary - 2)
+        if (startPosition.x > -G._leftBoundary - 5)
             return new Vector3(-1, Random.Range(-_directionOffset, 0), 0);
 
         return new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
