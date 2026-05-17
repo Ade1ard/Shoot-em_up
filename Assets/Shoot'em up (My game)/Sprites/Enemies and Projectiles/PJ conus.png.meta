@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7407fbdd47a47114a88a4966fd9ebf2b
+guid: aeca9d3424d6edf4182ba5d47f97764e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1644236970431881338
-    second: PJ perple conus_0
+      213: -123514613426489816
+    second: PJ conus_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PJ perple conus_0
+      name: PJ conus_0
       rect:
         serializedVersion: 2
         x: 79
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a70282520d081d610800000000000000
-      internalID: 1644236970431881338
+      spriteID: 826f42e0d10394ef0800000000000000
+      internalID: -123514613426489816
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PJ perple conus_0: 1644236970431881338
+      PJ conus_0: -123514613426489816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

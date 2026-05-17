@@ -20,10 +20,10 @@ public class ObjectMovement : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    public void StartMove(Vector3 startPosition = default)
+    public void StartMove(Vector3 startPosition = default, Vector3 spawnerPos = default)
     {
         if (_movementType != null)
-            _movementType.Move(transform, startPosition, _dirGenerator, _isItEnemy);
+            _movementType.Move(transform, startPosition, spawnerPos, _dirGenerator, _isItEnemy);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,7 +54,7 @@ public class ObjectMovement : MonoBehaviour
 
 public interface IMovementType
 {
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, IDirectionGenerator dirGenerator, bool isItEnemy);
+    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy);
     public void Stop();
 }
 
@@ -64,9 +64,9 @@ public class LinearMove: IMovementType
     [Header("Linear Movement Settings")]
     [SerializeField] private float _linearSpeed = 10;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
     {
-        Vector3 direction = dirGenerator.GenerateDirection(startPosition);
+        Vector3 direction = dirGenerator.GenerateDirection(startPosition, spawnerPos);
         transform.DOMove(direction * _linearSpeed, 3)
             .SetRelative()
             .SetLoops(-1, LoopType.Incremental)
@@ -95,9 +95,9 @@ public class CurveLinearMove: IMovementType
 
     private Tween _tween;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
     {
-        Vector3[] path = _path.GeneratePath(transform.position, dirGenerator.GenerateDirection(startPosition));
+        Vector3[] path = _path.GeneratePath(transform.position, dirGenerator.GenerateDirection(startPosition, spawnerPos));
         var tween = transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
             .SetEase(Ease.Linear);
 
@@ -128,7 +128,7 @@ public class BetweenPointMove: IMovementType
     private Sequence _sequence;
     private bool _isMoving;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
     {
         Stop();
         _isMoving = true;
@@ -281,7 +281,7 @@ public class GenerateSinePath: IPathGenerator
 
 public interface IDirectionGenerator
 {
-    public Vector3 GenerateDirection(Vector3 startPosition = default);
+    public Vector3 GenerateDirection(Vector3 startPosition, Vector3 spawnerPosition);
 }
 
 [System.Serializable]
@@ -290,7 +290,7 @@ public class SimpleDir: IDirectionGenerator
     [SerializeField] private bool _upDirection;
     [SerializeField] private float _directionOffset = 0.25f;
 
-    public Vector3 GenerateDirection(Vector3 startPosition = default)
+    public Vector3 GenerateDirection(Vector3 startPosition = default, Vector3 spawnerPos = default)
     {
         return _upDirection ? new Vector3(Random.Range(-_directionOffset, _directionOffset), 1, 0) : new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
     }
@@ -299,7 +299,7 @@ public class SimpleDir: IDirectionGenerator
 [System.Serializable]
 public class ToPlayerDir: IDirectionGenerator
 {
-    public Vector3 GenerateDirection(Vector3 startPosition)
+    public Vector3 GenerateDirection(Vector3 startPosition, Vector3 spawnerPos = default)
     {
         return (G._player.transform.position - startPosition).normalized;
     }
@@ -310,7 +310,7 @@ public class AdaptiveDir: IDirectionGenerator
 {
     [SerializeField] private float _directionOffset = 0.25f;
 
-    public Vector3 GenerateDirection(Vector3 startPosition)
+    public Vector3 GenerateDirection(Vector3 startPosition, Vector3 spawnerPos = default)
     {
         if (startPosition.x < G._leftBoundary + 5)
             return new Vector3(1, Random.Range(-_directionOffset, 0), 0);
@@ -319,5 +319,14 @@ public class AdaptiveDir: IDirectionGenerator
             return new Vector3(-1, Random.Range(-_directionOffset, 0), 0);
 
         return new Vector3(Random.Range(-_directionOffset, _directionOffset), -1, 0);
+    }
+}
+
+[System.Serializable]
+public class FromSpawnerDir: IDirectionGenerator
+{
+    public Vector3 GenerateDirection(Vector3 startPosition, Vector3 spawnerPos)
+    {
+        return (startPosition - spawnerPos).normalized;
     }
 }

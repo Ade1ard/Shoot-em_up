@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6339229913053647687}
   - component: {fileID: 4600921720785939510}
   m_Layer: 7
-  m_Name: BlackCrossCircle
+  m_Name: ThornCircle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
     - rid: 920530094028226852
       type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
       data:
-        _moveDuration: 6
+        _moveDuration: 7
         _inPointTime: 3
         _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
@@ -190,11 +190,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   - {fileID: 8300000, guid: b238c7993731b224688e10ee4c575109, type: 3}
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
-  maxHealth: 100
-  xpReward: 30
-  PRJDamage: 20
-  shootDelay: 3
-  projectileCount: 1
+  maxHealth: 60
+  xpReward: 20
+  PRJDamage: 10
+  shootDelay: 2
+  projectileCount: 6
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,14 +207,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
-  _projectilePrefab: {fileID: 9095561515226119892, guid: b9c35df30c67a7d49a337ce73a3a98d4, type: 3}
+  _projectilePrefab: {fileID: 9095561515226119892, guid: b17797af923c9d3469b34f6a857e0235, type: 3}
   _shootPoints: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:
-    rid: 920530110659166313
-  _spawnPositonOffset_X: 0.2
-  _spawnPositonOffset_Y: 0.2
+    rid: 920530228125368463
+  _spawnPositonOffset_X: 0
+  _spawnPositonOffset_Y: 0
   _shootDelayOffset: 1
   _shootSounds:
   - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
@@ -222,10 +222,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166313
-      type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
+    - rid: 920530228125368463
+      type: {class: SpawnCircle, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 0.1
+        _radius: 0.5
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5
@@ -476,7 +476,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2374960999251841401, guid: 10880e2a1287da94e8540a0776759c15, type: 3}
+  m_Sprite: {fileID: 6428626892239297164, guid: 35f495002e4b6f04d92be547eb7bbe09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -620,7 +620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.6}
+  m_AnchoredPosition: {x: 0, y: 2.79}
   m_SizeDelta: {x: 246, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3818016158837903656
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
+  m_Color: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

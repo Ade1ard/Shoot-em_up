@@ -64,13 +64,14 @@ public class ProjectileCaster : MonoBehaviour
                 _lastShootTime = Time.time;
                 _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
 
-                Vector3 InitPos = new Vector3(p.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
+                Vector3 InitPos = new Vector3(
+                    p.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
                     p.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
                     0);
 
                 var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
                 projectile.Initialize(_PRJDamage);
-                projectile.GetComponent<ObjectMovement>().StartMove(InitPos);
+                projectile.GetComponent<ObjectMovement>().StartMove(InitPos, transform.position);
             }
             if (_shootSounds.Count != 0)
                 _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
