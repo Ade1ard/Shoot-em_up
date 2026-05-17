@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
   m_Layer: 8
-  m_Name: EnemyBookProjectile
+  m_Name: BlackCrossCirclePJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 15
+        _linearSpeed: 7
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16278249, y: -0.0016870797}
+  m_Offset: {x: -0.0006225109, y: -0.006408602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -149,7 +149,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5196327, y: 0.22358069}
+  m_Size: {x: 0.6905798, y: 0.6172506}
   m_EdgeRadius: 0
 --- !u!1 &2387261540033794903
 GameObject:
@@ -167,7 +167,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6703629787408364348
 Transform:
@@ -179,8 +179,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5653371047313296270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -231,12 +231,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1890043072340505617, guid: fe66c8fa0da20944dac50de501461441, type: 3}
+  m_Sprite: {fileID: 6632189094808525388, guid: 1e6b0d8f42dcd794db28bbf3f474c6c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.53, y: 9.32}
+  m_Size: {x: 2.34, y: 3.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -252,7 +252,7 @@ Animator:
   m_GameObject: {fileID: 2387261540033794903}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e046515d639634d41af04026811de5e7, type: 2}
+  m_Controller: {fileID: 9100000, guid: d0eb0d403babf39428673c6db30216cc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0

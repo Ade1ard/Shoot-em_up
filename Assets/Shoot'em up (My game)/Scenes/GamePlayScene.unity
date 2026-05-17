@@ -10314,7 +10314,7 @@ MonoBehaviour:
   - {fileID: 1386549630}
   _timeBetweenWaves: 0
   _currentDifficulty: 1
-  _difficultyIncreasePerWave: 0.1
+  _difficultyIncreasePerWave: 0.2
 --- !u!4 &1935066691
 Transform:
   m_ObjectHideFlags: 0

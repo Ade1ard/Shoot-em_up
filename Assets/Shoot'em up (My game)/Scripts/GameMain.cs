@@ -94,7 +94,8 @@ public class GameMain : IInitializable
                 _player.IsShooting(false);
 
                 _uiView.ShowUI(false);
-                _scoreUI.StopScoreShowing();
+                _scoreUI.StopScoreAnim();
+                _scoreUI.HideScore();
                 _enemySpawner.AllEnemiesUIVisible(false);
                 _player.UIVisible(false);
 
@@ -105,7 +106,7 @@ public class GameMain : IInitializable
                 break;
 
             case GameState.GameOver:
-                _scoreUI.StopScoreShowing();
+                _scoreUI.StopScoreAnim();
 
                 break;
         }

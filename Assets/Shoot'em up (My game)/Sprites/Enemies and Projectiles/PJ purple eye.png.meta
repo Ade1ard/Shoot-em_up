@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 2b831608c6a13e44786552c0d2cadbc3
+guid: 27f61a2c097734743bd0f3e37a478e93
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9112820503697069438
-    second: EnemyBook_x4_outline_0
+      213: -3858278291481294351
+    second: PJ purple eye_0
   - first:
-      213: -6168522881427851436
-    second: EnemyBook_x4_outline_1
+      213: -1671499552799898171
+    second: PJ purple eye_1
   - first:
-      213: 7551135852707369176
-    second: EnemyBook_x4_outline_2
+      213: 2386933017917484307
+    second: PJ purple eye_2
   - first:
-      213: 2513341950595567213
-    second: EnemyBook_x4_outline_3
-  - first:
-      213: -3943097358589069069
-    second: EnemyBook_x4_outline_4
-  - first:
-      213: 518323185931749137
-    second: EnemyBook_x4_outline_5
+      213: 4344590002082926001
+    second: PJ purple eye_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -87,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -128,89 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EnemyBook_x4_outline_0
+      name: PJ purple eye_0
       rect:
         serializedVersion: 2
-        x: 530
-        y: 601
-        width: 432
-        height: 401
+        x: 445
+        y: 315
+        width: 47
+        height: 5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7592c067fd377e70800000000000000
-      internalID: 9112820503697069438
+      spriteID: 1f908aff554a47ac0800000000000000
+      internalID: -3858278291481294351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyBook_x4_outline_2
+      name: PJ purple eye_1
       rect:
         serializedVersion: 2
-        x: 41
-        y: 566
-        width: 452
-        height: 403
+        x: 491
+        y: 307
+        width: 19
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d0d657ec060bc860800000000000000
-      internalID: 7551135852707369176
+      spriteID: 5c543214304adc8e0800000000000000
+      internalID: -1671499552799898171
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyBook_x4_outline_4
+      name: PJ purple eye_2
       rect:
         serializedVersion: 2
-        x: 39
-        y: 105
-        width: 455
-        height: 404
+        x: 505
+        y: 301
+        width: 7
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f8748208dd4749c0800000000000000
-      internalID: -3943097358589069069
+      spriteID: 31d6f9beee6102120800000000000000
+      internalID: 2386933017917484307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EnemyBook_x4_outline_5
+      name: PJ purple eye_3
       rect:
         serializedVersion: 2
-        x: 527
-        y: 194
-        width: 474
-        height: 307
+        x: 44
+        y: 42
+        width: 421
+        height: 232
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1178f400134713700800000000000000
-      internalID: 518323185931749137
+      spriteID: 1bdcdd896951b4c30800000000000000
+      internalID: 4344590002082926001
       vertices: []
       indices: 
       edges: []
@@ -219,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 177815d3de176a54e8832051f6f78959
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -229,12 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EnemyBook_x4_outline_0: 9112820503697069438
-      EnemyBook_x4_outline_1: -6168522881427851436
-      EnemyBook_x4_outline_2: 7551135852707369176
-      EnemyBook_x4_outline_3: 2513341950595567213
-      EnemyBook_x4_outline_4: -3943097358589069069
-      EnemyBook_x4_outline_5: 518323185931749137
+      PJ purple eye_0: -3858278291481294351
+      PJ purple eye_1: -1671499552799898171
+      PJ purple eye_2: 2386933017917484307
+      PJ purple eye_3: 4344590002082926001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

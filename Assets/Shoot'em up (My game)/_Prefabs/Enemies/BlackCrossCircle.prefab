@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6339229913053647687}
   - component: {fileID: 4600921720785939510}
   m_Layer: 7
-  m_Name: BlackElectro
+  m_Name: BlackCrossCircle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
   _isItEnemy: 1
   _movementType:
-    rid: 920530094028226851
+    rid: 920530094028226852
   _dirGenerator:
     rid: -2
   references:
@@ -163,10 +163,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 920530094028226851
+    - rid: 920530094028226852
       type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
       data:
-        _betweenPointsMoveDuration: 6
+        _moveDuration: 6
         _inPointTime: 3
         _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
@@ -187,12 +187,13 @@ MonoBehaviour:
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
-  - {fileID: 8300000, guid: 982d30b0f449e724f9abe0bfd411c568, type: 3}
-  _deadSound: {fileID: 8300000, guid: 982d30b0f449e724f9abe0bfd411c568, type: 3}
-  maxHealth: 50
-  xpReward: 20
+  - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  - {fileID: 8300000, guid: b238c7993731b224688e10ee4c575109, type: 3}
+  _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  maxHealth: 100
+  xpReward: 30
   PRJDamage: 20
-  shootDelay: 4
+  shootDelay: 3
   projectileCount: 1
 --- !u!114 &6720159454807428517
 MonoBehaviour:
@@ -206,21 +207,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
-  _projectilePrefab: {fileID: 9095561515226119892, guid: c04d8b1bd53eaf84e8374b36acfc8a5b, type: 3}
+  _projectilePrefab: {fileID: 9095561515226119892, guid: b9c35df30c67a7d49a337ce73a3a98d4, type: 3}
   _shootPoints: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:
-    rid: 920530110659166312
+    rid: 920530110659166313
   _spawnPositonOffset_X: 0.2
   _spawnPositonOffset_Y: 0.2
   _shootDelayOffset: 1
   _shootSounds:
-  - {fileID: 8300000, guid: bc01bcc8a946dff4a80659187dbd1312, type: 3}
+  - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
+  - {fileID: 8300000, guid: 78b1e97a8d2dded41a287a9f77748bf2, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166312
+    - rid: 920530110659166313
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
         _radius: 0.1
@@ -285,7 +287,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015226126, y: 0.1015048}
+  m_Offset: {x: -0.004446864, y: -0.12473488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -295,7 +297,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.1823664, y: 2.7052932}
+  m_Size: {x: 3.4971344, y: 3.4725404}
   m_EdgeRadius: 0
 --- !u!82 &4600921720785939510
 AudioSource:
@@ -422,7 +424,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7604698136511989169}
@@ -474,7 +476,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6983887207345831526, guid: 67277ca6be2c0e64fa4e915b18178778, type: 3}
+  m_Sprite: {fileID: 2374960999251841401, guid: 10880e2a1287da94e8540a0776759c15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -618,7 +620,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.1443}
+  m_AnchoredPosition: {x: 0, y: 2.54}
   m_SizeDelta: {x: 246, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3818016158837903656
@@ -642,7 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.88811207, b: 0.5801887, a: 1}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

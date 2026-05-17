@@ -120,7 +120,7 @@ public class CurveLinearMove: IMovementType
 public class BetweenPointMove: IMovementType
 {
     [Header("BetweenPoints Movement Settings")]
-    [SerializeField] private float _betweenPointsMoveDuration = 6f;
+    [SerializeField] private float _moveDuration = 6f;
     [SerializeField] private float _inPointTime = 3f;
     [SerializeField] private float _inPointTimeOffset = 1f;
 
@@ -150,7 +150,7 @@ public class BetweenPointMove: IMovementType
 
         _sequence.AppendInterval(waitTime);
 
-        var moveTween = transform.DOMove(point, _betweenPointsMoveDuration)
+        var moveTween = transform.DOMove(point, _moveDuration)
             .SetEase(Ease.InOutSine);
 
         if (!isItEnemy)

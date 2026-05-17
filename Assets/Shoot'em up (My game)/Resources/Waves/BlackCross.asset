@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: Electro One
+  m_Name: BlackCross
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530110659166307
-  _waveName: Electro one
+    rid: 920530228125368398
+  _waveName: BlackCross
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: c0c6c6ed408c9d54ba7859f0e376eab5, type: 3}
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: f4a6672f18ee6b54cab9a18efec6147a, type: 3}
     _minEnemyCount: 1
     _maxEnemyCount: 3
     _spawnTogether: 0
-    _delayBetweenEnemies: 1.5
+    _delayBetweenEnemies: 1
     _delayAfterGroup: 0
-  _waveStartDelay: 1
+  _waveStartDelay: 0
   _baseXP: 100
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166307
+    - rid: 920530228125368398
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
         _radius: 3

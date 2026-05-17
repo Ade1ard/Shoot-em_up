@@ -20,11 +20,11 @@ public class ScoreUI : MonoBehaviour
     public void UpdateScoreAmount(int score, int amount)
     {
         _scoreAmountText.text = amount.ToString();
-        StopScoreShowing();
+        StopScoreAnim();
         _coroutine = StartCoroutine(ScoreAnimation(score, amount));
     }
 
-    public void StopScoreShowing()
+    public void StopScoreAnim()
     {
         if (_coroutine != null)
         {
@@ -35,6 +35,8 @@ public class ScoreUI : MonoBehaviour
             DOTween.Kill(_scoreCanvasGroup);
         }
     }
+
+    public void HideScore() { _scoreCanvasGroup.alpha = 0; }
 
     private IEnumerator ScoreAnimation(int score, int amount)
     {
@@ -50,7 +52,7 @@ public class ScoreUI : MonoBehaviour
 
         yield return StartCoroutine(ScoreAdding(score, amount));
         yield return _wait;
-        yield return _scoreCanvasGroup.DOFade(0, 0.8f).WaitForCompletion();
+        yield return _scoreCanvasGroup.DOFade(0, 0.8f).SetUpdate(true).WaitForCompletion();
 
         _coroutine = null;
     }

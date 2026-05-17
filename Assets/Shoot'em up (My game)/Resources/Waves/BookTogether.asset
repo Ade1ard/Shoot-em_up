@@ -22,7 +22,7 @@ MonoBehaviour:
     _maxEnemyCount: 4
     _spawnTogether: 1
     _delayBetweenEnemies: 1.5
-    _delayAfterGroup: 3
+    _delayAfterGroup: 0
   _waveStartDelay: 1
   _baseXP: 100
   references:
@@ -31,4 +31,4 @@ MonoBehaviour:
     - rid: 920530110659166306
       type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 3
+        _Width: 3
