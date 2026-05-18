@@ -10,31 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: Electro with book
+  m_Name: Book
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530110659166308
-  _waveName: Electro with book
+    rid: 920530110659166305
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: c0c6c6ed408c9d54ba7859f0e376eab5, type: 3}
-    _minEnemyCount: 1
-    _maxEnemyCount: 2
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
+    _minEnemyCount: 3
+    _maxEnemyCount: 5
     _spawnTogether: 0
     _delayBetweenEnemies: 1
-    _delayAfterGroup: 0
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
-    _minEnemyCount: 2
-    _maxEnemyCount: 3
-    _spawnTogether: 0
-    _delayBetweenEnemies: 1.5
-    _delayAfterGroup: 3
+    _delayAfterGroup: 1
   _waveStartDelay: 1
-  _baseXP: 100
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166308
+    - rid: 920530110659166305
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
         _radius: 3

@@ -25,7 +25,6 @@ public class WaveData : ScriptableObject
     public ISpawnFormation _spawnPattern;
 
     [Header("Settings")]
-    public string _waveName = "New Wave";
     public int _difficultyLevel = 1;
 
     [Header("Wave")]
@@ -33,9 +32,6 @@ public class WaveData : ScriptableObject
 
     [Header("Timing")]
     public float _waveStartDelay = 2f;
-
-    [Header("Rewards")]
-    public int _baseXP = 100;
 
     public int GetRandomCountForGroup(int groupIndex)
     {

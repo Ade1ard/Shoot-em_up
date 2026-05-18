@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: ThornCircle
+  m_Name: ThornWhite
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530228125368398
-  _waveName: ThornCircle
+    rid: 920530110659166308
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: 46e7e640b64eec640b60ac4c7bfd014d, type: 3}
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 0b255b366a425d4459b082875e897336, type: 3}
     _minEnemyCount: 1
     _maxEnemyCount: 3
     _spawnTogether: 0
     _delayBetweenEnemies: 1
     _delayAfterGroup: 0
-  _waveStartDelay: 0
-  _baseXP: 100
+  _waveStartDelay: 1
   references:
     version: 2
     RefIds:
-    - rid: 920530228125368398
+    - rid: 920530110659166308
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
         _radius: 3

@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
     [Header("Param")]
+    [SerializeField] private int _maxWavesSimultaneosly = 3;
+    [SerializeField] private int _maxWavesOffset = 1;
     [SerializeField] private float _timeBetweenWaves = 5f;
 
     [Header("Difficulty")]
@@ -20,7 +22,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     private List<WaveData> _availableWaves = new List<WaveData>();
     private int _currentWaveNumber = 0;
     private List<Enemy> _activeEnemies = new List<Enemy>();
-    private WaveData _currentWaveData;
+    private List<WaveData> _currentWaves = new List<WaveData>();
     private Vector3 _basePosition;
     private Player _player;
     private UIView _UIView;
@@ -50,20 +52,29 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     {
         while (true)
         {
-            _currentWaveData = SelectNextWave();
+            int maxWaves = _maxWavesSimultaneosly + UnityEngine.Random.Range(-_maxWavesOffset, _maxWavesOffset+1);
+
+            for (int i = 0; i < maxWaves; i++)
+            {
+                _currentWaves.Add(SelectNextWave());
+            }
 
             _currentWaveNumber++;
-            Debug.Log($"Wave begin {_currentWaveNumber}: {_currentWaveData._waveName}: Wave difficulty{_currentWaveData._difficultyLevel}: Current difficulty {_currentDifficulty}");
+            Debug.Log($"Wave begin {_currentWaveNumber} : Current difficulty {_currentDifficulty} : WavesCount {_currentWaves.Count}");
             _UIView.ShowCurrentWave(_currentWaveNumber);
             _currentDifficulty += _difficultyIncreasePerWave;
 
-            yield return new WaitForSeconds(_currentWaveData._waveStartDelay);
+            foreach (var wave in _currentWaves)
+            {
+                yield return new WaitForSeconds(wave._waveStartDelay);
 
-            yield return StartCoroutine(SpawnWave(_currentWaveData));
+                yield return StartCoroutine(SpawnWave(wave));
+
+                yield return new WaitForSeconds(_timeBetweenWaves);
+            }
 
             yield return new WaitUntil(() => _activeEnemies.Count == 0);
-
-            yield return new WaitForSeconds(_timeBetweenWaves);
+            _currentWaves.Clear();
         }
     }
 

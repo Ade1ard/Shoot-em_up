@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
   m_Layer: 8
-  m_Name: ThornCirclePJ
+  m_Name: ThornWhitePJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,19 +50,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
   _isItEnemy: 0
   _movementType:
-    rid: 920530094028226855
+    rid: 920530243524755558
   _dirGenerator:
     rid: 920530228125368459
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226855
-      type: {class: LinearMove, ns: , asm: Assembly-CSharp}
-      data:
-        _linearSpeed: 15
     - rid: 920530228125368459
       type: {class: FromSpawnerDir, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 920530243524755558
+      type: {class: CurveLinearMove, ns: , asm: Assembly-CSharp}
+      data:
+        _path:
+          rid: 920530243524755559
+        _moveDuration: 7
+        _moveDurationOffset: 2
+        pathType: 1
+    - rid: 920530243524755559
+      type: {class: GenerateSinePath, ns: , asm: Assembly-CSharp}
+      data:
+        amplitude: 1
+        frequency: 2
+        sinDistance: 30
+        resolution: 30
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +241,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -123514613426489816, guid: aeca9d3424d6edf4182ba5d47f97764e, type: 3}
-  m_Color: {r: 0.19607845, g: 0.35686275, b: 0.3254902, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

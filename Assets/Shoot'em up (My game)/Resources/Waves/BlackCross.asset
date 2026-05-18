@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
     rid: 920530228125368398
-  _waveName: BlackCross
   _difficultyLevel: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 7552099269562904974, guid: f4a6672f18ee6b54cab9a18efec6147a, type: 3}
@@ -24,7 +23,6 @@ MonoBehaviour:
     _delayBetweenEnemies: 1
     _delayAfterGroup: 0
   _waveStartDelay: 0
-  _baseXP: 100
   references:
     version: 2
     RefIds:

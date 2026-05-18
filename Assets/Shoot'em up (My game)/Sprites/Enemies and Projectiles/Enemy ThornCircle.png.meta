@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f020a6957fdd1884094c64205ebacf2a
+guid: 5c2a46d66e980ed44a259a260ca5dad9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1111739729515056709
-    second: Fireboll_EnemyBook_0
+      213: 5457770283306814566
+    second: Enemy ThornCircle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fireboll_EnemyBook_0
+      name: Enemy ThornCircle_0
       rect:
         serializedVersion: 2
-        x: 301
-        y: 60
-        width: 434
-        height: 912
+        x: 2
+        y: 25
+        width: 1017
+        height: 953
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54e0f6cc461bd6f00800000000000000
-      internalID: 1111739729515056709
+      spriteID: 66c8f2af725edbb40800000000000000
+      internalID: 5457770283306814566
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fireboll_EnemyBook_0: 1111739729515056709
+      Enemy ThornCircle_0: 5457770283306814566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

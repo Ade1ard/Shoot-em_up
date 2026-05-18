@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: Book by one
+  m_Name: ThornCircle and Electro
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530110659166305
-  _waveName: Book by one
+    rid: 920530228125368398
   _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
-    _minEnemyCount: 3
-    _maxEnemyCount: 5
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 46e7e640b64eec640b60ac4c7bfd014d, type: 3}
+    _minEnemyCount: 1
+    _maxEnemyCount: 2
     _spawnTogether: 0
     _delayBetweenEnemies: 1
-    _delayAfterGroup: 0
-  _waveStartDelay: 1
-  _baseXP: 100
+    _delayAfterGroup: 1
+  _waveStartDelay: 0
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166305
+    - rid: 920530228125368398
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
         _radius: 3

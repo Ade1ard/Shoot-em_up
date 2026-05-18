@@ -10312,7 +10312,8 @@ MonoBehaviour:
   - {fileID: 1343686844}
   - {fileID: 430519642}
   - {fileID: 1386549630}
-  _timeBetweenWaves: 0
+  _waitForAllEnemiesDeath: 1
+  _timeBetweenWaves: 1
   _currentDifficulty: 1
   _difficultyIncreasePerWave: 0.2
 --- !u!4 &1935066691
