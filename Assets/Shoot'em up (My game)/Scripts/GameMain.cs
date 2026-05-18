@@ -195,7 +195,7 @@ public class GameMain : IInitializable
 
     private void ClearScene()
     {
-        foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>(FindObjectsSortMode.None))
+        foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>())
             prj.Clear();
     }
 

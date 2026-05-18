@@ -6,17 +6,17 @@ public class Bootstrap : MonoBehaviour
     void Awake()
     {
         G.Register<GameMain>(new GameMain());
-        G.Register<InputManager>(FindFirstObjectByType<InputManager>());
-        G.Register<EnemySpawner>(FindFirstObjectByType<EnemySpawner>());
-        G.Register<CardSelectionManager>(FindFirstObjectByType<CardSelectionManager>());
-        G.Register<Player>(FindFirstObjectByType<Player>());
-        G.Register<PlayerMovement>(FindFirstObjectByType<PlayerMovement>());
-        G.Register<UIView>(FindFirstObjectByType<UIView>());
-        G.Register<ScoreUI>(FindFirstObjectByType<ScoreUI>());
+        G.Register<InputManager>(FindAnyObjectByType<InputManager>());
+        G.Register<EnemySpawner>(FindAnyObjectByType<EnemySpawner>());
+        G.Register<CardSelectionManager>(FindAnyObjectByType<CardSelectionManager>());
+        G.Register<Player>(FindAnyObjectByType<Player>());
+        G.Register<PlayerMovement>(FindAnyObjectByType<PlayerMovement>());
+        G.Register<UIView>(FindAnyObjectByType<UIView>());
+        G.Register<ScoreUI>(FindAnyObjectByType<ScoreUI>());
         G.Register<GameOverUI>(FindAnyObjectByType<GameOverUI>());
-        G.Register(FindFirstObjectByType<CameraShake>());
+        G.Register(FindAnyObjectByType<CameraShake>());
 
-        G._player = FindFirstObjectByType<Player>();
+        G._player = FindAnyObjectByType<Player>();
 
         G._bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         G._leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
@@ -26,7 +26,7 @@ public class Bootstrap : MonoBehaviour
 
     void InitAll()
     {
-        var Initializables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IInitializable>().ToList();
+        var Initializables = FindObjectsByType<MonoBehaviour>().OfType<IInitializable>().ToList();
 
         G.Get<GameMain>().Init();
         foreach (var init in Initializables)
