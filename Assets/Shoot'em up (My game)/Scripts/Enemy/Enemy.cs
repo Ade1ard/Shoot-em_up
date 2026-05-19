@@ -33,8 +33,18 @@ public class Enemy : Health
         base.InitHP(maxHealth);
 
         _projectileCaster = GetComponent<ProjectileCaster>();
-        _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
-        _projectileCaster.IsShooting(true);
+        if (_projectileCaster != null)
+        {
+            _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+            _projectileCaster.IsShooting(true);
+        }
+
+        ProjectileCont PJCont = GetComponent<ProjectileCont>();
+        if (PJCont != null)
+        {
+            PJCont.Initialize(PRJDamage);
+            PJCont.ItEnemy();
+        }
     }
 
     protected override void Death()

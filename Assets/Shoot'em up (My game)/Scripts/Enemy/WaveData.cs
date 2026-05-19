@@ -25,7 +25,7 @@ public class WaveData : ScriptableObject
     public ISpawnFormation _spawnPattern;
 
     [Header("Settings")]
-    public int _difficultyLevel = 1;
+    public float _difficultyLevel = 1;
 
     [Header("Wave")]
     public List<EnemyGroup> _enemyGroups = new List<EnemyGroup>();

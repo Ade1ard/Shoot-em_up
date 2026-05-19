@@ -114,12 +114,12 @@ GameObject:
   - component: {fileID: 7604698136511989169}
   - component: {fileID: 8898764008918409892}
   - component: {fileID: 7552099269562904974}
-  - component: {fileID: 6720159454807428517}
+  - component: {fileID: 4962645359620187387}
   - component: {fileID: 6168062537455609239}
   - component: {fileID: 6339229913053647687}
   - component: {fileID: 4600921720785939510}
   m_Layer: 7
-  m_Name: ThornCircle
+  m_Name: Spiral
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,20 +156,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
   _isItEnemy: 1
   _movementType:
-    rid: 920530094028226852
+    rid: 920530267657732096
   _dirGenerator:
-    rid: -2
+    rid: 920530267657732097
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 920530094028226852
-      type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
+    - rid: 920530267657732096
+      type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _moveDuration: 7
-        _inPointTime: 3
-        _inPointTimeOffset: 1
+        _linearSpeed: 20
+    - rid: 920530267657732097
+      type: {class: ToPlayerDir, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &7552099269562904974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,10 +192,10 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   maxHealth: 70
   xpReward: 20
-  PRJDamage: 10
+  PRJDamage: 20
   shootDelay: 2
   projectileCount: 6
---- !u!114 &6720159454807428517
+--- !u!114 &4962645359620187387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,28 +204,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1347978250879101239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 594ae3042bc880e4abd9248fb97f4196, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
-  _projectilePrefab: {fileID: 9095561515226119892, guid: b17797af923c9d3469b34f6a857e0235, type: 3}
-  _shootPoints: {fileID: 0}
-  _shootVFXPrefab: {fileID: 0}
-  _shootFlashAnimator: {fileID: 0}
-  _spawnPattern:
-    rid: 920530228125368463
-  _spawnPositonOffset_X: 0
-  _spawnPositonOffset_Y: 0
-  _shootDelayOffset: 1
-  _shootSounds:
-  - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
-  - {fileID: 8300000, guid: 78b1e97a8d2dded41a287a9f77748bf2, type: 3}
-  references:
-    version: 2
-    RefIds:
-    - rid: 920530228125368463
-      type: {class: SpawnCircle, ns: , asm: Assembly-CSharp}
-      data:
-        _radius: 2
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
+  _clearVFX: {fileID: 0}
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5
@@ -479,7 +460,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 5457770283306814566, guid: 5c2a46d66e980ed44a259a260ca5dad9, type: 3}
+  m_Sprite: {fileID: -4268411852921888939, guid: e2e34f8900414744aa933a192685a24b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -499,7 +480,7 @@ Animator:
   m_GameObject: {fileID: 1641332999120237413}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 633111624794b8e4cbea201b845e11b8, type: 2}
+  m_Controller: {fileID: 9100000, guid: d0eb0d403babf39428673c6db30216cc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0

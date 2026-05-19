@@ -7,7 +7,9 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _clearVFX;
+
     private float _damage;
+    private bool _isItEnemy = false;
 
     public void Initialize(float damage = default)
     {
@@ -25,6 +27,8 @@ public class ProjectileCont : MonoBehaviour
 
             ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
 
+            if (_isItEnemy) return;
+
             DOTween.Kill(transform);
             Destroy(gameObject);
         }
@@ -32,6 +36,8 @@ public class ProjectileCont : MonoBehaviour
 
     public void Clear()
     {
+        if (_isItEnemy) return;
+
         if (_clearVFX != null)
             Instantiate(_clearVFX, transform.position, Quaternion.identity);
 
@@ -46,4 +52,6 @@ public class ProjectileCont : MonoBehaviour
         return viewportPos.x >= 0 && viewportPos.x <= 1 &&
             viewportPos.y >= 0 && viewportPos.y <= 1;
     }
+
+    public void ItEnemy() { _isItEnemy = true; }
 }

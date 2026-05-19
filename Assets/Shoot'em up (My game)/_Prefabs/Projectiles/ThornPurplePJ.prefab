@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
   m_Layer: 8
-  m_Name: BlackCrossCirclePJ
+  m_Name: ThornPurplePJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,18 +52,17 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226855
   _dirGenerator:
-    rid: 920530228125368446
+    rid: 920530267657732183
   references:
     version: 2
     RefIds:
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 7
-    - rid: 920530228125368446
-      type: {class: AdaptiveDir, ns: , asm: Assembly-CSharp}
-      data:
-        _directionOffset: 0.25
+        _linearSpeed: 15
+    - rid: 920530267657732183
+      type: {class: ToPlayerDir, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
-  _defaultDamage: 10
 --- !u!50 &3503946192638833755
 Rigidbody2D:
   serializedVersion: 5
@@ -139,7 +137,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0059122145, y: -0.010765046}
+  m_Offset: {x: -0.078335434, y: 0.007527627}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -149,7 +147,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.442262, y: 0.3471505}
+  m_Size: {x: 0.3199808, y: 0.18057872}
   m_EdgeRadius: 0
 --- !u!1 &2387261540033794903
 GameObject:
@@ -167,7 +165,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6703629787408364348
 Transform:
@@ -177,13 +175,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2387261540033794903}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5653371047313296270}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &6492754336619852710
 SpriteRenderer:
   serializedVersion: 2
@@ -233,12 +231,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 6632189094808525388, guid: 1e6b0d8f42dcd794db28bbf3f474c6c7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -123514613426489816, guid: aeca9d3424d6edf4182ba5d47f97764e, type: 3}
+  m_Color: {r: 0.4431373, g: 0.3137255, b: 0.5294118, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.34, y: 3.58}
+  m_Size: {x: 2.57, y: 3.93}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -253,7 +251,7 @@ Animator:
   m_GameObject: {fileID: 2387261540033794903}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0eb0d403babf39428673c6db30216cc, type: 2}
+  m_Controller: {fileID: 9100000, guid: e046515d639634d41af04026811de5e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0

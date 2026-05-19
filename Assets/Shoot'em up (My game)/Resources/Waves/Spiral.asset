@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: BlackCross
+  m_Name: Spiral
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530228125368398
-  _difficultyLevel: 2
+    rid: 920530267657732229
+  _difficultyLevel: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: f4a6672f18ee6b54cab9a18efec6147a, type: 3}
-    _minEnemyCount: 1
-    _maxEnemyCount: 3
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 6bc9a2da037b21a498bc1b2739772d7b, type: 3}
+    _minEnemyCount: 2
+    _maxEnemyCount: 4
     _spawnTogether: 0
-    _delayBetweenEnemies: 1
-    _delayAfterGroup: 0
-  _waveStartDelay: 0
+    _delayBetweenEnemies: 0.3
+    _delayAfterGroup: 1
+  _waveStartDelay: 1
   references:
     version: 2
     RefIds:
-    - rid: 920530228125368398
+    - rid: 920530267657732229
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 3
+        _radius: 10

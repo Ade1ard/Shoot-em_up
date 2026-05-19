@@ -139,6 +139,7 @@ public class Player : Health, IInitializable
     public void LoadBasicStats()
     {
         base.InitHP(_playerData.maxHealth);
+        damageMod = _playerData.damage;
         shootDelayMod = _playerData.shootDelay;
         projectileCountMod = _playerData.projectileCount;
         levelXPCostMod = _playerData.levelXPCost;
