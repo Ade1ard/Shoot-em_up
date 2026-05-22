@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,6 +14,17 @@ public class Enemy : Health
     [SerializeField] private float PRJDamage = 10;
     [SerializeField] private float shootDelay = 2;
     [SerializeField] private int projectileCount = 1;
+
+    [Header("Events")]
+    [SerializeField] private List<EventSetup> eventSetups = new List<EventSetup>();
+
+    [System.Serializable]
+    public class EventSetup
+    {
+        public EventType eventType;
+        [SerializeReference, SubclassSelector]
+        public List<IEnemyAction> actions = new List<IEnemyAction>();
+    }
 
     private ProjectileCaster _projectileCaster;
 
@@ -54,5 +66,17 @@ public class Enemy : Health
         base.Death();
         OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
+    }
+
+    private void TriggerEvent(EventType eventType)
+    {
+        var setup = eventSetups.Find(e => e.eventType == eventType);
+        if (setup != null)
+        {
+            foreach (var action in setup.actions)
+            {
+                action.Execute();
+            }
+        }
     }
 }

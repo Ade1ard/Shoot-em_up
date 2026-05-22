@@ -15,10 +15,11 @@ MonoBehaviour:
   _spawnPattern:
     rid: 920530110659166305
   _difficultyLevel: 1
+  _isAvaible: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
-    _minEnemyCount: 3
-    _maxEnemyCount: 5
+    _minEnemyCount: 2
+    _maxEnemyCount: 4
     _spawnTogether: 0
     _delayBetweenEnemies: 1
     _delayAfterGroup: 1
@@ -29,4 +30,4 @@ MonoBehaviour:
     - rid: 920530110659166305
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 3
+        _radius: 2

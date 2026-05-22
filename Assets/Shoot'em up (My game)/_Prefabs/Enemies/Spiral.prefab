@@ -195,6 +195,10 @@ MonoBehaviour:
   PRJDamage: 20
   shootDelay: 2
   projectileCount: 6
+  eventSetups: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4962645359620187387
 MonoBehaviour:
   m_ObjectHideFlags: 0

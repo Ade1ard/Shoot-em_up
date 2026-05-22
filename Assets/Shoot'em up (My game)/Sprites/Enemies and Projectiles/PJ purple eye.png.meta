@@ -122,72 +122,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PJ purple eye_0
-      rect:
-        serializedVersion: 2
-        x: 445
-        y: 315
-        width: 47
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f908aff554a47ac0800000000000000
-      internalID: -3858278291481294351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PJ purple eye_1
-      rect:
-        serializedVersion: 2
-        x: 491
-        y: 307
-        width: 19
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c543214304adc8e0800000000000000
-      internalID: -1671499552799898171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PJ purple eye_2
-      rect:
-        serializedVersion: 2
-        x: 505
-        y: 301
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31d6f9beee6102120800000000000000
-      internalID: 2386933017917484307
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PJ purple eye_3
       rect:
         serializedVersion: 2
@@ -196,7 +130,7 @@ TextureImporter:
         width: 421
         height: 232
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,7 +147,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bf77f0e5c4bc2f34f8b1fece61e2e5f9
     internalID: 0
     vertices: []
     indices: 
@@ -227,6 +161,7 @@ TextureImporter:
       PJ purple eye_1: -1671499552799898171
       PJ purple eye_2: 2386933017917484307
       PJ purple eye_3: 4344590002082926001
+      PJ purple eye_4: 737108948
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

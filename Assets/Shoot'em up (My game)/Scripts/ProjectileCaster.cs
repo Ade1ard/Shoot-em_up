@@ -59,29 +59,34 @@ public class ProjectileCaster : MonoBehaviour
 
         if (Time.time - _lastShootTime > _shootDelay && OnScreen())
         {
-            foreach (var p in _shootP)
-            {
-                _lastShootTime = Time.time;
-                _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
-
-                Vector3 InitPos = new Vector3(
-                    p.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
-                    p.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
-                    0);
-
-                var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
-                projectile.Initialize(_PRJDamage);
-                projectile.GetComponent<ObjectMovement>().StartMove(InitPos, transform.position);
-            }
-            if (_shootSounds.Count != 0)
-                _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
-
-            if (_shootVFXPrefab != null)
-                Instantiate(_shootVFXPrefab, _shootPoints.position, Quaternion.identity, transform);
-
-            if (_shootFlashAnimator != null)
-                _shootFlashAnimator.SetTrigger("Shoot");
+            Shoot();
         }
+    }
+
+    public void Shoot()
+    {
+        foreach (var p in _shootP)
+        {
+            _lastShootTime = Time.time;
+            _lastShootTime += Random.Range(-_shootDelayOffset, _shootDelayOffset);
+
+            Vector3 InitPos = new Vector3(
+                p.position.x + Random.Range(-_spawnPositonOffset_X, _spawnPositonOffset_X),
+                p.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
+                0);
+
+            var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
+            projectile.Initialize(_PRJDamage);
+            projectile.GetComponent<ObjectMovement>().StartMove(InitPos, transform.position);
+        }
+        if (_shootSounds.Count != 0)
+            _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
+
+        if (_shootVFXPrefab != null)
+            Instantiate(_shootVFXPrefab, _shootPoints.position, Quaternion.identity, transform);
+
+        if (_shootFlashAnimator != null)
+            _shootFlashAnimator.SetTrigger("Shoot");
     }
 
     private void UpdateShootPoints(int count)

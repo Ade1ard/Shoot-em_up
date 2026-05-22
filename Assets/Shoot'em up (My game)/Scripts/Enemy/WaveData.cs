@@ -26,6 +26,7 @@ public class WaveData : ScriptableObject
 
     [Header("Settings")]
     public float _difficultyLevel = 1;
+    public bool _isAvaible = true;
 
     [Header("Wave")]
     public List<EnemyGroup> _enemyGroups = new List<EnemyGroup>();
@@ -33,20 +34,10 @@ public class WaveData : ScriptableObject
     [Header("Timing")]
     public float _waveStartDelay = 2f;
 
-    public int GetRandomCountForGroup(int groupIndex)
+    public int GetRandomCountForGroup(int groupIndex, int extraMaxEnemies = 0)
     {
         if (groupIndex >= _enemyGroups.Count) return 0;
         EnemyGroup group = _enemyGroups[groupIndex];
-        return Random.Range(group._minEnemyCount, group._maxEnemyCount + 1);
-    }
-
-    public int GetTotalEnemyCount()
-    {
-        int total = 0;
-        foreach (var group in _enemyGroups)
-        {
-            total += (group._minEnemyCount + group._maxEnemyCount) / 2;
-        }
-        return total;
+        return Random.Range(group._minEnemyCount, group._maxEnemyCount + extraMaxEnemies + 1);
     }
 }

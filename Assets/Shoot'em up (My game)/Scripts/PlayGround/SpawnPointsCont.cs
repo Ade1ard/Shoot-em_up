@@ -16,9 +16,9 @@ public class SpawnPointsCont : MonoBehaviour
             if (point.position.x <= -leftBoundary && point.position.x >= leftBoundary)
             {
                 if (point.position.x > 0)
-                    point.position = new Vector3(-leftBoundary / 2, -bottomBoundary + _boundsOffset, 0);
+                    point.position = new Vector3(-leftBoundary / 2 - _boundsOffset, -bottomBoundary + _boundsOffset, 0);
                 else
-                    point.position = new Vector3(leftBoundary / 2, -bottomBoundary + _boundsOffset, 0);
+                    point.position = new Vector3(leftBoundary / 2 + _boundsOffset, -bottomBoundary + _boundsOffset, 0);
             }
 
             if (point.position.x <= leftBoundary)

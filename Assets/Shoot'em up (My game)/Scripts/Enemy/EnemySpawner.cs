@@ -40,7 +40,10 @@ public class EnemySpawner : MonoBehaviour, IInitializable
 
     private void LoadWaves()
     {
-        _availableWaves = Resources.LoadAll<WaveData>("Waves").ToList();
+        var waves = Resources.LoadAll<WaveData>("Waves").ToList();
+        foreach (var wave in waves)
+            if (wave._isAvaible)
+                _availableWaves.Add(wave);
     }
 
     public void StartSpawning()
@@ -54,10 +57,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         {
             int maxWaves = _maxWavesSimultaneosly + UnityEngine.Random.Range(-_maxWavesOffset, _maxWavesOffset+1);
 
-            for (int i = 0; i < maxWaves; i++)
-            {
-                _currentWaves.Add(SelectNextWave());
-            }
+            _currentWaves = SelectNextWaves(maxWaves);
 
             _currentWaveNumber++;
             Debug.Log($"Wave begin {_currentWaveNumber} : Current difficulty {_currentDifficulty} : WavesCount {_currentWaves.Count}");
@@ -78,7 +78,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         }
     }
 
-    WaveData SelectNextWave()
+    List<WaveData> SelectNextWaves(int maxWaves)
     {
         List<WaveData> possibleWaves = new List<WaveData>();
 
@@ -88,7 +88,15 @@ public class EnemySpawner : MonoBehaviour, IInitializable
                 possibleWaves.Add(wave);
         }
 
-        return possibleWaves[UnityEngine.Random.Range(0, possibleWaves.Count)];
+        List<WaveData> waves = new List<WaveData>();
+        while (waves.Count < maxWaves)
+        {
+            var wave = possibleWaves[UnityEngine.Random.Range(0, possibleWaves.Count)];
+            if (!waves.Contains(wave))
+                waves.Add(wave);
+        }
+
+        return waves;
     }
 
     IEnumerator SpawnWave(WaveData currentWave)
@@ -97,7 +105,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         {
             WaveData.EnemyGroup currentGroup = currentWave._enemyGroups[groupIndex];
 
-            int enemyCount = currentWave.GetRandomCountForGroup(groupIndex);
+            int enemyCount = currentWave.GetRandomCountForGroup(groupIndex, (int)Mathf.Floor(_currentDifficulty - 1));
 
             _basePosition = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)].position;
 
@@ -143,11 +151,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
             _basePosition = transform.position;
         }
 
-        Vector3 offset = Vector3.zero;
-
-        spawnPattern.CalculateSpawnPosition(_basePosition, index, enemyCount);
-
-        return _basePosition + offset;
+        return spawnPattern.CalculateSpawnPosition(_basePosition, index, enemyCount);
     }
 
     public void AllEnemiesUIVisible(bool visible)

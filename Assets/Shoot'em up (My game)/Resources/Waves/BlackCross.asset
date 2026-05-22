@@ -15,6 +15,7 @@ MonoBehaviour:
   _spawnPattern:
     rid: 920530228125368398
   _difficultyLevel: 2
+  _isAvaible: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 7552099269562904974, guid: f4a6672f18ee6b54cab9a18efec6147a, type: 3}
     _minEnemyCount: 1
@@ -29,4 +30,4 @@ MonoBehaviour:
     - rid: 920530228125368398
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 3
+        _radius: 2

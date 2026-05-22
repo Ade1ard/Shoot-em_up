@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
     rid: 920530110659166307
-  _waveName: Electro one
   _difficultyLevel: 1
+  _isAvaible: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 7552099269562904974, guid: c0c6c6ed408c9d54ba7859f0e376eab5, type: 3}
     _minEnemyCount: 1
@@ -24,11 +24,10 @@ MonoBehaviour:
     _delayBetweenEnemies: 1.5
     _delayAfterGroup: 0
   _waveStartDelay: 1
-  _baseXP: 100
   references:
     version: 2
     RefIds:
     - rid: 920530110659166307
       type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 3
+        _radius: 2
