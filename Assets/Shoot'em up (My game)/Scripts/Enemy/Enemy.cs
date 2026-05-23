@@ -59,11 +59,18 @@ public class Enemy : Health
         }
     }
 
+    public override void DealDamage(float damage, Vector3 closestPoint = default)
+    {
+        base.DealDamage(damage, closestPoint);
+        TriggerEvent(EventType.OnDamageTake);
+    }
+
     protected override void Death()
     {
         base.UIVisible(false);
         DOTween.Kill(transform);
         base.Death();
+        TriggerEvent(EventType.OnDeath);
         OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
     }
@@ -75,7 +82,7 @@ public class Enemy : Health
         {
             foreach (var action in setup.actions)
             {
-                action.Execute();
+                action.Execute(_projectileCaster);
             }
         }
     }

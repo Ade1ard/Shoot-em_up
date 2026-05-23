@@ -89,6 +89,8 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         }
 
         List<WaveData> waves = new List<WaveData>();
+        if (maxWaves > possibleWaves.Count)
+            maxWaves = possibleWaves.Count;
         while (waves.Count < maxWaves)
         {
             var wave = possibleWaves[UnityEngine.Random.Range(0, possibleWaves.Count)];
