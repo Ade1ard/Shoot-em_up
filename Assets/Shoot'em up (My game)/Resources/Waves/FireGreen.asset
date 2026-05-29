@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
-  m_Name: BookTogether
+  m_Name: FireGreen
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
-    rid: 920530110659166306
-  _difficultyLevel: 1.4
+    rid: 920530110659166305
+  _difficultyLevel: 1.2
   _isAvaible: 1
   _enemyGroups:
-  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2a2f09205295ff048b0166414bf344f5, type: 3}
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2d9f19998ae113344ac123c911a59125, type: 3}
     _minEnemyCount: 2
     _maxEnemyCount: 4
-    _spawnTogether: 1
-    _delayBetweenEnemies: 0
+    _spawnTogether: 0
+    _delayBetweenEnemies: 1
     _delayAfterGroup: 1
   _waveStartDelay: 1
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166306
-      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+    - rid: 920530110659166305
+      type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
       data:
-        _Width: 1.5
+        _radius: 2

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f67eb5aa2fc028946be330b412780728
+guid: 91d348afa4b811a4d9d556d90e69430d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1351220182050623721
-    second: enemy black_purple circle_0
+      213: 1462318181781107465
+    second: PJ WhiteFire_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy black_purple circle_0
+      name: PJ WhiteFire_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 21
-        width: 930
-        height: 984
+        x: 29
+        y: 11
+        width: 305
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e05774b89f70c210800000000000000
-      internalID: 1351220182050623721
+      spriteID: 90378ad73a23b4410800000000000000
+      internalID: 1462318181781107465
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      enemy black_purple circle_0: 1351220182050623721
+      PJ WhiteFire_0: 1462318181781107465
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

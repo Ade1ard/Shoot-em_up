@@ -99,6 +99,7 @@ public class CurveLinearMove: IMovementType
     {
         Vector3[] path = _path.GeneratePath(transform.position, dirGenerator.GenerateDirection(startPosition, spawnerPos));
         var tween = transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
+            .SetLoops(-1, LoopType.Incremental)
             .SetEase(Ease.Linear);
 
         if (!isItEnemy)
@@ -225,7 +226,6 @@ public class GenerateCirclePath: IPathGenerator
 {
     [Header("Circle")]
     public float radius = 4f;
-    public int loops = 2;
     public bool clockwise = true;
     public int circleResolution = 50;
 
@@ -236,11 +236,11 @@ public class GenerateCirclePath: IPathGenerator
 
         for (int i = 0; i < circleResolution; i++)
         {
-            float angle = (float)i / (circleResolution - 1) * Mathf.PI * 2 * loops * direction;
+            float angle = (float)i / (circleResolution - 1) * Mathf.PI * 2 * direction;
             float x = Mathf.Cos(angle) * radius;
-            float y = start.y + Mathf.Sin(angle) * radius * 0.5f;
+            float y = start.y + Mathf.Sin(angle) * radius;
 
-            path[i] = new Vector3(start.x + x, y, start.z);
+            path[i] = new Vector3(start.x + x - radius, y, start.z);
         }
 
         return path;
