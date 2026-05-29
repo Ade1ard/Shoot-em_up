@@ -48,6 +48,17 @@ public class GameMain : IInitializable
         _inputManager.OnGameRestarted += RestartGame;
     }
 
+    public void StartGame()
+    {
+        _runStartTime = Time.time;
+        _isRunning = true;
+
+        _uiView.StartCoroutine(RunTime());
+        _enemySpawner.StartSpawning();
+
+        EnterState(GameState.Running);
+    }
+
     public void SetGameState(GameState newState)
     {
         if (_currentState == newState) return;
@@ -113,17 +124,6 @@ public class GameMain : IInitializable
         }
     }
 
-    public void StartGame()
-    {
-        _runStartTime = Time.time;
-        _isRunning = true;
-
-        _uiView.StartCoroutine(RunTime());
-        _enemySpawner.StartSpawning();
-
-        EnterState(GameState.Running);
-    }
-
     private void ShowCardSelection() => SetGameState(GameState.CardSelection);
 
     private void CloseSelection() => SetGameState(GameState.Running);
@@ -155,8 +155,6 @@ public class GameMain : IInitializable
         SetGameState(GameState.Running);
     }
 
-
-
     private void UpdateXP(int exp, int levelCost) => _uiView.UpdateXP(exp, levelCost);
 
     private void UpdateScore(int score, int amount) => _scoreUI.UpdateScoreAmount(score, amount);
@@ -183,8 +181,16 @@ public class GameMain : IInitializable
                 _player.AddPrjcCount();
                 break;
 
-            case EffectType.SpecialAbility:
-                //playerStats.unlockSpecialAbility = true;
+            case EffectType.CrossPJSpawnPattern:
+                _player.SetPJSpawnPattern<SpawnCross>();
+                break;
+
+            case EffectType.LinePJSpawnPattern:
+                _player.SetPJSpawnPattern<SpawnLine>();
+                break;
+
+            case EffectType.SemicirlcePJSpawnPattern:
+                //_player.SetPJSpawnPattern<>();
                 break;
         }
         if (effect._haveLimit)

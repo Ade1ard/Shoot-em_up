@@ -33,7 +33,9 @@ public enum EffectType
     Damage,
     AttackSpeed,
     ProjectileCount,
-    SpecialAbility
+    CrossPJSpawnPattern,
+    LinePJSpawnPattern,
+    SemicirlcePJSpawnPattern,
 }
 
 public enum Rarity

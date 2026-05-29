@@ -55,11 +55,14 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     {
         while (true)
         {
+            _currentWaveNumber++;
+
             int maxWaves = _maxWavesSimultaneosly + UnityEngine.Random.Range(-_maxWavesOffset, _maxWavesOffset+1);
+            if (maxWaves > _currentWaveNumber)
+                maxWaves = _currentWaveNumber;
 
             _currentWaves = SelectNextWaves(maxWaves);
 
-            _currentWaveNumber++;
             Debug.Log($"Wave begin {_currentWaveNumber} : Current difficulty {_currentDifficulty} : WavesCount {_currentWaves.Count}");
             _UIView.ShowCurrentWave(_currentWaveNumber);
             _currentDifficulty += _difficultyIncreasePerWave;

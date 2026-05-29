@@ -8,13 +8,13 @@ public class ProjectileCaster : MonoBehaviour
     [SerializeField] ProjectileCont _projectilePrefab;
 
     [Header("Settings")]
-    [SerializeField] Transform _shootPoints;
-    [SerializeField] private ParticleSystem _shootVFXPrefab;
+    [SerializeField] Transform _shootPoint;
+    [SerializeField] ParticleSystem _shootVFXPrefab;
     [SerializeField] Animator _shootFlashAnimator;
 
     [Header("SpawnPattern")]
     [SerializeReference, SubclassSelector]
-    [SerializeField] private ISpawnFormation _spawnPattern;
+    private ISpawnFormation _spawnPattern;
 
     [Header("Offsets")]
     [SerializeField] private float _spawnPositonOffset_X = 0.1f;
@@ -34,8 +34,8 @@ public class ProjectileCaster : MonoBehaviour
 
     private void Start()
     {
-        if (_shootPoints == null)
-            _shootPoints = transform;
+        if (_shootPoint == null)
+            _shootPoint = transform;
 
         _lastShootTime = Time.time;
         UpdateShootPoints(_projectileCount);
@@ -44,6 +44,14 @@ public class ProjectileCaster : MonoBehaviour
     }
 
     public void IsShooting(bool isShooting) { _isShooting  = isShooting; }
+
+    public void SetShootPattern(ISpawnFormation spawnFormation, IDirectionGenerator dirGenerator = null)
+    {
+        _spawnPattern = spawnFormation;
+
+        if (dirGenerator != null)
+            _projectilePrefab.GetComponent<ObjectMovement>().Init(dirGenerator);
+    }
 
     public void TakeStats(float damage, float shootDelay, int projectileCount)
     {
@@ -77,13 +85,13 @@ public class ProjectileCaster : MonoBehaviour
 
             var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
             projectile.Initialize(_PRJDamage);
-            projectile.GetComponent<ObjectMovement>().StartMove(InitPos, transform.position);
+            projectile.GetComponent<ObjectMovement>().StartMove(InitPos, _shootPoint.position);
         }
         if (_shootSounds.Count != 0)
             _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
 
         if (_shootVFXPrefab != null)
-            Instantiate(_shootVFXPrefab, _shootPoints.position, Quaternion.identity, transform);
+            Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
 
         if (_shootFlashAnimator != null)
             _shootFlashAnimator.SetTrigger("Shoot");
@@ -95,19 +103,19 @@ public class ProjectileCaster : MonoBehaviour
             Destroy(p.gameObject);
         _shootP.Clear();
 
-        if (count == 1)
-        {
-            GameObject bullet = new GameObject($"{gameObject.name}ShootPoint");
-            bullet.transform.SetParent(_shootPoints);
-            bullet.transform.localPosition = Vector3.zero;
-            _shootP.Add(bullet.transform);
-            return;
-        }
+        //if (count == 1)
+        //{
+        //    GameObject bullet = new GameObject($"{gameObject.name}ShootPoint");
+        //    bullet.transform.SetParent(_shootPoint);
+        //    bullet.transform.localPosition = Vector3.zero;
+        //    _shootP.Add(bullet.transform);
+        //    return;
+        //}
 
         for (int i = 0; i < count; i++)
         {
             GameObject bullet = new GameObject($"{gameObject.name}ShootPoint{i}");
-            bullet.transform.SetParent(_shootPoints);
+            bullet.transform.SetParent(_shootPoint);
             bullet.transform.localPosition = _spawnPattern.CalculateSpawnPosition(Vector3.zero, i, _projectileCount);
             _shootP.Add(bullet.transform);
         }

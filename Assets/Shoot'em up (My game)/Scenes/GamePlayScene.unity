@@ -6996,7 +6996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728105650}
   m_Layer: 6
-  m_Name: ShootPoints
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8885,11 +8885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1677518f473b049bbb62e9f73bec5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackGroundCont
-  _backGroundClouds: []
-  _cloudsSpeed: 2
-  _cloudSpriteCountHorizontal: 2
-  _cloudsVertPositionOffset: 15
-  _cloudsHorPositionOffset: 2
   _backGrounds:
   - {fileID: 1112284119}
   - {fileID: 1817825696}
@@ -9481,20 +9476,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 3235747921286425940, guid: 9b51c5ae85395dc439f6e691649545d0, type: 3}
-  _shootPoints: {fileID: 728105650}
+  _shootPoint: {fileID: 728105650}
   _shootVFXPrefab: {fileID: 5880797563141009103, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
   _shootFlashAnimator: {fileID: 196716499}
   _spawnPattern:
-    rid: 920530110659166315
-  _spawnPositonOffset_X: 0.03
-  _spawnPositonOffset_Y: 0.03
+    rid: 920530498112716985
+  _spawnPositonOffset_X: 0
+  _spawnPositonOffset_Y: 0
   _shootDelayOffset: 0
   _shootSounds:
   - {fileID: 8300000, guid: f950ce2961e454f448d4dd247ba64f07, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166315
+    - rid: 920530498112716985
       type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
       data:
         _Width: 1

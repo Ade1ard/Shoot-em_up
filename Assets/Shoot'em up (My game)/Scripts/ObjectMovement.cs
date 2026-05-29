@@ -20,6 +20,14 @@ public class ObjectMovement : MonoBehaviour
         _startPosition = transform.position;
     }
 
+    public void Init(IDirectionGenerator dirGenerator = null, IMovementType movementType = null)
+    {
+        if (movementType != null)
+            _movementType = movementType;
+        if (dirGenerator != null)
+            _dirGenerator = dirGenerator;
+    }
+
     public void StartMove(Vector3 startPosition = default, Vector3 spawnerPos = default)
     {
         if (_movementType != null)
@@ -142,7 +150,7 @@ public class BetweenPointMove: IMovementType
 
         Vector3 point = new Vector3(
             Random.Range(G._leftBoundary + 1, -G._leftBoundary - 1),
-            Random.Range(0, -G._bottomBoundary - 1),
+            Random.Range(G._bottomBoundary / 2, -G._bottomBoundary - 1),
             0
         );
 

@@ -144,19 +144,19 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226854
   _dirGenerator:
-    rid: 920530094028226825
+    rid: 920530498112717002
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226825
-      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
-      data:
-        _upDirection: 1
-        _directionOffset: 0
     - rid: 920530094028226854
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
         _linearSpeed: 22.5
+    - rid: 920530498112717002
+      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
+      data:
+        _upDirection: 1
+        _directionOffset: 0
 --- !u!114 &3235747921286425940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
+  _lifeTime: 0
 --- !u!50 &7700706176413310029
 Rigidbody2D:
   serializedVersion: 5

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c090aafb276ee2e4790b792e03261c1b, type: 3}
+  m_Name: WeaponLine
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponConfig
+  SpawnPattern:
+    rid: 920530498112717027
+  MaxProjectileCount: 3
+  DirGenerator:
+    rid: 920530498112717040
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530498112717027
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+      data:
+        _Width: 1
+    - rid: 920530498112717040
+      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
+      data:
+        _upDirection: 1
+        _directionOffset: 0

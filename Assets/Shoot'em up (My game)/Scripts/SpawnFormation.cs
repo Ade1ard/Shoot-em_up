@@ -24,7 +24,7 @@ public class SpawnRandom: ISpawnFormation
 [System.Serializable]
 public class SpawnCircle: ISpawnFormation
 {
-    [SerializeField] private float _radius = 3f;
+    [SerializeField] private float _radius = 1f;
 
     public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
     {
@@ -41,11 +41,14 @@ public class SpawnCircle: ISpawnFormation
 [System.Serializable]
 public class SpawnLine: ISpawnFormation
 {
-    [SerializeField] private float _Width = 3f;
+    [SerializeField] private float _Width = 1f;
 
     public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
     {
-        float t = index / (float)Mathf.Max(1, count - 1);
+        if (count <= 1)
+            return startPosition;
+
+        float t = (float)index / (count - 1);
         var offset = new Vector3(
             Mathf.Lerp(-_Width, _Width, t),
             0,
@@ -58,7 +61,7 @@ public class SpawnLine: ISpawnFormation
 [System.Serializable]
 public class SpawnVFormation: ISpawnFormation
 {
-    public Vector2 _spacing = new Vector2(0.5f, 0.5f);
+    public Vector2 _spacing = new Vector2(1f, 1f);
 
     public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
     {
@@ -88,6 +91,24 @@ public class SpawnGrid: ISpawnFormation
             -row * _spacing.y,
             0
         );
+        return startPosition + offset;
+    }
+}
+
+[System.Serializable]
+public class SpawnCross: ISpawnFormation
+{
+    public float _radius = 1;
+
+    public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
+    {
+        float angle = (index + 1) * 90 * Mathf.Deg2Rad;
+        var offset = new Vector3(
+            Mathf.Cos(angle) * _radius,
+            Mathf.Sin(angle) * _radius,
+            0
+        );
+
         return startPosition + offset;
     }
 }

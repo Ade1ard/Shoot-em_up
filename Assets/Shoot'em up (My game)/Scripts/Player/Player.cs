@@ -1,5 +1,7 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -24,10 +26,12 @@ public class Player : Health, IInitializable
     private int XP;
 
     private PlayerData _playerData;
+    private Dictionary<Type, PlayerWeaponConfig> _weaponConfigs = new Dictionary<Type, PlayerWeaponConfig>();
 
     private int damageMod = 10;
     private float shootDelayMod = 1f;
     private int projectileCountMod = 1;
+    private int _maxProjectileCount = 3;
     private int levelXPCostMod = 100;
     private float levelMultiplierMod = 1.2f;
 
@@ -51,7 +55,14 @@ public class Player : Health, IInitializable
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         _sprite = GetComponent<SpriteRenderer>();
         _cameraShake = G.Get<CameraShake>();
+
         _playerData = Resources.Load<PlayerData>("Player/PlayerData");
+        var configs = Resources.LoadAll<PlayerWeaponConfig>("Player").ToList();
+        foreach (var config in configs)
+        {
+            var type = config.SpawnPattern.GetType();
+            _weaponConfigs[type] = config;
+        }
 
         LoadBasicStats();
         UpdateStats();
@@ -76,21 +87,10 @@ public class Player : Health, IInitializable
         return Time.time - _lastHitTime > _noHitDuration;
     }
 
-    private void FlashHitAnim(float duration)
-    {
-        Color origColor = _sprite.color;
-        _sprite.DOColor(_hitColor, 0.2f).SetLoops((int)math.ceil(duration / 0.2f), LoopType.Yoyo).OnComplete(() => _sprite.color = origColor);
-    }
-
     protected override void Death()
     {
         base.Death();
         OnPlayerDied?.Invoke();
-    }
-
-    private void Update()
-    {
-        _playerCanvas.transform.position = Vector3.SmoothDamp(_playerCanvas.transform.position, transform.position, ref v, 1 / _canvasFollowSpeed);
     }
 
     public void AddMaxHP(int amount)
@@ -113,8 +113,35 @@ public class Player : Health, IInitializable
     public void AddPrjcCount()
     {
         projectileCountMod += 1;
-        projectileCountMod = Mathf.Clamp(projectileCountMod, 1, 3);
-        UpdateStats();
+        projectileCountMod = Mathf.Clamp(projectileCountMod, 1, _maxProjectileCount);
+    }
+
+    public void SetPJSpawnPattern<T>() where T : ISpawnFormation
+    {
+        if (_weaponConfigs.TryGetValue(typeof(T), out var config))
+        {
+            _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
+            RecalculateProjectileCount(config);
+        }
+    }
+
+    private void RecalculateProjectileCount(PlayerWeaponConfig config)
+    {
+        int newMax = config.MaxProjectileCount;
+
+        if (_maxProjectileCount > 0)
+        {
+            float ratio = (float)projectileCountMod / _maxProjectileCount;
+            projectileCountMod = Mathf.Max(1, Mathf.RoundToInt(newMax * ratio));
+        }
+        else
+        {
+            projectileCountMod = newMax;
+        }
+
+        _maxProjectileCount = newMax;
+
+        projectileCountMod = Mathf.Min(projectileCountMod, _maxProjectileCount);
     }
 
     public void AddXP(int amount, float difficulty)
@@ -149,7 +176,16 @@ public class Player : Health, IInitializable
         score = 0;
         XP = 0;
 
+        SetPJSpawnPattern<SpawnLine>();
         UpdateStats();
+    }
+
+    public void IsShooting(bool isShooting) { _playerPRJCaster.IsShooting(isShooting); }
+
+    private void FlashHitAnim(float duration)
+    {
+        Color origColor = _sprite.color;
+        _sprite.DOColor(_hitColor, 0.2f).SetLoops((int)math.ceil(duration / 0.2f), LoopType.Yoyo).OnComplete(() => _sprite.color = origColor);
     }
 
     public Tween RestartAnimScaleFade()
@@ -164,8 +200,6 @@ public class Player : Health, IInitializable
         return transform.DOMove(_startPosition, _animDuration).SetUpdate(true).SetEase(_appearCurve).OnComplete(() => _playerPRJCaster.IsShooting(true));
     }
 
-    public void IsShooting(bool isShooting) { _playerPRJCaster.IsShooting(isShooting); }
-
     private void SetScaleAndPos(Vector2 pos)
     {
         transform.position = pos;
@@ -178,5 +212,9 @@ public class Player : Health, IInitializable
         _playerPRJCaster.IsShooting(true);
         _startPosition = transform.position;
         _originalScale = transform.localScale;
+    }
+    private void Update()
+    {
+        _playerCanvas.transform.position = Vector3.SmoothDamp(_playerCanvas.transform.position, transform.position, ref v, 1 / _canvasFollowSpeed);
     }
 }
