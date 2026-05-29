@@ -168,7 +168,7 @@ MonoBehaviour:
       type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
       data:
         _moveDuration: 6
-        _inPointTime: 3
+        _inPointTime: 1.1
         _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
 MonoBehaviour:
@@ -194,12 +194,19 @@ MonoBehaviour:
   maxHealth: 50
   xpReward: 10
   PRJDamage: 10
-  shootDelay: 5
+  shootDelay: 100
   projectileCount: 1
-  eventSetups: []
+  eventSetups:
+  - eventType: 2
+    actions:
+    - rid: 920530492170174656
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 920530492170174656
+      type: {class: SpawnPJAction, ns: , asm: Assembly-CSharp}
+      data:
+        _maxPJCount: 1
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0

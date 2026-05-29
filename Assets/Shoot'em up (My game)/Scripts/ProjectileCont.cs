@@ -7,6 +7,7 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _clearVFX;
+    [SerializeField] private float _lifeTime; // if == 0 ensless lifeTime
 
     private float _damage;
     private bool _isItEnemy = false;
@@ -17,6 +18,9 @@ public class ProjectileCont : MonoBehaviour
             _damage = damage;
         else
             _damage = 10;
+
+        if (_lifeTime > 0)
+            Invoke("Clear", _lifeTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

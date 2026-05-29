@@ -26,6 +26,11 @@ public class Enemy : Health
         public List<IEnemyAction> actions = new List<IEnemyAction>();
     }
 
+    private Vector3 _previousPositon;
+    private float _currentSpeed;
+    private float _onMoveTriggerDelay = 1;
+    private float _onMoveLastTrigger;
+
     private ProjectileCaster _projectileCaster;
 
     public event Action<Enemy, int> OnDeath;
@@ -73,6 +78,18 @@ public class Enemy : Health
         TriggerEvent(EventType.OnDeath);
         OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
+    }
+
+    private void Update()
+    {
+        _currentSpeed = Vector3.Distance(transform.position, _previousPositon) / Time.deltaTime;
+        _previousPositon = transform.position;
+
+        if (_currentSpeed > 2 && Time.time - _onMoveLastTrigger >= _onMoveTriggerDelay)
+        {
+            TriggerEvent(EventType.OnMove);
+            _onMoveLastTrigger = Time.time;
+        }
     }
 
     private void TriggerEvent(EventType eventType)
