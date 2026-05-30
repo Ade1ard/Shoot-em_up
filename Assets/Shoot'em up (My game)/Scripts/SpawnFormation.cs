@@ -99,13 +99,33 @@ public class SpawnGrid: ISpawnFormation
 public class SpawnCross: ISpawnFormation
 {
     public float _radius = 1;
+    private static readonly float[] AngleSteps = { 0f, 90f, -90f, 180f};
 
     public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
     {
-        float angle = (index + 1) * 90 * Mathf.Deg2Rad;
+        float angle = AngleSteps[Mathf.Min(index, AngleSteps.Length - 1)] * Mathf.Deg2Rad;
         var offset = new Vector3(
-            Mathf.Cos(angle) * _radius,
             Mathf.Sin(angle) * _radius,
+            Mathf.Cos(angle) * _radius,
+            0
+        );
+
+        return startPosition + offset;
+    }
+}
+
+[System.Serializable]
+public class SpawnSemicircle: ISpawnFormation
+{
+    public float _radius = 1;
+    private static readonly float[] AngleSteps = { 0f, 45f, -45f, 90f, -90f, 135f, -135f };
+
+    public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
+    {
+        float angle = AngleSteps[Mathf.Min(index, AngleSteps.Length - 1)] * Mathf.Deg2Rad;
+        var offset = new Vector3(
+            Mathf.Sin(angle) * _radius,
+            Mathf.Cos(angle) * _radius,
             0
         );
 

@@ -6,6 +6,7 @@ public class Bootstrap : MonoBehaviour
     void Awake()
     {
         G.Register<GameMain>(new GameMain());
+        G.Register<CardEffectsManager>(new CardEffectsManager());
         G.Register<InputManager>(FindAnyObjectByType<InputManager>());
         G.Register<EnemySpawner>(FindAnyObjectByType<EnemySpawner>());
         G.Register<CardSelectionManager>(FindAnyObjectByType<CardSelectionManager>());
@@ -29,6 +30,8 @@ public class Bootstrap : MonoBehaviour
         var Initializables = FindObjectsByType<MonoBehaviour>().OfType<IInitializable>().ToList();
 
         G.Get<GameMain>().Init();
+        G.Get<CardEffectsManager>().Init();
+
         foreach (var init in Initializables)
             init.Init();
     }

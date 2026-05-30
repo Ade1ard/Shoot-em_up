@@ -11,7 +11,8 @@ public enum GameState
 
 public class GameMain : IInitializable
 {
-    private CardSelectionManager _cardManager;
+    private CardSelectionManager _cardSelection;
+    private CardEffectsManager _cardEffects;
     private Player _player;
     private PlayerMovement _playerMovement;
     private InputManager _inputManager;
@@ -30,7 +31,8 @@ public class GameMain : IInitializable
 
     public void Init()
     {
-        _cardManager = G.Get<CardSelectionManager>();
+        _cardSelection = G.Get<CardSelectionManager>();
+        _cardEffects = G.Get<CardEffectsManager>();
         _player = G.Get<Player>();
         _playerMovement = G.Get<PlayerMovement>();
         _inputManager = G.Get<InputManager>();
@@ -43,8 +45,8 @@ public class GameMain : IInitializable
         _player.OnPlayerDied += GameOver;
         _player.OnXPChanged += UpdateXP;
         _player.OnScoreChanged += UpdateScore;
-        _cardManager.OnSelectionClosed += CloseSelection;
-        _cardManager.OnCardApplied += ApplyEffect;
+        _cardSelection.OnSelectionClosed += CloseSelection;
+        _cardSelection.OnCardApplied += ApplyEffect;
         _inputManager.OnGameRestarted += RestartGame;
     }
 
@@ -83,7 +85,7 @@ public class GameMain : IInitializable
                 break;
 
             case GameState.CardSelection:
-                _cardManager.ShowCardSelection();
+                _cardSelection.ShowCardSelection();
 
                 break;
 
@@ -137,7 +139,7 @@ public class GameMain : IInitializable
         _runStartTime = Time.time;
         _inputManager.RestartEnable(false);
 
-        _cardManager.ClearAllChooseLimits();
+        _cardEffects.ClearAllChooseLimits();
         _player.LoadBasicStats();
 
         _gameOverUI.CloseGameOver();
@@ -181,16 +183,8 @@ public class GameMain : IInitializable
                 _player.AddPrjcCount();
                 break;
 
-            case EffectType.CrossPJSpawnPattern:
-                _player.SetPJSpawnPattern<SpawnCross>();
-                break;
-
-            case EffectType.LinePJSpawnPattern:
-                _player.SetPJSpawnPattern<SpawnLine>();
-                break;
-
-            case EffectType.SemicirlcePJSpawnPattern:
-                //_player.SetPJSpawnPattern<>();
+            case EffectType.PJSpawnPattern:
+                _player.SetPJSpawnPattern(SpawnPatternMap.Types[effect.spawnPatternType]);
                 break;
         }
         if (effect._haveLimit)

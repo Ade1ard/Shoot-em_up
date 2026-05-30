@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponConfig
   SpawnPattern:
     rid: 920530498112717027
-  MaxProjectileCount: 3
+  ProjectileCountSteps: 
   DirGenerator:
     rid: 920530498112717040
   references:

@@ -30,10 +30,12 @@ public class Player : Health, IInitializable
 
     private int damageMod = 10;
     private float shootDelayMod = 1f;
-    private int projectileCountMod = 1;
-    private int _maxProjectileCount = 3;
+    private int projectileCountStepMod = 1;
     private int levelXPCostMod = 100;
     private float levelMultiplierMod = 1.2f;
+
+    private PlayerWeaponConfig _currentWeaponConfig;
+    public PlayerWeaponConfig CurrentWeaponConfig => _currentWeaponConfig;
 
     private ProjectileCaster _playerPRJCaster;
     private SpriteRenderer _sprite;
@@ -68,7 +70,7 @@ public class Player : Health, IInitializable
         UpdateStats();
     }
 
-    public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, projectileCountMod); }
+    public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, _currentWeaponConfig.GetPJCount(projectileCountStepMod)); }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
@@ -112,36 +114,19 @@ public class Player : Health, IInitializable
 
     public void AddPrjcCount()
     {
-        projectileCountMod += 1;
-        projectileCountMod = Mathf.Clamp(projectileCountMod, 1, _maxProjectileCount);
+        projectileCountStepMod += 1;
+        projectileCountStepMod = Mathf.Clamp(projectileCountStepMod, 1, 3);
     }
 
-    public void SetPJSpawnPattern<T>() where T : ISpawnFormation
+    public void SetPJSpawnPattern(Type pattern)
     {
-        if (_weaponConfigs.TryGetValue(typeof(T), out var config))
+        if (_weaponConfigs.TryGetValue(pattern, out var config))
         {
             _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
-            RecalculateProjectileCount(config);
-        }
-    }
-
-    private void RecalculateProjectileCount(PlayerWeaponConfig config)
-    {
-        int newMax = config.MaxProjectileCount;
-
-        if (_maxProjectileCount > 0)
-        {
-            float ratio = (float)projectileCountMod / _maxProjectileCount;
-            projectileCountMod = Mathf.Max(1, Mathf.RoundToInt(newMax * ratio));
+            _currentWeaponConfig = config;
         }
         else
-        {
-            projectileCountMod = newMax;
-        }
-
-        _maxProjectileCount = newMax;
-
-        projectileCountMod = Mathf.Min(projectileCountMod, _maxProjectileCount);
+            Debug.Log($"Config of type {pattern} not found");
     }
 
     public void AddXP(int amount, float difficulty)
@@ -168,7 +153,7 @@ public class Player : Health, IInitializable
         base.InitHP(_playerData.maxHealth);
         damageMod = _playerData.damage;
         shootDelayMod = _playerData.shootDelay;
-        projectileCountMod = _playerData.projectileCount;
+        projectileCountStepMod = _playerData.projectileCountStep;
         levelXPCostMod = _playerData.levelXPCost;
         levelMultiplierMod = _playerData.levelMultiplier;
 
@@ -176,7 +161,7 @@ public class Player : Health, IInitializable
         score = 0;
         XP = 0;
 
-        SetPJSpawnPattern<SpawnLine>();
+        SetPJSpawnPattern(typeof(SpawnLine));
         UpdateStats();
     }
 

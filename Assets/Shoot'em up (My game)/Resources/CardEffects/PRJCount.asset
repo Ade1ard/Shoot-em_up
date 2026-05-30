@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PRJCount
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Bullet count
-  description: Bullet count +1
+  description: More Bullets shoot
   icon: {fileID: 0}
   rarity: 2
   effectType: 4

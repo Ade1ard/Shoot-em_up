@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewCardEffect", menuName = "Scriptable Objects/Card Effect")]
@@ -15,7 +16,9 @@ public class CardEffect : ScriptableObject
 
     [Header("Values")]
     public float baseValue = 10f;
-    public float multiplierPerLevel = 1f;
+
+    [Header("Spawn Pattern (if effect type is PJSpawnPattern)")]
+    public SpawnPatternType spawnPatternType;
 
     [Header("Visual effects")]
     public AudioClip pickUpSound;
@@ -33,9 +36,31 @@ public enum EffectType
     Damage,
     AttackSpeed,
     ProjectileCount,
-    CrossPJSpawnPattern,
-    LinePJSpawnPattern,
-    SemicirlcePJSpawnPattern,
+    PJSpawnPattern,
+}
+
+public enum SpawnPatternType
+{
+    line,
+    Cross,
+    Semicircle
+}
+
+public static class SpawnPatternMap
+{
+    public static readonly Dictionary<SpawnPatternType, Type> Types = new()
+    {
+        { SpawnPatternType.line, typeof(SpawnLine) },
+        { SpawnPatternType.Cross, typeof(SpawnCross) },
+        { SpawnPatternType.Semicircle, typeof(SpawnSemicircle) },
+    };
+
+    public static readonly Dictionary<Type, SpawnPatternType> Reverse = new()
+    {
+        { typeof(SpawnLine), SpawnPatternType.line },
+        { typeof(SpawnCross), SpawnPatternType.Cross },
+        { typeof(SpawnSemicircle), SpawnPatternType.Semicircle },
+    };
 }
 
 public enum Rarity

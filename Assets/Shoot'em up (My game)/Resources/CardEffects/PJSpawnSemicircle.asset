@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
-  m_Name: PJSpawnLine
+  m_Name: PJSpawnSemicircle
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: Projectile Line
+  effectName: Projectile Semicircle
   description: 
   icon: {fileID: 0}
   rarity: 2
   effectType: 5
   baseValue: 10
-  spawnPatternType: 0
+  spawnPatternType: 2
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,41 +19,19 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField][Range(0, 100)] private float _epicChance = 30f;
     [SerializeField][Range(0, 100)] private float _legendChance = 10f;
 
-    private List<CardEffect> _commonCards = new List<CardEffect>();
-    private List<CardEffect> _epicCards = new List<CardEffect>();
-    private List<CardEffect> _legendCards = new List<CardEffect>();
-
     public event Action<CardEffect> OnCardApplied;
     public event Action OnSelectionClosed;
 
     private UIView _UIView;
+    private CardEffectsManager _effectsManager;
     private List<CardWidget> _cards;
 
     public void Init()
     {
         _UIView = G.Get<UIView>();
+        _effectsManager = G.Get<CardEffectsManager>();
 
         _gridLayout.constraintCount = _cardsToShow;
-        LoadCardEffects();
-    }
-
-    private void LoadCardEffects()
-    {
-        foreach (CardEffect effect in Resources.LoadAll<CardEffect>("CardEffects"))
-        {
-            switch (effect.rarity)
-            {
-                case Rarity.common:
-                    _commonCards.Add(effect);
-                    break;
-                case Rarity.epic:
-                    _epicCards.Add(effect);
-                    break;
-                case Rarity.legend:
-                    _legendCards.Add(effect);
-                    break;
-            }
-        }
     }
 
     public void ShowCardSelection()
@@ -62,7 +39,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         _UIView.ShowUI(false);
         ClearOldCards();
 
-        List<CardEffect> selectedEffects = GenerateCards(_cardsToShow);
+        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance);
 
         _cards = new List<CardWidget>();
 
@@ -70,34 +47,6 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         {
             _cards.Add(CreateCard(selectedEffects[i], i));
         }
-    }
-
-    private List<CardEffect> GenerateCards(int count)
-    {
-        List<CardEffect> result = new List<CardEffect>();
-        List<CardEffect> pool = new List<CardEffect>();
-
-        pool.AddRange(_commonCards);
-
-        if (UnityEngine.Random.Range(0f, 100f) < _epicChance)
-            pool.AddRange(_epicCards);
-
-        if (UnityEngine.Random.Range(0f, 100f) < _legendChance)
-            pool.AddRange(_legendCards);
-
-        while (result.Count < count)
-        {
-            if (pool.Count == 0) break;
-
-            CardEffect effect = pool[UnityEngine.Random.Range(0, pool.Count)];
-            
-            if (effect._chooseCount < effect._chooselimit)
-                result.Add(effect);
-
-            pool.Remove(effect);
-        }
-
-        return result;
     }
 
     private CardWidget CreateCard(CardEffect effect, int index)
@@ -133,22 +82,6 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         foreach (Transform child in _cardsParent)
         {
             Destroy(child.gameObject);
-        }
-    }
-
-    public void ClearAllChooseLimits()
-    {
-        ClearLimitsInList(_commonCards);
-        ClearLimitsInList(_epicCards);
-        ClearLimitsInList(_legendCards);
-    }
-
-    private void ClearLimitsInList(List<CardEffect> cards)
-    {
-        foreach (CardEffect card in cards)
-        {
-            if (card._haveLimit)
-                card._chooseCount = 0;
         }
     }
 }
