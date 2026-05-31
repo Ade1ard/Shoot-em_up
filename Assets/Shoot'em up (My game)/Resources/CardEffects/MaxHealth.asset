@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: MaxHealth
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Health
-  description: add max health
+  description: Increase max health
   icon: {fileID: 0}
   rarity: 1
   effectType: 0
-  baseValue: 10
-  multiplierPerLevel: 1
+  modifiers:
+  - Stat: 0
+    Operation: 0
+    Value: 10
+  spawnPatternType: 0
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3

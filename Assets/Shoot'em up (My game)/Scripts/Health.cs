@@ -19,6 +19,7 @@ public abstract class Health : MonoBehaviour, IDamageable
     [Header("Sounds")]
     [SerializeField] private List<AudioClip> _hitSounds = new List<AudioClip>();
     [SerializeField] private AudioClip _deadSound;
+    private float lastSoundTime;
 
     [NonSerialized] public float _maxHealth;
     [NonSerialized] public float _currentHealth;
@@ -47,8 +48,11 @@ public abstract class Health : MonoBehaviour, IDamageable
         _healthBarCanvasGroup.gameObject.SetActive(true);
         StartDrawingBar();
 
-        if (_hitSounds.Count != 0)
+        if (_hitSounds.Count != 0 && Time.time - lastSoundTime >= 0.1f)
+        {
             _audioSource.PlayOneShot(_hitSounds[UnityEngine.Random.Range(0, _hitSounds.Count)]);
+            lastSoundTime = Time.time;
+        }
 
         if (_currentHealth <= 0f)
             Death();

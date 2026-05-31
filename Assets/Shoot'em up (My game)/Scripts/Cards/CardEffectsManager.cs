@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardEffectsManager  : IInitializable
@@ -49,6 +50,7 @@ public class CardEffectsManager  : IInitializable
             pool.AddRange(_legendCards);
 
         pool = FilterActivePatterns(pool);
+        pool = FilterUnneeded(pool);
 
         while (result.Count < count)
         {
@@ -78,6 +80,16 @@ public class CardEffectsManager  : IInitializable
             card.effectType == EffectType.PJSpawnPattern &&
             card.spawnPatternType == activePattern
         );
+
+        return pool;
+    }
+
+    private List<CardEffect> FilterUnneeded(List<CardEffect> pool)
+    {
+        if (_player.Stats.CurrentHP == _player.Stats.MaxHP)
+        {
+            pool.RemoveAll(card => card.effectType == EffectType.Heal);
+        }
 
         return pool;
     }

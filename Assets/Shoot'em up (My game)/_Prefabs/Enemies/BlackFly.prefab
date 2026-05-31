@@ -188,9 +188,9 @@ MonoBehaviour:
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
-  - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
-  - {fileID: 8300000, guid: b238c7993731b224688e10ee4c575109, type: 3}
-  _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  - {fileID: 8300000, guid: 40cdcd8f9ea045440b81d452afdcd5c9, type: 3}
+  - {fileID: 8300000, guid: 7942206c00423864d97d73d8f0ac0b62, type: 3}
+  _deadSound: {fileID: 8300000, guid: 929cb9ae0248bb7438b75d601ecea1ff, type: 3}
   maxHealth: 100
   xpReward: 20
   PRJDamage: 15
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: 49695a10a5d56334ea20dea61500d9d9, type: 3}
-  _shootPoints: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:
@@ -229,8 +229,8 @@ MonoBehaviour:
   _spawnPositonOffset_Y: 0.2
   _shootDelayOffset: 1
   _shootSounds:
-  - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
-  - {fileID: 8300000, guid: 78b1e97a8d2dded41a287a9f77748bf2, type: 3}
+  - {fileID: 8300000, guid: d82ea858d14f5dd428eaa2ab9b7c0f0a, type: 3}
+  - {fileID: 8300000, guid: 7550391f8c686be47b4468be71cb72d9, type: 3}
   references:
     version: 2
     RefIds:

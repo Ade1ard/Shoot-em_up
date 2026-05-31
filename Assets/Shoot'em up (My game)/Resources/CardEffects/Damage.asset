@@ -16,8 +16,11 @@ MonoBehaviour:
   description: Add damage
   icon: {fileID: 0}
   rarity: 1
-  effectType: 3
-  baseValue: 5
+  effectType: 0
+  modifiers:
+  - Stat: 1
+    Operation: 0
+    Value: 10
   spawnPatternType: 0
   pickUpSound: {fileID: 0}
   _haveLimit: 0

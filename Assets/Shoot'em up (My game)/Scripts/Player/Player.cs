@@ -21,18 +21,12 @@ public class Player : Health, IInitializable
     [SerializeField] private Color _hitColor;
     [SerializeField] private float _noHitDuration = 1;
 
-    [NonSerialized] public int level = 1;
-    [NonSerialized] public int score = 0;
-    private int XP;
-
     private PlayerData _playerData;
+    private PlayerRuntimeStats _stats;
+    public PlayerRuntimeStats Stats => _stats;
+    private PlayerModifiers _modifiers;
+    public PlayerModifiers Modifiers => _modifiers;
     private Dictionary<Type, PlayerWeaponConfig> _weaponConfigs = new Dictionary<Type, PlayerWeaponConfig>();
-
-    private int damageMod = 10;
-    private float shootDelayMod = 1f;
-    private int projectileCountStepMod = 1;
-    private int levelXPCostMod = 100;
-    private float levelMultiplierMod = 1.2f;
 
     private PlayerWeaponConfig _currentWeaponConfig;
     public PlayerWeaponConfig CurrentWeaponConfig => _currentWeaponConfig;
@@ -54,6 +48,8 @@ public class Player : Health, IInitializable
 
     public void Init()
     {
+        _modifiers = new PlayerModifiers();
+        _stats = new PlayerRuntimeStats();
         _playerPRJCaster = GetComponent<ProjectileCaster>();
         _sprite = GetComponent<SpriteRenderer>();
         _cameraShake = G.Get<CameraShake>();
@@ -67,21 +63,42 @@ public class Player : Health, IInitializable
         }
 
         LoadBasicStats();
-        UpdateStats();
+        _modifiers.Init(_playerData, _stats);
     }
 
-    public void UpdateStats() { _playerPRJCaster.TakeStats(damageMod, shootDelayMod, _currentWeaponConfig.GetPJCount(projectileCountStepMod)); }
+    public void UpdateStats()
+    {
+        _playerPRJCaster.TakeStats(_stats.Damage, _stats.ShootDelay, _currentWeaponConfig.GetPJCount(_stats.ProjectileCountStep));
+        UpdateHP();
+    }
+
+    private void UpdateHP()
+    {
+        _maxHealth = Stats.MaxHP;
+        _currentHealth = Stats.CurrentHP;
+        StartDrawingBar();
+    }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
         base.DealDamage(damage, closestPoint);
+        Stats.CurrentHP = _currentHealth;
         _lastHitTime = Time.time;
+
         if (_currentHealth > 0)
         {
             FlashHitAnim(_noHitDuration);
             if (_cameraShake != null)
                 _cameraShake.Shake();
         }
+    }
+
+    public void Heal()
+    {
+        _currentHealth += (Stats.MaxHP * 0.3f);
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
+        Stats.CurrentHP = _currentHealth;
+        StartDrawingBar();
     }
 
     public override bool CanDamage()
@@ -93,36 +110,6 @@ public class Player : Health, IInitializable
     {
         base.Death();
         OnPlayerDied?.Invoke();
-    }
-
-    public void AddMaxHP(int amount)
-    {
-        _maxHealth += amount;
-        _currentHealth += amount;
-        StartDrawingBar();
-    }
-
-    public void Heal(int amount)
-    {
-        _currentHealth += amount;
-        StartDrawingBar();
-    }
-
-    public void AddDamage(int amount)
-    {
-        damageMod += amount;
-    }
-
-    public void AddAttackSpeed(float amount)
-    {
-        shootDelayMod -= amount;
-        shootDelayMod = Mathf.Clamp(shootDelayMod, 0.17f, 1);
-    }
-
-    public void AddPrjcCount()
-    {
-        projectileCountStepMod += 1;
-        projectileCountStepMod = Mathf.Clamp(projectileCountStepMod, 1, 3);
     }
 
     public void SetPJSpawnPattern(Type pattern)
@@ -138,37 +125,31 @@ public class Player : Health, IInitializable
 
     public void AddXP(int amount, float difficulty)
     {
-        XP += math.abs(amount);
+        _stats.XP += math.abs(amount);
 
         int addScore = (int)(amount * 10 * difficulty);
-        OnScoreChanged?.Invoke(score, addScore);
-        score += addScore;
+        OnScoreChanged?.Invoke(_stats.Score, addScore);
+        _stats.Score += addScore;
 
-        if (XP >= levelXPCostMod)
+        if (_stats.XP >= _stats.LevelXPCost)
         {
-            XP = 0;
-            level += 1;
-            levelXPCostMod = (int)(levelXPCostMod * levelMultiplierMod);
+            _stats.XP = 0;
+            _stats.Level += 1;
+            _stats.LevelXPCost = (int)(_stats.LevelXPCost * _playerData.levelMultiplier);
 
             OnLevelUp?.Invoke();
         }
-        OnXPChanged?.Invoke(XP, levelXPCostMod);
+        OnXPChanged?.Invoke(_stats.XP, _stats.LevelXPCost);
     }
 
     public void LoadBasicStats()
     {
         base.InitHP(_playerData.maxHealth);
-        damageMod = _playerData.damage;
-        shootDelayMod = _playerData.shootDelay;
-        projectileCountStepMod = _playerData.projectileCountStep;
-        levelXPCostMod = _playerData.levelXPCost;
-        levelMultiplierMod = _playerData.levelMultiplier;
+        _stats.LoadFromData(_playerData);
 
-        level = 1;
-        score = 0;
-        XP = 0;
-
-        SetPJSpawnPattern(typeof(SpawnLine));
+        var config = _playerData.weaponConfig;
+        _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
+        _currentWeaponConfig = config;
         UpdateStats();
     }
 

@@ -5,17 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCardEffect", menuName = "Scriptable Objects/Card Effect")]
 public class CardEffect : ScriptableObject
 {
-    [Header("Settings")]
+    [Header("View")]
     public string effectName;
     public string description;
     public Sprite icon;
+
+    [Header("Rarity")]
     public Rarity rarity;
 
     [Header("Effect type")]
     public EffectType effectType;
 
-    [Header("Values")]
-    public float baseValue = 10f;
+    [Header("Modifiers (if effect type is StatModificate)")]
+    public List<ModifierData> modifiers = new List<ModifierData>();
 
     [Header("Spawn Pattern (if effect type is PJSpawnPattern)")]
     public SpawnPatternType spawnPatternType;
@@ -31,12 +33,8 @@ public class CardEffect : ScriptableObject
 
 public enum EffectType
 {
-    MaxHealth,
+    StatModificate,
     Heal,
-    CurrentHealth,
-    Damage,
-    AttackSpeed,
-    ProjectileCount,
     PJSpawnPattern,
 }
 

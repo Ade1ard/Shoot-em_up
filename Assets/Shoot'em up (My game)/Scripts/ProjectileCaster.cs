@@ -23,6 +23,7 @@ public class ProjectileCaster : MonoBehaviour
 
     [Header("Sound")]
     [SerializeField] private List<AudioClip> _shootSounds = new List<AudioClip>();
+    private float lastSoundTime;
 
     private float _PRJDamage;
     private float _shootDelay;
@@ -87,8 +88,12 @@ public class ProjectileCaster : MonoBehaviour
             projectile.Initialize(_PRJDamage);
             projectile.GetComponent<ObjectMovement>().StartMove(InitPos, _shootPoint.position);
         }
-        if (_shootSounds.Count != 0)
+
+        if (_shootSounds.Count != 0 && Time.time - lastSoundTime >= 0.1f)
+        {
             _audioSource.PlayOneShot(_shootSounds[Random.Range(0, _shootSounds.Count)]);
+            lastSoundTime = Time.time;
+        }
 
         if (_shootVFXPrefab != null)
             Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
@@ -102,15 +107,6 @@ public class ProjectileCaster : MonoBehaviour
         foreach (Transform p in _shootP)
             Destroy(p.gameObject);
         _shootP.Clear();
-
-        //if (count == 1)
-        //{
-        //    GameObject bullet = new GameObject($"{gameObject.name}ShootPoint");
-        //    bullet.transform.SetParent(_shootPoint);
-        //    bullet.transform.localPosition = Vector3.zero;
-        //    _shootP.Add(bullet.transform);
-        //    return;
-        //}
 
         for (int i = 0; i < count; i++)
         {

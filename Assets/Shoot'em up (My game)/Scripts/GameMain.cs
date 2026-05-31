@@ -90,7 +90,7 @@ public class GameMain : IInitializable
                 break;
 
             case GameState.GameOver:
-                _gameOverUI.ShowGameOver(_player.score, (int)_runTime);
+                _gameOverUI.ShowGameOver(_player.Stats.Score, (int)_runTime);
                 _inputManager.RestartEnable(true);
 
                 break;
@@ -167,28 +167,17 @@ public class GameMain : IInitializable
 
         switch (effect.effectType)
         {
-            case EffectType.MaxHealth:
-                _player.AddMaxHP((int)effect.baseValue);
+            case EffectType.PJSpawnPattern:
+                _player.SetPJSpawnPattern(SpawnPatternMap.Types[effect.spawnPatternType]);
                 break;
 
             case EffectType.Heal:
-                _player.Heal((int)effect.baseValue);
+                _player.Heal();
                 break;
 
-            case EffectType.Damage:
-                _player.AddDamage((int)effect.baseValue);
-                break;
-
-            case EffectType.AttackSpeed:
-                _player.AddAttackSpeed(effect.baseValue);
-                break;
-
-            case EffectType.ProjectileCount:
-                _player.AddPrjcCount();
-                break;
-
-            case EffectType.PJSpawnPattern:
-                _player.SetPJSpawnPattern(SpawnPatternMap.Types[effect.spawnPatternType]);
+            default:
+                foreach (var mod in effect.modifiers)
+                    _player.Modifiers.AddModifier(mod);
                 break;
         }
         if (effect._haveLimit)
