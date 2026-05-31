@@ -32,6 +32,7 @@ public class CardEffect : ScriptableObject
 public enum EffectType
 {
     MaxHealth,
+    Heal,
     CurrentHealth,
     Damage,
     AttackSpeed,

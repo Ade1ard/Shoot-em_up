@@ -15,6 +15,6 @@ MonoBehaviour:
   maxHealth: 100
   damage: 10
   shootDelay: 0.4
-  projectileCount: 1
-  levelXPCost: 60
+  projectileCountStep: 1
+  levelXPCost: 10
   levelMultiplier: 1.2

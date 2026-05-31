@@ -66,7 +66,7 @@ public abstract class Health : MonoBehaviour, IDamageable
             AudioSource.PlayClipAtPoint(_deadSound, transform.position, _audioSource.volume);
     }
 
-    private void StartDrawingBar()
+    public void StartDrawingBar()
     {
         if (_healthBarCoroutine == null)
             _healthBarCoroutine = StartCoroutine(DrawHealthBar());

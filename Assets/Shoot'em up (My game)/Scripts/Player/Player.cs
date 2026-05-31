@@ -99,6 +99,13 @@ public class Player : Health, IInitializable
     {
         _maxHealth += amount;
         _currentHealth += amount;
+        StartDrawingBar();
+    }
+
+    public void Heal(int amount)
+    {
+        _currentHealth += amount;
+        StartDrawingBar();
     }
 
     public void AddDamage(int amount)

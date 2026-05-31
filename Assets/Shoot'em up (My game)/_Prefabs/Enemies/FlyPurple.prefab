@@ -165,11 +165,11 @@ MonoBehaviour:
     - rid: 920530337387511882
       type: {class: AdaptiveDir, ns: , asm: Assembly-CSharp}
       data:
-        _directionOffset: 0.1
+        _directionOffset: 0.2
     - rid: 920530337387511918
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 10
+        _linearSpeed: 8
 --- !u!114 &7552099269562904974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: 17cafcd02c43cde499fffb32253f5d33, type: 3}
-  _shootPoints: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:

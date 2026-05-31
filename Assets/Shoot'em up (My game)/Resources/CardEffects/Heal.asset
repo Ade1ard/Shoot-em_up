@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
-  m_Name: AttackSpeed
+  m_Name: Heal
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: Attack speed
-  description: add attack speed
+  effectName: Heal
+  description: Heal some health
   icon: {fileID: 0}
   rarity: 0
-  effectType: 4
-  baseValue: 0.03
+  effectType: 1
+  baseValue: 30
   spawnPatternType: 0
   pickUpSound: {fileID: 0}
-  _haveLimit: 1
-  _chooselimit: 5
+  _haveLimit: 0
+  _chooselimit: 3

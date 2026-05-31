@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   rarity: 2
-  effectType: 5
+  effectType: 6
   baseValue: 10
   spawnPatternType: 2
   pickUpSound: {fileID: 0}

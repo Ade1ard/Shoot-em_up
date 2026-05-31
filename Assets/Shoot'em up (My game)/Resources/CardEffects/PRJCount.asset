@@ -16,9 +16,9 @@ MonoBehaviour:
   description: More Bullets shoot
   icon: {fileID: 0}
   rarity: 2
-  effectType: 4
+  effectType: 5
   baseValue: 1
-  multiplierPerLevel: 1
+  spawnPatternType: 0
   pickUpSound: {fileID: 0}
   _haveLimit: 1
   _chooselimit: 2

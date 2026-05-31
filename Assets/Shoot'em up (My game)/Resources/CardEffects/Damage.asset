@@ -15,10 +15,10 @@ MonoBehaviour:
   effectName: Damage
   description: Add damage
   icon: {fileID: 0}
-  rarity: 2
-  effectType: 2
+  rarity: 1
+  effectType: 3
   baseValue: 5
-  multiplierPerLevel: 1
+  spawnPatternType: 0
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3

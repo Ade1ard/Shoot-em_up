@@ -91,7 +91,6 @@ public class GameMain : IInitializable
 
             case GameState.GameOver:
                 _gameOverUI.ShowGameOver(_player.score, (int)_runTime);
-                ClearScene();
                 _inputManager.RestartEnable(true);
 
                 break;
@@ -141,16 +140,17 @@ public class GameMain : IInitializable
 
         _cardEffects.ClearAllChooseLimits();
         _player.LoadBasicStats();
+        _enemySpawner.ClearAllEnemies();
+        ClearScene();
+        _enemySpawner.SetBasicDifficulty();
 
         _gameOverUI.CloseGameOver();
-        _uiView.UpdateXP(0, 60);
-        _uiView.ShowCurrentWave(1);
-
-        yield return _player.RestartAnimScaleFade().WaitForCompletion();
         Time.timeScale = 1;
 
-        _enemySpawner.ClearAllEnemies();
-        _enemySpawner.SetBasicDifficulty();
+        yield return _player.RestartAnimScaleFade().WaitForCompletion();
+
+        _uiView.UpdateXP(0, 60);
+        _uiView.ShowCurrentWave(1);
 
         yield return _player.RestartAnimStartPos().WaitForCompletion();
 
@@ -169,6 +169,10 @@ public class GameMain : IInitializable
         {
             case EffectType.MaxHealth:
                 _player.AddMaxHP((int)effect.baseValue);
+                break;
+
+            case EffectType.Heal:
+                _player.Heal((int)effect.baseValue);
                 break;
 
             case EffectType.Damage:
