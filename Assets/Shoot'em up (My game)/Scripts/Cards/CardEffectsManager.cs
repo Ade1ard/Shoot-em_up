@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CardEffectsManager  : IInitializable
@@ -7,6 +6,7 @@ public class CardEffectsManager  : IInitializable
     private List<CardEffect> _commonCards = new List<CardEffect>();
     private List<CardEffect> _epicCards = new List<CardEffect>();
     private List<CardEffect> _legendCards = new List<CardEffect>();
+    private List<CardEffect> _speacialCards = new List<CardEffect>();
 
     private Player _player;
 
@@ -32,22 +32,28 @@ public class CardEffectsManager  : IInitializable
                 case Rarity.legend:
                     _legendCards.Add(effect);
                     break;
+                case Rarity.special:
+                    _speacialCards.Add(effect);
+                    break;
             }
         }
     }
 
-    public List<CardEffect> GetCards(int count, float epicChance, float legendChance)
+    public List<CardEffect> GetCards(int count, float epicChance, float legendChance, float specialChance)
     {
         List<CardEffect> result = new List<CardEffect>();
         List<CardEffect> pool = new List<CardEffect>();
 
         pool.AddRange(_commonCards);
 
-        if (Random.Range(0f, 100f) < epicChance)
+        if (Random.Range(0f, 100f) <= epicChance)
             pool.AddRange(_epicCards);
 
-        if (Random.Range(0f, 100f) < legendChance)
+        if (Random.Range(0f, 100f) <= legendChance)
             pool.AddRange(_legendCards);
+
+        if (Random.Range(0f, 100f) <= specialChance)
+            pool.AddRange(_speacialCards);
 
         pool = FilterActivePatterns(pool);
         pool = FilterUnneeded(pool);

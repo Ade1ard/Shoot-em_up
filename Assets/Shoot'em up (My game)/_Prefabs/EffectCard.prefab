@@ -232,6 +232,7 @@ MonoBehaviour:
   _common: {r: 0.5154415, g: 0.5642013, b: 0.9339623, a: 1}
   _epic: {r: 0.65679824, g: 0.48406905, b: 0.9245283, a: 1}
   _legend: {r: 0.9150943, g: 0.7653007, b: 0.45323068, a: 1}
+  _special: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
   _hoverEnterSound: {fileID: 0}
   _hoverExitSound: {fileID: 0}
   _clickSound: {fileID: 0}

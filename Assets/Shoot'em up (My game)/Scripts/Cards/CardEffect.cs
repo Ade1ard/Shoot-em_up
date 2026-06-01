@@ -67,4 +67,5 @@ public enum Rarity
     common,
     epic,
     legend,
+    special,
 }

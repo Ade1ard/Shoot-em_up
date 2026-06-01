@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
+  m_Name: Berserk
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  effectName: Berserk
+  description: Increase damage but reduces max HP
+  icon: {fileID: 0}
+  rarity: 3
+  effectType: 0
+  modifiers:
+  - Stat: 1
+    Operation: 1
+    Value: 0
+    RandomModifier: 1
+    minValue: 15
+    maxValue: 25
+  - Stat: 0
+    Operation: 0
+    Value: 0
+    RandomModifier: 1
+    minValue: -30
+    maxValue: -10
+  spawnPatternType: 0
+  pickUpSound: {fileID: 0}
+  _haveLimit: 0
+  _chooselimit: 3

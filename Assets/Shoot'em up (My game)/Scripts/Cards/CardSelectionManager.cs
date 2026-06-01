@@ -16,8 +16,9 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField] private GridLayoutGroup _gridLayout;
 
     [Header("Chance")]
-    [SerializeField][Range(0, 100)] private float _epicChance = 30f;
-    [SerializeField][Range(0, 100)] private float _legendChance = 10f;
+    [SerializeField][Range(0, 100)] private float _epicChance = 50f;
+    [SerializeField][Range(0, 100)] private float _legendChance = 25f;
+    [SerializeField][Range(0, 100)] private float _specialChance = 10f;
 
     public event Action<CardEffect> OnCardApplied;
     public event Action OnSelectionClosed;
@@ -39,7 +40,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         _UIView.ShowUI(false);
         ClearOldCards();
 
-        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance);
+        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance);
 
         _cards = new List<CardWidget>();
 

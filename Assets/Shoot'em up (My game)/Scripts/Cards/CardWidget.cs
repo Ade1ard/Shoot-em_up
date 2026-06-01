@@ -30,6 +30,7 @@ public class CardWidget : MonoBehaviour
     [SerializeField] private Color _common;
     [SerializeField] private Color _epic;
     [SerializeField] private Color _legend;
+    [SerializeField] private Color _special;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip _hoverEnterSound;
@@ -98,6 +99,11 @@ public class CardWidget : MonoBehaviour
                 _backgroundCard.color = _legend;
                 if (_cardOutline != null)
                     _cardOutline.color = _legend.gamma;
+                break;
+            case Rarity.special:
+                _backgroundCard.color = _special;
+                if (_cardOutline != null)
+                    _cardOutline.color = _special.gamma;
                 break;
         }
     }

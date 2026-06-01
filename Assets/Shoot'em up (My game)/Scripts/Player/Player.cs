@@ -62,8 +62,8 @@ public class Player : Health, IInitializable
             _weaponConfigs[type] = config;
         }
 
-        LoadBasicStats();
         _modifiers.Init(_playerData, _stats);
+        LoadBasicStats();
     }
 
     public void UpdateStats()
@@ -75,7 +75,8 @@ public class Player : Health, IInitializable
     private void UpdateHP()
     {
         _maxHealth = Stats.MaxHP;
-        _currentHealth = Stats.CurrentHP;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
+
         StartDrawingBar();
     }
 
@@ -146,6 +147,8 @@ public class Player : Health, IInitializable
     {
         base.InitHP(_playerData.maxHealth);
         _stats.LoadFromData(_playerData);
+
+        _modifiers.ClearAll();
 
         var config = _playerData.weaponConfig;
         _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
