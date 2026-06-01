@@ -19,6 +19,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField][Range(0, 100)] private float _epicChance = 50f;
     [SerializeField][Range(0, 100)] private float _legendChance = 25f;
     [SerializeField][Range(0, 100)] private float _specialChance = 10f;
+    private float _difficulty;
 
     public event Action<CardEffect> OnCardApplied;
     public event Action OnSelectionClosed;
@@ -31,6 +32,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     {
         _UIView = G.Get<UIView>();
         _effectsManager = G.Get<CardEffectsManager>();
+        G.Get<EnemySpawner>().OnDifficultyChanged += GetDifficulty;
 
         _gridLayout.constraintCount = _cardsToShow;
     }
@@ -40,7 +42,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         _UIView.ShowUI(false);
         ClearOldCards();
 
-        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance);
+        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance * _difficulty);
 
         _cards = new List<CardWidget>();
 
@@ -84,5 +86,15 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private void GetDifficulty(float multiplier)
+    {
+        _difficulty = multiplier;
+    }
+
+    private void OnDisable()
+    {
+        G.Get<EnemySpawner>().OnDifficultyChanged -= GetDifficulty;
     }
 }

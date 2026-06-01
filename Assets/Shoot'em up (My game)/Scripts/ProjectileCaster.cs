@@ -54,6 +54,8 @@ public class ProjectileCaster : MonoBehaviour
             _projectilePrefab.GetComponent<ObjectMovement>().Init(dirGenerator);
     }
 
+    public void SetPJMovementType(IMovementType movementType) { _projectilePrefab.GetComponent<ObjectMovement>().Init(null, movementType); }
+
     public void TakeStats(float damage, float shootDelay, int projectileCount)
     {
         _PRJDamage = damage;

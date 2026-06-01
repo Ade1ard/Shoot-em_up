@@ -171,6 +171,10 @@ public class GameMain : IInitializable
                 _player.SetPJSpawnPattern(SpawnPatternMap.Types[effect.spawnPatternType]);
                 break;
 
+            case EffectType.PJMovementType:
+                _player.SetPJMovementType(MovementTypeMap.Types[effect.movementType]);
+                break;
+
             case EffectType.Heal:
                 _player.Heal();
                 break;

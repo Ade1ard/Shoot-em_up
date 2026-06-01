@@ -22,14 +22,20 @@ public class Player : Health, IInitializable
     [SerializeField] private float _noHitDuration = 1;
 
     private PlayerData _playerData;
+
     private PlayerRuntimeStats _stats;
     public PlayerRuntimeStats Stats => _stats;
+
     private PlayerModifiers _modifiers;
     public PlayerModifiers Modifiers => _modifiers;
-    private Dictionary<Type, PlayerWeaponConfig> _weaponConfigs = new Dictionary<Type, PlayerWeaponConfig>();
 
+    private Dictionary<Type, PlayerWeaponConfig> _weaponConfigs = new Dictionary<Type, PlayerWeaponConfig>();
     private PlayerWeaponConfig _currentWeaponConfig;
     public PlayerWeaponConfig CurrentWeaponConfig => _currentWeaponConfig;
+
+    private Dictionary<Type, PlayerPJMoveConfig> _PJMoveConfigs = new Dictionary<Type, PlayerPJMoveConfig>();
+    private PlayerPJMoveConfig _currentPJMoveConfig;
+    public PlayerPJMoveConfig CurrentPJMoveConfig => _currentPJMoveConfig;
 
     private ProjectileCaster _playerPRJCaster;
     private SpriteRenderer _sprite;
@@ -55,11 +61,18 @@ public class Player : Health, IInitializable
         _cameraShake = G.Get<CameraShake>();
 
         _playerData = Resources.Load<PlayerData>("Player/PlayerData");
-        var configs = Resources.LoadAll<PlayerWeaponConfig>("Player").ToList();
-        foreach (var config in configs)
+        var weaponConfigs = Resources.LoadAll<PlayerWeaponConfig>("Player").ToList();
+        foreach (var config in weaponConfigs)
         {
             var type = config.SpawnPattern.GetType();
             _weaponConfigs[type] = config;
+        }
+
+        var PJMoveConfigs = Resources.LoadAll<PlayerPJMoveConfig>("Player").ToList();
+        foreach (var config in PJMoveConfigs)
+        {
+            var type = config.MovementType.GetType();
+            _PJMoveConfigs[type] = config;
         }
 
         _modifiers.Init(_playerData, _stats);
@@ -124,6 +137,17 @@ public class Player : Health, IInitializable
             Debug.Log($"Config of type {pattern} not found");
     }
 
+    public void SetPJMovementType(Type moveType)
+    {
+        if (_PJMoveConfigs.TryGetValue(moveType, out var config))
+        {
+            _playerPRJCaster.SetPJMovementType(config.MovementType);
+            _currentPJMoveConfig = config;
+        }
+        else
+            Debug.Log($"Config of type {moveType} not found");
+    }
+
     public void AddXP(int amount, float difficulty)
     {
         _stats.XP += math.abs(amount);
@@ -150,9 +174,14 @@ public class Player : Health, IInitializable
 
         _modifiers.ClearAll();
 
-        var config = _playerData.weaponConfig;
-        _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
-        _currentWeaponConfig = config;
+        var weaponConfig = _playerData.weaponConfig;
+        _playerPRJCaster.SetShootPattern(weaponConfig.SpawnPattern, weaponConfig.DirGenerator);
+        _currentWeaponConfig = weaponConfig;
+
+        var PJMoveConfig = _playerData.PJmoveConfig;
+        _currentPJMoveConfig = PJMoveConfig;
+        _playerPRJCaster.SetPJMovementType(PJMoveConfig.MovementType);
+
         UpdateStats();
     }
 

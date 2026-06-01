@@ -75,16 +75,24 @@ public class CardEffectsManager  : IInitializable
 
     private List<CardEffect> FilterActivePatterns(List<CardEffect> pool)
     {
-        if (_player?.CurrentWeaponConfig?.SpawnPattern == null)
-            return pool;
+        SpawnPatternType? activePattern = null;
+        MovementType? activeMovement = null;
 
-        var activeType = _player.CurrentWeaponConfig.SpawnPattern.GetType();
+        if (_player?.CurrentWeaponConfig?.SpawnPattern != null)
+        {
+            var activeType = _player.CurrentWeaponConfig.SpawnPattern.GetType();
+            activePattern = SpawnPatternMap.Reverse[activeType];
+        }
 
-        SpawnPatternType activePattern = SpawnPatternMap.Reverse[activeType];
+        if (_player?.CurrentPJMoveConfig?.MovementType != null)
+        {
+            var activePJType = _player.CurrentPJMoveConfig.MovementType.GetType();
+            activeMovement = MovementTypeMap.Reverse[activePJType];
+        }
 
         pool.RemoveAll(card =>
-            card.effectType == EffectType.PJSpawnPattern &&
-            card.spawnPatternType == activePattern
+            (card.effectType == EffectType.PJSpawnPattern && activePattern.HasValue && card.spawnPatternType == activePattern.Value) ||
+            (card.effectType == EffectType.PJMovementType && activeMovement.HasValue && card.movementType == activeMovement.Value)
         );
 
         return pool;

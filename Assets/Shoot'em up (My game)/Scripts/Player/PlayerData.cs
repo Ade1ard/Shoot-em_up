@@ -13,4 +13,5 @@ public class PlayerData : ScriptableObject
     public float levelMultiplier = 1.2f;
     [Header("Weapon")]
     public PlayerWeaponConfig weaponConfig;
+    public PlayerPJMoveConfig PJmoveConfig;
 }

@@ -1566,9 +1566,9 @@ MonoBehaviour:
   _cardPrefab: {fileID: 4628632130140260448, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
   _cardsParent: {fileID: 355718300}
   _gridLayout: {fileID: 355718302}
-  _epicChance: 100
-  _legendChance: 100
-  _specialChance: 100
+  _epicChance: 50
+  _legendChance: 25
+  _specialChance: 10
 --- !u!4 &426549110
 Transform:
   m_ObjectHideFlags: 0

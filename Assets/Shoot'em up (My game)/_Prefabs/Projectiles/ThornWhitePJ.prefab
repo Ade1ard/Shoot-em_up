@@ -71,7 +71,7 @@ MonoBehaviour:
       type: {class: GenerateSinePath, ns: , asm: Assembly-CSharp}
       data:
         amplitude: 1
-        frequency: 2
+        frequency: 4
         sinDistance: 30
         resolution: 30
 --- !u!114 &9095561515226119892
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
+  _lifeTime: 0
 --- !u!50 &3503946192638833755
 Rigidbody2D:
   serializedVersion: 5

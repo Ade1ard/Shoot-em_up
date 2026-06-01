@@ -22,6 +22,9 @@ public class CardEffect : ScriptableObject
     [Header("Spawn Pattern (if effect type is PJSpawnPattern)")]
     public SpawnPatternType spawnPatternType;
 
+    [Header("Movement type (if effect type is PJMovementType)")]
+    public MovementType movementType;
+
     [Header("Visual effects")]
     public AudioClip pickUpSound;
 
@@ -36,6 +39,7 @@ public enum EffectType
     StatModificate,
     Heal,
     PJSpawnPattern,
+    PJMovementType,
 }
 
 public enum SpawnPatternType
@@ -43,6 +47,12 @@ public enum SpawnPatternType
     line,
     Cross,
     Semicircle
+}
+
+public enum MovementType
+{
+    Linear,
+    Sine,
 }
 
 public static class SpawnPatternMap
@@ -59,6 +69,21 @@ public static class SpawnPatternMap
         { typeof(SpawnLine), SpawnPatternType.line },
         { typeof(SpawnCross), SpawnPatternType.Cross },
         { typeof(SpawnSemicircle), SpawnPatternType.Semicircle },
+    };
+}
+
+public static class MovementTypeMap
+{
+    public static readonly Dictionary<MovementType, Type> Types = new()
+    {
+        { MovementType.Linear, typeof(LinearMove) },
+        { MovementType.Sine, typeof(CurveLinearMove) },
+    };
+
+    public static readonly Dictionary<Type, MovementType> Reverse = new()
+    {
+        { typeof(LinearMove), MovementType.Linear },
+        { typeof(CurveLinearMove), MovementType.Sine },
     };
 }
 

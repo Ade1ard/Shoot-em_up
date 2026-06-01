@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
     private UIView _UIView;
 
     private Action<bool> _UIVisible;
+    public Action<float> OnDifficultyChanged;
 
     public void Init()
     {
@@ -65,7 +66,9 @@ public class EnemySpawner : MonoBehaviour, IInitializable
 
             Debug.Log($"Wave begin {_currentWaveNumber} : Current difficulty {_currentDifficulty} : WavesCount {_currentWaves.Count}");
             _UIView.ShowCurrentWave(_currentWaveNumber);
+
             _currentDifficulty += _difficultyIncreasePerWave;
+            OnDifficultyChanged?.Invoke(_currentDifficulty);
 
             foreach (var wave in _currentWaves)
             {

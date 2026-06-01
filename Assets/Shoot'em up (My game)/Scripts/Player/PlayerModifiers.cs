@@ -44,10 +44,10 @@ public class PlayerModifiers
 
     private void Recalculate()
     {
-        Stats.MaxHP = Calculate(StatAffected.MaxHP, _baseData.maxHealth);
+        Stats.MaxHP = Mathf.Max(Mathf.RoundToInt(Calculate(StatAffected.MaxHP, _baseData.maxHealth)), 1);
         Stats.Damage = Mathf.RoundToInt(Calculate(StatAffected.Damage, _baseData.damage));
-        Stats.ShootDelay = Calculate(StatAffected.AttackSpeed, _baseData.shootDelay);
-        Stats.ProjectileCountStep = Mathf.Clamp(Mathf.RoundToInt(Calculate(StatAffected.ProjectileCount, _baseData.projectileCountStep)), 1, 3);
+        Stats.ShootDelay = Mathf.Clamp(Calculate(StatAffected.AttackSpeed, _baseData.shootDelay), 0.17f, 1);
+        Stats.ProjectileCountStep = Mathf.Max(Mathf.RoundToInt(Calculate(StatAffected.ProjectileCount, _baseData.projectileCountStep)), 1);
 
         Debug.Log($"Damage {Stats.Damage} : MaxHP {Stats.MaxHP} : CurrnetHP {Stats.CurrentHP} : ShootDelay {Stats.ShootDelay} : PJCount {Stats.ProjectileCountStep}");
     }
