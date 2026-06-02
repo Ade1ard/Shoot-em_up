@@ -14,6 +14,8 @@ public class PlayerWeaponConfig : ScriptableObject
     [SerializeReference, SubclassSelector]
     public IDirectionGenerator DirGenerator;
 
+    public float PJLifeTime;
+
     public int GetPJCount(int step)
     {
         return step switch

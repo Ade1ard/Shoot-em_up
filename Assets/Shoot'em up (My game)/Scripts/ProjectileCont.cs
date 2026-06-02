@@ -12,13 +12,15 @@ public class ProjectileCont : MonoBehaviour
     private float _damage;
     private bool _isItEnemy = false;
 
-    public void Initialize(float damage = default)
+    public void Initialize(float? damage = null, float? lifeTime = null)
     {
-        if (damage != 0)
-            _damage = damage;
+        if (damage.HasValue)
+            _damage = damage.Value;
         else
             _damage = 10;
 
+        if (lifeTime.HasValue)
+            _lifeTime = lifeTime.Value;
         if (_lifeTime > 0)
             Invoke("Clear", _lifeTime);
     }

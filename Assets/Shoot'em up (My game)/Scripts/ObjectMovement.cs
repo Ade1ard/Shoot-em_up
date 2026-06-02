@@ -338,3 +338,38 @@ public class FromSpawnerDir: IDirectionGenerator
         return (startPosition - spawnerPos).normalized;
     }
 }
+
+[System.Serializable]
+public class FromSpawnerDirNormalized : IDirectionGenerator
+{
+    private static readonly Vector3[] Directions = {
+        Vector3.up,
+        Vector3.down,
+        Vector3.left,
+        Vector3.right,
+        new Vector3(1, 1, 0).normalized,
+        new Vector3(-1, 1, 0).normalized,
+        new Vector3(1, -1, 0).normalized,
+        new Vector3(-1, -1, 0).normalized,
+    };
+
+    public Vector3 GenerateDirection(Vector3 startPosition, Vector3 spawnerPos)
+    {
+        Vector3 raw = (startPosition - spawnerPos).normalized;
+
+        Vector3 closest = Directions[0];
+        float maxDot = float.MinValue;
+
+        foreach (var dir in Directions)
+        {
+            float dot = Vector3.Dot(raw, dir);
+            if (dot > maxDot)
+            {
+                maxDot = dot;
+                closest = dir;
+            }
+        }
+
+        return closest;
+    }
+}

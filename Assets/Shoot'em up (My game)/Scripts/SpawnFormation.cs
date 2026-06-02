@@ -132,3 +132,37 @@ public class SpawnSemicircle: ISpawnFormation
         return startPosition + offset;
     }
 }
+
+[System.Serializable]
+public class SpawnPairByCircle : ISpawnFormation
+{
+    [Header("Circle Settings")]
+    public float _radius = 1;
+
+    [Header("Line Settings")]
+    public float _Width = 0.1f;
+    public int BulletsPerLine = 2;
+
+    private static readonly float[] Angles = { 0f, -45f, 45f };
+
+    public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
+    {
+        int totalLines = Angles.Length;
+
+        int lineIndex = index % totalLines;
+        int bulletInLine = index / totalLines;
+
+        float angle = Angles[lineIndex] * Mathf.Deg2Rad;
+        Vector3 direction = new Vector3(
+            Mathf.Sin(angle),
+            Mathf.Cos(angle),
+            0
+        ).normalized;
+
+        float t = bulletInLine / (BulletsPerLine - 1);
+        var lineOffset = Mathf.Lerp(-_Width, _Width, t);
+        Vector3 perpendicular = Vector3.Cross(direction, Vector3.forward);
+
+        return startPosition + direction * _radius + perpendicular * lineOffset;
+    }
+}

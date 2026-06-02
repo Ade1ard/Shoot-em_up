@@ -46,7 +46,8 @@ public enum SpawnPatternType
 {
     line,
     Cross,
-    Semicircle
+    Semicircle,
+    PairByCircle
 }
 
 public enum MovementType
@@ -62,6 +63,7 @@ public static class SpawnPatternMap
         { SpawnPatternType.line, typeof(SpawnLine) },
         { SpawnPatternType.Cross, typeof(SpawnCross) },
         { SpawnPatternType.Semicircle, typeof(SpawnSemicircle) },
+        { SpawnPatternType.PairByCircle, typeof(SpawnPairByCircle) },
     };
 
     public static readonly Dictionary<Type, SpawnPatternType> Reverse = new()
@@ -69,6 +71,7 @@ public static class SpawnPatternMap
         { typeof(SpawnLine), SpawnPatternType.line },
         { typeof(SpawnCross), SpawnPatternType.Cross },
         { typeof(SpawnSemicircle), SpawnPatternType.Semicircle },
+        { typeof(SpawnPairByCircle), SpawnPatternType.PairByCircle },
     };
 }
 

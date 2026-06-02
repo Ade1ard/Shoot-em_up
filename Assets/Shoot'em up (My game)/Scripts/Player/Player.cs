@@ -130,7 +130,7 @@ public class Player : Health, IInitializable
     {
         if (_weaponConfigs.TryGetValue(pattern, out var config))
         {
-            _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator);
+            _playerPRJCaster.SetShootPattern(config.SpawnPattern, config.DirGenerator, config.PJLifeTime);
             _currentWeaponConfig = config;
         }
         else
@@ -174,13 +174,8 @@ public class Player : Health, IInitializable
 
         _modifiers.ClearAll();
 
-        var weaponConfig = _playerData.weaponConfig;
-        _playerPRJCaster.SetShootPattern(weaponConfig.SpawnPattern, weaponConfig.DirGenerator);
-        _currentWeaponConfig = weaponConfig;
-
-        var PJMoveConfig = _playerData.PJmoveConfig;
-        _currentPJMoveConfig = PJMoveConfig;
-        _playerPRJCaster.SetPJMovementType(PJMoveConfig.MovementType);
+        SetPJSpawnPattern(_playerData.weaponConfig.SpawnPattern.GetType());
+        SetPJMovementType(_playerData.PJmoveConfig.MovementType.GetType());
 
         UpdateStats();
     }
