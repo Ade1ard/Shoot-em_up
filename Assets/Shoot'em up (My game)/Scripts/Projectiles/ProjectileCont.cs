@@ -9,15 +9,19 @@ public class ProjectileCont : MonoBehaviour
     [SerializeField] private ParticleSystem _clearVFX;
     [SerializeField] private float _lifeTime; // if == 0 ensless lifeTime
 
+    private IHitHandler _hitHandler;
+
     private float _damage;
     private bool _isItEnemy = false;
 
-    public void Initialize(float? damage = null, float? lifeTime = null)
+    public void Initialize(float? damage = null, float? lifeTime = null, IHitHandler hitHandler = null)
     {
         if (damage.HasValue)
             _damage = damage.Value;
         else
             _damage = 10;
+
+        _hitHandler = hitHandler;
 
         if (lifeTime.HasValue)
             _lifeTime = lifeTime.Value;
@@ -32,6 +36,7 @@ public class ProjectileCont : MonoBehaviour
             if (!ID.CanDamage()) return;
 
             ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
+            _hitHandler?.OnHit(transform.position);
 
             if (_isItEnemy) return;
 

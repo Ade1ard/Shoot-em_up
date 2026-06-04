@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(ProjectileCaster))]
-public class Player : Health, IInitializable
+public class Player : Health, IInitializable, IHitHandler
 {
     [Header("Canvas")]
     [SerializeField] private Canvas _playerCanvas;
@@ -208,6 +208,11 @@ public class Player : Health, IInitializable
     }
 
     public void IsShooting(bool isShooting) { _playerPRJCaster.IsShooting(isShooting); }
+
+    void IHitHandler.OnHit(Vector3 pos)
+    {
+        TriggerEvent(PlayerEventType.OnHit);
+    }
 
     private void TriggerEvent(PlayerEventType eventType)
     {

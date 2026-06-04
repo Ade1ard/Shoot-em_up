@@ -33,6 +33,7 @@ public class ProjectileCaster : MonoBehaviour
     private bool _isShooting;
     private List<Transform> _shootP = new List<Transform>();
     private AudioSource _audioSource;
+    private IHitHandler _hitHandler;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class ProjectileCaster : MonoBehaviour
         UpdateShootPoints(_projectileCount);
 
         _audioSource = GetComponent<AudioSource>();
+        _hitHandler = GetComponentInParent<IHitHandler>();
     }
 
     public void IsShooting(bool isShooting) { _isShooting  = isShooting; }

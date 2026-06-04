@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class Enemy : Health
+public class Enemy : Health, IHitHandler
 {
     [Header("Parameters")]
     [SerializeField] private float maxHealth = 100f;
@@ -93,6 +93,11 @@ public class Enemy : Health
             TriggerEvent(EnemyEventType.OnMove);
             _onMoveLastTrigger = Time.time;
         }
+    }
+
+    void IHitHandler.OnHit(Vector3 pos)
+    {
+        TriggerEvent(EnemyEventType.OnHit);
     }
 
     private void TriggerEvent(EnemyEventType eventType)

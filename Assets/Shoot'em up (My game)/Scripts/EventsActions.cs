@@ -5,6 +5,7 @@ public enum EnemyEventType
     OnDeath,
     OnDamageTake,
     OnMove,
+    OnHit,
 }
 
 public enum PlayerEventType
@@ -12,6 +13,7 @@ public enum PlayerEventType
     OnDamageTake,
     OnMove,
     OnHeal,
+    OnHit,
 }
 
 public interface IAction
@@ -62,7 +64,7 @@ public class SpawnPJAction : IAction
 }
 
 [System.Serializable]
-public class Heal : IAction
+public class ChangeHPAction : IAction
 {
     [SerializeField] private int _healAmount = 1;
 
@@ -70,6 +72,6 @@ public class Heal : IAction
     {
         if (context.Health == null) return;
 
-        context.Health.HealHP(_healAmount);
+        context.Health.ChangeHP(_healAmount);
     }
 }

@@ -62,9 +62,9 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     public virtual bool CanDamage() { return true; }
 
-    public virtual void HealHP(float health)
+    public virtual void ChangeHP(float amount)
     {
-        _currentHealth += health;
+        _currentHealth += amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
         StartDrawingBar();
     }
