@@ -25,6 +25,9 @@ public class CardEffect : ScriptableObject
     [Header("Movement type (if effect type is PJMovementType)")]
     public MovementType movementType;
 
+    [Header("EventSetup (if effect type is Event)")]
+    public List<Player.EventSetup> events = new List<Player.EventSetup>();
+
     [Header("Visual effects")]
     public AudioClip pickUpSound;
 
@@ -40,6 +43,7 @@ public enum EffectType
     Heal,
     PJSpawnPattern,
     PJMovementType,
+    Event,
 }
 
 public enum SpawnPatternType

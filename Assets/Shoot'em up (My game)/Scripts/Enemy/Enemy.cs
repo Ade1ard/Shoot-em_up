@@ -17,13 +17,14 @@ public class Enemy : Health
 
     [Header("Events")]
     [SerializeField] private List<EventSetup> eventSetups = new List<EventSetup>();
+    private ActionContext _context;
 
     [System.Serializable]
     public class EventSetup
     {
-        public EventType eventType;
+        public EnemyEventType eventType;
         [SerializeReference, SubclassSelector]
-        public List<IEnemyAction> actions = new List<IEnemyAction>();
+        public List<IAction> actions = new List<IAction>();
     }
 
     private Vector3 _previousPositon;
@@ -62,12 +63,14 @@ public class Enemy : Health
             PJCont.Initialize(PRJDamage);
             PJCont.ItEnemy();
         }
+
+        _context = ActionContext.FromEnemy(this);
     }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
         base.DealDamage(damage, closestPoint);
-        TriggerEvent(EventType.OnDamageTake);
+        TriggerEvent(EnemyEventType.OnDamageTake);
     }
 
     protected override void Death()
@@ -75,7 +78,7 @@ public class Enemy : Health
         base.UIVisible(false);
         DOTween.Kill(transform);
         base.Death();
-        TriggerEvent(EventType.OnDeath);
+        TriggerEvent(EnemyEventType.OnDeath);
         OnDeath?.Invoke(this, xpReward);
         Destroy(gameObject, 0.1f);
     }
@@ -87,19 +90,19 @@ public class Enemy : Health
 
         if (_currentSpeed > 2 && Time.time - _onMoveLastTrigger >= _onMoveTriggerDelay)
         {
-            TriggerEvent(EventType.OnMove);
+            TriggerEvent(EnemyEventType.OnMove);
             _onMoveLastTrigger = Time.time;
         }
     }
 
-    private void TriggerEvent(EventType eventType)
+    private void TriggerEvent(EnemyEventType eventType)
     {
         var setup = eventSetups.Find(e => e.eventType == eventType);
         if (setup != null)
         {
             foreach (var action in setup.actions)
             {
-                action.Execute(_projectileCaster);
+                action.Execute(_context);
             }
         }
     }

@@ -179,7 +179,12 @@ public class GameMain : IInitializable
                 _player.Heal();
                 break;
 
-            default:
+            case EffectType.Event:
+                foreach (var e in effect.events)
+                    _player.AddEvent(e);
+                break;
+
+            case EffectType.StatModificate:
                 foreach (var mod in effect.modifiers)
                     _player.Modifiers.AddModifier(mod);
                 break;

@@ -1566,9 +1566,9 @@ MonoBehaviour:
   _cardPrefab: {fileID: 4628632130140260448, guid: 698a4fdefbd98214bb1d7190a4fa7ea2, type: 3}
   _cardsParent: {fileID: 355718300}
   _gridLayout: {fileID: 355718302}
-  _epicChance: 65
-  _legendChance: 30
-  _specialChance: 10
+  _epicChance: 75
+  _legendChance: 50
+  _specialChance: 15
 --- !u!4 &426549110
 Transform:
   m_ObjectHideFlags: 0
@@ -9689,6 +9689,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   _hitColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.2901961}
   _noHitDuration: 1.2
+  eventSetups: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0

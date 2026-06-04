@@ -21,6 +21,18 @@ public class Player : Health, IInitializable
     [SerializeField] private Color _hitColor;
     [SerializeField] private float _noHitDuration = 1;
 
+    [Header("Events")]
+    [SerializeField] private List<EventSetup> _eventSetups = new List<EventSetup>();
+    private ActionContext _context;
+
+    [System.Serializable]
+    public class EventSetup
+    {
+        public PlayerEventType eventType;
+        [SerializeReference, SubclassSelector]
+        public List<IAction> actions = new List<IAction>();
+    }
+
     private PlayerData _playerData;
 
     private PlayerRuntimeStats _stats;
@@ -52,6 +64,11 @@ public class Player : Health, IInitializable
     private Vector2 _startPosition;
     private Vector3 _originalScale;
 
+    private Vector3 _previousPositon;
+    private float _currentSpeed;
+    private float _onMoveTriggerDelay = 1;
+    private float _onMoveLastTrigger;
+
     public void Init()
     {
         _modifiers = new PlayerModifiers();
@@ -75,6 +92,7 @@ public class Player : Health, IInitializable
             _PJMoveConfigs[type] = config;
         }
 
+        _context = ActionContext.FromPlayer(this);
         _modifiers.Init(_playerData, _stats);
         LoadBasicStats();
     }
@@ -105,6 +123,8 @@ public class Player : Health, IInitializable
             if (_cameraShake != null)
                 _cameraShake.Shake();
         }
+
+        TriggerEvent(PlayerEventType.OnDamageTake);
     }
 
     public void Heal()
@@ -113,6 +133,8 @@ public class Player : Health, IInitializable
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
         Stats.CurrentHP = _currentHealth;
         StartDrawingBar();
+
+        TriggerEvent(PlayerEventType.OnHeal);
     }
 
     public override bool CanDamage()
@@ -146,6 +168,11 @@ public class Player : Health, IInitializable
         }
         else
             Debug.Log($"Config of type {moveType} not found");
+    }
+
+    public void AddEvent(Player.EventSetup eventSetup)
+    {
+        _eventSetups.Add(eventSetup);
     }
 
     public void AddXP(int amount, float difficulty)
@@ -182,6 +209,18 @@ public class Player : Health, IInitializable
 
     public void IsShooting(bool isShooting) { _playerPRJCaster.IsShooting(isShooting); }
 
+    private void TriggerEvent(PlayerEventType eventType)
+    {
+        var setup = _eventSetups.Find(e => e.eventType == eventType);
+        if (setup != null)
+        {
+            foreach (var action in setup.actions)
+            {
+                action.Execute(_context);
+            }
+        }
+    }
+
     private void FlashHitAnim(float duration)
     {
         Color origColor = _sprite.color;
@@ -216,5 +255,14 @@ public class Player : Health, IInitializable
     private void Update()
     {
         _playerCanvas.transform.position = Vector3.SmoothDamp(_playerCanvas.transform.position, transform.position, ref v, 1 / _canvasFollowSpeed);
+
+        _currentSpeed = Vector3.Distance(transform.position, _previousPositon) / Time.deltaTime;
+        _previousPositon = transform.position;
+
+        if (_currentSpeed > 2 && Time.time - _onMoveLastTrigger >= _onMoveTriggerDelay)
+        {
+            TriggerEvent(PlayerEventType.OnMove);
+            _onMoveLastTrigger = Time.time;
+        }
     }
 }
