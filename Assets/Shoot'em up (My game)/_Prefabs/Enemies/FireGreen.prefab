@@ -199,11 +199,15 @@ MonoBehaviour:
   eventSetups:
   - eventType: 2
     actions:
-    - rid: 920530492170174656
+    - Action:
+        rid: 4314395795172360272
+      RepeatMode: 0
+      RepeatCount: 1
+      Interval: 0.5
   references:
     version: 2
     RefIds:
-    - rid: 920530492170174656
+    - rid: 4314395795172360272
       type: {class: SpawnPJAction, ns: , asm: Assembly-CSharp}
       data:
         _maxPJCount: 1
@@ -220,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: c3ad605ff79965a4ca75533aeccbfeb7, type: 3}
-  _shootPoints: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:

@@ -18,13 +18,13 @@ public class Enemy : Health, IHitHandler
     [Header("Events")]
     [SerializeField] private List<EventSetup> eventSetups = new List<EventSetup>();
     private ActionContext _context;
+    private Dictionary<EnemyEventType, List<ActionRunner>> _activeRunners = new Dictionary<EnemyEventType, List<ActionRunner>>();
 
     [System.Serializable]
     public class EventSetup
     {
         public EnemyEventType eventType;
-        [SerializeReference, SubclassSelector]
-        public List<IAction> actions = new List<IAction>();
+        public List<ActionWrapper> actions = new List<ActionWrapper>();
     }
 
     private Vector3 _previousPositon;
@@ -100,15 +100,24 @@ public class Enemy : Health, IHitHandler
         TriggerEvent(EnemyEventType.OnHit);
     }
 
-    private void TriggerEvent(EnemyEventType eventType)
+    public void TriggerEvent(EnemyEventType eventType)
     {
         var setup = eventSetups.Find(e => e.eventType == eventType);
-        if (setup != null)
+        if (setup == null) return;
+
+        if (_activeRunners.TryGetValue(eventType, out var oldRunners))
         {
-            foreach (var action in setup.actions)
-            {
-                action.Execute(_context);
-            }
+            foreach (var r in oldRunners) r.Stop();
         }
+
+        var runners = new List<ActionRunner>();
+        foreach (var wrapper in setup.actions)
+        {
+            var runner = new ActionRunner(wrapper, _context, this);
+            runner.Start();
+            runners.Add(runner);
+        }
+
+        _activeRunners[eventType] = runners;
     }
 }

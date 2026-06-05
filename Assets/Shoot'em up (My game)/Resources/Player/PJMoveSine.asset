@@ -22,7 +22,7 @@ MonoBehaviour:
       data:
         _path:
           rid: 1058196415270879364
-        _moveDuration: 2
+        _moveDuration: 2.2
         _moveDurationOffset: 0
         pathType: 1
     - rid: 1058196415270879364

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
+  m_Name: Vampirism
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  effectName: Vampirism
+  description: You restore health when you hit an enemy, but lose it over time
+  icon: {fileID: 0}
+  rarity: 3
+  effectType: 4
+  modifiers: []
+  spawnPatternType: 0
+  movementType: 0
+  events:
+  - eventType: 3
+    actions:
+    - Action:
+        rid: 4314395795172360284
+      RepeatMode: 0
+      RepeatCount: 0
+      Interval: 0
+  - eventType: 4
+    actions:
+    - Action:
+        rid: 4314395795172360285
+      RepeatMode: 2
+      RepeatCount: 0
+      Interval: 1
+  pickUpSound: {fileID: 0}
+  _haveLimit: 0
+  _chooselimit: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: 4314395795172360284
+      type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
+      data:
+        _healAmount: 3
+    - rid: 4314395795172360285
+      type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
+      data:
+        _healAmount: -1

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public enum EnemyEventType
 {
@@ -14,11 +16,83 @@ public enum PlayerEventType
     OnMove,
     OnHeal,
     OnHit,
+    OnSelect,
 }
 
 public interface IAction
 {
     public void Execute(ActionContext context);
+}
+
+[System.Serializable]
+public class ActionWrapper
+{
+    [SerializeReference, SubclassSelector]
+    public IAction Action;
+
+    public RepeatMode RepeatMode;
+    public int RepeatCount = 1;
+    public float Interval = 0.5f;
+}
+
+public enum RepeatMode
+{
+    Once,
+    Count,
+    Infinite,
+}
+
+public class ActionRunner
+{
+    private ActionWrapper _wrapper;
+    private ActionContext _context;
+    private MonoBehaviour _owner;
+    private Coroutine _coroutine;
+    private int _executedCount;
+
+    public ActionRunner(ActionWrapper wrapper, ActionContext context, MonoBehaviour owner)
+    {
+        _wrapper = wrapper;
+        _context = context;
+        _owner = owner;
+    }
+
+    public void Start()
+    {
+        _executedCount = 0;
+
+        switch (_wrapper.RepeatMode)
+        {
+            case RepeatMode.Once:
+                _wrapper.Action.Execute(_context);
+                break;
+
+            case RepeatMode.Count:
+            case RepeatMode.Infinite:
+                _coroutine = _owner.StartCoroutine(RunRepeating());
+                break;
+        }
+    }
+
+    public void Stop()
+    {
+        if (_coroutine != null)
+            _owner.StopCoroutine(_coroutine);
+    }
+
+    private IEnumerator RunRepeating()
+    {
+        while (true)
+        {
+            _wrapper.Action.Execute(_context);
+            _executedCount++;
+
+            if (_wrapper.RepeatMode == RepeatMode.Count && _executedCount >= _wrapper.RepeatCount)
+                break;
+
+            yield return new WaitForSeconds(_wrapper.Interval);
+        }
+    }
 }
 
 public class ActionContext

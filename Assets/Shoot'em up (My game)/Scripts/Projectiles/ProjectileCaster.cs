@@ -26,7 +26,7 @@ public class ProjectileCaster : MonoBehaviour
     private float lastSoundTime;
 
     private float _PRJDamage;
-    private float _PRJLifeTime;
+    private float? _PRJLifeTime;
     private float _shootDelay;
     private int _projectileCount;
     private float _lastShootTime;
@@ -44,7 +44,7 @@ public class ProjectileCaster : MonoBehaviour
         UpdateShootPoints(_projectileCount);
 
         _audioSource = GetComponent<AudioSource>();
-        _hitHandler = GetComponentInParent<IHitHandler>();
+        _hitHandler = GetComponent<IHitHandler>();
     }
 
     public void IsShooting(bool isShooting) { _isShooting  = isShooting; }
@@ -92,7 +92,7 @@ public class ProjectileCaster : MonoBehaviour
                 0);
 
             var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
-            projectile.Initialize(_PRJDamage, _PRJLifeTime);
+            projectile.Initialize(_PRJDamage, _PRJLifeTime, _hitHandler);
             projectile.GetComponent<ObjectMovement>().StartMove(InitPos, _shootPoint.position);
         }
 

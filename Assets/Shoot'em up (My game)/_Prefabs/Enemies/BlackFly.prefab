@@ -199,11 +199,15 @@ MonoBehaviour:
   eventSetups:
   - eventType: 1
     actions:
-    - rid: 920530357077934163
+    - Action:
+        rid: 4314395795172360273
+      RepeatMode: 0
+      RepeatCount: 1
+      Interval: 0.5
   references:
     version: 2
     RefIds:
-    - rid: 920530357077934163
+    - rid: 4314395795172360273
       type: {class: SpawnPJAction, ns: , asm: Assembly-CSharp}
       data:
         _maxPJCount: 2

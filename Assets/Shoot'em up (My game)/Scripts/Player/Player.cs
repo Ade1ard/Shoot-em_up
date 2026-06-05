@@ -24,13 +24,13 @@ public class Player : Health, IInitializable, IHitHandler
     [Header("Events")]
     [SerializeField] private List<EventSetup> _eventSetups = new List<EventSetup>();
     private ActionContext _context;
+    private Dictionary<EventSetup, List<ActionRunner>> _activeRunners = new Dictionary<EventSetup, List<ActionRunner>>();
 
     [System.Serializable]
     public class EventSetup
     {
         public PlayerEventType eventType;
-        [SerializeReference, SubclassSelector]
-        public List<IAction> actions = new List<IAction>();
+        public List<ActionWrapper> actions = new List<ActionWrapper>();
     }
 
     private PlayerData _playerData;
@@ -172,6 +172,13 @@ public class Player : Health, IInitializable, IHitHandler
 
     public void AddEvent(Player.EventSetup eventSetup)
     {
+        if (eventSetup.eventType == PlayerEventType.OnSelect)
+        {
+            TriggerEvent(PlayerEventType.OnSelect, eventSetup);
+
+            return;
+        }
+
         _eventSetups.Add(eventSetup);
     }
 
@@ -214,16 +221,33 @@ public class Player : Health, IInitializable, IHitHandler
         TriggerEvent(PlayerEventType.OnHit);
     }
 
-    private void TriggerEvent(PlayerEventType eventType)
+    public void TriggerEvent(PlayerEventType eventType, EventSetup eventSetup = null)
     {
-        var setup = _eventSetups.Find(e => e.eventType == eventType);
-        if (setup != null)
+        if (eventSetup != null)
         {
-            foreach (var action in setup.actions)
-            {
-                action.Execute(_context);
-            }
+            RunSetup(eventSetup);
+            return;
         }
+
+        var setups = _eventSetups.FindAll(e => e.eventType == eventType);
+        foreach (var setup in setups)
+            RunSetup(setup);
+    }
+
+    private void RunSetup(EventSetup setup)
+    {
+        if (_activeRunners.TryGetValue(setup, out var oldRunners))
+            foreach (var r in oldRunners) r.Stop();
+
+        var runners = new List<ActionRunner>();
+        foreach (var wrapper in setup.actions)
+        {
+            var runner = new ActionRunner(wrapper, _context, this);
+            runner.Start();
+            runners.Add(runner);
+        }
+
+        _activeRunners[setup] = runners;
     }
 
     private void FlashHitAnim(float duration)

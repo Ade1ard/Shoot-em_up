@@ -9689,7 +9689,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _hitColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.2901961}
   _noHitDuration: 1.2
-  eventSetups: []
+  _eventSetups: []
   references:
     version: 2
     RefIds: []
