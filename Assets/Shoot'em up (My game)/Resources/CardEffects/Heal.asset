@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Heal
   description: Heal some health
-  icon: {fileID: 0}
+  icon: {fileID: 1249611852688498851, guid: 53e6b7db8cef6954e80930139b53966b, type: 3}
   rarity: 0
   effectType: 1
   modifiers: []
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

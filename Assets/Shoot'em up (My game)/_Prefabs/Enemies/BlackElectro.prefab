@@ -57,6 +57,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -166,7 +167,7 @@ MonoBehaviour:
     - rid: 920530094028226851
       type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
       data:
-        _betweenPointsMoveDuration: 6
+        _moveDuration: 6
         _inPointTime: 3
         _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
@@ -192,8 +193,12 @@ MonoBehaviour:
   maxHealth: 50
   xpReward: 20
   PRJDamage: 20
-  shootDelay: 4
+  shootDelay: 3.5
   projectileCount: 1
+  eventSetups: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: c04d8b1bd53eaf84e8374b36acfc8a5b, type: 3}
-  _shootPoints: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:
@@ -429,6 +434,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6817214578110155571
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -474,6 +480,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 2
   m_Sprite: {fileID: 6983887207345831526, guid: 67277ca6be2c0e64fa4e915b18178778, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -483,7 +490,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!95 &4854841910099279253
 Animator:

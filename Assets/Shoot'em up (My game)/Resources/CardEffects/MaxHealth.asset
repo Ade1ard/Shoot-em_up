@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Health
   description: Increase max health
-  icon: {fileID: 0}
+  icon: {fileID: -1833622806879968239, guid: 67384f8f4f04ff14cbdc02788e09cb8e, type: 3}
   rarity: 1
   effectType: 0
   modifiers:
   - Stat: 0
     Operation: 0
     Value: 10
+    RandomModifier: 0
+    minValue: 0
+    maxValue: 0
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Attack speed
   description: Add attack speed
-  icon: {fileID: 0}
+  icon: {fileID: 8395262103217725245, guid: 80220abb452081d45a3757d59df18af4, type: 3}
   rarity: 0
   effectType: 0
   modifiers:
   - Stat: 2
     Operation: 0
     Value: -0.03
+    RandomModifier: 0
+    minValue: 0
+    maxValue: 0
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 1
   _chooselimit: 5
+  references:
+    version: 2
+    RefIds: []

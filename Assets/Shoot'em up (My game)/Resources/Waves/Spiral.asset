@@ -22,8 +22,8 @@ MonoBehaviour:
     _maxEnemyCount: 4
     _spawnTogether: 0
     _delayBetweenEnemies: 0.3
-    _delayAfterGroup: 1
-  _waveStartDelay: 1
+    _delayAfterGroup: 0
+  _waveStartDelay: 0
   references:
     version: 2
     RefIds:

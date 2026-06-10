@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Bullet count
   description: More Bullets shoot
-  icon: {fileID: 0}
+  icon: {fileID: -7243563388056777162, guid: f573fc598610de048b735a6abe7ea6ab, type: 3}
   rarity: 2
   effectType: 0
   modifiers:
   - Stat: 3
     Operation: 0
     Value: 1
+    RandomModifier: 0
+    minValue: 0
+    maxValue: 0
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 1
   _chooselimit: 2
+  references:
+    version: 2
+    RefIds: []

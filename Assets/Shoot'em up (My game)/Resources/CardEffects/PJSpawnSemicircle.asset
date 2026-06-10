@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PJSpawnSemicircle
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: Projectile Semicircle
-  description: 
-  icon: {fileID: 0}
+  effectName: Semicircle
+  description: Bullets spawns by semicirlce
+  icon: {fileID: 5761989471724319259, guid: cc6a9a0720c6c9d439579d1325263827, type: 3}
   rarity: 2
   effectType: 2
   modifiers: []
   spawnPatternType: 2
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

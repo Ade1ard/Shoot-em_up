@@ -6798,8 +6798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf14a86a8b80f74ea831dfb723089a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
-  _duration: 0.5
-  _strength: 0.2
+  _duration: 0.7
+  _strength: 0.3
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

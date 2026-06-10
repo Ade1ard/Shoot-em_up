@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Berserk
   description: Increase damage but reduces max HP
-  icon: {fileID: 0}
+  icon: {fileID: -8086874749917614017, guid: f32128e77494121458076dc1a34bca94, type: 3}
   rarity: 3
   effectType: 0
   modifiers:
@@ -28,9 +28,14 @@ MonoBehaviour:
     Operation: 0
     Value: 0
     RandomModifier: 1
-    minValue: -30
-    maxValue: -10
+    minValue: -40
+    maxValue: -20
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

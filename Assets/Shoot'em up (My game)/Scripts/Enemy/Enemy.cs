@@ -45,12 +45,16 @@ public class Enemy : Health, IHitHandler
 
     public void Initialize(float multiplier = default)
     {
+        _projectileCaster = GetComponent<ProjectileCaster>();
+
         if (multiplier != 0)
+        {
             maxHealth *= multiplier;
+            StatsModify(multiplier);
+        }
 
         base.InitHP(maxHealth);
 
-        _projectileCaster = GetComponent<ProjectileCaster>();
         if (_projectileCaster != null)
         {
             _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
@@ -65,6 +69,33 @@ public class Enemy : Health, IHitHandler
         }
 
         _context = ActionContext.FromEnemy(this);
+    }
+
+    private void StatsModify(float difficulty)
+    {
+        if (difficulty < 2) return;
+
+        if (UnityEngine.Random.Range(0, 100) < 10)
+        {
+            shootDelay = UnityEngine.Random.Range(1, shootDelay + 1);
+            xpReward += 20;
+            if (_projectileCaster != null)
+                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+        }
+
+        if (UnityEngine.Random.Range(0, 100) < 10)
+        {
+            projectileCount = UnityEngine.Random.Range(projectileCount, projectileCount + 3);
+            xpReward += 20;
+            if (_projectileCaster != null)
+                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+        }
+
+        if (UnityEngine.Random.Range(0, 100) < 10)
+        {
+            maxHealth *= difficulty;
+            xpReward += 20;
+        }
     }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)

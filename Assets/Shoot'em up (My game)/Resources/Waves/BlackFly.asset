@@ -22,7 +22,7 @@ MonoBehaviour:
     _maxEnemyCount: 2
     _spawnTogether: 0
     _delayBetweenEnemies: 1
-    _delayAfterGroup: 1
+    _delayAfterGroup: 0
   _waveStartDelay: 0
   references:
     version: 2

@@ -34,10 +34,10 @@ public class WaveData : ScriptableObject
     [Header("Timing")]
     public float _waveStartDelay = 2f;
 
-    public int GetRandomCountForGroup(int groupIndex, int extraMaxEnemies = 0)
+    public int GetRandomCountForGroup(int groupIndex, int extraEnemies = 0)
     {
         if (groupIndex >= _enemyGroups.Count) return 0;
         EnemyGroup group = _enemyGroups[groupIndex];
-        return Random.Range(group._minEnemyCount, group._maxEnemyCount + extraMaxEnemies + 1);
+        return Random.Range(group._minEnemyCount + extraEnemies, group._maxEnemyCount + extraEnemies + 1);
     }
 }

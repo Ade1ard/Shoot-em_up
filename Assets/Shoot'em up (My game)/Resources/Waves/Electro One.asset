@@ -23,7 +23,7 @@ MonoBehaviour:
     _spawnTogether: 0
     _delayBetweenEnemies: 1.5
     _delayAfterGroup: 0
-  _waveStartDelay: 1
+  _waveStartDelay: 0
   references:
     version: 2
     RefIds:

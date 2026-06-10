@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: PJMoveLinear
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Linear
-  description: Projectile moves linear
-  icon: {fileID: 0}
+  description: Bulltes moves linear
+  icon: {fileID: -4346244404228752641, guid: 9f6db11942727774b9762959d43de3cb, type: 3}
   rarity: 1
   effectType: 3
   modifiers: []
   spawnPatternType: 0
   movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

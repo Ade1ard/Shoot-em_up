@@ -67,6 +67,9 @@ public abstract class Health : MonoBehaviour, IDamageable
         _currentHealth += amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
         StartDrawingBar();
+        UIVisible(true);
+        if (_currentHealth <= 0f)
+            Death();
     }
 
     protected virtual void Death()

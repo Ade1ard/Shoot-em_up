@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Attack
   description: Increase Damage but random change Attack speed
-  icon: {fileID: 0}
+  icon: {fileID: 3866114885339713866, guid: d8bbaa84a515c9f459aa2985082ea1ed, type: 3}
   rarity: 3
   effectType: 0
   modifiers:
@@ -28,9 +28,14 @@ MonoBehaviour:
     Operation: 0
     Value: 0
     RandomModifier: 1
-    minValue: -0.03
-    maxValue: 0.03
+    minValue: -0.07
+    maxValue: 0.07
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

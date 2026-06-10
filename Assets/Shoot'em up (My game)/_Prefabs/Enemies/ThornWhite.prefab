@@ -193,9 +193,13 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   maxHealth: 100
   xpReward: 40
-  PRJDamage: 20
+  PRJDamage: 30
   shootDelay: 2
   projectileCount: 4
+  eventSetups: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
   _projectilePrefab: {fileID: 9095561515226119892, guid: edb715d266f5d2949acad78fdddd0e62, type: 3}
-  _shootPoints: {fileID: 0}
+  _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:

@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PJSpawnLine
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  effectName: Projectile Line
-  description: 
-  icon: {fileID: 0}
+  effectName: Line
+  description: Bullets spawn in line
+  icon: {fileID: 545430229424219365, guid: 53eb820116a28e247acb6af536bad266, type: 3}
   rarity: 2
   effectType: 2
   modifiers: []
   spawnPatternType: 0
+  movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

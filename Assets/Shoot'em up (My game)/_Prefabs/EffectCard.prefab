@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardWidget
   _backgroundCard: {fileID: 9032901023543872471}
   _cardOutline: {fileID: 6679388068487281248}
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: 4811976867636427174}
   _nameText: {fileID: 5677039711662765880}
   _descriptionText: {fileID: 9016758593590497283}
   _selectButton: {fileID: 4573646588876159388}
@@ -442,12 +442,12 @@ GameObject:
   - component: {fileID: 4811976867636427174}
   - component: {fileID: 7181399799536675845}
   m_Layer: 5
-  m_Name: Icon background
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7438362647850493814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -464,8 +464,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30.79}
-  m_SizeDelta: {x: 319, y: 319}
+  m_AnchoredPosition: {x: -0.00000047684, y: 20.6}
+  m_SizeDelta: {x: 387.3728, y: 387.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4811976867636427174
 MonoBehaviour:

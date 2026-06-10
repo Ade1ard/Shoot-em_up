@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Vampirism
   description: You restore health when you hit an enemy, but lose it over time
-  icon: {fileID: 0}
+  icon: {fileID: 7247343416498695678, guid: 76d660615abaa0843b5ad142d94f29e6, type: 3}
   rarity: 3
   effectType: 4
   modifiers: []
@@ -36,16 +36,16 @@ MonoBehaviour:
       RepeatCount: 0
       Interval: 1
   pickUpSound: {fileID: 0}
-  _haveLimit: 0
-  _chooselimit: 3
+  _haveLimit: 1
+  _chooselimit: 1
   references:
     version: 2
     RefIds:
     - rid: 4314395795172360284
       type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
       data:
-        _healAmount: 3
+        _healAmount: 2
     - rid: 4314395795172360285
       type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
       data:
-        _healAmount: -1
+        _healAmount: -3

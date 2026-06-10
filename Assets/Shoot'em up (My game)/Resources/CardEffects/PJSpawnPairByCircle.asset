@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Shotgun
   description: 'A lot of bullets but range is limited '
-  icon: {fileID: 0}
+  icon: {fileID: -6061171253295902181, guid: 6124ed4806dc6a4408cc9cc7becca69a, type: 3}
   rarity: 2
   effectType: 2
   modifiers: []
   spawnPatternType: 3
   movementType: 0
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

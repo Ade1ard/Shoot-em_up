@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: PJMoveSine
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Wave
-  description: Projectiles moves by Sine
-  icon: {fileID: 0}
+  description: Bullets moves by Sine
+  icon: {fileID: -1538535176543953794, guid: 24dd69faa1e816b4ba44f3236719415e, type: 3}
   rarity: 1
   effectType: 3
   modifiers: []
   spawnPatternType: 0
   movementType: 1
+  events: []
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 3
+  references:
+    version: 2
+    RefIds: []

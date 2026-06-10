@@ -19,7 +19,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
     [SerializeField][Range(0, 100)] private float _epicChance = 50f;
     [SerializeField][Range(0, 100)] private float _legendChance = 25f;
     [SerializeField][Range(0, 100)] private float _specialChance = 10f;
-    private float _difficulty;
+    private float _difficultyMultiplier;
 
     public event Action<CardEffect> OnCardApplied;
     public event Action OnSelectionClosed;
@@ -42,7 +42,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         _UIView.ShowUI(false);
         ClearOldCards();
 
-        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance * _difficulty);
+        List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance * _difficultyMultiplier);
 
         _cards = new List<CardWidget>();
 
@@ -90,7 +90,7 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
 
     private void GetDifficulty(float multiplier)
     {
-        _difficulty = multiplier;
+        _difficultyMultiplier = multiplier;
     }
 
     private void OnDisable()

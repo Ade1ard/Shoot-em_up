@@ -193,7 +193,7 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 929cb9ae0248bb7438b75d601ecea1ff, type: 3}
   maxHealth: 100
   xpReward: 30
-  PRJDamage: 20
+  PRJDamage: 25
   shootDelay: 3
   projectileCount: 1
   eventSetups: []
