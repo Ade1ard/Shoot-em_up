@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public enum EnemyEventType
 {
     OnDeath,
@@ -16,7 +15,8 @@ public enum PlayerEventType
     OnMove,
     OnHeal,
     OnHit,
-    OnSelect,
+    OnSelectOnce,
+    OnEnemyDeath,
 }
 
 public interface IAction
@@ -100,6 +100,7 @@ public class ActionContext
     public ProjectileCaster Caster;
     public Health Health;
     public Player Player;
+    public Vector3 ExecutePos;
 
     public static ActionContext FromEnemy(Enemy enemy)
     {
@@ -147,5 +148,32 @@ public class ChangeHPAction : IAction
         if (context.Health == null) return;
 
         context.Health.ChangeHP(_healAmount);
+    }
+}
+
+[System.Serializable]
+public class CustomShoot : IAction
+{
+    [Header("Prefab")]
+    [SerializeField] private ProjectileCont _projectilePrefab;
+
+    [Header("SpawnPattern")]
+    [SerializeReference, SubclassSelector]
+    private ISpawnFormation _spawnPattern;
+
+    [Header("Parameters")]
+    [SerializeField] private float _PJDamage;
+    [SerializeField] private float _PJLifeTime;
+    [SerializeField] private int _PJCount;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem _vFX;
+    [SerializeField] private AudioClip _sound;
+
+    public void Execute(ActionContext context)
+    {
+        if (context.Caster == null) return;
+
+        context.Caster.CustomShoot(_projectilePrefab, _PJCount, _spawnPattern, _PJDamage, _PJLifeTime, context.ExecutePos);
     }
 }

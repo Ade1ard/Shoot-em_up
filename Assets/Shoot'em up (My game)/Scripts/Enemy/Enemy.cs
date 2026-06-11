@@ -32,6 +32,8 @@ public class Enemy : Health, IHitHandler
     private float _onMoveTriggerDelay = 1;
     private float _onMoveLastTrigger;
 
+    private bool _canDamage = true;
+
     private ProjectileCaster _projectileCaster;
     private SpriteRenderer _sprite;
 
@@ -117,8 +119,11 @@ public class Enemy : Health, IHitHandler
         TriggerEvent(EnemyEventType.OnDamageTake);
     }
 
+    public override bool CanDamage() { return _canDamage; }
+
     protected override void Death()
     {
+        _canDamage = false;
         base.UIVisible(false);
         DOTween.Kill(transform);
         base.Death();

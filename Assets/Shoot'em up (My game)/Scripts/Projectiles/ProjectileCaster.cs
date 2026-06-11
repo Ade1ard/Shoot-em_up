@@ -109,6 +109,26 @@ public class ProjectileCaster : MonoBehaviour
             _shootFlashAnimator.SetTrigger("Shoot");
     }
 
+    public void CustomShoot(ProjectileCont projectile = null, int? PJCount = null, ISpawnFormation spawnPattern = null, float? PJDamage = null, float? PJLifeTime = null, Vector3? spawnPos = null)
+    {
+        GameObject ShootPoint = new GameObject($"{gameObject.name}ShootPoint");
+        ShootPoint.transform.position = spawnPos.HasValue ? spawnPos.Value : transform.position;
+        Debug.Log(ShootPoint.transform.position);
+
+        for (int i = 0; i < PJCount; i++)
+        {
+            GameObject bullet = new GameObject($"{gameObject.name}ShootPoint{i}");
+            bullet.transform.SetParent(ShootPoint.transform);
+            bullet.transform.localPosition = spawnPattern.CalculateSpawnPosition(Vector3.zero, i, PJCount.Value);
+
+            var PJ = Instantiate(projectile, bullet.transform.position, Quaternion.identity);
+            PJ.Initialize(PJDamage, PJLifeTime);
+            PJ.GetComponent<ObjectMovement>().StartMove(bullet.transform.position, ShootPoint.transform.position);
+        }
+
+        Destroy(ShootPoint.gameObject);
+    }
+
     private void UpdateShootPoints(int count)
     {
         foreach (Transform p in _shootP)

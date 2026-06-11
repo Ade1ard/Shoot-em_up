@@ -14,8 +14,6 @@ public class PlayerModifiers
     {
         _baseData = baseData;
         Stats = runtimeStats;
-
-        Recalculate();
     }
 
     public void AddModifier(ModifierData data)

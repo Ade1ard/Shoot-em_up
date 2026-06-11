@@ -172,9 +172,9 @@ public class Player : Health, IInitializable, IHitHandler
 
     public void AddEvent(Player.EventSetup eventSetup)
     {
-        if (eventSetup.eventType == PlayerEventType.OnSelect)
+        if (eventSetup.eventType == PlayerEventType.OnSelectOnce)
         {
-            TriggerEvent(PlayerEventType.OnSelect, eventSetup);
+            TriggerEvent(PlayerEventType.OnSelectOnce, eventSetup);
 
             return;
         }
@@ -219,6 +219,12 @@ public class Player : Health, IInitializable, IHitHandler
     void IHitHandler.OnHit(Vector3 pos)
     {
         TriggerEvent(PlayerEventType.OnHit);
+    }
+
+    public void EnemyDeath(Vector3 enemyPos)
+    {
+        _context.ExecutePos = enemyPos;
+        TriggerEvent(PlayerEventType.OnEnemyDeath);
     }
 
     public void TriggerEvent(PlayerEventType eventType, EventSetup eventSetup = null)

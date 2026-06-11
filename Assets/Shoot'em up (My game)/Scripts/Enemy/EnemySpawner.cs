@@ -176,6 +176,7 @@ public class EnemySpawner : MonoBehaviour, IInitializable
             _activeEnemies.Remove(enemy);
 
             _player.AddXP((int)(xpValue * _currentDifficulty), _currentDifficulty);
+            _player.EnemyDeath(enemy.transform.position);
         }
     }
 
