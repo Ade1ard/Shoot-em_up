@@ -33,6 +33,7 @@ public class Enemy : Health, IHitHandler
     private float _onMoveLastTrigger;
 
     private ProjectileCaster _projectileCaster;
+    private SpriteRenderer _sprite;
 
     public event Action<Enemy, int> OnDeath;
 
@@ -46,11 +47,12 @@ public class Enemy : Health, IHitHandler
     public void Initialize(float multiplier = default)
     {
         _projectileCaster = GetComponent<ProjectileCaster>();
+        _sprite = GetComponentInChildren<SpriteRenderer>();
 
         if (multiplier != 0)
         {
             maxHealth *= multiplier;
-            StatsModify(multiplier);
+            EnemyMutate(multiplier);
         }
 
         base.InitHP(maxHealth);
@@ -71,32 +73,43 @@ public class Enemy : Health, IHitHandler
         _context = ActionContext.FromEnemy(this);
     }
 
-    private void StatsModify(float difficulty)
+    private void EnemyMutate(float difficulty)
     {
         if (difficulty < 2) return;
 
-        if (UnityEngine.Random.Range(0, 100) < 10)
+        bool mutated = false;
+
+        if (TryMutate(difficulty))
         {
+            mutated = true;
             shootDelay = UnityEngine.Random.Range(1, shootDelay + 1);
             xpReward += 20;
-            if (_projectileCaster != null)
-                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
         }
 
-        if (UnityEngine.Random.Range(0, 100) < 10)
+        if (TryMutate(difficulty))
         {
+            mutated = true;
             projectileCount = UnityEngine.Random.Range(projectileCount, projectileCount + 3);
             xpReward += 20;
-            if (_projectileCaster != null)
-                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
         }
 
-        if (UnityEngine.Random.Range(0, 100) < 10)
+        if (TryMutate(difficulty))
         {
+            mutated = true;
             maxHealth *= difficulty;
             xpReward += 20;
         }
+
+        if (mutated)
+        {
+            if (_projectileCaster != null)
+                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+            if (_sprite != null)
+                _sprite.color = Color.HSVToRGB(UnityEngine.Random.Range(0, 1f), 0.47f, 1);
+        }
     }
+
+    private bool TryMutate(float multiplier) { return UnityEngine.Random.Range(0, 100) < 5 * multiplier; }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {

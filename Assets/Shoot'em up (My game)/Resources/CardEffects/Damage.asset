@@ -20,7 +20,7 @@ MonoBehaviour:
   modifiers:
   - Stat: 1
     Operation: 0
-    Value: 10
+    Value: 5
     RandomModifier: 0
     minValue: 0
     maxValue: 0
