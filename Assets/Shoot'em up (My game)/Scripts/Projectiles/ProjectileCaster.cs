@@ -113,7 +113,6 @@ public class ProjectileCaster : MonoBehaviour
     {
         GameObject ShootPoint = new GameObject($"{gameObject.name}ShootPoint");
         ShootPoint.transform.position = spawnPos.HasValue ? spawnPos.Value : transform.position;
-        Debug.Log(ShootPoint.transform.position);
 
         for (int i = 0; i < PJCount; i++)
         {

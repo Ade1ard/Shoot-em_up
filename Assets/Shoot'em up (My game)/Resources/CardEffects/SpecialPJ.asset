@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
+  m_Name: SpecialPJ
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  effectName: Death Spark
+  description: Killing an enemy spawns a spark that flies to the nearest enemy
+  icon: {fileID: 8333481726314500824, guid: 8c0410c150cea0f4a82316f9fecbbe5a, type: 3}
+  rarity: 1
+  effectType: 4
+  modifiers: []
+  spawnPatternType: 0
+  movementType: 0
+  events:
+  - eventType: 5
+    actions:
+    - Action:
+        rid: 1058196642285486266
+      RepeatMode: 0
+      RepeatCount: 0
+      Interval: 0
+  pickUpSound: {fileID: 0}
+  _haveLimit: 1
+  _chooselimit: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1058196642285486266
+      type: {class: CustomShoot, ns: , asm: Assembly-CSharp}
+      data:
+        _projectilePrefab: {fileID: 3235747921286425940, guid: 8b700b99731427a46861ebe16f15858f, type: 3}
+        _spawnPattern:
+          rid: 1058196642285486267
+        _PJDamage: 20
+        _PJLifeTime: 0
+        _PJCount: 1
+        _vFX: {fileID: 0}
+        _sound: {fileID: 0}
+    - rid: 1058196642285486267
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+      data:
+        _Width: 1

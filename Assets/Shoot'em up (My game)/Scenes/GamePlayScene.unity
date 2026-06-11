@@ -9689,32 +9689,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   _hitColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.2901961}
   _noHitDuration: 1.2
-  _eventSetups:
-  - eventType: 5
-    actions:
-    - Action:
-        rid: 1058196634187858101
-      RepeatMode: 0
-      RepeatCount: 0
-      Interval: 0
+  _eventSetups: []
   references:
     version: 2
-    RefIds:
-    - rid: 1058196634187858101
-      type: {class: CustomShoot, ns: , asm: Assembly-CSharp}
-      data:
-        _projectilePrefab: {fileID: 3235747921286425940, guid: 8b700b99731427a46861ebe16f15858f, type: 3}
-        _spawnPattern:
-          rid: 1058196634187858103
-        _PJDamage: 10
-        _PJLifeTime: 0
-        _PJCount: 1
-        _vFX: {fileID: 0}
-        _sound: {fileID: 0}
-    - rid: 1058196634187858103
-      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
-      data:
-        _Width: 1
+    RefIds: []
 --- !u!1 &1817825695
 GameObject:
   m_ObjectHideFlags: 0

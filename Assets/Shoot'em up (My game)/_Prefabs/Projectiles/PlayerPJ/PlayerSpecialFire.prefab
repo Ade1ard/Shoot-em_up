@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119145173940936867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5059737127395992530}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &8676255565071456841
 SpriteRenderer:
   serializedVersion: 2
@@ -80,10 +80,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 2
   m_Sprite: {fileID: 1462318181781107465, guid: 91d348afa4b811a4d9d556d90e69430d, type: 3}
-  m_Color: {r: 0.65882355, g: 0.3137255, b: 0.25490198, a: 1}
+  m_Color: {r: 0.8490566, g: 0.37496284, b: 0.35644355, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -144,7 +144,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1041414983236912806}
@@ -164,21 +164,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
   _isItEnemy: 0
   _movementType:
-    rid: 920530094028226854
+    rid: 1058196642285486152
   _dirGenerator:
-    rid: 920530498112717002
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226854
-      type: {class: LinearMove, ns: , asm: Assembly-CSharp}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1058196642285486152
+      type: {class: ToEnemyMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 22.5
-    - rid: 920530498112717002
-      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
-      data:
-        _upDirection: 1
-        _directionOffset: 0
+        _startSpeed: 2
+        _maxSpeed: 30
+        _acceleration: 15
+        _rotationSpeed: 360
+        _searchRadius: 25
+        _targetLayer:
+          serializedVersion: 2
+          m_Bits: 128
+        _spriteRotate: 0
 --- !u!114 &3235747921286425940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +259,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.03265947, y: 0.055816174}
+  m_Offset: {x: -0.03265953, y: -0.0018837452}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -264,5 +269,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.0369182, y: 4.8081226}
+  m_Size: {x: 4.690982, y: 3.1155925}
   m_EdgeRadius: 0

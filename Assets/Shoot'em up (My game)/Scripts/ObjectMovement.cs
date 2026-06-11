@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using System.Collections;
 
 public class ObjectMovement : MonoBehaviour
 {
@@ -187,6 +188,105 @@ public class BetweenPointMove: IMovementType
             _sequence.Kill();
             _sequence = null;
         }
+    }
+}
+
+[System.Serializable]
+public class ToEnemyMove : IMovementType
+{
+    [Header("Homing Settings")]
+    [SerializeField] private float _startSpeed = 5f;
+    [SerializeField] private float _maxSpeed = 20f;
+    [SerializeField] private float _acceleration = 5f;
+    [SerializeField] private float _rotationSpeed = 360f;
+    [SerializeField] private float _searchRadius = 20f;
+    [SerializeField] private LayerMask _targetLayer;
+    [SerializeField] private bool _spriteRotate;
+
+    private Transform _transform;
+    private Rigidbody2D _rb;
+    private Transform _target;
+    private Transform _spriteTransform;
+    private float _currentSpeed;
+    private bool _isActive;
+
+    public void Move(Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    {
+        _transform = transform;
+        _rb = transform.GetComponent<Rigidbody2D>();
+        _isActive = true;
+        _currentSpeed = _startSpeed;
+        _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
+
+        _target = FindClosestEnemy();
+
+        transform.GetComponent<MonoBehaviour>().StartCoroutine(HomingRoutine());
+    }
+
+    private IEnumerator HomingRoutine()
+    {
+        while (_isActive && _transform != null)
+        {
+            _currentSpeed = Mathf.Min(_currentSpeed + _acceleration * Time.fixedDeltaTime, _maxSpeed);
+
+            if (_target == null || !_target.gameObject.activeInHierarchy)
+                _target = FindClosestEnemy();
+
+            Vector3 moveDirection;
+            if (_target != null)
+                moveDirection = (_target.position - _transform.position).normalized;
+            else
+                moveDirection = _rb.linearVelocity.normalized;
+
+            Vector3 currentDir = _rb.linearVelocity.normalized;
+            if (currentDir == Vector3.zero)
+                currentDir = moveDirection;
+
+            float currentAngle = Mathf.Atan2(currentDir.y, currentDir.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+
+            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, _rotationSpeed * Time.fixedDeltaTime);
+
+            Vector3 newDir = new Vector3(Mathf.Cos(newAngle * Mathf.Deg2Rad), Mathf.Sin(newAngle * Mathf.Deg2Rad), 0);
+
+            _rb.linearVelocity = newDir * _currentSpeed;
+
+            if (_spriteTransform != null && _spriteRotate)
+            {
+                float spriteAngle = Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg;
+                _spriteTransform.rotation = Quaternion.Euler(0, 0, spriteAngle);
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private Transform FindClosestEnemy()
+    {
+        var hits = Physics2D.OverlapCircleAll(_transform.position, _searchRadius, _targetLayer);
+        Transform closest = null;
+        float minDist = float.MaxValue;
+
+        foreach (var hit in hits)
+        {
+            if (!hit.TryGetComponent<Enemy>(out _)) continue;
+
+            float dist = Vector3.Distance(_transform.position, hit.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = hit.transform;
+            }
+        }
+
+        return closest;
+    }
+
+    public void Stop()
+    {
+        _isActive = false;
+        if (_rb != null)
+            _rb.linearVelocity = Vector2.zero;
     }
 }
 
