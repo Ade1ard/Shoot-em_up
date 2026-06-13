@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackSpeed
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Attack speed
-  description: Add attack speed
+  description: Increase attack speed
   icon: {fileID: 8395262103217725245, guid: 80220abb452081d45a3757d59df18af4, type: 3}
   rarity: 0
   effectType: 0

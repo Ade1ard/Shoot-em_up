@@ -19,6 +19,9 @@ public class CardEffect : ScriptableObject
     [Header("Modifiers (if effect type is StatModificate)")]
     public List<ModifierData> modifiers = new List<ModifierData>();
 
+    [Header("Heal ((if effect type is Heal))")]
+    [Range(0, 100)] public int healPercent;
+
     [Header("Spawn Pattern (if effect type is PJSpawnPattern)")]
     public SpawnPatternType spawnPatternType;
 

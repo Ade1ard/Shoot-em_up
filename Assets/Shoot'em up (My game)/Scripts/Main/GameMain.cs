@@ -176,7 +176,7 @@ public class GameMain : IInitializable
                 break;
 
             case EffectType.Heal:
-                _player.Heal();
+                _player.Heal(effect.healPercent);
                 break;
 
             case EffectType.Event:

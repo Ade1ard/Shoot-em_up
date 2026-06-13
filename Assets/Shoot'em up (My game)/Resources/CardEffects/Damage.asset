@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   effectName: Damage
-  description: Add damage
+  description: Increase damage
   icon: {fileID: -4511813924302852723, guid: dc1598ef1d47072418a5cc996941fb51, type: 3}
   rarity: 1
   effectType: 0

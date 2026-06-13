@@ -22,15 +22,27 @@ public abstract class Health : MonoBehaviour, IDamageable
     private float lastSoundTime;
 
     [NonSerialized] public float _maxHealth;
-    [NonSerialized] public float _currentHealth;
+
+    private float _hp;
+    public event Action OnHpChanged;
+
+    public float currentHealth
+    {
+        get => _hp;
+        set
+        {
+            _hp = value;
+            OnHpChanged?.Invoke();
+        }
+    }
+
     private Coroutine _healthBarCoroutine;
     private AudioSource _audioSource;
 
     protected virtual void InitHP(float maxhealth)
     {
         _maxHealth = maxhealth;
-        _currentHealth = maxhealth;
-        StartDrawingBar();
+        currentHealth = maxhealth;
     }
 
     protected virtual void Start()
@@ -42,11 +54,10 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     public virtual void DealDamage(float damage, Vector3 closestPoint = default)
     {
-        _currentHealth -= damage;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, _maxHealth);
 
         _healthBarCanvasGroup.gameObject.SetActive(true);
-        StartDrawingBar();
 
         if (_hitSounds.Count != 0 && Time.time - lastSoundTime >= 0.1f)
         {
@@ -54,7 +65,7 @@ public abstract class Health : MonoBehaviour, IDamageable
             lastSoundTime = Time.time;
         }
 
-        if (_currentHealth <= 0f)
+        if (currentHealth <= 0f)
             Death();
         else if (closestPoint != default)
             Instantiate(_takeDamageVFX, closestPoint, Quaternion.identity);
@@ -64,11 +75,10 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     public virtual void ChangeHP(float amount)
     {
-        _currentHealth += amount;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
-        StartDrawingBar();
-        UIVisible(true);
-        if (_currentHealth <= 0f)
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, _maxHealth);
+
+        if (currentHealth <= 0f)
             Death();
     }
 
@@ -88,9 +98,9 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     private IEnumerator DrawHealthBar()
     {
-        while (_healthBarAmount.fillAmount != (_currentHealth / _maxHealth))
+        while (_healthBarAmount.fillAmount != (currentHealth / _maxHealth))
         {
-            _healthBarAmount.fillAmount = Mathf.MoveTowards(_healthBarAmount.fillAmount, _currentHealth / _maxHealth, _healthBarDrawingSpeed / 100);
+            _healthBarAmount.fillAmount = Mathf.MoveTowards(_healthBarAmount.fillAmount, currentHealth / _maxHealth, _healthBarDrawingSpeed / 100);
             yield return null;
         }
         _healthBarCoroutine = null;
@@ -98,9 +108,23 @@ public abstract class Health : MonoBehaviour, IDamageable
 
     public void UIVisible(bool visible)
     {
-        if (visible && _currentHealth == _maxHealth) return;
+        if (visible && currentHealth == _maxHealth) return;
 
         _healthBarCanvasGroup.gameObject.SetActive(visible);
+    }
+
+    private void UIVis() { UIVisible(true); }
+
+    protected virtual void OnEnable()
+    {
+        OnHpChanged += StartDrawingBar;
+        OnHpChanged += UIVis;
+    }
+
+    protected virtual void OnDisable()
+    {
+        OnHpChanged -= StartDrawingBar;
+        OnHpChanged -= UIVis;
     }
 }
 

@@ -178,7 +178,7 @@ MonoBehaviour:
         _startSpeed: 2
         _maxSpeed: 30
         _acceleration: 15
-        _rotationSpeed: 360
+        _rotationSpeed: 300
         _searchRadius: 25
         _targetLayer:
           serializedVersion: 2

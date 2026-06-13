@@ -225,6 +225,8 @@ public class ToEnemyMove : IMovementType
 
     private IEnumerator HomingRoutine()
     {
+        var wait = new WaitForFixedUpdate();
+
         while (_isActive && _transform != null)
         {
             _currentSpeed = Mathf.Min(_currentSpeed + _acceleration * Time.fixedDeltaTime, _maxSpeed);
@@ -232,32 +234,30 @@ public class ToEnemyMove : IMovementType
             if (_target == null || !_target.gameObject.activeInHierarchy)
                 _target = FindClosestEnemy();
 
-            Vector3 moveDirection;
-            if (_target != null)
-                moveDirection = (_target.position - _transform.position).normalized;
-            else
-                moveDirection = _rb.linearVelocity.normalized;
+            Vector3 moveDirection = _target != null
+                ? (_target.position - _transform.position).normalized
+                : _rb.linearVelocity.normalized;
 
-            Vector3 currentDir = _rb.linearVelocity.normalized;
-            if (currentDir == Vector3.zero)
-                currentDir = moveDirection;
+            Vector3 currentDir = _rb.linearVelocity.magnitude > 0.01f
+                ? _rb.linearVelocity.normalized
+                : moveDirection;
 
-            float currentAngle = Mathf.Atan2(currentDir.y, currentDir.x) * Mathf.Rad2Deg;
-            float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-
-            float newAngle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, _rotationSpeed * Time.fixedDeltaTime);
-
-            Vector3 newDir = new Vector3(Mathf.Cos(newAngle * Mathf.Deg2Rad), Mathf.Sin(newAngle * Mathf.Deg2Rad), 0);
+            Vector3 newDir = Vector3.RotateTowards(
+                currentDir,
+                moveDirection,
+                _rotationSpeed * Mathf.Deg2Rad * Time.fixedDeltaTime,
+                0
+            ).normalized;
 
             _rb.linearVelocity = newDir * _currentSpeed;
 
             if (_spriteTransform != null && _spriteRotate)
             {
-                float spriteAngle = Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg;
-                _spriteTransform.rotation = Quaternion.Euler(0, 0, spriteAngle);
+                float angle = Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg;
+                _spriteTransform.rotation = Quaternion.Euler(0, 0, angle);
             }
 
-            yield return new WaitForFixedUpdate();
+            yield return wait;
         }
     }
 

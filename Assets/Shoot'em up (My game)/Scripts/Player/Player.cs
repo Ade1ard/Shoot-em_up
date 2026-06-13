@@ -106,18 +106,28 @@ public class Player : Health, IInitializable, IHitHandler
     private void UpdateHP()
     {
         _maxHealth = Stats.MaxHP;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
-
-        StartDrawingBar();
+        currentHealth = Mathf.Clamp(currentHealth, 0f, _maxHealth);
     }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        OnHpChanged += CurHpUpdate;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        OnHpChanged -= CurHpUpdate;
+    }
+
+    private void CurHpUpdate() { _stats.CurrentHP = currentHealth; }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
         base.DealDamage(damage, closestPoint);
-        Stats.CurrentHP = _currentHealth;
         _lastHitTime = Time.time;
 
-        if (_currentHealth > 0)
+        if (currentHealth > 0)
         {
             FlashHitAnim(_noHitDuration);
             if (_cameraShake != null)
@@ -127,12 +137,10 @@ public class Player : Health, IInitializable, IHitHandler
         TriggerEvent(PlayerEventType.OnDamageTake);
     }
 
-    public void Heal()
+    public void Heal(int persent)
     {
-        _currentHealth += (Stats.MaxHP * 0.3f);
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
-        Stats.CurrentHP = _currentHealth;
-        StartDrawingBar();
+        currentHealth += (Stats.MaxHP * persent / 100);
+        currentHealth = Mathf.Clamp(currentHealth, 0f, _maxHealth);
 
         TriggerEvent(PlayerEventType.OnHeal);
     }
@@ -207,6 +215,8 @@ public class Player : Health, IInitializable, IHitHandler
         _stats.LoadFromData(_playerData);
 
         _modifiers.ClearAll();
+        _eventSetups.Clear();
+        StopAllRunners();
 
         SetPJSpawnPattern(_playerData.weaponConfig.SpawnPattern.GetType());
         SetPJMovementType(_playerData.PJmoveConfig.MovementType.GetType());
@@ -254,6 +264,16 @@ public class Player : Health, IInitializable, IHitHandler
         }
 
         _activeRunners[setup] = runners;
+    }
+
+    public void StopAllRunners()
+    {
+        foreach (var runners in _activeRunners.Values)
+        {
+            foreach (var runner in runners)
+                runner.Stop();
+        }
+        _activeRunners.Clear();
     }
 
     private void FlashHitAnim(float duration)

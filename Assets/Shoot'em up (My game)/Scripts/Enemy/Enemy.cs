@@ -111,7 +111,7 @@ public class Enemy : Health, IHitHandler
         }
     }
 
-    private bool TryMutate(float multiplier) { return UnityEngine.Random.Range(0, 100) < 5 * multiplier; }
+    private bool TryMutate(float multiplier) { return UnityEngine.Random.Range(0, 100) < 3 * multiplier; }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
