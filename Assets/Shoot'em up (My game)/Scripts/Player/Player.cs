@@ -235,6 +235,7 @@ public class Player : Health, IInitializable, IHitHandler
     {
         _context.ExecutePos = enemyPos;
         TriggerEvent(PlayerEventType.OnEnemyDeath);
+        _context.ExecutePos = null;
     }
 
     public void TriggerEvent(PlayerEventType eventType, EventSetup eventSetup = null)

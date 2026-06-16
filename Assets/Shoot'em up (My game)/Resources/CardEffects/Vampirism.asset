@@ -18,6 +18,7 @@ MonoBehaviour:
   rarity: 3
   effectType: 4
   modifiers: []
+  healPercent: 0
   spawnPatternType: 0
   movementType: 0
   events:
@@ -44,7 +45,7 @@ MonoBehaviour:
     - rid: 4314395795172360284
       type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
       data:
-        _healAmount: 2
+        _healAmount: 3
     - rid: 4314395795172360285
       type: {class: ChangeHPAction, ns: , asm: Assembly-CSharp}
       data:

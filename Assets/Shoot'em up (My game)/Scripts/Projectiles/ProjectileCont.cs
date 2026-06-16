@@ -13,6 +13,7 @@ public class ProjectileCont : MonoBehaviour
 
     private float _damage;
     private bool _isItEnemy = false;
+    private bool _disposable = true;
 
     public void Initialize(float? damage = null, float? lifeTime = null, IHitHandler hitHandler = null)
     {
@@ -38,7 +39,7 @@ public class ProjectileCont : MonoBehaviour
             ID.DealDamage(_damage, collision.ClosestPoint(transform.position));
             _hitHandler?.OnHit(transform.position);
 
-            if (_isItEnemy) return;
+            if (_isItEnemy || !_disposable) return;
 
             DOTween.Kill(transform);
             Destroy(gameObject);
@@ -65,4 +66,5 @@ public class ProjectileCont : MonoBehaviour
     }
 
     public void ItEnemy() { _isItEnemy = true; }
+    public void ItUndisposable() { _disposable = false; }
 }

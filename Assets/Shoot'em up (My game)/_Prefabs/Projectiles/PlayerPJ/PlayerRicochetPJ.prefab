@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_MaskInteraction: 2
   m_Sprite: {fileID: 1462318181781107465, guid: 91d348afa4b811a4d9d556d90e69430d, type: 3}
-  m_Color: {r: 0.8490566, g: 0.37496284, b: 0.35644355, a: 1}
+  m_Color: {r: 0.3224012, g: 0.5943396, b: 0.5663061, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7700706176413310029}
   - component: {fileID: 1803751769596293751}
   m_Layer: 9
-  m_Name: PlayerSpecialFire
+  m_Name: PlayerRicochetPJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,10 +176,11 @@ MonoBehaviour:
       type: {class: HomingMove, ns: , asm: Assembly-CSharp}
       data:
         _startSpeed: 2
-        _maxSpeed: 30
-        _acceleration: 15
-        _rotationSpeed: 300
+        _maxSpeed: 15
+        _acceleration: 10
+        _rotationSpeed: 360
         _searchRadius: 25
+        _nearIgnoreRadius: 5
         _targetLayer:
           serializedVersion: 2
           m_Bits: 128

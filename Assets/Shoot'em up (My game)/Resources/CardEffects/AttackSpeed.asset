@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: AttackSpeed
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  avaible: 1
   effectName: Attack speed
   description: Increase attack speed
   icon: {fileID: 8395262103217725245, guid: 80220abb452081d45a3757d59df18af4, type: 3}
@@ -24,6 +25,7 @@ MonoBehaviour:
     RandomModifier: 0
     minValue: 0
     maxValue: 0
+  healPercent: 0
   spawnPatternType: 0
   movementType: 0
   events: []

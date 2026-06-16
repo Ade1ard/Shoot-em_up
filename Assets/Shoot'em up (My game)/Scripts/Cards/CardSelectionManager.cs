@@ -43,6 +43,12 @@ public class CardSelectionManager : MonoBehaviour, IInitializable
         ClearOldCards();
 
         List<CardEffect> selectedEffects = _effectsManager.GetCards(_cardsToShow, _epicChance, _legendChance, _specialChance * _difficultyMultiplier);
+        if (selectedEffects == null)
+        {
+            OnSelectionClosed?.Invoke();
+            _UIView.ShowUI(true);
+            return;
+        }
 
         _cards = new List<CardWidget>();
 

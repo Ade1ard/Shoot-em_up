@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCardEffect", menuName = "Scriptable Objects/Card Effect")]
 public class CardEffect : ScriptableObject
 {
+    public bool avaible;
+
     [Header("View")]
     public string effectName;
     public string description;

@@ -192,7 +192,7 @@ public class BetweenPointMove: IMovementType
 }
 
 [System.Serializable]
-public class ToEnemyMove : IMovementType
+public class HomingMove : IMovementType
 {
     [Header("Homing Settings")]
     [SerializeField] private float _startSpeed = 5f;
@@ -200,8 +200,16 @@ public class ToEnemyMove : IMovementType
     [SerializeField] private float _acceleration = 5f;
     [SerializeField] private float _rotationSpeed = 360f;
     [SerializeField] private float _searchRadius = 20f;
+    [SerializeField] private float _nearIgnoreRadius = 0;
     [SerializeField] private LayerMask _targetLayer;
+    [SerializeField] private TargetType _targetType;
     [SerializeField] private bool _spriteRotate;
+
+    private enum TargetType
+    {
+        Enemy,
+        Player
+    }
 
     private Transform _transform;
     private Rigidbody2D _rb;
@@ -218,7 +226,7 @@ public class ToEnemyMove : IMovementType
         _currentSpeed = _startSpeed;
         _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
 
-        _target = FindClosestEnemy();
+        _target = FindClosestTarget();
 
         transform.GetComponent<MonoBehaviour>().StartCoroutine(HomingRoutine());
     }
@@ -231,8 +239,8 @@ public class ToEnemyMove : IMovementType
         {
             _currentSpeed = Mathf.Min(_currentSpeed + _acceleration * Time.fixedDeltaTime, _maxSpeed);
 
-            if (_target == null || !_target.gameObject.activeInHierarchy)
-                _target = FindClosestEnemy();
+            if (_target == null || !_target.gameObject.activeInHierarchy || Vector3.Distance(_transform.position, _target.transform.position) < 0.1f)
+                _target = FindClosestTarget();
 
             Vector3 moveDirection = _target != null
                 ? (_target.position - _transform.position).normalized
@@ -261,7 +269,7 @@ public class ToEnemyMove : IMovementType
         }
     }
 
-    private Transform FindClosestEnemy()
+    private Transform FindClosestTarget()
     {
         var hits = Physics2D.OverlapCircleAll(_transform.position, _searchRadius, _targetLayer);
         Transform closest = null;
@@ -269,10 +277,19 @@ public class ToEnemyMove : IMovementType
 
         foreach (var hit in hits)
         {
-            if (!hit.TryGetComponent<Enemy>(out _)) continue;
+            switch (_targetType)
+            {
+                case TargetType.Enemy:
+                    if (!hit.TryGetComponent<Enemy>(out _)) continue;
+                    break;
+
+                case TargetType.Player:
+                    if (!hit.TryGetComponent<Player>(out _)) continue;
+                    break;
+            }
 
             float dist = Vector3.Distance(_transform.position, hit.transform.position);
-            if (dist < minDist)
+            if (dist < minDist && dist > _nearIgnoreRadius)
             {
                 minDist = dist;
                 closest = hit.transform;

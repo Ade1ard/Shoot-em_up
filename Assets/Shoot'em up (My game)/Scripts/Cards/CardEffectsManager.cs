@@ -21,6 +21,8 @@ public class CardEffectsManager  : IInitializable
     {
         foreach (CardEffect effect in Resources.LoadAll<CardEffect>("CardEffects"))
         {
+            if(!effect.avaible) continue;
+
             switch (effect.rarity)
             {
                 case Rarity.common:

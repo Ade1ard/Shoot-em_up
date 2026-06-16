@@ -20,10 +20,10 @@ MonoBehaviour:
   modifiers:
   - Stat: 1
     Operation: 0
-    Value: 10
-    RandomModifier: 0
-    minValue: 0
-    maxValue: 0
+    Value: 0
+    RandomModifier: 1
+    minValue: 10
+    maxValue: 20
   - Stat: 2
     Operation: 0
     Value: 0

@@ -23,13 +23,14 @@ MonoBehaviour:
     Value: 0
     RandomModifier: 1
     minValue: 10
-    maxValue: 20
+    maxValue: 30
   - Stat: 0
     Operation: 0
     Value: 0
     RandomModifier: 1
     minValue: -40
     maxValue: -20
+  healPercent: 0
   spawnPatternType: 0
   movementType: 0
   events: []

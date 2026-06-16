@@ -109,20 +109,27 @@ public class ProjectileCaster : MonoBehaviour
             _shootFlashAnimator.SetTrigger("Shoot");
     }
 
-    public void CustomShoot(ProjectileCont projectile = null, int? PJCount = null, ISpawnFormation spawnPattern = null, float? PJDamage = null, float? PJLifeTime = null, Vector3? spawnPos = null)
+    public void CustomShoot(CustomShootContext context, Vector3? spawnPos = null)
     {
         GameObject ShootPoint = new GameObject($"{gameObject.name}ShootPoint");
         ShootPoint.transform.position = spawnPos.HasValue ? spawnPos.Value : transform.position;
 
-        for (int i = 0; i < PJCount; i++)
+        for (int i = 0; i < context._PJCount; i++)
         {
             GameObject bullet = new GameObject($"{gameObject.name}ShootPoint{i}");
             bullet.transform.SetParent(ShootPoint.transform);
-            bullet.transform.localPosition = spawnPattern.CalculateSpawnPosition(Vector3.zero, i, PJCount.Value);
+            bullet.transform.localPosition = context._spawnPattern.CalculateSpawnPosition(Vector3.zero, i, context._PJCount);
 
-            var PJ = Instantiate(projectile, bullet.transform.position, Quaternion.identity);
-            PJ.Initialize(PJDamage, PJLifeTime);
+            var PJ = Instantiate(context._projectilePrefab, bullet.transform.position, Quaternion.identity);
+            PJ.Initialize(context._PJDamage, context._PJLifeTime);
+            if (!context._disposable)
+                PJ.ItUndisposable();
             PJ.GetComponent<ObjectMovement>().StartMove(bullet.transform.position, ShootPoint.transform.position);
+
+            if (context._vFX != null)
+                Instantiate(context._vFX);
+            if (context._sound != null)
+                _audioSource.PlayOneShot(context._sound);
         }
 
         Destroy(ShootPoint.gameObject);

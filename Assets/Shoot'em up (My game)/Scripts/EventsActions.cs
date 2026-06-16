@@ -100,7 +100,7 @@ public class ActionContext
     public ProjectileCaster Caster;
     public Health Health;
     public Player Player;
-    public Vector3 ExecutePos;
+    public Vector3? ExecutePos;
 
     public static ActionContext FromEnemy(Enemy enemy)
     {
@@ -154,26 +154,33 @@ public class ChangeHPAction : IAction
 [System.Serializable]
 public class CustomShoot : IAction
 {
-    [Header("Prefab")]
-    [SerializeField] private ProjectileCont _projectilePrefab;
-
-    [Header("SpawnPattern")]
-    [SerializeReference, SubclassSelector]
-    private ISpawnFormation _spawnPattern;
-
-    [Header("Parameters")]
-    [SerializeField] private float _PJDamage;
-    [SerializeField] private float _PJLifeTime;
-    [SerializeField] private int _PJCount;
-
-    [Header("Effects")]
-    [SerializeField] private ParticleSystem _vFX;
-    [SerializeField] private AudioClip _sound;
+    public CustomShootContext _context;
 
     public void Execute(ActionContext context)
     {
         if (context.Caster == null) return;
 
-        context.Caster.CustomShoot(_projectilePrefab, _PJCount, _spawnPattern, _PJDamage, _PJLifeTime, context.ExecutePos);
+        context.Caster.CustomShoot(_context, context.ExecutePos);
     }
+}
+
+[System.Serializable]
+public class CustomShootContext
+{
+    [Header("Prefab")]
+    public ProjectileCont _projectilePrefab;
+
+    [Header("SpawnPattern")]
+    [SerializeReference, SubclassSelector]
+    public ISpawnFormation _spawnPattern;
+
+    [Header("Parameters")]
+    public float _PJDamage;
+    public float _PJLifeTime;
+    public int _PJCount;
+    public bool _disposable;
+
+    [Header("Effects")]
+    public ParticleSystem _vFX;
+    public AudioClip _sound;
 }
