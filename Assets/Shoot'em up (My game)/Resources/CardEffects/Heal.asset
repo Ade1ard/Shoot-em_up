@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  avaible: 1
   effectName: Heal
   description: Restore a little health
   icon: {fileID: -1009742683727084556, guid: 09d814930fe3c274c93c34c3930002e8, type: 3}

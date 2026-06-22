@@ -180,6 +180,7 @@ MonoBehaviour:
         _acceleration: 15
         _rotationSpeed: 300
         _searchRadius: 25
+        _nearIgnoreRadius: 0
         _targetLayer:
           serializedVersion: 2
           m_Bits: 128

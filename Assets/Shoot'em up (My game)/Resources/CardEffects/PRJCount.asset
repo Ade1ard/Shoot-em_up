@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PRJCount
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  avaible: 1
   effectName: Bullet count
   description: More Bullets shoot
   icon: {fileID: -7243563388056777162, guid: f573fc598610de048b735a6abe7ea6ab, type: 3}
@@ -24,6 +25,7 @@ MonoBehaviour:
     RandomModifier: 0
     minValue: 0
     maxValue: 0
+  healPercent: 0
   spawnPatternType: 0
   movementType: 0
   events: []

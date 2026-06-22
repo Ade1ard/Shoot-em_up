@@ -43,7 +43,7 @@ public class GameMain : IInitializable
 
         _player.OnLevelUp += ShowCardSelection;
         _player.OnPlayerDied += GameOver;
-        _player.OnXPChanged += UpdateXP;
+        _player.OnXPChanged += UpdateXp;
         _player.OnScoreChanged += UpdateScore;
         _cardSelection.OnSelectionClosed += CloseSelection;
         _cardSelection.OnCardApplied += ApplyEffect;
@@ -157,7 +157,7 @@ public class GameMain : IInitializable
         SetGameState(GameState.Running);
     }
 
-    private void UpdateXP(int exp, int levelCost) => _uiView.UpdateXP(exp, levelCost);
+    private void UpdateXp(int exp, int levelCost) => _uiView.UpdateXP(exp, levelCost);
 
     private void UpdateScore(int score, int amount) => _scoreUI.UpdateScoreAmount(score, amount);
 

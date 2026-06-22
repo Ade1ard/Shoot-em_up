@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: Damage
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
+  avaible: 1
   effectName: Damage
   description: Increase damage
   icon: {fileID: -4511813924302852723, guid: dc1598ef1d47072418a5cc996941fb51, type: 3}
