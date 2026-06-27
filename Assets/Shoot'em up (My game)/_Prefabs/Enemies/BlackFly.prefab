@@ -196,7 +196,6 @@ MonoBehaviour:
   PRJDamage: 15
   shootDelay: 5
   projectileCount: 1
-  _defaultMutateChance: 10
   eventSetups:
   - eventType: 1
     actions:
@@ -500,7 +499,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.3, y: 3.110921}
+  m_Size: {x: 9.15, y: 5.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

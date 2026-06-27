@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -11,7 +12,7 @@ public class Enemy : Health, IHitHandler
     [Header("Parameters")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private int xpReward = 10;
-    [SerializeField] private float PRJDamage = 10;
+    [FormerlySerializedAs("PRJDamage")] [SerializeField] private float prjDamage = 10;
     [SerializeField] private float shootDelay = 2;
     [SerializeField] private int projectileCount = 1;
 
@@ -35,7 +36,6 @@ public class Enemy : Health, IHitHandler
     private bool _canDamage = true;
 
     private ProjectileCaster _projectileCaster;
-    private SpriteRenderer _sprite;
 
     public event Action<Enemy, int> OnDeath;
 
@@ -46,72 +46,32 @@ public class Enemy : Health, IHitHandler
         GetComponentInChildren<Animator>().SetFloat("StartOffset", UnityEngine.Random.Range(0f, 1f));
     }
 
-    public void Initialize(float multiplier = default)
+    public void Initialize(float multiplier = 0)
     {
         _projectileCaster = GetComponent<ProjectileCaster>();
-        _sprite = GetComponentInChildren<SpriteRenderer>();
 
         if (multiplier != 0)
         {
             maxHealth *= multiplier;
-            EnemyMutate(multiplier);
         }
 
         base.InitHP(maxHealth);
 
         if (_projectileCaster != null)
         {
-            _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
+            _projectileCaster.TakeStats(prjDamage, shootDelay, projectileCount);
             _projectileCaster.IsShooting(true);
         }
 
         ProjectileCont PJCont = GetComponent<ProjectileCont>();
         if (PJCont != null)
         {
-            PJCont.Initialize(PRJDamage);
+            PJCont.Initialize(prjDamage);
             PJCont.ItEnemy();
         }
 
         _context = ActionContext.FromEnemy(this);
     }
-
-    private void EnemyMutate(float difficulty)
-    {
-        if (difficulty < 2) return;
-
-        bool mutated = false;
-
-        if (TryMutate(difficulty))
-        {
-            mutated = true;
-            shootDelay = UnityEngine.Random.Range(1, shootDelay + 1);
-            xpReward += 20;
-        }
-
-        if (TryMutate(difficulty))
-        {
-            mutated = true;
-            projectileCount = UnityEngine.Random.Range(projectileCount, projectileCount + 3);
-            xpReward += 20;
-        }
-
-        if (TryMutate(difficulty))
-        {
-            mutated = true;
-            maxHealth *= difficulty;
-            xpReward += 20;
-        }
-
-        if (mutated)
-        {
-            if (_projectileCaster != null)
-                _projectileCaster.TakeStats(PRJDamage, shootDelay, projectileCount);
-            if (_sprite != null)
-                _sprite.color = Color.HSVToRGB(UnityEngine.Random.Range(0, 1f), 0.47f, 1);
-        }
-    }
-
-    private bool TryMutate(float multiplier) { return UnityEngine.Random.Range(0, 100) < 3 * multiplier; }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)
     {
