@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 33513b0b1ac3f4546bfce17cd8b48722
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242574
+  packageName: Trails VFX - URP
+  packageVersion: 1.0.2023
+  assetPath: Assets/Vefects/Trails VFX URP/VFX/Materials/M_VFX_URP_Trail_Ice_02.mat
+  uploadId: 755328
