@@ -215,6 +215,7 @@ public class HomingMove : IMovementType
     private Rigidbody2D _rb;
     private Transform _target;
     private Transform _spriteTransform;
+    private Quaternion _spriteStartLocalRotation;
     private float _currentSpeed;
     private bool _isActive;
 
@@ -225,6 +226,8 @@ public class HomingMove : IMovementType
         _isActive = true;
         _currentSpeed = _startSpeed;
         _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
+        if (_spriteTransform != null)
+            _spriteStartLocalRotation = _spriteTransform.localRotation;
 
         _target = FindClosestTarget();
 
@@ -262,7 +265,7 @@ public class HomingMove : IMovementType
             if (_spriteTransform != null && _spriteRotate)
             {
                 float angle = Mathf.Atan2(newDir.y, newDir.x) * Mathf.Rad2Deg;
-                _spriteTransform.rotation = Quaternion.Euler(0, 0, angle);
+                _spriteTransform.localRotation = Quaternion.Euler(0, 0, angle) * _spriteStartLocalRotation;
             }
 
             yield return wait;
