@@ -48,16 +48,27 @@ public class ObjectMovement : MonoBehaviour
             }
             else
             {
-                DOTween.Kill(transform);
-                Destroy(gameObject);
+                ProjectileCont projectile = GetComponent<ProjectileCont>();
+                if (projectile != null)
+                    projectile.ReturnToPool(false);
+                else
+                {
+                    DOTween.Kill(transform);
+                    Destroy(gameObject);
+                }
             }
         }
     }
 
+    public void StopMove()
+    {
+        _movementType?.Stop();
+        DOTween.Kill(transform);
+    }
+
     private void OnDestroy()
     {
-        _movementType.Stop();
-        DOTween.Kill(transform);
+        StopMove();
     }
 }
 

@@ -6,6 +6,7 @@ public class Bootstrap : MonoBehaviour
     void Awake()
     {
         G.Register<GameMain>(new GameMain());
+        G.Register<ProjectilePool>(new ProjectilePool());
         G.Register<CardEffectsManager>(new CardEffectsManager());
         G.Register<InputManager>(FindAnyObjectByType<InputManager>());
         G.Register<EnemySpawner>(FindAnyObjectByType<EnemySpawner>());

@@ -20,6 +20,7 @@ public class GameMain : IInitializable
     private UIView _uiView;
     private ScoreUI _scoreUI;
     private EnemySpawner _enemySpawner;
+    private ProjectilePool _projectilePool;
 
     private GameState _currentState;
 
@@ -40,6 +41,7 @@ public class GameMain : IInitializable
         _uiView = G.Get<UIView>();
         _scoreUI = G.Get<ScoreUI>();
         _enemySpawner = G.Get<EnemySpawner>();
+        _projectilePool = G.Get<ProjectilePool>();
 
         _player.OnLevelUp += ShowCardSelection;
         _player.OnPlayerDied += GameOver;
@@ -197,8 +199,7 @@ public class GameMain : IInitializable
 
     private void ClearScene()
     {
-        foreach (ProjectileCont prj in Object.FindObjectsByType<ProjectileCont>())
-            prj.Clear();
+        _projectilePool.ClearAllActive();
     }
 
     private void PlayerMovementEnable(bool enable)

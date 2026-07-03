@@ -34,6 +34,8 @@ public class ProjectileCaster : MonoBehaviour
     private List<Transform> _shootP = new List<Transform>();
     private AudioSource _audioSource;
     private IHitHandler _hitHandler;
+    private ProjectilePool _projectilePool;
+    private ProjectileOwner _projectileOwner = ProjectileOwner.Other;
 
     private void Start()
     {
@@ -45,6 +47,9 @@ public class ProjectileCaster : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
         _hitHandler = GetComponent<IHitHandler>();
+        _projectilePool = G.Get<ProjectilePool>();
+        _projectileOwner = GetComponent<Player>() != null ? ProjectileOwner.Player :
+            GetComponent<Enemy>() != null ? ProjectileOwner.Enemy : ProjectileOwner.Other;
     }
 
     public void IsShooting(bool isShooting) { _isShooting  = isShooting; }
@@ -57,9 +62,19 @@ public class ProjectileCaster : MonoBehaviour
             _projectilePrefab.GetComponent<ObjectMovement>().Init(dirGenerator);
         if (PJlifeTime.HasValue)
             _PRJLifeTime = PJlifeTime.Value;
+
+        _projectilePool?.ClearInactive(_projectilePrefab);
     }
 
-    public void SetPJMovementType(IMovementType movementType) { _projectilePrefab.GetComponent<ObjectMovement>().Init(null, movementType); }
+    public void SetPJMovementType(IMovementType movementType)
+    {
+        _projectilePrefab.GetComponent<ObjectMovement>().Init(null, movementType);
+
+        if (_projectileOwner == ProjectileOwner.Player && _projectilePool != null)
+            _projectilePool.ClearActive(ProjectileOwner.Player);
+
+        _projectilePool?.ClearInactive(_projectilePrefab);
+    }
 
     public void TakeStats(float damage, float shootDelay, int projectileCount)
     {
@@ -91,7 +106,7 @@ public class ProjectileCaster : MonoBehaviour
                 p.position.y + Random.Range(-_spawnPositonOffset_Y, _spawnPositonOffset_Y),
                 0);
 
-            var projectile = Instantiate(_projectilePrefab, InitPos, Quaternion.identity);
+            var projectile = GetProjectile(_projectilePrefab, InitPos, _projectileOwner);
             projectile.Initialize(_PRJDamage, _PRJLifeTime, _hitHandler);
             projectile.GetComponent<ObjectMovement>().StartMove(InitPos, _shootPoint.position);
         }
@@ -120,7 +135,7 @@ public class ProjectileCaster : MonoBehaviour
             bullet.transform.SetParent(ShootPoint.transform);
             bullet.transform.localPosition = context._spawnPattern.CalculateSpawnPosition(Vector3.zero, i, context._PJCount);
 
-            var PJ = Instantiate(context._projectilePrefab, bullet.transform.position, Quaternion.identity);
+            var PJ = GetProjectile(context._projectilePrefab, bullet.transform.position, _projectileOwner);
             PJ.Initialize(context._PJDamage, context._PJLifeTime);
             if (!context._disposable)
                 PJ.ItUndisposable();
@@ -133,6 +148,15 @@ public class ProjectileCaster : MonoBehaviour
         }
 
         Destroy(ShootPoint.gameObject);
+    }
+
+    private ProjectileCont GetProjectile(ProjectileCont prefab, Vector3 position, ProjectileOwner owner)
+    {
+        if (_projectilePool == null)
+            _projectilePool = G.Get<ProjectilePool>();
+
+        ProjectileCont projectile = _projectilePool.Get(prefab, position, Quaternion.identity, owner);
+        return projectile != null ? projectile : Instantiate(prefab, position, Quaternion.identity);
     }
 
     private void UpdateShootPoints(int count)
