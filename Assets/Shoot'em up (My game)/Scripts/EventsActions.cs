@@ -178,7 +178,6 @@ public class CustomShootContext
     public float _PJDamage;
     public float _PJLifeTime;
     public int _PJCount;
-    public bool _disposable;
 
     [Header("Effects")]
     public ParticleSystem _vFX;

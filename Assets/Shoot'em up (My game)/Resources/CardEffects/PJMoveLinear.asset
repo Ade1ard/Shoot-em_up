@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PJMoveLinear
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 0
+  avaible: 1
   effectName: Linear
   description: Bulltes moves linear
   icon: {fileID: -4346244404228752641, guid: 9f6db11942727774b9762959d43de3cb, type: 3}

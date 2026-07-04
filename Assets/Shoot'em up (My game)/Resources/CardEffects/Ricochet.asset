@@ -46,7 +46,6 @@ MonoBehaviour:
           _PJDamage: 10
           _PJLifeTime: 4
           _PJCount: 1
-          _disposable: 0
           _vFX: {fileID: 0}
           _sound: {fileID: 0}
     - rid: 1058196758621847714

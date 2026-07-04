@@ -10,12 +10,14 @@ public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _clearVFX;
     [SerializeField] private float _lifeTime; // if == 0 ensless lifeTime
+    [Header("Flags")]
+    [SerializeField] private bool _isItEnemy = false;
+    [SerializeField] private bool _disposable = true;
+    [SerializeField] private bool _clearable = true;
 
     private IHitHandler _hitHandler;
 
     private float _damage;
-    private bool _isItEnemy = false;
-    private bool _disposable = true;
     private ProjectilePool _pool;
     private ProjectileCont _prefabKey;
     private Rigidbody2D _rb;
@@ -46,9 +48,7 @@ public class ProjectileCont : MonoBehaviour
     public void PrepareFromPool(ProjectileOwner owner, ProjectileCont prefab)
     {
         StopLifeTimeCoroutine();
-        _disposable = true;
         Owner = owner;
-        _isItEnemy = false;
         _lifeTime = prefab != null ? prefab._lifeTime : _defaultLifeTime;
         
         if (_rb == null)
@@ -93,7 +93,7 @@ public class ProjectileCont : MonoBehaviour
 
     public void Clear()
     {
-        if (_isItEnemy || !_disposable) return;
+        if (_isItEnemy || !_disposable || !_clearable) return;
         ReturnToPool(true);
     }
 
@@ -155,11 +155,4 @@ public class ProjectileCont : MonoBehaviour
         return viewportPos.x >= 0 && viewportPos.x <= 1 &&
             viewportPos.y >= 0 && viewportPos.y <= 1;
     }
-
-    public void ItEnemy()
-    {
-        _isItEnemy = true;
-        Owner = ProjectileOwner.Enemy;
-    }
-    public void ItUndisposable() { _disposable = false; }
 }

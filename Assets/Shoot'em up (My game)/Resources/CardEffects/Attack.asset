@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 0
+  avaible: 1
   effectName: Wild Surge
   description: Increase Damage but randomly change Attack speed
   icon: {fileID: 3866114885339713866, guid: d8bbaa84a515c9f459aa2985082ea1ed, type: 3}

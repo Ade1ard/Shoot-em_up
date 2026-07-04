@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: Vampirism
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 0
+  avaible: 1
   effectName: Vampirism
   description: You restore health when you hit an enemy, but lose it over time
   icon: {fileID: 7247343416498695678, guid: 76d660615abaa0843b5ad142d94f29e6, type: 3}

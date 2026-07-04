@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PJSpawnPairByCircle
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 0
+  avaible: 1
   effectName: Shotgun
   description: 'A lot of bullets but range is limited '
   icon: {fileID: -6061171253295902181, guid: 6124ed4806dc6a4408cc9cc7becca69a, type: 3}

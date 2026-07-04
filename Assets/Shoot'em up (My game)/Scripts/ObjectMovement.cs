@@ -52,6 +52,7 @@ public class ObjectMovement : MonoBehaviour
         context.CurTransform = transform;
         context.DirectionGenerator = _dirGenerator;
         context.IsItEnemy = _isItEnemy;
+        _movementContext = context;
         
         if (_movementType != null)
             _movementType.Move(context);
@@ -367,6 +368,12 @@ public class CircleFollowMove: IMovementType
 
         _spriteTransform = context.CurTransform.GetComponentInChildren<SpriteRenderer>()?.transform;
         _spriteStartLocalRotation = context.CurTransform.GetComponent<ProjectileCont>().StartSpriteRotation;
+        
+        if (_target != null)
+        {
+            Vector2 dir = (Vector2)_transform.position - (Vector2)_target.position;
+            _currentAngle = Mathf.Atan2(dir.y, dir.x);
+        }
         
         _isActive = true;
         context.CurTransform.GetComponent<MonoBehaviour>().StartCoroutine(FollowingRoutine());

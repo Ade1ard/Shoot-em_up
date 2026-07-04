@@ -201,6 +201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _lifeTime: 0
+  _isItEnemy: 0
+  _disposable: 0
+  _clearable: 0
 --- !u!50 &7700706176413310029
 Rigidbody2D:
   serializedVersion: 5

@@ -67,7 +67,6 @@ public class Enemy : Health, IHitHandler
         if (PJCont != null)
         {
             PJCont.Initialize(prjDamage);
-            PJCont.ItEnemy();
         }
 
         _context = ActionContext.FromEnemy(this);

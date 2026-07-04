@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: EpicHeal
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 0
+  avaible: 1
   effectName: Major Heal
   description: Restore much health
   icon: {fileID: 1249611852688498851, guid: 53e6b7db8cef6954e80930139b53966b, type: 3}

@@ -29,7 +29,7 @@ MonoBehaviour:
         rid: 1058196758621847687
       RepeatMode: 0
       RepeatCount: 0
-      Interval: 0
+      Interval: 10
   pickUpSound: {fileID: 0}
   _haveLimit: 0
   _chooselimit: 1
@@ -45,11 +45,10 @@ MonoBehaviour:
             rid: 3318039224095080540
           _PJDamage: 30
           _PJLifeTime: 0
-          _PJCount: 1
-          _disposable: 1
+          _PJCount: 4
           _vFX: {fileID: 0}
           _sound: {fileID: 0}
     - rid: 3318039224095080540
       type: {class: SpawnCircle, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 2
+        _radius: 3

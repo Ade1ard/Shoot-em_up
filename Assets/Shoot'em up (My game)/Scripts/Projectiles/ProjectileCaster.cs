@@ -142,8 +142,7 @@ public class ProjectileCaster : MonoBehaviour
 
             var PJ = GetProjectile(context._projectilePrefab, bullet.transform.position, _projectileOwner);
             PJ.Initialize(context._PJDamage, context._PJLifeTime);
-            if (!context._disposable)
-                PJ.ItUndisposable();
+            
             MovementContext moveContext = new MovementContext(bullet.transform.position, ShootPoint.transform.position, transform);
             PJ.GetComponent<ObjectMovement>().StartMove(moveContext);
 

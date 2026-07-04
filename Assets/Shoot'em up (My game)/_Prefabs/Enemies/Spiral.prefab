@@ -192,7 +192,7 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   maxHealth: 70
   xpReward: 20
-  PRJDamage: 25
+  prjDamage: 25
   shootDelay: 2
   projectileCount: 6
   eventSetups: []
@@ -213,6 +213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 0}
   _lifeTime: 0
+  _isItEnemy: 1
+  _disposable: 1
+  _clearable: 1
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5
