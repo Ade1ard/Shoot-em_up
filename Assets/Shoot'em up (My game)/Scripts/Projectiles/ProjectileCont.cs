@@ -48,7 +48,7 @@ public class ProjectileCont : MonoBehaviour
         StopLifeTimeCoroutine();
         _disposable = true;
         Owner = owner;
-        _isItEnemy = owner == ProjectileOwner.Enemy;
+        _isItEnemy = false;
         _lifeTime = prefab != null ? prefab._lifeTime : _defaultLifeTime;
         
         if (_rb == null)
@@ -91,13 +91,17 @@ public class ProjectileCont : MonoBehaviour
         }
     }
 
-    public void Clear() => ReturnToPool(true);
+    public void Clear()
+    {
+        if (_isItEnemy || !_disposable) return;
+        ReturnToPool(true);
+    }
 
     public void ReturnToPool(bool playClearVFX)
     {
         if (playClearVFX && _clearVFX != null)
             Instantiate(_clearVFX, transform.position, Quaternion.identity);
-
+        
         if (_pool != null)
             _pool.Release(this);
         else
@@ -133,13 +137,13 @@ public class ProjectileCont : MonoBehaviour
     {
         yield return new WaitForSeconds(lifeTime);
         _lifeTimeCoroutine = null;
-        Clear();
+        ReturnToPool(true);
     }
 
     private void StopLifeTimeCoroutine()
     {
         if (_lifeTimeCoroutine == null) return;
-
+        
         StopCoroutine(_lifeTimeCoroutine);
         _lifeTimeCoroutine = null;
     }

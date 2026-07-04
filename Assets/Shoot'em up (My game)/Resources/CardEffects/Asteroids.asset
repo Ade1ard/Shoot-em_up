@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
-  m_Name: Asteroid
+  m_Name: Asteroids
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   avaible: 1
   effectName: Asteroid
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 3537998534111858372, guid: 96df35b1a2750904b9144b206863768e, type: 3}
   rarity: 1
   effectType: 4
   modifiers: []
@@ -26,30 +26,30 @@ MonoBehaviour:
   - eventType: 4
     actions:
     - Action:
-        rid: 3318039220690354251
+        rid: 1058196758621847687
       RepeatMode: 0
       RepeatCount: 0
       Interval: 0
   pickUpSound: {fileID: 0}
   _haveLimit: 0
-  _chooselimit: 3
+  _chooselimit: 1
   references:
     version: 2
     RefIds:
-    - rid: 3318039220690354251
+    - rid: 1058196758621847687
       type: {class: CustomShoot, ns: , asm: Assembly-CSharp}
       data:
         _context:
           _projectilePrefab: {fileID: 3235747921286425940, guid: b629e6a997c663c41a290aacc4d81c56, type: 3}
           _spawnPattern:
-            rid: 3318039220690354252
-          _PJDamage: 20
+            rid: 3318039224095080540
+          _PJDamage: 10
           _PJLifeTime: 0
           _PJCount: 4
           _disposable: 0
           _vFX: {fileID: 0}
           _sound: {fileID: 0}
-    - rid: 3318039220690354252
+    - rid: 3318039224095080540
       type: {class: SpawnCircle, ns: , asm: Assembly-CSharp}
       data:
         _radius: 2

@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectMovement
   _isItEnemy: 0
   _movementType:
-    rid: 3318039220690354282
+    rid: 3318039224095080552
   _dirGenerator:
     rid: 920530498112717002
   references:
@@ -152,10 +152,13 @@ MonoBehaviour:
       data:
         _upDirection: 1
         _directionOffset: 0
-    - rid: 3318039220690354282
-      type: {class: LinearMove, ns: , asm: Assembly-CSharp}
+    - rid: 3318039224095080552
+      type: {class: CircleFollowMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 10
+        _orbitRadius: 3
+        _orbitSpeed: 3
+        _clockWise: 0
+        _spriteRotate: 1
 --- !u!114 &3235747921286425940
 MonoBehaviour:
   m_ObjectHideFlags: 0

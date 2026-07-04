@@ -103,7 +103,7 @@ public class ProjectilePool
         foreach (var projectile in projectiles)
         {
             if (projectile != null)
-                projectile.ReturnToPool(false);
+                projectile.Clear();
         }
     }
 }

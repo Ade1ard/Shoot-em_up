@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: SpecialPJ
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 1
+  avaible: 0
   effectName: Death Spark
   description: Killing an enemy spawns a spark that flies to the nearest enemy
   icon: {fileID: 8333481726314500824, guid: 8c0410c150cea0f4a82316f9fecbbe5a, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845703bddb2f2da4393a1c06e1211297, type: 3}
   m_Name: PJSpawnCross
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
-  avaible: 1
+  avaible: 0
   effectName: Cross
   description: Bullets spawns in four directions
   icon: {fileID: 4095498796019064497, guid: b0f355c36dc852e4b85acada527d8967, type: 3}

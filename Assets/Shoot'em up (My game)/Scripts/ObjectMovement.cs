@@ -329,23 +329,19 @@ public class CircleFollowMove: IMovementType
     [SerializeField] private bool _spriteRotate;
     
     private Transform _transform;
+    private Transform _target;
     private Rigidbody2D _rb;
     private Transform _spriteTransform;
     private Quaternion _spriteStartLocalRotation;
     private bool _isActive;
     private float _currentAngle;
-    private Vector2 _fallbackCenter;
     
     public void Move(Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
     {
         _transform = transform;
         _rb =  transform.GetComponent<Rigidbody2D>();
-        _fallbackCenter = spawnerPos;
 
-        Vector2 center = GetCenterPosition();
-        Vector2 startOffset = (Vector2)transform.position - center;
-        if (startOffset.sqrMagnitude > 0.0001f)
-            _currentAngle = Mathf.Atan2(startOffset.y, startOffset.x);
+        _target = GetTarget(spawnerPos);
 
         _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
         _spriteStartLocalRotation = transform.GetComponent<ProjectileCont>().StartSpriteRotation;
@@ -359,7 +355,7 @@ public class CircleFollowMove: IMovementType
         while (_isActive)
         {
             _currentAngle += _orbitSpeed * Time.deltaTime * (_clockWise? -1:1) * Mathf.Deg2Rad;
-            Vector2 center = GetCenterPosition();
+            Vector2 center = _target.position;
             
             Vector2 targetPos = center + new Vector2(
                 Mathf.Cos(_currentAngle) * _orbitRadius,
@@ -380,9 +376,22 @@ public class CircleFollowMove: IMovementType
         }
     }
 
-    private Vector2 GetCenterPosition()
+    private Transform GetTarget(Vector3 spawnerPos)
     {
-        return _transform != null ? _transform.position : _fallbackCenter;
+        var objs = Object.FindObjectsByType<Health>();
+        float minDist = float.MaxValue;
+        var closestObj = objs[0];
+        foreach (var obj in objs)
+        {
+            var dist = Vector3.Distance(obj.transform.position, spawnerPos);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closestObj = obj;
+            }
+        }
+
+        return  closestObj.transform;
     }
 
     public void Stop()
