@@ -391,11 +391,10 @@ public class CircleFollowMove: IMovementType
                 Mathf.Sin(_currentAngle) *  _orbitRadius
                 );
             
-            Vector2 moveDirection = targetPos - (Vector2)_transform.position;
-            if (_spriteTransform != null && _spriteRotate && moveDirection.sqrMagnitude > 0.0001f)
+            if (_spriteTransform != null && _spriteRotate)
             {
-                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-                _spriteTransform.localRotation = Quaternion.Euler(0, 0, angle) * _spriteStartLocalRotation;
+                float tangentAngle = _currentAngle + (_clockWise ? -Mathf.PI / 2f : Mathf.PI / 2f);
+                _spriteTransform.rotation = Quaternion.Euler(0, 0, tangentAngle * Mathf.Rad2Deg);
             }
 
             if (_rb != null)

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   avaible: 1
   effectName: Asteroid
-  description: 
-  icon: {fileID: 3537998534111858372, guid: 96df35b1a2750904b9144b206863768e, type: 3}
+  description: Spawns asteroids flying around
+  icon: {fileID: 8149009158662877648, guid: 756395a0383f968418384d111766d8de, type: 3}
   rarity: 0
   effectType: 4
   modifiers: []
