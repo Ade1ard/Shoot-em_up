@@ -2,6 +2,23 @@
 using UnityEngine;
 using System.Collections;
 
+public class MovementContext
+{
+    public Vector3 StartPosition;
+    public Vector3 SpawnerPosition;
+    public Transform SpawnOwner;
+    public Transform CurTransform;
+    public IDirectionGenerator DirectionGenerator;
+    public bool IsItEnemy;
+
+    public MovementContext(Vector3 startPosition, Vector3 spawnerPosition = default, Transform spawnOwner = null)
+    {
+        StartPosition = startPosition;
+        SpawnerPosition = spawnerPosition;
+        SpawnOwner = spawnOwner;
+    }
+}
+
 public class ObjectMovement : MonoBehaviour
 {
     [SerializeField] private bool _isItEnemy;
@@ -15,6 +32,7 @@ public class ObjectMovement : MonoBehaviour
     private IDirectionGenerator _dirGenerator;
 
     private Vector3 _startPosition;
+    private MovementContext _movementContext;
 
     private void Awake()
     {
@@ -29,10 +47,14 @@ public class ObjectMovement : MonoBehaviour
             _dirGenerator = dirGenerator;
     }
 
-    public void StartMove(Vector3 startPosition = default, Vector3 spawnerPos = default)
+    public void StartMove(MovementContext context)
     {
+        context.CurTransform = transform;
+        context.DirectionGenerator = _dirGenerator;
+        context.IsItEnemy = _isItEnemy;
+        
         if (_movementType != null)
-            _movementType.Move(transform, startPosition, spawnerPos, _dirGenerator, _isItEnemy);
+            _movementType.Move(context);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +66,7 @@ public class ObjectMovement : MonoBehaviour
                 DOTween.Kill(transform);
 
                 transform.position = _startPosition;
-                StartMove(_startPosition);
+                StartMove(_movementContext);
             }
             else
             {
@@ -74,7 +96,7 @@ public class ObjectMovement : MonoBehaviour
 
 public interface IMovementType
 {
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy);
+    public void Move(MovementContext context);
     public void Stop();
 }
 
@@ -84,16 +106,16 @@ public class LinearMove: IMovementType
     [Header("Linear Movement Settings")]
     [SerializeField] private float _linearSpeed = 10;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(MovementContext context)
     {
-        Vector3 direction = dirGenerator.GenerateDirection(startPosition, spawnerPos);
-        transform.DOMove(direction * _linearSpeed, 3)
+        Vector3 direction = context.DirectionGenerator.GenerateDirection(context.StartPosition, context.SpawnerPosition);
+        context.CurTransform.DOMove(direction * _linearSpeed, 3)
             .SetRelative()
             .SetLoops(-1, LoopType.Incremental)
             .SetEase(Ease.Linear);
 
-        if (!isItEnemy)
-            transform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
+        if (!context.IsItEnemy)
+            context.CurTransform.rotation = Quaternion.Euler(0, 0, (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
     }
 
     public void Stop()
@@ -115,14 +137,14 @@ public class CurveLinearMove: IMovementType
 
     private Tween _tween;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(MovementContext context)
     {
-        Vector3[] path = _path.GeneratePath(transform.position, dirGenerator.GenerateDirection(startPosition, spawnerPos));
-        var tween = transform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
+        Vector3[] path = _path.GeneratePath(context.CurTransform.position, context.DirectionGenerator.GenerateDirection(context.StartPosition, context.SpawnerPosition));
+        var tween = context.CurTransform.DOPath(path, _moveDuration + Random.Range(-_moveDurationOffset, _moveDurationOffset), pathType, PathMode.TopDown2D)
             .SetLoops(-1, LoopType.Incremental)
             .SetEase(Ease.Linear);
 
-        if (!isItEnemy)
+        if (!context.IsItEnemy)
             tween.SetLookAt(0.01f);
 
         _tween = tween;
@@ -149,11 +171,11 @@ public class BetweenPointMove: IMovementType
     private Sequence _sequence;
     private bool _isMoving;
 
-    public void Move(UnityEngine.Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(MovementContext context)
     {
         Stop();
         _isMoving = true;
-        StartNextMovement(transform, isItEnemy);
+        StartNextMovement(context.CurTransform, context.IsItEnemy);
     }
 
     private void StartNextMovement(Transform transform, bool isItEnemy)
@@ -230,18 +252,18 @@ public class HomingMove : IMovementType
     private float _currentSpeed;
     private bool _isActive;
 
-    public void Move(Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(MovementContext context)
     {
-        _transform = transform;
-        _rb = transform.GetComponent<Rigidbody2D>();
+        _transform = context.CurTransform;
+        _rb = context.CurTransform.GetComponent<Rigidbody2D>();
         _isActive = true;
         _currentSpeed = _startSpeed;
-        _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
-        _spriteStartLocalRotation = transform.GetComponent<ProjectileCont>().StartSpriteRotation;
+        _spriteTransform = context.CurTransform.GetComponentInChildren<SpriteRenderer>()?.transform;
+        _spriteStartLocalRotation = context.CurTransform.GetComponent<ProjectileCont>().StartSpriteRotation;
 
         _target = FindClosestTarget();
 
-        transform.GetComponent<MonoBehaviour>().StartCoroutine(HomingRoutine());
+        context.CurTransform.GetComponent<MonoBehaviour>().StartCoroutine(HomingRoutine());
     }
 
     private IEnumerator HomingRoutine()
@@ -336,18 +358,18 @@ public class CircleFollowMove: IMovementType
     private bool _isActive;
     private float _currentAngle;
     
-    public void Move(Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    public void Move(MovementContext context)
     {
-        _transform = transform;
-        _rb =  transform.GetComponent<Rigidbody2D>();
+        _transform = context.CurTransform;
+        _rb =  context.CurTransform.GetComponent<Rigidbody2D>();
 
-        _target = GetTarget(spawnerPos);
+        _target = context.SpawnOwner;
 
-        _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
-        _spriteStartLocalRotation = transform.GetComponent<ProjectileCont>().StartSpriteRotation;
+        _spriteTransform = context.CurTransform.GetComponentInChildren<SpriteRenderer>()?.transform;
+        _spriteStartLocalRotation = context.CurTransform.GetComponent<ProjectileCont>().StartSpriteRotation;
         
         _isActive = true;
-        transform.GetComponent<MonoBehaviour>().StartCoroutine(FollowingRoutine());
+        context.CurTransform.GetComponent<MonoBehaviour>().StartCoroutine(FollowingRoutine());
     }
 
     private IEnumerator FollowingRoutine()
@@ -374,24 +396,6 @@ public class CircleFollowMove: IMovementType
             
             yield return null;
         }
-    }
-
-    private Transform GetTarget(Vector3 spawnerPos)
-    {
-        var objs = Object.FindObjectsByType<Health>();
-        float minDist = float.MaxValue;
-        var closestObj = objs[0];
-        foreach (var obj in objs)
-        {
-            var dist = Vector3.Distance(obj.transform.position, spawnerPos);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                closestObj = obj;
-            }
-        }
-
-        return  closestObj.transform;
     }
 
     public void Stop()

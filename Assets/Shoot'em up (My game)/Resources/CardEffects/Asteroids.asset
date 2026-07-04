@@ -16,7 +16,7 @@ MonoBehaviour:
   effectName: Asteroid
   description: 
   icon: {fileID: 3537998534111858372, guid: 96df35b1a2750904b9144b206863768e, type: 3}
-  rarity: 1
+  rarity: 0
   effectType: 4
   modifiers: []
   healPercent: 0
@@ -43,10 +43,10 @@ MonoBehaviour:
           _projectilePrefab: {fileID: 3235747921286425940, guid: b629e6a997c663c41a290aacc4d81c56, type: 3}
           _spawnPattern:
             rid: 3318039224095080540
-          _PJDamage: 10
+          _PJDamage: 30
           _PJLifeTime: 0
-          _PJCount: 4
-          _disposable: 0
+          _PJCount: 1
+          _disposable: 1
           _vFX: {fileID: 0}
           _sound: {fileID: 0}
     - rid: 3318039224095080540

@@ -111,7 +111,9 @@ public class ProjectileCaster : MonoBehaviour
 
             var projectile = GetProjectile(_projectilePrefab, InitPos, _projectileOwner);
             projectile.Initialize(_PRJDamage, _PRJLifeTime, _hitHandler);
-            projectile.GetComponent<ObjectMovement>().StartMove(InitPos, _shootPoint.position);
+            
+            MovementContext context = new MovementContext(InitPos, _shootPoint.position, transform);
+            projectile.GetComponent<ObjectMovement>().StartMove(context);
         }
 
         if (_shootSounds.Count != 0 && Time.time - lastSoundTime >= 0.1f)
@@ -142,7 +144,8 @@ public class ProjectileCaster : MonoBehaviour
             PJ.Initialize(context._PJDamage, context._PJLifeTime);
             if (!context._disposable)
                 PJ.ItUndisposable();
-            PJ.GetComponent<ObjectMovement>().StartMove(bullet.transform.position, ShootPoint.transform.position);
+            MovementContext moveContext = new MovementContext(bullet.transform.position, ShootPoint.transform.position, transform);
+            PJ.GetComponent<ObjectMovement>().StartMove(moveContext);
 
             if (context._vFX != null)
                 Instantiate(context._vFX);

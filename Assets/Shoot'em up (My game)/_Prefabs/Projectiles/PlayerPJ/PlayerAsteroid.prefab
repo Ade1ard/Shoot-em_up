@@ -156,7 +156,7 @@ MonoBehaviour:
       type: {class: CircleFollowMove, ns: , asm: Assembly-CSharp}
       data:
         _orbitRadius: 3
-        _orbitSpeed: 3
+        _orbitSpeed: 30
         _clockWise: 0
         _spriteRotate: 1
 --- !u!114 &3235747921286425940

@@ -137,7 +137,8 @@ public class EnemySpawner : MonoBehaviour, IInitializable
         }
 
         Enemy enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        enemy.gameObject.GetComponent<ObjectMovement>().StartMove(spawnPosition);
+        MovementContext context = new MovementContext(spawnPosition, Vector3.zero, transform);
+        enemy.gameObject.GetComponent<ObjectMovement>().StartMove(context);
 
         enemy.Initialize(_currentDifficulty);
         _UIVisible += enemy.UIVisible;
