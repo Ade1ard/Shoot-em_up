@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 10
   shootDelay: 0.4
   projectileCountStep: 1
-  levelXPCost: 60
+  levelXPCost: 50
   levelMultiplier: 1.2
   weaponConfig: {fileID: 11400000, guid: 5c39b8176bc141c498f1082665c76511, type: 2}
   PJmoveConfig: {fileID: 11400000, guid: b3bec42f1eb78934ab4461ed5ebdd329, type: 2}

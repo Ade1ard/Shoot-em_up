@@ -62,6 +62,9 @@ public class ProjectileCaster : MonoBehaviour
             _projectilePrefab.GetComponent<ObjectMovement>().Init(dirGenerator);
         if (PJlifeTime.HasValue)
             _PRJLifeTime = PJlifeTime.Value;
+        
+        if (_projectileOwner == ProjectileOwner.Player && _projectilePool != null)
+            _projectilePool.ClearActive(ProjectileOwner.Player);
 
         _projectilePool?.ClearInactive(_projectilePrefab);
     }
@@ -155,7 +158,7 @@ public class ProjectileCaster : MonoBehaviour
         if (_projectilePool == null)
             _projectilePool = G.Get<ProjectilePool>();
 
-        ProjectileCont projectile = _projectilePool.Get(prefab, position, Quaternion.identity, owner);
+        ProjectileCont projectile = _projectilePool.Get(prefab, position, Quaternion.Euler(0,0,0), owner);
         return projectile != null ? projectile : Instantiate(prefab, position, Quaternion.identity);
     }
 

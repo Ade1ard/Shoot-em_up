@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class ProjectileCont : MonoBehaviour
     private ObjectMovement _movement;
     private float _defaultLifeTime;
     private Coroutine _lifeTimeCoroutine;
+    [NonSerialized] public Quaternion StartSpriteRotation;
 
     public ProjectileOwner Owner { get; private set; } = ProjectileOwner.Other;
     public ProjectileCont PrefabKey => _prefabKey;
@@ -30,6 +32,9 @@ public class ProjectileCont : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _movement = GetComponent<ObjectMovement>();
         _defaultLifeTime = _lifeTime;
+
+        var sprite = GetComponentInChildren<SpriteRenderer>();
+        StartSpriteRotation = sprite != null ? sprite.transform.localRotation : Quaternion.Euler(0, 0, 0);
     }
 
     public void SetPool(ProjectilePool pool, ProjectileCont prefabKey)
@@ -45,7 +50,7 @@ public class ProjectileCont : MonoBehaviour
         Owner = owner;
         _isItEnemy = owner == ProjectileOwner.Enemy;
         _lifeTime = prefab != null ? prefab._lifeTime : _defaultLifeTime;
-
+        
         if (_rb == null)
             _rb = GetComponent<Rigidbody2D>();
 

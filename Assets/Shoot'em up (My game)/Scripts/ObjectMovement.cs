@@ -237,8 +237,7 @@ public class HomingMove : IMovementType
         _isActive = true;
         _currentSpeed = _startSpeed;
         _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
-        if (_spriteTransform != null)
-            _spriteStartLocalRotation = _spriteTransform.localRotation;
+        _spriteStartLocalRotation = transform.GetComponent<ProjectileCont>().StartSpriteRotation;
 
         _target = FindClosestTarget();
 
@@ -311,6 +310,79 @@ public class HomingMove : IMovementType
         }
 
         return closest;
+    }
+
+    public void Stop()
+    {
+        _isActive = false;
+        if (_rb != null)
+            _rb.linearVelocity = Vector2.zero;
+    }
+}
+
+[System.Serializable]
+public class CircleFollowMove: IMovementType
+{
+    [SerializeField] private float _orbitRadius = 3f;
+    [SerializeField] private float _orbitSpeed = 3f;
+    [SerializeField] private bool _clockWise = false;
+    [SerializeField] private bool _spriteRotate;
+    
+    private Transform _transform;
+    private Rigidbody2D _rb;
+    private Transform _spriteTransform;
+    private Quaternion _spriteStartLocalRotation;
+    private bool _isActive;
+    private float _currentAngle;
+    private Vector2 _fallbackCenter;
+    
+    public void Move(Transform transform, Vector3 startPosition, Vector3 spawnerPos, IDirectionGenerator dirGenerator, bool isItEnemy)
+    {
+        _transform = transform;
+        _rb =  transform.GetComponent<Rigidbody2D>();
+        _fallbackCenter = spawnerPos;
+
+        Vector2 center = GetCenterPosition();
+        Vector2 startOffset = (Vector2)transform.position - center;
+        if (startOffset.sqrMagnitude > 0.0001f)
+            _currentAngle = Mathf.Atan2(startOffset.y, startOffset.x);
+
+        _spriteTransform = transform.GetComponentInChildren<SpriteRenderer>()?.transform;
+        _spriteStartLocalRotation = transform.GetComponent<ProjectileCont>().StartSpriteRotation;
+        
+        _isActive = true;
+        transform.GetComponent<MonoBehaviour>().StartCoroutine(FollowingRoutine());
+    }
+
+    private IEnumerator FollowingRoutine()
+    {
+        while (_isActive)
+        {
+            _currentAngle += _orbitSpeed * Time.deltaTime * (_clockWise? -1:1) * Mathf.Deg2Rad;
+            Vector2 center = GetCenterPosition();
+            
+            Vector2 targetPos = center + new Vector2(
+                Mathf.Cos(_currentAngle) * _orbitRadius,
+                Mathf.Sin(_currentAngle) *  _orbitRadius
+                );
+            
+            Vector2 moveDirection = targetPos - (Vector2)_transform.position;
+            if (_spriteTransform != null && _spriteRotate && moveDirection.sqrMagnitude > 0.0001f)
+            {
+                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                _spriteTransform.localRotation = Quaternion.Euler(0, 0, angle) * _spriteStartLocalRotation;
+            }
+
+            if (_rb != null)
+                _rb.MovePosition(targetPos);
+            
+            yield return null;
+        }
+    }
+
+    private Vector2 GetCenterPosition()
+    {
+        return _transform != null ? _transform.position : _fallbackCenter;
     }
 
     public void Stop()
