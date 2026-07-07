@@ -144,10 +144,12 @@ public class ProjectileCaster : MonoBehaviour
             PJ.Initialize(context._PJDamage, context._PJLifeTime);
             
             MovementContext moveContext = new MovementContext(bullet.transform.position, ShootPoint.transform.position, transform);
-            PJ.GetComponent<ObjectMovement>().StartMove(moveContext);
+            ObjectMovement ob = PJ.GetComponent<ObjectMovement>();
+                if (ob != null)
+                    ob.StartMove(moveContext);
 
             if (context._vFX != null)
-                Instantiate(context._vFX);
+                Instantiate(context._vFX, PJ.transform.position, Quaternion.identity);
             if (context._sound != null)
                 _audioSource.PlayOneShot(context._sound);
         }

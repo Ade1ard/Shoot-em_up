@@ -253,18 +253,17 @@ public class Player : Health, IInitializable, IHitHandler
 
     private void RunSetup(EventSetup setup)
     {
-        if (_activeRunners.TryGetValue(setup, out var oldRunners))
-            foreach (var r in oldRunners) r.Stop();
-
-        var runners = new List<ActionRunner>();
+        if (!_activeRunners.TryGetValue(setup, out var oldRunners))
+        {
+            _activeRunners[setup] = new List<ActionRunner>();
+        }
+        
         foreach (var wrapper in setup.actions)
         {
             var runner = new ActionRunner(wrapper, _context, this);
             runner.Start();
-            runners.Add(runner);
+            _activeRunners[setup].Add(runner);
         }
-
-        _activeRunners[setup] = runners;
     }
 
     public void StopAllRunners()

@@ -9,7 +9,7 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _clearVFX;
-    [SerializeField] private float _lifeTime; // if == 0 ensless lifeTime
+    [SerializeField] private float _lifeTime; // if == 0 endless lifeTime
     [Header("Flags")]
     [SerializeField] private bool _isItEnemy = false;
     [SerializeField] private bool _disposable = true;

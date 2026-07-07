@@ -160,7 +160,8 @@ public class CustomShoot : IAction
     {
         if (context.Caster == null) return;
 
-        context.Caster.CustomShoot(_context, context.ExecutePos);
+        Vector3? executePos = _context._zeroExecutePos ? Vector3.zero : context.ExecutePos;
+        context.Caster.CustomShoot(_context, executePos);
     }
 }
 
@@ -182,4 +183,7 @@ public class CustomShootContext
     [Header("Effects")]
     public ParticleSystem _vFX;
     public AudioClip _sound;
+    
+    [Header("ExecutePosition")]
+    public bool _zeroExecutePos;
 }

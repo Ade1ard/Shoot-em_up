@@ -48,6 +48,7 @@ MonoBehaviour:
           _PJCount: 1
           _vFX: {fileID: 0}
           _sound: {fileID: 0}
+          _zeroExecutePos: 0
     - rid: 1058196758621847715
       type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
       data:

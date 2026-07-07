@@ -22,6 +22,20 @@ public class SpawnRandom: ISpawnFormation
 }
 
 [System.Serializable]
+public class SpawnRandomOnScreen : ISpawnFormation
+{
+    public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
+    {
+        Vector3 point = new Vector3(
+            Random.Range(G._leftBoundary + 1, -G._leftBoundary - 1),
+            Random.Range(G._bottomBoundary / 2, -G._bottomBoundary - 1),
+            0
+        );
+        return point;
+    }
+}
+
+[System.Serializable]
 public class SpawnCircle: ISpawnFormation
 {
     [SerializeField] private float _radius = 1f;
