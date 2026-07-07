@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardEffect
   avaible: 1
   effectName: Web
-  description: 
-  icon: {fileID: 0}
+  description: Periodically spawns web
+  icon: {fileID: -4403315698911889216, guid: 84af287d9abae104d8c048a98638fd21, type: 3}
   rarity: 1
   effectType: 4
   modifiers: []
@@ -32,7 +32,7 @@ MonoBehaviour:
       Interval: 8
   pickUpSound: {fileID: 0}
   _haveLimit: 1
-  _chooselimit: 3
+  _chooselimit: 4
   references:
     version: 2
     RefIds:

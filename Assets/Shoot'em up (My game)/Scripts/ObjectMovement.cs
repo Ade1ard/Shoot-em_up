@@ -89,6 +89,12 @@ public class ObjectMovement : MonoBehaviour
         DOTween.Kill(transform);
     }
 
+    public void ContinueMove()
+    {
+        StopMove();
+        StartMove(_movementContext);
+    }
+
     private void OnDestroy()
     {
         StopMove();
