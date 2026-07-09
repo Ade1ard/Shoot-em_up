@@ -70,6 +70,8 @@ public class Enemy : Health, IHitHandler
         }
 
         _context = ActionContext.FromEnemy(this);
+        
+        TriggerEvent(EnemyEventType.OnStart);
     }
 
     public override void DealDamage(float damage, Vector3 closestPoint = default)

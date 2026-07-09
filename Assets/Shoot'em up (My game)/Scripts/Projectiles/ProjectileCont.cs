@@ -9,6 +9,7 @@ using UnityEngine;
 public class ProjectileCont : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _clearVFX;
+    [SerializeField] private ParticleSystem _spawnVFX;
     [SerializeField] private float _lifeTime; // if == 0 endless lifeTime
     [Header("Flags")]
     [SerializeField] private bool _isItEnemy = false;
@@ -37,6 +38,9 @@ public class ProjectileCont : MonoBehaviour
 
         var sprite = GetComponentInChildren<SpriteRenderer>();
         StartSpriteRotation = sprite != null ? sprite.transform.localRotation : Quaternion.Euler(0, 0, 0);
+        
+        if (_spawnVFX != null)
+            Instantiate(_spawnVFX, transform.position, Quaternion.identity);
     }
 
     public void SetPool(ProjectilePool pool, ProjectileCont prefabKey)

@@ -266,7 +266,9 @@ public class HomingMove : IMovementType
         _isActive = true;
         _currentSpeed = _startSpeed;
         _spriteTransform = context.CurTransform.GetComponentInChildren<SpriteRenderer>()?.transform;
-        _spriteStartLocalRotation = context.CurTransform.GetComponent<ProjectileCont>().StartSpriteRotation;
+        ProjectileCont pj = context.CurTransform.GetComponent<ProjectileCont>();
+        if (pj != null)
+            _spriteStartLocalRotation = pj.StartSpriteRotation;
 
         _target = FindClosestTarget();
 
@@ -387,10 +389,13 @@ public class CircleFollowMove: IMovementType
 
     private IEnumerator FollowingRoutine()
     {
+        Vector2 center = Vector2.zero;
         while (_isActive)
         {
             _currentAngle += _orbitSpeed * Time.deltaTime * (_clockWise? -1:1) * Mathf.Deg2Rad;
-            Vector2 center = _target.position;
+            
+            if (_target != null)
+                center = _target.position;
             
             Vector2 targetPos = center + new Vector2(
                 Mathf.Cos(_currentAngle) * _orbitRadius,
@@ -404,7 +409,11 @@ public class CircleFollowMove: IMovementType
             }
 
             if (_rb != null)
-                _rb.MovePosition(targetPos);
+            {
+                Vector2 currentPos = _rb.position;
+                Vector2 newPos = Vector2.MoveTowards(currentPos, targetPos, _orbitSpeed * _orbitRadius / 1.5f * Time.deltaTime);
+                _rb.MovePosition(newPos);
+            }
             
             yield return null;
         }

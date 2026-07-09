@@ -7,6 +7,7 @@ public enum EnemyEventType
     OnDamageTake,
     OnMove,
     OnHit,
+    OnStart,
 }
 
 public enum PlayerEventType

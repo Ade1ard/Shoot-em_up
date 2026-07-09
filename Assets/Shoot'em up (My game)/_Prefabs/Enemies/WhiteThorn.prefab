@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6339229913053647687}
   - component: {fileID: 4600921720785939510}
   m_Layer: 7
-  m_Name: FireGreenSine
+  m_Name: WhiteThorn
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,31 +156,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryData
   _isItEnemy: 1
   _movementType:
-    rid: 1058196634187858010
+    rid: 3191177688742625280
   _dirGenerator:
-    rid: 1058196634187858012
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 1058196634187858010
-      type: {class: CurveLinearMove, ns: , asm: Assembly-CSharp}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3191177688742625280
+      type: {class: BetweenPointMove, ns: , asm: Assembly-CSharp}
       data:
-        _path:
-          rid: 1058196634187858011
-        _moveDuration: 25
-        _moveDurationOffset: 10
-        pathType: 1
-    - rid: 1058196634187858011
-      type: {class: GenerateSinePath, ns: , asm: Assembly-CSharp}
-      data:
-        amplitude: 3
-        frequency: 4
-        sinDistance: 30
-        resolution: 30
-    - rid: 1058196634187858012
-      type: {class: AdaptiveDir, ns: , asm: Assembly-CSharp}
-      data:
-        _directionOffset: 0.25
+        _moveDuration: 7
+        _inPointTime: 3
+        _inPointTimeOffset: 1
 --- !u!114 &7552099269562904974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,24 +193,13 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   maxHealth: 50
   xpReward: 10
-  PRJDamage: 15
-  shootDelay: 100
-  projectileCount: 1
-  eventSetups:
-  - eventType: 2
-    actions:
-    - Action:
-        rid: 4314395795172360272
-      RepeatMode: 0
-      RepeatCount: 1
-      Interval: 0.5
+  prjDamage: 10
+  shootDelay: 4
+  projectileCount: 6
+  eventSetups: []
   references:
     version: 2
-    RefIds:
-    - rid: 4314395795172360272
-      type: {class: SpawnPJAction, ns: , asm: Assembly-CSharp}
-      data:
-        _maxPJCount: 1
+    RefIds: []
 --- !u!114 &6720159454807428517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,14 +212,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
-  _projectilePrefab: {fileID: 9095561515226119892, guid: c3ad605ff79965a4ca75533aeccbfeb7, type: 3}
+  _projectilePrefab: {fileID: 9095561515226119892, guid: 22c60572930e13d4fa7f0899e7af147a, type: 3}
   _shootPoint: {fileID: 0}
   _shootVFXPrefab: {fileID: 0}
   _shootFlashAnimator: {fileID: 0}
   _spawnPattern:
-    rid: 920530110659166313
-  _spawnPositonOffset_X: 0.2
-  _spawnPositonOffset_Y: 0.2
+    rid: 3191177688742625281
+  _spawnPositonOffset_X: 0
+  _spawnPositonOffset_Y: 0
   _shootDelayOffset: 1
   _shootSounds:
   - {fileID: 8300000, guid: 4e8b42094219b4a42bdd699cbf15ce29, type: 3}
@@ -249,10 +227,10 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 920530110659166313
-      type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
+    - rid: 3191177688742625281
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
       data:
-        _radius: 0.1
+        _Width: 4
 --- !u!50 &6168062537455609239
 Rigidbody2D:
   serializedVersion: 5
@@ -314,7 +292,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015226066, y: 0.0068991184}
+  m_Offset: {x: -0.01681012, y: 0.023623943}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -324,7 +302,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.4728231, y: 3.5094414}
+  m_Size: {x: 2.9778776, y: 3.1758223}
   m_EdgeRadius: 0
 --- !u!82 &4600921720785939510
 AudioSource:
@@ -451,7 +429,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7604698136511989169}
@@ -505,12 +483,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 4417844741938815490, guid: ec17488ab8b310549a6e335a38d06a70, type: 3}
+  m_Sprite: {fileID: 1078309734989200814, guid: da14c014ddadecc4d89034c4afbe3339, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.3, y: 3.110921}
+  m_Size: {x: 10.17, y: 9.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -648,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.66}
+  m_AnchoredPosition: {x: 0, y: 2.64}
   m_SizeDelta: {x: 246, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3818016158837903656
