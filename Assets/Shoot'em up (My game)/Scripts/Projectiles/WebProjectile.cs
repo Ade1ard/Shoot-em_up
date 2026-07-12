@@ -26,7 +26,8 @@ public class WebProjectile : MonoBehaviour
     {
         foreach (var objMovement in _objectMovements)
             if (objMovement != null)
-                objMovement.ContinueMove();
+                if (objMovement.isActiveAndEnabled)
+                    objMovement.ContinueMove();
         _objectMovements.Clear();
     }
 }

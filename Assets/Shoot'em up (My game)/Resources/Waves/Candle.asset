@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d9b559e44d709419c4d26f02e3d07a, type: 3}
+  m_Name: Candle
+  m_EditorClassIdentifier: Assembly-CSharp::WaveData
+  _spawnPattern:
+    rid: 920530337387511905
+  _difficultyLevel: 1
+  _isAvaible: 1
+  _enemyGroups:
+  - _enemyPrefab: {fileID: 7552099269562904974, guid: 2ff3d4b14b5f84740a4c705b64f68290, type: 3}
+    _minEnemyCount: 1
+    _maxEnemyCount: 3
+    _spawnTogether: 1
+    _delayBetweenEnemies: 1
+    _delayAfterGroup: 0
+  _waveStartDelay: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 920530337387511905
+      type: {class: SpawnLine, ns: , asm: Assembly-CSharp}
+      data:
+        _Width: 2

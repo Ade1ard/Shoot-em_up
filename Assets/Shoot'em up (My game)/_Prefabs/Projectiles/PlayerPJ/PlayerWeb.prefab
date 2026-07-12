@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1041414983236912806}
   - component: {fileID: 8676255565071456841}
   - component: {fileID: 1377258266062763423}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: -3907497907105515190}
   - component: {fileID: 7700706176413310029}
   - component: {fileID: 1803751769596293751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerWeb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: f8d3b7e6e5a724f479c064c69c931963, type: 3}
+  _spawnVFX: {fileID: 0}
   _lifeTime: 0
   _isItEnemy: 0
   _disposable: 0

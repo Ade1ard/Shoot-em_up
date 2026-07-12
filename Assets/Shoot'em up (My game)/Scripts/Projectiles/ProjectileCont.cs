@@ -38,9 +38,6 @@ public class ProjectileCont : MonoBehaviour
 
         var sprite = GetComponentInChildren<SpriteRenderer>();
         StartSpriteRotation = sprite != null ? sprite.transform.localRotation : Quaternion.Euler(0, 0, 0);
-        
-        if (_spawnVFX != null)
-            Instantiate(_spawnVFX, transform.position, Quaternion.identity);
     }
 
     public void SetPool(ProjectilePool pool, ProjectileCont prefabKey)
@@ -78,6 +75,9 @@ public class ProjectileCont : MonoBehaviour
             _lifeTime = lifeTime.Value;
         if (_lifeTime > 0)
             _lifeTimeCoroutine = StartCoroutine(LifeTimeRoutine(_lifeTime));
+        
+        if (_spawnVFX != null)
+            Instantiate(_spawnVFX, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
