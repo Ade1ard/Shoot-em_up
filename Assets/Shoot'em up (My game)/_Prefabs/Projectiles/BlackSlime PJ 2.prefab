@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 9095561515226119892}
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
+  - component: {fileID: 7845036202071311445}
   m_Layer: 8
-  m_Name: EnemyBookProjectile
+  m_Name: BlackSlime PJ 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,19 +53,17 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226855
   _dirGenerator:
-    rid: 920530094028226826
+    rid: 3191177747442696405
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226826
-      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
-      data:
-        _upDirection: 0
-        _directionOffset: 0.25
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 15
+        _linearSpeed: 14
+    - rid: 3191177747442696405
+      type: {class: FromSpawnerDir, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _spawnVFX: {fileID: 0}
-  _lifeTime: 0
+  _lifeTime: 1
   _isItEnemy: 0
   _disposable: 1
   _clearable: 1
@@ -144,7 +143,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16278249, y: -0.0016870797}
+  m_Offset: {x: 0.10235502, y: -0.0034920424}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -154,8 +153,105 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5196327, y: 0.22358069}
+  m_Size: {x: 0.39175448, y: 0.12614104}
   m_EdgeRadius: 0
+--- !u!82 &7845036202071311445
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359905335740268268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2387261540033794903
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +280,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5653371047313296270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -238,12 +334,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 1890043072340505617, guid: fe66c8fa0da20944dac50de501461441, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 4135946458246599962, guid: 036805a352435de43b5724f50c2cc25e, type: 3}
+  m_Color: {r: 0.93333334, g: 0.93333334, b: 0.93333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.53, y: 9.32}
+  m_Size: {x: 1.5, y: 4.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -11,10 +11,13 @@ GameObject:
   - component: {fileID: 5653371047313296270}
   - component: {fileID: 412575080107946971}
   - component: {fileID: 9095561515226119892}
+  - component: {fileID: 4629804651522760693}
+  - component: {fileID: -3679510436250233856}
   - component: {fileID: 3503946192638833755}
   - component: {fileID: 7904181512945924809}
+  - component: {fileID: 7845036202071311445}
   m_Layer: 8
-  m_Name: EnemyBookProjectile
+  m_Name: BlackSlime PJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,19 +55,17 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226855
   _dirGenerator:
-    rid: 920530094028226826
+    rid: 3191177747442696405
   references:
     version: 2
     RefIds:
-    - rid: 920530094028226826
-      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
-      data:
-        _upDirection: 0
-        _directionOffset: 0.25
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 15
+        _linearSpeed: 10
+    - rid: 3191177747442696405
+      type: {class: FromSpawnerDir, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +84,50 @@ MonoBehaviour:
   _isItEnemy: 0
   _disposable: 1
   _clearable: 1
+--- !u!114 &4629804651522760693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359905335740268268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39652bb75fd6bf4e9e8ff651b4a9b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileCasterInitializer
+  _prjDamage: 10
+  _shootDelay: 1
+  _projectileCount: 3
+--- !u!114 &-3679510436250233856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359905335740268268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e728cffb246357e498764987569286c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileCaster
+  _projectilePrefab: {fileID: 9095561515226119892, guid: 695f6ab4caeacd84d9e9f03062f938a7, type: 3}
+  _shootPoint: {fileID: 0}
+  _shootVFXPrefab: {fileID: 0}
+  _shootFlashAnimator: {fileID: 0}
+  _spawnPattern:
+    rid: 3191177747442696504
+  _spawnPositonOffset_X: 0
+  _spawnPositonOffset_Y: 0
+  _shootDelayOffset: 0.5
+  _shootSounds: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3191177747442696504
+      type: {class: SpawnRandom, ns: , asm: Assembly-CSharp}
+      data:
+        _radius: 1
 --- !u!50 &3503946192638833755
 Rigidbody2D:
   serializedVersion: 5
@@ -144,7 +189,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.16278249, y: -0.0016870797}
+  m_Offset: {x: 0.118317336, y: -0.0007243641}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -154,8 +199,105 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5196327, y: 0.22358069}
+  m_Size: {x: 0.50737244, y: 0.17233479}
   m_EdgeRadius: 0
+--- !u!82 &7845036202071311445
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359905335740268268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2387261540033794903
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +326,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5653371047313296270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -238,12 +380,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 1890043072340505617, guid: fe66c8fa0da20944dac50de501461441, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1975320955322219792, guid: a7ee33cafc1336e4585c675f78ad3c93, type: 3}
+  m_Color: {r: 0.93333334, g: 0.93333334, b: 0.93333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.53, y: 9.32}
+  m_Size: {x: 1.6899999, y: 4.374482}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

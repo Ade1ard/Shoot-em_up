@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f5bb3cbe9ad828441bbc6a9f77f3846a
+guid: 01ecf07c1cc6685458ccadda0eaeaf3f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4925859368912259057
-    second: Enemy black tentakle_0
+      213: 797115743646152076
+    second: Enemy White Slime_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy black tentakle_0
+      name: Enemy White Slime_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 23
-        width: 211
-        height: 467
+        x: 62
+        y: 22
+        width: 219
+        height: 470
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f78b896ffa2c5440800000000000000
-      internalID: 4925859368912259057
+      spriteID: c8576e8ab8cef0b00800000000000000
+      internalID: 797115743646152076
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Enemy black tentakle_0: 4925859368912259057
+      Enemy White Slime_0: 797115743646152076
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
