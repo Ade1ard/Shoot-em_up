@@ -76,6 +76,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
+  _spawnVFX: {fileID: 0}
+  _lifeTime: 0
+  _isItEnemy: 0
+  _disposable: 1
+  _clearable: 1
 --- !u!50 &3503946192638833755
 Rigidbody2D:
   serializedVersion: 5
@@ -378,15 +383,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: b5ce920d250e79343ab8c8a82877cdc5, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: b5ce920d250e79343ab8c8a82877cdc5, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.1503219
+      value: 0.48584908
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: b5ce920d250e79343ab8c8a82877cdc5, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
+      value: 0.769985
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: b5ce920d250e79343ab8c8a82877cdc5, type: 3}
       propertyPath: SizeModule.y.minMaxState

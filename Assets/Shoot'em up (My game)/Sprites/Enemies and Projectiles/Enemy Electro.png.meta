@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 67277ca6be2c0e64fa4e915b18178778
+guid: a4a071d86fd7d5742ad11af1dc3a657a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6983887207345831526
-    second: IMG_20260510_170017_478_0
+      213: 8950885858590088952
+    second: Enemy Electro_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_20260510_170017_478_0
+      name: Enemy Electro_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 208
-        width: 788
-        height: 529
+        x: 76
+        y: 14
+        width: 790
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 66e3e31b960cbe060800000000000000
-      internalID: 6983887207345831526
+      spriteID: 8fe545ab34fe73c70800000000000000
+      internalID: 8950885858590088952
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_20260510_170017_478_0: 6983887207345831526
+      Enemy Electro_0: 8950885858590088952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

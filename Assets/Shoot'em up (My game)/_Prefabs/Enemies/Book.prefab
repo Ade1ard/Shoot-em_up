@@ -193,7 +193,7 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   maxHealth: 40
   xpReward: 10
-  PRJDamage: 15
+  prjDamage: 15
   shootDelay: 2
   projectileCount: 1
   eventSetups: []
@@ -483,7 +483,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: -7434556310778087435, guid: efd657e55e9287541b8e35653bc70da5, type: 3}
+  m_Sprite: {fileID: 7491027643230779193, guid: a3e6257e5b710b44599674afa6523c1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -626,7 +626,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.1443}
+  m_AnchoredPosition: {x: 0, y: 2.26}
   m_SizeDelta: {x: 246, y: 112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3818016158837903656
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.88811207, b: 0.5801887, a: 1}
+  m_Color: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

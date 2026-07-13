@@ -192,7 +192,7 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 982d30b0f449e724f9abe0bfd411c568, type: 3}
   maxHealth: 50
   xpReward: 20
-  PRJDamage: 20
+  prjDamage: 20
   shootDelay: 3.5
   projectileCount: 1
   eventSetups: []
@@ -290,7 +290,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.015226126, y: 0.1015048}
+  m_Offset: {x: 0.0152260065, y: 0.022350252}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -300,7 +300,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.1823664, y: 2.7052932}
+  m_Size: {x: 3.5693433, y: 2.4062648}
   m_EdgeRadius: 0
 --- !u!82 &4600921720785939510
 AudioSource:
@@ -481,12 +481,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 2
-  m_Sprite: {fileID: 6983887207345831526, guid: 67277ca6be2c0e64fa4e915b18178778, type: 3}
+  m_Sprite: {fileID: 8950885858590088952, guid: a4a071d86fd7d5742ad11af1dc3a657a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.3, y: 3.110921}
+  m_Size: {x: 7.9, y: 4.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.88811207, b: 0.5801887, a: 1}
+  m_Color: {r: 0.7372549, g: 0.7372549, b: 0.7372549, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

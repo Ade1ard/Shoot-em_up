@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fe66c8fa0da20944dac50de501461441
+guid: a3e6257e5b710b44599674afa6523c1e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1890043072340505617
-    second: Fireboll_EnemyBook_outline_0
+      213: 7491027643230779193
+    second: Enemy Book_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fireboll_EnemyBook_outline_0
+      name: Enemy Book_0
       rect:
         serializedVersion: 2
-        x: 292
-        y: 50
-        width: 453
-        height: 932
+        x: 106
+        y: 89
+        width: 330
+        height: 311
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1143b011928ca3a10800000000000000
-      internalID: 1890043072340505617
+      spriteID: 937f66dc3f975f760800000000000000
+      internalID: 7491027643230779193
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fireboll_EnemyBook_outline_0: 1890043072340505617
+      Enemy Book_0: 7491027643230779193
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
