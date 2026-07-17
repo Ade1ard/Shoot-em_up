@@ -233,9 +233,9 @@ MonoBehaviour:
   _epic: {r: 0.65679824, g: 0.48406905, b: 0.9245283, a: 1}
   _legend: {r: 0.9150943, g: 0.7653007, b: 0.45323068, a: 1}
   _special: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
-  _hoverEnterSound: {fileID: 0}
-  _hoverExitSound: {fileID: 0}
-  _clickSound: {fileID: 0}
+  _hoverEnterSound: {fileID: 8300000, guid: cbcd787a4753e284c92edf0a82a193f6, type: 3}
+  _hoverExitSound: {fileID: 8300000, guid: 8e35fbc20982c21499bedef3bd577f64, type: 3}
+  _clickSound: {fileID: 8300000, guid: 1df043b46972ac2498abff85b905e511, type: 3}
 --- !u!114 &4573646588876159388
 MonoBehaviour:
   m_ObjectHideFlags: 0

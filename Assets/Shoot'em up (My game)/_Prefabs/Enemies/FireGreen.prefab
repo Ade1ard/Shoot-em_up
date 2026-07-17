@@ -188,12 +188,12 @@ MonoBehaviour:
   _deathVFX: {fileID: 9157105887693468085, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   _takeDamageVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
   _hitSounds:
-  - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
   - {fileID: 8300000, guid: b238c7993731b224688e10ee4c575109, type: 3}
-  _deadSound: {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  - {fileID: 8300000, guid: 257f3a5141e202f49869073d7ff0a769, type: 3}
+  _deadSound: {fileID: 8300000, guid: 853d7e73d8c78b24788620f02540ce94, type: 3}
   maxHealth: 50
   xpReward: 10
-  PRJDamage: 15
+  prjDamage: 15
   shootDelay: 100
   projectileCount: 1
   eventSetups:

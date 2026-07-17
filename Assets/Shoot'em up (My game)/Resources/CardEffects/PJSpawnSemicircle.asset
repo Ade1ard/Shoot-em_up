@@ -23,7 +23,7 @@ MonoBehaviour:
   spawnPatternType: 2
   movementType: 0
   events: []
-  pickUpSound: {fileID: 0}
+  pickUpSound: {fileID: 8300000, guid: 46cd9d694ef7e754b8e55a2290e00c0c, type: 3}
   _haveLimit: 0
   _chooselimit: 3
   references:

@@ -30,7 +30,7 @@ MonoBehaviour:
       RepeatMode: 2
       RepeatCount: 0
       Interval: 8
-  pickUpSound: {fileID: 0}
+  pickUpSound: {fileID: 8300000, guid: 46cd9d694ef7e754b8e55a2290e00c0c, type: 3}
   _haveLimit: 1
   _chooselimit: 4
   references:

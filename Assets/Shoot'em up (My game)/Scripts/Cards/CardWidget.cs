@@ -129,9 +129,6 @@ public class CardWidget : MonoBehaviour
         if (_clickSound != null)
             _audioSource.PlayOneShot(_clickSound);
 
-        if (_cardData.pickUpSound != null)
-            AudioSource.PlayClipAtPoint(_cardData.pickUpSound, Camera.main.transform.position);
-
         _onSelected?.Invoke(_cardData);
     }
 }

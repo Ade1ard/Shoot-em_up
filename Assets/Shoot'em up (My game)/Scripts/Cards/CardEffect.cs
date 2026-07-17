@@ -33,9 +33,6 @@ public class CardEffect : ScriptableObject
     [Header("EventSetup (if effect type is Event)")]
     public List<Player.EventSetup> events = new List<Player.EventSetup>();
 
-    [Header("Visual effects")]
-    public AudioClip pickUpSound;
-
     [Header("Limit")]
     public bool _haveLimit = false;
     public int _chooselimit = 3;
