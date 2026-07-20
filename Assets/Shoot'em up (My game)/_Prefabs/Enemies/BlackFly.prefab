@@ -193,7 +193,7 @@ MonoBehaviour:
   _deadSound: {fileID: 8300000, guid: 929cb9ae0248bb7438b75d601ecea1ff, type: 3}
   maxHealth: 100
   xpReward: 20
-  PRJDamage: 15
+  prjDamage: 15
   shootDelay: 5
   projectileCount: 1
   eventSetups:
@@ -328,7 +328,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

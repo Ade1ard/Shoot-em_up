@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveData
   _spawnPattern:
     rid: 920530110659166307
-  _difficultyLevel: 1
+  _difficultyLevel: 1.1
   _isAvaible: 1
   _enemyGroups:
   - _enemyPrefab: {fileID: 7552099269562904974, guid: c0c6c6ed408c9d54ba7859f0e376eab5, type: 3}
