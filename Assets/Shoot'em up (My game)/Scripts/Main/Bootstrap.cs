@@ -7,6 +7,7 @@ public class Bootstrap : MonoBehaviour
     {
         G.Register<GameMain>(new GameMain());
         G.Register<ProjectilePool>(new ProjectilePool());
+        G.Register<VFXPool>(new VFXPool());
         G.Register<CardEffectsManager>(new CardEffectsManager());
         G.Register<InputManager>(FindAnyObjectByType<InputManager>());
         G.Register<EnemySpawner>(FindAnyObjectByType<EnemySpawner>());
@@ -19,6 +20,7 @@ public class Bootstrap : MonoBehaviour
         G.Register(FindAnyObjectByType<CameraShake>());
 
         G._player = FindAnyObjectByType<Player>();
+        G.VFXPool = G.Get<VFXPool>();
 
         G._bottomBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
         G._leftBoundary = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;

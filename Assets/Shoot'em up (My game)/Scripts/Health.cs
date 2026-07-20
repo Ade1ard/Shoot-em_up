@@ -68,7 +68,10 @@ public abstract class Health : MonoBehaviour, IDamageable
         if (currentHealth <= 0f)
             Death();
         else if (closestPoint != default)
-            Instantiate(_takeDamageVFX, closestPoint, Quaternion.identity);
+        {
+            var vfx = G.VFXPool.Get(_takeDamageVFX, closestPoint, Quaternion.identity);
+            vfx.Play();
+        }
     }
 
     public virtual bool CanDamage() { return true; }
@@ -85,7 +88,11 @@ public abstract class Health : MonoBehaviour, IDamageable
     protected virtual void Death()
     {
         if (_deathVFX != null)
-            Instantiate(_deathVFX, transform.position, Quaternion.identity);
+        {
+            var vfx = G.VFXPool.Get(_deathVFX, transform.position, Quaternion.identity);
+            vfx.Play();
+        }
+        
         if (_deadSound != null)
             AudioSource.PlayClipAtPoint(_deadSound, transform.position, _audioSource.volume);
     }

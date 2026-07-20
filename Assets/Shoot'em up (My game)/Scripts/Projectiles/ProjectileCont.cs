@@ -75,9 +75,12 @@ public class ProjectileCont : MonoBehaviour
             _lifeTime = lifeTime.Value;
         if (_lifeTime > 0)
             _lifeTimeCoroutine = StartCoroutine(LifeTimeRoutine(_lifeTime));
-        
+
         if (_spawnVFX != null)
-            Instantiate(_spawnVFX, transform.position, Quaternion.identity);
+        {
+            var vfx = G.VFXPool.Get(_spawnVFX, transform.position, Quaternion.identity, transform);
+            vfx.Play();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -104,7 +107,10 @@ public class ProjectileCont : MonoBehaviour
     public void ReturnToPool(bool playClearVFX)
     {
         if (playClearVFX && _clearVFX != null)
-            Instantiate(_clearVFX, transform.position, Quaternion.identity);
+        {
+            var vfx = G.VFXPool.Get(_clearVFX, transform.position, Quaternion.identity);
+            vfx.Play();
+        }
         
         if (_pool != null)
             _pool.Release(this);

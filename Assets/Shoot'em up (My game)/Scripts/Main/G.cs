@@ -7,6 +7,7 @@ public static class G //ServiseLocator
     private static Dictionary<Type, object> _services = new();
 
     public static Player _player;
+    public static VFXPool VFXPool;
 
     public static float _bottomBoundary;
     public static float _leftBoundary;

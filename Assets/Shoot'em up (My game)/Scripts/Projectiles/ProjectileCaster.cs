@@ -123,7 +123,10 @@ public class ProjectileCaster : MonoBehaviour
         }
 
         if (_shootVFXPrefab != null)
-            Instantiate(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
+        {
+            var vfx = G.VFXPool.Get(_shootVFXPrefab, _shootPoint.position, Quaternion.identity, transform);
+            vfx.Play();
+        }
 
         if (_shootFlashAnimator != null)
             _shootFlashAnimator.SetTrigger("Shoot");
@@ -149,7 +152,11 @@ public class ProjectileCaster : MonoBehaviour
                     ob.StartMove(moveContext);
 
             if (context._vFX != null)
-                Instantiate(context._vFX, PJ.transform.position, Quaternion.identity);
+            {
+                var vfx = G.VFXPool.Get(context._vFX, PJ.transform.position, Quaternion.identity);
+                vfx.Play();
+            }
+                
             if (context._sound != null)
                 _audioSource.PlayOneShot(context._sound);
         }
@@ -163,7 +170,7 @@ public class ProjectileCaster : MonoBehaviour
             _projectilePool = G.Get<ProjectilePool>();
 
         ProjectileCont projectile = _projectilePool.Get(prefab, position, Quaternion.Euler(0,0,0), owner);
-        return projectile != null ? projectile : Instantiate(prefab, position, Quaternion.identity);
+        return projectile;
     }
 
     private void UpdateShootPoints(int count)
