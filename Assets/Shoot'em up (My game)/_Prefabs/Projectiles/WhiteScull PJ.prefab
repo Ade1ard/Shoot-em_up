@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7904181512945924809}
   - component: {fileID: 7845036202071311445}
   m_Layer: 8
-  m_Name: BlackSlime PJ 2
+  m_Name: WhiteScull PJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,17 +53,19 @@ MonoBehaviour:
   _movementType:
     rid: 920530094028226855
   _dirGenerator:
-    rid: 3191177747442696405
+    rid: 3318039602297045083
   references:
     version: 2
     RefIds:
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 5
-    - rid: 3191177747442696405
-      type: {class: FromSpawnerDir, ns: , asm: Assembly-CSharp}
-      data: 
+        _linearSpeed: 10
+    - rid: 3318039602297045083
+      type: {class: SimpleDir, ns: , asm: Assembly-CSharp}
+      data:
+        _upDirection: 0
+        _directionOffset: 0.1
 --- !u!114 &9095561515226119892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,8 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCont
   _clearVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
-  _spawnVFX: {fileID: 0}
-  _lifeTime: 1
+  _spawnVFX: {fileID: 141433446842962268, guid: 9674e5a01eab2294b84598638fb9249d, type: 3}
+  _lifeTime: 0
   _isItEnemy: 0
   _disposable: 1
   _clearable: 1
@@ -143,7 +145,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.10235502, y: -0.0034920424}
+  m_Offset: {x: 0.12407243, y: -0.013515413}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -153,7 +155,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.39175448, y: 0.12614104}
+  m_Size: {x: 0.4351893, y: 0.16623467}
   m_EdgeRadius: 0
 --- !u!82 &7845036202071311445
 AudioSource:
@@ -280,7 +282,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.18, y: 0.18, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5653371047313296270}
@@ -335,7 +337,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 2
   m_Sprite: {fileID: 4135946458246599962, guid: 036805a352435de43b5724f50c2cc25e, type: 3}
-  m_Color: {r: 0.36862746, g: 0.50980395, b: 0.46666667, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

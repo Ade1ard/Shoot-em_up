@@ -62,7 +62,7 @@ MonoBehaviour:
     - rid: 920530094028226855
       type: {class: LinearMove, ns: , asm: Assembly-CSharp}
       data:
-        _linearSpeed: 10
+        _linearSpeed: 8
     - rid: 3191177747442696405
       type: {class: FromSpawnerDir, ns: , asm: Assembly-CSharp}
       data: 

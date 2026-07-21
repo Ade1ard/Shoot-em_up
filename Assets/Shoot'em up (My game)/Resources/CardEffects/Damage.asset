@@ -21,7 +21,7 @@ MonoBehaviour:
   modifiers:
   - Stat: 1
     Operation: 0
-    Value: 10
+    Value: 5
     RandomModifier: 0
     minValue: 0
     maxValue: 0
@@ -29,7 +29,6 @@ MonoBehaviour:
   spawnPatternType: 0
   movementType: 0
   events: []
-  pickUpSound: {fileID: 8300000, guid: 46cd9d694ef7e754b8e55a2290e00c0c, type: 3}
   _haveLimit: 0
   _chooselimit: 3
   references:

@@ -73,6 +73,22 @@ public class SpawnLine: ISpawnFormation
 }
 
 [System.Serializable]
+public class SpawnRandomInLine: ISpawnFormation
+{
+    [SerializeField] private float _Width = 1f;
+
+    public Vector3 CalculateSpawnPosition(Vector3 startPosition, int index, int count)
+    {
+        var offset = new Vector3(
+            Random.Range(-_Width, _Width),
+            0,
+            0
+        );
+        return startPosition + offset;
+    }
+}
+
+[System.Serializable]
 public class SpawnVFormation: ISpawnFormation
 {
     public Vector2 _spacing = new Vector2(1f, 1f);

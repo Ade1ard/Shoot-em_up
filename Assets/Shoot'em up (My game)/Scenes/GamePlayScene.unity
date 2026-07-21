@@ -1934,7 +1934,7 @@ ParticleSystem:
   m_GameObject: {fileID: 493745582}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 1
+  simulationSpeed: 1.6
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -8891,7 +8891,7 @@ MonoBehaviour:
   - {fileID: 1817825696}
   - {fileID: 129425515}
   - {fileID: 984479895}
-  _backGroundSpeed: 1
+  _backGroundSpeed: 1.3
   _backgroundSpriteCountHorizontal: 2
 --- !u!4 &1604819933
 Transform:
